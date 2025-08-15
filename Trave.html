@@ -1,0 +1,178 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<head>
+	<title>S.S. Romeo</title>
+	<meta content="Falkman family history site." name="description" />
+	<meta content="family history, ancestors, family, parents, grand parents, aunts & uncles, sibling, brothers & sisters, great-grandparents, cousins" name="keywords" />
+	<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" />
+	<meta content="en-us" http-equiv="Content-Language" />
+	<meta content="Allen Falkman" name="author"/>
+	<meta content="General" name="rating" />
+	<meta content="no" http-equiv="imagetoolbar" />
+	<meta content="Copyright © 2025, Allen Falkman All Rights Reserved" name="copyright" />
+	<link href="css/magnify.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<div id="container">
+	
+  <!-- Inserts the common header-->
+  <div id="header"></div>
+  <script src="./js/loadHeader.js"></script>
+
+  <!-- header-row contains the page title, the magnifier checkbox and input for magnification value. -->
+  <div class="heading-row" >
+    <h1>S.S. Trave</h1>
+  
+    <label class="heading-checkbox">
+      <input type="checkbox" id="mag-checkbox" class="myCheckbox" />
+      Enable Mag
+    </label>
+
+    <input
+      type="text"
+      id="mag"
+      class="myMag"
+      placeholder="Mag Value (2)"
+      style="display: none"
+    />
+  </div>
+  
+  <!-- content contains the remainder of the page. -->
+  <div id="content" >
+
+    <p id="enMag">Enable Mag - Mouse over the image.</p>
+
+		<p>This is the ship that Karin traveled on from Bremen, Germany 
+		to America (New York city).</p>
+
+		<div class="img-magnifier-container">
+			<img
+				class="magImage"
+				src="./images/trave.jpg"
+				width="411"
+				height="275"
+				alt="SS Trave"
+			/>
+		</div>
+
+		<p >SS Trave. From Bremen To New York, via South Hampton.</p>
+
+    <!-- Inserts the common footer. -->
+    <div id="footer"></div>
+    <script src="./js/loadFooter.js"></script>
+  </div>
+</div>
+
+<script type="module">
+	import { toggleMagnifier, defaultMagConfig } from './js/magnifier.js';
+
+	// change page title to page heading
+	// comment out if not desired
+	document.getElementsByTagName("title")[0].textContent = document.querySelector('.heading-row h1').textContent;
+
+	const checkbox = document.getElementById('mag-checkbox');
+	const zoomInput = document.getElementById('mag');
+
+	checkbox.addEventListener('change', () => {
+		zoomInput.style.display = checkbox.checked ? 'block' : 'none';
+		toggleMagnifier(checkbox.checked, defaultMagConfig);
+	});
+
+	zoomInput.addEventListener('input', () => {
+		toggleMagnifier(checkbox.checked, defaultMagConfig);
+	});
+</script>
+
+</body>
+=======
+<!DOCTYPE html>
+<head>
+	<title>S.S. Romeo</title>
+	<meta content="Falkman family history site." name="description" />
+	<meta content="family history, ancestors, family, parents, grand parents, aunts & uncles, sibling, brothers & sisters, great-grandparents, cousins" name="keywords" />
+	<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" />
+	<meta content="en-us" http-equiv="Content-Language" />
+	<meta content="Allen Falkman" name="author"/>
+	<meta content="General" name="rating" />
+	<meta content="no" http-equiv="imagetoolbar" />
+	<meta content="Copyright © 2025, Allen Falkman All Rights Reserved" name="copyright" />
+	<link href="css/magnify.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<div id="container">
+	
+  <!-- Inserts the common header-->
+  <div id="header"></div>
+  <script src="./js/loadHeader.js"></script>
+
+  <!-- header-row contains the page title, the magnifier checkbox and input for magnification value. -->
+  <div class="heading-row" >
+    <h1>S.S. Trave</h1>
+  
+    <label class="heading-checkbox">
+      <input type="checkbox" id="mag-checkbox" class="myCheckbox" />
+      Enable Mag
+    </label>
+
+    <input
+      type="text"
+      id="mag"
+      class="myMag"
+      placeholder="Mag Value (2)"
+      style="display: none"
+    />
+  </div>
+  
+  <!-- content contains the remainder of the page. -->
+  <div id="content" >
+
+    <p id="enMag">Enable Mag - Mouse over the image.</p>
+
+		<p>This is the ship that Karin traveled on from Bremen, Germany 
+		to America (New York city).</p>
+
+		<div class="img-magnifier-container">
+			<img
+				class="magImage"
+				src="./images/trave.jpg"
+				width="411"
+				height="275"
+				alt="SS Trave"
+			/>
+		</div>
+
+		<p >SS Trave. From Bremen To New York, via South Hampton.</p>
+
+    <!-- Inserts the common footer. -->
+    <div id="footer"></div>
+    <script src="./js/loadFooter.js"></script>
+  </div>
+</div>
+
+<script type="module">
+	import { toggleMagnifier, defaultMagConfig } from './js/magnifier.js';
+
+	// change page title to page heading
+	// comment out if not desired
+	document.getElementsByTagName("title")[0].textContent = document.querySelector('.heading-row h1').textContent;
+
+	const checkbox = document.getElementById('mag-checkbox');
+	const zoomInput = document.getElementById('mag');
+
+	checkbox.addEventListener('change', () => {
+		zoomInput.style.display = checkbox.checked ? 'block' : 'none';
+		toggleMagnifier(checkbox.checked, defaultMagConfig);
+	});
+
+	zoomInput.addEventListener('input', () => {
+		toggleMagnifier(checkbox.checked, defaultMagConfig);
+	});
+</script>
+
+</body>
+>>>>>>> 48a4ce1 (first commit)
+</html>

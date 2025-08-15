@@ -1,0 +1,479 @@
+<<<<<<< HEAD
+﻿html {
+	height:100%;
+}
+
+body {
+	font-family: 'Segoe UI', Tahoma, Helvetica, Arial, sans-serif;
+	height: 100%;
+	width: 90%;
+	margin: 70px;
+	padding: 0;
+	color: #000000; /*black*/
+	background-color: #E4D47F; /*parchment*/;
+    background-repeat: repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+/*===============indicates no border around any image ============*/
+body img {
+	border: 0px;
+	text-decoration: none;
+}
+
+
+/* ============ margins auto center the container on the page ==========*/
+#container {
+	margin: 10px auto 10px auto;
+	padding: 20px;
+	background-color: #ffffff;
+	width:1100px;
+}
+
+#topmenu {
+	background-color: #FFFFFF;
+	text-align: center;
+	font-size: .90em;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-right: 10px;
+	color: inherit;
+	border-top: 2px solid #AB9F5F;
+	border-bottom: 2px solid #AB9F5F;
+}
+#topmenu ul {
+	list-style-type: none;
+}
+
+
+.flip-card-front img {
+  width: 100%;
+  max-width: 250px; /* Adjust as needed */
+  height: auto;
+  object-fit: cover;
+}
+
+.flip-card {
+  width: 250px;
+  height: 400px;
+  perspective: 1000px;
+}
+
+.flip-card {
+  margin-bottom: 100px; /* Adds space below each card */
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 250px;
+  height: 450px;
+  transition: transform .3s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #fff;
+}
+
+.flip-card-back {
+  background-color: #000000;
+  color: white;
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.flip-card-back a {
+  color: #7bff00; /* This sets the link color */
+  text-decoration: none; /* Optional: removes underline */
+}
+
+.flip-card-back a:hover {
+  color: #f8f408; /* Optional: changes link color on hover */
+}
+
+
+
+.grid-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.grid-gallery img {
+  width: 100%;
+  height: auto;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 35px;
+}
+
+/*==============all site links==============*/
+
+a {
+  z-index: 99;
+}
+
+a:link {
+	font-weight: bold;
+	color: #df5252;
+	background: transparent;
+	text-decoration: underline;
+}
+
+a:visited {
+	font-weight: bold;
+	color: #ce1919;
+	background: transparent;
+	padding: 0px;
+	text-decoration: underline wavy rgb(1, 1, 22) 2px;
+}
+
+a:hover {
+	font-weight: bold;
+	text-decoration : none;
+    background: #9da8ce;
+	color: #eee56d;}
+a:active {
+	font-weight: bold;
+	text-decoration : underline;
+	background: #BFDFE2;
+	color: #726A40;
+}
+
+
+
+/* =================Styles for heading tags =============== */
+h1, h2, h3, h4 {
+	color: #485E48;
+	background-color: inherit;
+}
+h1 {
+	font-size: 1.5em;
+  text-align: center; 
+  background: #EBDF9F;
+  margin-bottom: 30px;  
+}
+h2 {
+	font-size: 1em;
+}
+h3 {
+	font-size: .9em;
+}
+h4 {
+	font-size: .9em;
+}
+
+/*====================== styles for main content area =========================*/
+#content {
+	margin-right: 140px;
+	margin-left: 140px;
+	padding: 5px;
+	text-align: left;
+	vertical-align: top;
+}
+
+figure {
+  text-align: justify;
+}
+
+
+/*============== Styles for footer ===================*/
+#footer {
+	border-top: 2px solid #242F24;
+	clear: both;
+	padding: 5px;
+	background-color: rgb(#c9b17a);
+	text-align: center;
+}
+#footer p {
+	margin-top: 0px;
+	margin-bottom: 0px;
+  background-image: solid #AB9F5F;
+  background-repeat: repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* Styles your button (this is a 40x40 pixels image) */
+
+
+
+#back-to-top {
+  position: fixed;
+  bottom: 40px;
+  right: -60px; /* Start off-screen */
+  padding: 10px 15px;
+  background-color: #333;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: right 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0;
+  z-index: 1000;
+}
+
+#back-to-top.show {
+  right: 20px; /* Slide into view */
+  opacity: 1;
+}
+
+=======
+﻿html {
+	height:100%;
+}
+
+body {
+	font-family: 'Segoe UI', Tahoma, Helvetica, Arial, sans-serif;
+	height: 100%;
+	width: 90%;
+	margin: 70px;
+	padding: 0;
+	color: #000000; /*black*/
+	background-color: #E4D47F; /*parchment*/;
+    background-repeat: repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+/*===============indicates no border around any image ============*/
+body img {
+	border: 0px;
+	text-decoration: none;
+}
+
+
+/* ============ margins auto center the container on the page ==========*/
+#container {
+	margin: 10px auto 10px auto;
+	padding: 20px;
+	background-color: #ffffff;
+	width:1100px;
+}
+
+#topmenu {
+	background-color: #FFFFFF;
+	text-align: center;
+	font-size: .90em;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-right: 10px;
+	color: inherit;
+	border-top: 2px solid #AB9F5F;
+	border-bottom: 2px solid #AB9F5F;
+}
+#topmenu ul {
+	list-style-type: none;
+}
+
+
+.flip-card-front img {
+  width: 100%;
+  max-width: 250px; /* Adjust as needed */
+  height: auto;
+  object-fit: cover;
+}
+
+.flip-card {
+  width: 250px;
+  height: 400px;
+  perspective: 1000px;
+}
+
+.flip-card {
+  margin-bottom: 100px; /* Adds space below each card */
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 250px;
+  height: 450px;
+  transition: transform .3s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #fff;
+}
+
+.flip-card-back {
+  background-color: #000000;
+  color: white;
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.flip-card-back a {
+  color: #7bff00; /* This sets the link color */
+  text-decoration: none; /* Optional: removes underline */
+}
+
+.flip-card-back a:hover {
+  color: #f8f408; /* Optional: changes link color on hover */
+}
+
+
+
+.grid-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.grid-gallery img {
+  width: 100%;
+  height: auto;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 35px;
+}
+
+/*==============all site links==============*/
+
+a {
+  z-index: 99;
+}
+
+a:link {
+	font-weight: bold;
+	color: #df5252;
+	background: transparent;
+	text-decoration: underline;
+}
+
+a:visited {
+	font-weight: bold;
+	color: #ce1919;
+	background: transparent;
+	padding: 0px;
+	text-decoration: underline wavy rgb(1, 1, 22) 2px;
+}
+
+a:hover {
+	font-weight: bold;
+	text-decoration : none;
+    background: #9da8ce;
+	color: #eee56d;}
+a:active {
+	font-weight: bold;
+	text-decoration : underline;
+	background: #BFDFE2;
+	color: #726A40;
+}
+
+
+
+/* =================Styles for heading tags =============== */
+h1, h2, h3, h4 {
+	color: #485E48;
+	background-color: inherit;
+}
+h1 {
+	font-size: 1.5em;
+  text-align: center; 
+  background: #EBDF9F;
+  margin-bottom: 30px;  
+}
+h2 {
+	font-size: 1em;
+}
+h3 {
+	font-size: .9em;
+}
+h4 {
+	font-size: .9em;
+}
+
+/*====================== styles for main content area =========================*/
+#content {
+	margin-right: 140px;
+	margin-left: 140px;
+	padding: 5px;
+	text-align: left;
+	vertical-align: top;
+}
+
+figure {
+  text-align: justify;
+}
+
+
+/*============== Styles for footer ===================*/
+#footer {
+	border-top: 2px solid #242F24;
+	clear: both;
+	padding: 5px;
+	background-color: rgb(#c9b17a);
+	text-align: center;
+}
+#footer p {
+	margin-top: 0px;
+	margin-bottom: 0px;
+  background-image: solid #AB9F5F;
+  background-repeat: repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* Styles your button (this is a 40x40 pixels image) */
+
+
+
+#back-to-top {
+  position: fixed;
+  bottom: 40px;
+  right: -60px; /* Start off-screen */
+  padding: 10px 15px;
+  background-color: #333;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: right 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0;
+  z-index: 1000;
+}
+
+#back-to-top.show {
+  right: 20px; /* Slide into view */
+  opacity: 1;
+}
+
+>>>>>>> 48a4ce1 (first commit)

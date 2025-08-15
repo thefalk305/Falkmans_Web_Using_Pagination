@@ -1,0 +1,7 @@
+<<<<<<< HEAD
+﻿
+This will be Pehr Noren's Biographical Page
+=======
+﻿
+This will be Pehr Noren's Biographical Page
+>>>>>>> 48a4ce1 (first commit)

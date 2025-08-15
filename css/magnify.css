@@ -1,0 +1,420 @@
+<<<<<<< HEAD
+﻿body {
+	font-family: Tahoma, Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+	background-color: #E4D47F; /*parchment*/;
+	color: #000000; /*black*/
+  margin: 0;
+}
+
+a {
+  z-index: 99;
+}
+
+#container {
+    margin: 10px auto 10px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    width: 90%;
+}
+
+/* =================Styles for heading tags =============== */
+h1, h2, h3, h4 {
+	color: #485E48; /*dk green*/;
+	background-color: inherit;
+}
+h1 {
+	font-size: 1.5em;
+	background: #EBDF9F; /*lt green*/
+}
+h2 {
+	font-size: 1em;
+}
+h3 {
+	font-size: .9em;
+}
+h4 {
+	font-size: .9em;
+}
+
+.img-magnifier-container {
+  text-align: center;
+  position:relative;
+  width: 100%;
+}
+
+.img-magnifier-container img {
+  display: inline-block; /* Ensures it responds properly to text-align */
+}
+
+ /*Set the size of the magnifier glass:*/
+.img-magnifier-glass {
+  position: absolute;
+  border: 1px solid #f00;
+  width: 250px;
+  height: 125px;
+  background-color:white;
+  border-radius: 10px;
+  cursor: none;
+  z-index: 1000;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  display: block; /* always block, control opacity instead */
+	pointer-events: none;
+ }
+
+/* .img-magnifier-container:hover .img-magnifier-glass {
+  opacity: 1;
+} */
+
+/* Comment out to see cursor in mag glass */
+.magImage.hide-cursor {
+  cursor: none !important;
+} 
+
+#glassToggle {
+	  background-color:#EBDF9F;
+    height: 60px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 800px;
+    border: 2px red solid;
+    border-radius: 15px;
+	}
+
+#mag {
+	position: absolute;
+  right: 194px;
+  height: 24px;
+  width: 116px;
+  background-color: #EBDF9F;
+	display: block;
+}
+
+#heading {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heading-row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #EBDF9F;
+  margin-top: .67em;
+}
+
+.heading-row h1 {
+  margin: 0px;
+  }
+
+.heading-row p {
+  margin: 0px;
+  }
+
+.heading-checkbox {
+  position: absolute;
+  right: 72px;
+  height: 24px;
+  width: 120px;
+  display: flex;
+  align-items: center;
+}
+
+.img-checkbox {
+  position: absolute;
+  right: 278px;
+  height: 24px;
+  width: 120px;
+  display: flex;
+  align-items: center;
+}
+
+#footer {
+	background-color: rgb(255, 255, 255);
+	text-align: center;
+
+	align-items: center;
+  width: 100%;
+}
+#footer p {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+#top-nav-menu {
+  font-size: .90em;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-top: 2px solid #AB9F5F;
+  border-bottom: 2px solid #AB9F5F;
+}
+
+#content {
+  display: block;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 0px;
+  margin-left: 140px;
+  margin-right: 140px;
+}
+
+#content p {
+  margin-top: 0px;
+  text-align: justify;
+  text-indent: 2em;
+  margin-top: 1em;
+  /* margin-bottom: 0em; */
+}
+
+/* #content h3 {
+  margin: 0em;
+} */
+
+#content #enMag {
+  margin-top: 0px;
+  font-size: small;
+  text-align: center;
+}
+
+#back-to-top {
+    /* Remove the background color */
+    color: #FFFFFF;
+    opacity: 0;
+    transition: opacity .6s ease-in-out;
+    z-index: 999;
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+  
+    /* Change the width and height to match your image dimensions*/ 
+    width: 32px;
+    height: 40px;
+    box-sizing: border-box;
+    border-radius: 0%;
+}
+  
+  #back-to-top.show {
+       opacity: 1;
+=======
+﻿body {
+	font-family: Tahoma, Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+	background-color: #E4D47F; /*parchment*/;
+	color: #000000; /*black*/
+  margin: 0;
+}
+
+a {
+  z-index: 99;
+}
+
+#container {
+    margin: 10px auto 10px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    width: 90%;
+}
+
+/* =================Styles for heading tags =============== */
+h1, h2, h3, h4 {
+	color: #485E48; /*dk green*/;
+	background-color: inherit;
+}
+h1 {
+	font-size: 1.5em;
+	background: #EBDF9F; /*lt green*/
+}
+h2 {
+	font-size: 1em;
+}
+h3 {
+	font-size: .9em;
+}
+h4 {
+	font-size: .9em;
+}
+
+.img-magnifier-container {
+  text-align: center;
+  position:relative;
+  width: 100%;
+}
+
+.img-magnifier-container img {
+  display: inline-block; /* Ensures it responds properly to text-align */
+}
+
+ /*Set the size of the magnifier glass:*/
+.img-magnifier-glass {
+  position: absolute;
+  border: 1px solid #f00;
+  width: 250px;
+  height: 125px;
+  background-color:white;
+  border-radius: 10px;
+  cursor: none;
+  z-index: 1000;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  display: block; /* always block, control opacity instead */
+	pointer-events: none;
+ }
+
+/* .img-magnifier-container:hover .img-magnifier-glass {
+  opacity: 1;
+} */
+
+/* Comment out to see cursor in mag glass */
+.magImage.hide-cursor {
+  cursor: none !important;
+} 
+
+#glassToggle {
+	  background-color:#EBDF9F;
+    height: 60px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 800px;
+    border: 2px red solid;
+    border-radius: 15px;
+	}
+
+#mag {
+	position: absolute;
+  right: 194px;
+  height: 24px;
+  width: 116px;
+  background-color: #EBDF9F;
+	display: block;
+}
+
+#heading {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heading-row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #EBDF9F;
+  margin-top: .67em;
+}
+
+.heading-row h1 {
+  margin: 0px;
+  }
+
+.heading-row p {
+  margin: 0px;
+  }
+
+.heading-checkbox {
+  position: absolute;
+  right: 72px;
+  height: 24px;
+  width: 120px;
+  display: flex;
+  align-items: center;
+}
+
+.img-checkbox {
+  position: absolute;
+  right: 278px;
+  height: 24px;
+  width: 120px;
+  display: flex;
+  align-items: center;
+}
+
+#footer {
+	background-color: rgb(255, 255, 255);
+	text-align: center;
+
+	align-items: center;
+  width: 100%;
+}
+#footer p {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+#top-nav-menu {
+  font-size: .90em;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-top: 2px solid #AB9F5F;
+  border-bottom: 2px solid #AB9F5F;
+}
+
+#content {
+  display: block;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 0px;
+  margin-left: 140px;
+  margin-right: 140px;
+}
+
+#content p {
+  margin-top: 0px;
+  text-align: justify;
+  text-indent: 2em;
+  margin-top: 1em;
+  /* margin-bottom: 0em; */
+}
+
+/* #content h3 {
+  margin: 0em;
+} */
+
+#content #enMag {
+  margin-top: 0px;
+  font-size: small;
+  text-align: center;
+}
+
+#back-to-top {
+    /* Remove the background color */
+    color: #FFFFFF;
+    opacity: 0;
+    transition: opacity .6s ease-in-out;
+    z-index: 999;
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+  
+    /* Change the width and height to match your image dimensions*/ 
+    width: 32px;
+    height: 40px;
+    box-sizing: border-box;
+    border-radius: 0%;
+}
+  
+  #back-to-top.show {
+       opacity: 1;
+>>>>>>> 48a4ce1 (first commit)
+  }

@@ -1,0 +1,7 @@
+<<<<<<< HEAD
+﻿
+This will be the biography page for Nils Pit (Peter) Falkman
+=======
+﻿
+This will be the biography page for Nils Pit (Peter) Falkman
+>>>>>>> 48a4ce1 (first commit)

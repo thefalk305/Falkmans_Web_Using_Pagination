@@ -1,0 +1,254 @@
+<<<<<<< HEAD
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>Falkman Family History</title>
+	<meta content="Falkman family history site." name="description" />
+	<meta content="family history, ancestors, family, parents, grand parents, aunts & uncles, sibling, brothers & sisters, great-grandparents, cousins" name="keywords" />
+	<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" />
+	<meta content="en-us" http-equiv="Content-Language" />
+	<meta content="Allen Falkman" name="author"/>
+	<meta content="General" name="rating" />
+	<meta content="no" http-equiv="imagetoolbar" />
+	<meta content="Copyright © 2010, Allen Falkman All Rights Reserved" name="copyright" />
+	<link href="css/magnify.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+<div id="container">
+	
+  <!-- Inserts the common header-->
+  <div id="header"></div>
+  <script src="./js/loadHeader.js"></script>
+
+  <!-- header-row contains the page title, the magnifier checkbox and input for magnification value. -->
+  <div class="heading-row" >
+    <h1>S.S. Norden</h1>
+  
+    <label class="heading-checkbox">
+      <input type="checkbox" id="mag-checkbox" class="myCheckbox" />
+      Enable Mag
+    </label>
+
+    <input
+      type="text"
+      id="mag"
+      class="myMag"
+      placeholder="Mag Value (2)"
+      style="display: none"
+    />
+  </div>
+
+	<!-- content contains the remainder of the page. -->
+	<div id="content" >
+
+    <p id="enMag">Enable Mag - Mouse over the image.</p>
+
+		<p>The Norden is the ship that Karin Noren traveled on from Göteborg to Hamburg, Germany</p>
+
+		<div class="img-magnifier-container">
+			<img
+			class="magImage"
+			src="./images/SS%20Norden.jpg"
+			width="865" 
+			height="545"
+			alt="Bremen, Germany"
+			/>
+		</div>
+
+		<p>SS Norden from Göteborg, Sweden to Hamburg, Germany.</p>
+
+		<!-- Inserts the common footer. -->
+    <div id="footer"></div>
+    <script src="./js/loadFooter.js"></script>
+	</div>
+</div>
+
+  <script type="module">
+    import { toggleMagnifier, defaultMagConfig } from './js/magnifier.js';
+
+		// change page title to page heading
+		// comment out if not desired
+		document.getElementsByTagName("title")[0].textContent = document.querySelector('.heading-row h1').textContent;
+
+    const checkbox = document.getElementById('mag-checkbox');
+    const zoomInput = document.getElementById('mag');
+
+    checkbox.addEventListener('change', () => {
+      zoomInput.style.display = checkbox.checked ? 'block' : 'none';
+      toggleMagnifier(checkbox.checked, defaultMagConfig);
+    });
+
+    zoomInput.addEventListener('input', () => {
+      toggleMagnifier(checkbox.checked, defaultMagConfig);
+    });
+
+    
+// =======================
+// Back to Top Scroll Button
+// =======================
+
+document.addEventListener("DOMContentLoaded", function () {
+  var link = document.getElementById("back-to-top");
+  if (!link) return; // ✅ safely exit if not found
+  var amountScrolled = 1000;
+
+  window.addEventListener("scroll", function () {
+    if (window.pageYOffset > amountScrolled) {
+      link.classList.add("show");
+    } else {
+      link.classList.remove("show");
+    }  
+  });
+
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+    var distance = 0 - window.pageYOffset;
+    var increments = distance / (500 / 16);
+
+    function animateScroll() {
+      window.scrollBy(0, increments);
+      if (window.pageYOffset <= document.body.offsetTop) {
+        clearInterval(runAnimation);
+      }
+    }
+    var runAnimation = setInterval(animateScroll, 16);
+  });
+});
+
+
+  </script>
+</body>
+
+=======
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>Falkman Family History</title>
+	<meta content="Falkman family history site." name="description" />
+	<meta content="family history, ancestors, family, parents, grand parents, aunts & uncles, sibling, brothers & sisters, great-grandparents, cousins" name="keywords" />
+	<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" />
+	<meta content="en-us" http-equiv="Content-Language" />
+	<meta content="Allen Falkman" name="author"/>
+	<meta content="General" name="rating" />
+	<meta content="no" http-equiv="imagetoolbar" />
+	<meta content="Copyright © 2010, Allen Falkman All Rights Reserved" name="copyright" />
+	<link href="css/magnify.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+<div id="container">
+	
+  <!-- Inserts the common header-->
+  <div id="header"></div>
+  <script src="./js/loadHeader.js"></script>
+
+  <!-- header-row contains the page title, the magnifier checkbox and input for magnification value. -->
+  <div class="heading-row" >
+    <h1>S.S. Norden</h1>
+  
+    <label class="heading-checkbox">
+      <input type="checkbox" id="mag-checkbox" class="myCheckbox" />
+      Enable Mag
+    </label>
+
+    <input
+      type="text"
+      id="mag"
+      class="myMag"
+      placeholder="Mag Value (2)"
+      style="display: none"
+    />
+  </div>
+
+	<!-- content contains the remainder of the page. -->
+	<div id="content" >
+
+    <p id="enMag">Enable Mag - Mouse over the image.</p>
+
+		<p>The Norden is the ship that Karin Noren traveled on from Göteborg to Hamburg, Germany</p>
+
+		<div class="img-magnifier-container">
+			<img
+			class="magImage"
+			src="./images/SS%20Norden.jpg"
+			width="865" 
+			height="545"
+			alt="Bremen, Germany"
+			/>
+		</div>
+
+		<p>SS Norden from Göteborg, Sweden to Hamburg, Germany.</p>
+
+		<!-- Inserts the common footer. -->
+    <div id="footer"></div>
+    <script src="./js/loadFooter.js"></script>
+	</div>
+</div>
+
+  <script type="module">
+    import { toggleMagnifier, defaultMagConfig } from './js/magnifier.js';
+
+		// change page title to page heading
+		// comment out if not desired
+		document.getElementsByTagName("title")[0].textContent = document.querySelector('.heading-row h1').textContent;
+
+    const checkbox = document.getElementById('mag-checkbox');
+    const zoomInput = document.getElementById('mag');
+
+    checkbox.addEventListener('change', () => {
+      zoomInput.style.display = checkbox.checked ? 'block' : 'none';
+      toggleMagnifier(checkbox.checked, defaultMagConfig);
+    });
+
+    zoomInput.addEventListener('input', () => {
+      toggleMagnifier(checkbox.checked, defaultMagConfig);
+    });
+
+    
+// =======================
+// Back to Top Scroll Button
+// =======================
+
+document.addEventListener("DOMContentLoaded", function () {
+  var link = document.getElementById("back-to-top");
+  if (!link) return; // ✅ safely exit if not found
+  var amountScrolled = 1000;
+
+  window.addEventListener("scroll", function () {
+    if (window.pageYOffset > amountScrolled) {
+      link.classList.add("show");
+    } else {
+      link.classList.remove("show");
+    }  
+  });
+
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+    var distance = 0 - window.pageYOffset;
+    var increments = distance / (500 / 16);
+
+    function animateScroll() {
+      window.scrollBy(0, increments);
+      if (window.pageYOffset <= document.body.offsetTop) {
+        clearInterval(runAnimation);
+      }
+    }
+    var runAnimation = setInterval(animateScroll, 16);
+  });
+});
+
+
+  </script>
+</body>
+
+>>>>>>> 48a4ce1 (first commit)
+</html>

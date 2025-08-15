@@ -1,0 +1,316 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<head>
+	<title>S.S. Romeo</title>
+	<meta content="Falkman family history site." name="description" />
+	<meta content="family history, ancestors, family, parents, grand parents, aunts & uncles, sibling, brothers & sisters, great-grandparents, cousins" name="keywords" />
+	<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" />
+	<meta content="en-us" http-equiv="Content-Language" />
+	<meta content="Allen Falkman" name="author"/>
+	<meta content="General" name="rating" />
+	<meta content="no" http-equiv="imagetoolbar" />
+	<meta content="Copyright © 2025, Allen Falkman All Rights Reserved" name="copyright" />
+	<link href="css/magnify.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<div id="container">
+	
+  <!-- Inserts the common header-->
+  <div id="header"></div>
+  <script src="./js/loadHeader.js"></script>
+
+  <!-- header-row contains the page title, the magnifier checkbox and input for magnification value. -->
+  <div class="heading-row" >
+    <h1>S.S. Samaria</h1>
+  
+    <label class="heading-checkbox">
+      <input type="checkbox" id="mag-checkbox" class="myCheckbox" />
+      Enable Mag
+    </label>
+
+    <input
+      type="text"
+      id="mag"
+      class="myMag"
+      placeholder="Mag Value (2)"
+      style="display: none"
+    />
+  </div>
+  
+  <!-- content contains the remainder of the page. -->
+  <div id="content" >
+    <p id="enMag" >Enable Mag - Mouse over the image.</p>
+
+    <h3>This is the ship that Ingred Löfgren traveled on to America</h3>
+
+		<div class="img-magnifier-container">
+			<img
+				class="magImage"
+				src="./images/SSSamaria.jpg"
+				alt="S.S. Samaria"
+        style="width: 66%;"
+			/>
+    </div>
+
+    <p >Ingred Löfgren is the wife of Johan Löfgren.
+      Johan, or John as we will call him, is the brother of Nis P. Falkman. And Nils is 
+      the father of Herman Falkman. And Herman Falkman is the father of Allen B. Falkman. Who
+      is my Dad.</P>
+      <p>Anyway Ingred is traveling with her two daughters, Clara 
+      and Emma Löfgren. On their way to America. To meet up with her husband, John, who had
+      traveled to America a few years earlier. I still have to re-search how Ingred traveled
+      to Liverpool England. Probably leaving from Göteborg Sweden to Hull England. Over land, 
+      by train to Liverpool.</p>
+      <p>(A little information of the S.S. Samaria: Built in 1868. 
+      In Cessnoch Band, Govan, Scotland. Govan is about 45 miles east of Edinburgh. The Ships
+      dimentions are, 320 ft. long, 40 ft. wide (at the widest part), and sat 27 ft. in the
+      water.)</p>
+      <p>The family's journey would have taken them from Liverpool, 
+      across the Irish Sea. to Queenstown. In county Cork, Ireland. And then the 10 day trip to 
+      America.</p>
+      <p>Queenstown is now known as Cobh, a seaport town located 
+      on the south coast of County Cork, Ireland. It's situated on the south side of Great 
+      Island in Cork Harbour. Cobh was formerly named Queenstown in honor of Queen Victoria's 
+      visit in 1849. Once described as the saddest place in Ireland, the Port 
+      of Cobh was the embarkation point for the millions that left the country throughout the 
+      19th Century. Today the compelling Queenstown Story exhibition in the town, tells their 
+      sad tale. If your ancestors were Irish, the chances are that they left Ireland from the 
+      port of Cobh, or Queenstown as it was called before it reverted back to its original 
+      Irish name. Cobh was Ireland's most important port of emigration and from 1815 to 1970 
+      over 3 million people boarded here, heading for new lives in North America.</p>
+    <div id="lnkcont" style="position: relative;">
+      <a href="/SamList.html"
+        style="position: absolute; left:1%; top: 78.5%; width: 45%; height: 1.6%; background-color: rgba(255, 0, 0, 0.5);">
+      </a>
+      <div class="img-magnifier-container">
+        <img class="magImage" src="./images/SamariaList.jpg" alt="Samaria List" style="width: 100%;"  /> 
+      </div>
+    </div>
+    <p>Ship's schedule from 1868 (built) to 1902 (scrapped - Genoa, Italy).</p>
+    <!-- Inserts the common footer. -->
+    <div id="footer"></div>
+    <script src="./js/loadFooter.js"></script>
+  </div>
+</div>
+
+<a href="#" id="back-to-top" style="display: inline;">
+  <img src="../images/rocket4.png" >
+</a>  
+
+
+<script type="module">
+	import { toggleMagnifier, defaultMagConfig } from './js/magnifier.js';
+
+	// change page title to page heading
+	// comment out if not desired
+	document.getElementsByTagName("title")[0].textContent = document.querySelector('.heading-row h1').textContent;
+
+	const checkbox = document.getElementById('mag-checkbox');
+	const zoomInput = document.getElementById('mag');
+
+	checkbox.addEventListener('change', () => {
+		zoomInput.style.display = checkbox.checked ? 'block' : 'none';
+		toggleMagnifier(checkbox.checked, defaultMagConfig);
+	});
+
+	zoomInput.addEventListener('input', () => {
+		toggleMagnifier(checkbox.checked, defaultMagConfig);
+	});
+
+// =======================
+// Back to Top Scroll Button
+// =======================
+
+document.addEventListener("DOMContentLoaded", function () {
+  var link = document.getElementById("back-to-top");
+  if (!link) return; // ✅ safely exit if not found
+  var amountScrolled = 600;
+
+  window.addEventListener("scroll", function () {
+    if (window.pageYOffset > amountScrolled) {
+      link.classList.add("show");
+    } else {
+      link.classList.remove("show");
+    }  
+  });
+
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+    var distance = 0 - window.pageYOffset;
+    var increments = distance / (500 / 16);
+
+    function animateScroll() {
+      window.scrollBy(0, increments);
+      if (window.pageYOffset <= document.body.offsetTop) {
+        clearInterval(runAnimation);
+      }
+    }
+    var runAnimation = setInterval(animateScroll, 16);
+  });
+});
+
+</script>
+
+</body>
+
+=======
+<!DOCTYPE html>
+<head>
+	<title>S.S. Romeo</title>
+	<meta content="Falkman family history site." name="description" />
+	<meta content="family history, ancestors, family, parents, grand parents, aunts & uncles, sibling, brothers & sisters, great-grandparents, cousins" name="keywords" />
+	<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" />
+	<meta content="en-us" http-equiv="Content-Language" />
+	<meta content="Allen Falkman" name="author"/>
+	<meta content="General" name="rating" />
+	<meta content="no" http-equiv="imagetoolbar" />
+	<meta content="Copyright © 2025, Allen Falkman All Rights Reserved" name="copyright" />
+	<link href="css/magnify.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<div id="container">
+	
+  <!-- Inserts the common header-->
+  <div id="header"></div>
+  <script src="./js/loadHeader.js"></script>
+
+  <!-- header-row contains the page title, the magnifier checkbox and input for magnification value. -->
+  <div class="heading-row" >
+    <h1>S.S. Samaria</h1>
+  
+    <label class="heading-checkbox">
+      <input type="checkbox" id="mag-checkbox" class="myCheckbox" />
+      Enable Mag
+    </label>
+
+    <input
+      type="text"
+      id="mag"
+      class="myMag"
+      placeholder="Mag Value (2)"
+      style="display: none"
+    />
+  </div>
+  
+  <!-- content contains the remainder of the page. -->
+  <div id="content" >
+    <p id="enMag" >Enable Mag - Mouse over the image.</p>
+
+    <h3>This is the ship that Ingred Löfgren traveled on to America</h3>
+
+		<div class="img-magnifier-container">
+			<img
+				class="magImage"
+				src="./images/SSSamaria.jpg"
+				alt="S.S. Samaria"
+        style="width: 66%;"
+			/>
+    </div>
+
+    <p >Ingred Löfgren is the wife of Johan Löfgren.
+      Johan, or John as we will call him, is the brother of Nis P. Falkman. And Nils is 
+      the father of Herman Falkman. And Herman Falkman is the father of Allen B. Falkman. Who
+      is my Dad.</P>
+      <p>Anyway Ingred is traveling with her two daughters, Clara 
+      and Emma Löfgren. On their way to America. To meet up with her husband, John, who had
+      traveled to America a few years earlier. I still have to re-search how Ingred traveled
+      to Liverpool England. Probably leaving from Göteborg Sweden to Hull England. Over land, 
+      by train to Liverpool.</p>
+      <p>(A little information of the S.S. Samaria: Built in 1868. 
+      In Cessnoch Band, Govan, Scotland. Govan is about 45 miles east of Edinburgh. The Ships
+      dimentions are, 320 ft. long, 40 ft. wide (at the widest part), and sat 27 ft. in the
+      water.)</p>
+      <p>The family's journey would have taken them from Liverpool, 
+      across the Irish Sea. to Queenstown. In county Cork, Ireland. And then the 10 day trip to 
+      America.</p>
+      <p>Queenstown is now known as Cobh, a seaport town located 
+      on the south coast of County Cork, Ireland. It's situated on the south side of Great 
+      Island in Cork Harbour. Cobh was formerly named Queenstown in honor of Queen Victoria's 
+      visit in 1849. Once described as the saddest place in Ireland, the Port 
+      of Cobh was the embarkation point for the millions that left the country throughout the 
+      19th Century. Today the compelling Queenstown Story exhibition in the town, tells their 
+      sad tale. If your ancestors were Irish, the chances are that they left Ireland from the 
+      port of Cobh, or Queenstown as it was called before it reverted back to its original 
+      Irish name. Cobh was Ireland's most important port of emigration and from 1815 to 1970 
+      over 3 million people boarded here, heading for new lives in North America.</p>
+    <div id="lnkcont" style="position: relative;">
+      <a href="/SamList.html"
+        style="position: absolute; left:1%; top: 78.5%; width: 45%; height: 1.6%; background-color: rgba(255, 0, 0, 0.5);">
+      </a>
+      <div class="img-magnifier-container">
+        <img class="magImage" src="./images/SamariaList.jpg" alt="Samaria List" style="width: 100%;"  /> 
+      </div>
+    </div>
+    <p>Ship's schedule from 1868 (built) to 1902 (scrapped - Genoa, Italy).</p>
+    <!-- Inserts the common footer. -->
+    <div id="footer"></div>
+    <script src="./js/loadFooter.js"></script>
+  </div>
+</div>
+
+<a href="#" id="back-to-top" style="display: inline;">
+  <img src="../images/rocket4.png" >
+</a>  
+
+
+<script type="module">
+	import { toggleMagnifier, defaultMagConfig } from './js/magnifier.js';
+
+	// change page title to page heading
+	// comment out if not desired
+	document.getElementsByTagName("title")[0].textContent = document.querySelector('.heading-row h1').textContent;
+
+	const checkbox = document.getElementById('mag-checkbox');
+	const zoomInput = document.getElementById('mag');
+
+	checkbox.addEventListener('change', () => {
+		zoomInput.style.display = checkbox.checked ? 'block' : 'none';
+		toggleMagnifier(checkbox.checked, defaultMagConfig);
+	});
+
+	zoomInput.addEventListener('input', () => {
+		toggleMagnifier(checkbox.checked, defaultMagConfig);
+	});
+
+// =======================
+// Back to Top Scroll Button
+// =======================
+
+document.addEventListener("DOMContentLoaded", function () {
+  var link = document.getElementById("back-to-top");
+  if (!link) return; // ✅ safely exit if not found
+  var amountScrolled = 600;
+
+  window.addEventListener("scroll", function () {
+    if (window.pageYOffset > amountScrolled) {
+      link.classList.add("show");
+    } else {
+      link.classList.remove("show");
+    }  
+  });
+
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+    var distance = 0 - window.pageYOffset;
+    var increments = distance / (500 / 16);
+
+    function animateScroll() {
+      window.scrollBy(0, increments);
+      if (window.pageYOffset <= document.body.offsetTop) {
+        clearInterval(runAnimation);
+      }
+    }
+    var runAnimation = setInterval(animateScroll, 16);
+  });
+});
+
+</script>
+
+</body>
+
+>>>>>>> 48a4ce1 (first commit)
+</html>

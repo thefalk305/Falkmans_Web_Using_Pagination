@@ -1,0 +1,233 @@
+<<<<<<< HEAD
+﻿html {
+	height:100%;
+}
+body {
+    font-family: Tahoma, Helvetica, Arial, sans-serif;
+	display: flex;
+	Flex-direction: column;
+	align-items: center;
+	background-color: #E4D47F; /*parchment*/;
+	color: #000000; /*black*/
+}
+/*=================== styles for top menu ======================
+#topmenu {
+	background-color: #f3d295;
+	font-size: .90em;
+	padding-top: 5px;
+	padding-bottom: 0px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	margin-left: 100px;
+	margin-right: 100px;
+	color: inherit;
+	border-top: 2px solid #ad5f05;
+	border-bottom: 2px solid #ad5f05;
+}
+*/
+
+#topmenu {
+	background-color: #FFFFFF;
+	text-align: center;
+	font-size: .90em;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-right: 10px;
+	color: inherit;
+	border-top: 2px solid #AB9F5F;
+	border-bottom: 2px solid #AB9F5F;
+}
+
+
+
+/*
+
+#topmenu ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+#topmenu li {
+	display: inline;
+	list-style-type: none;
+	padding: 0px;
+	padding-right: 1em;
+}
+
+*/
+
+
+/* == margins auto center the container on the page == */
+#container {
+	margin: 2px auto 10px auto;
+	padding: 20px;
+	background-color: #ffffff;
+	width: 94.2%;
+}
+/* =================Styles for heading tags =============== */
+h1, h2, h3, h4 {
+	color: #485E48;
+	background-color: inherit;
+}
+h1 {
+	font-size: 1.5em;
+	background: #EBDF9F;
+}
+h2 {
+	font-size: 1em;
+}
+h3 {
+	font-size: .9em;
+}
+h4 {
+	font-size: .9em;
+}
+
+
+
+
+* {box-sizing: border-box;
+}
+
+.img-magnifier-container {
+  text-align: center;
+  position:relative;
+}
+
+.img-magnifier-container img {
+  display: inline-block; /* Ensures it responds properly to text-align */
+}
+ /*Set the size of the magnifier glass:*/
+.img-magnifier-glass {
+  cursor: none;	
+  position: absolute;
+  border: 1px solid #f00;
+  width: 250px;
+  height: 125px;
+  background-color:white;
+  border-radius: 10px;
+  z-index: 1000;
+  /* Optional: add shadow for style */
+  /*box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);*/
+ }
+
+
+=======
+﻿html {
+	height:100%;
+}
+body {
+    font-family: Tahoma, Helvetica, Arial, sans-serif;
+	display: flex;
+	Flex-direction: column;
+	align-items: center;
+	background-color: #E4D47F; /*parchment*/;
+	color: #000000; /*black*/
+}
+/*=================== styles for top menu ======================
+#topmenu {
+	background-color: #f3d295;
+	font-size: .90em;
+	padding-top: 5px;
+	padding-bottom: 0px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	margin-left: 100px;
+	margin-right: 100px;
+	color: inherit;
+	border-top: 2px solid #ad5f05;
+	border-bottom: 2px solid #ad5f05;
+}
+*/
+
+#topmenu {
+	background-color: #FFFFFF;
+	text-align: center;
+	font-size: .90em;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-right: 10px;
+	color: inherit;
+	border-top: 2px solid #AB9F5F;
+	border-bottom: 2px solid #AB9F5F;
+}
+
+
+
+/*
+
+#topmenu ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+#topmenu li {
+	display: inline;
+	list-style-type: none;
+	padding: 0px;
+	padding-right: 1em;
+}
+
+*/
+
+
+/* == margins auto center the container on the page == */
+#container {
+	margin: 2px auto 10px auto;
+	padding: 20px;
+	background-color: #ffffff;
+	width: 94.2%;
+}
+/* =================Styles for heading tags =============== */
+h1, h2, h3, h4 {
+	color: #485E48;
+	background-color: inherit;
+}
+h1 {
+	font-size: 1.5em;
+	background: #EBDF9F;
+}
+h2 {
+	font-size: 1em;
+}
+h3 {
+	font-size: .9em;
+}
+h4 {
+	font-size: .9em;
+}
+
+
+
+
+* {box-sizing: border-box;
+}
+
+.img-magnifier-container {
+  text-align: center;
+  position:relative;
+}
+
+.img-magnifier-container img {
+  display: inline-block; /* Ensures it responds properly to text-align */
+}
+ /*Set the size of the magnifier glass:*/
+.img-magnifier-glass {
+  cursor: none;	
+  position: absolute;
+  border: 1px solid #f00;
+  width: 250px;
+  height: 125px;
+  background-color:white;
+  border-radius: 10px;
+  z-index: 1000;
+  /* Optional: add shadow for style */
+  /*box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);*/
+ }
+
+
+>>>>>>> 48a4ce1 (first commit)

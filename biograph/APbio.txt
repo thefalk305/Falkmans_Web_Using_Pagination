@@ -1,0 +1,7 @@
+<<<<<<< HEAD
+﻿
+This will become the biography page for Anna Palmer.
+=======
+﻿
+This will become the biography page for Anna Palmer.
+>>>>>>> 48a4ce1 (first commit)
