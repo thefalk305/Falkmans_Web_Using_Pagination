@@ -1,7 +1,2 @@
-<<<<<<< HEAD
 ﻿
 This will be the biographical page for Margaret Carroll
-=======
-﻿
-This will be the biographical page for Margaret Carroll
->>>>>>> 48a4ce1 (first commit)

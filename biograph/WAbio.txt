@@ -1,7 +1,2 @@
-<<<<<<< HEAD
 ﻿
 This will be the biography page for William Allen,
-=======
-﻿
-This will be the biography page for William Allen,
->>>>>>> 48a4ce1 (first commit)

@@ -1,7 +1,2 @@
-<<<<<<< HEAD
 ﻿
 This will be the biography page for Allen Falkman Sr.
-=======
-﻿
-This will be the biography page for Allen Falkman Sr.
->>>>>>> 48a4ce1 (first commit)

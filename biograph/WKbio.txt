@@ -1,7 +1,2 @@
-<<<<<<< HEAD
 ﻿
 This will be the biography page for Willammina Kindt,
-=======
-﻿
-This will be the biography page for Willammina Kindt,
->>>>>>> 48a4ce1 (first commit)

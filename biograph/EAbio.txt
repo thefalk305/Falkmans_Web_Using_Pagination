@@ -1,7 +1,2 @@
-<<<<<<< HEAD
 ﻿
 This will be the biography page for Ellen Allen,
-=======
-﻿
-This will be the biography page for Ellen Allen,
->>>>>>> 48a4ce1 (first commit)

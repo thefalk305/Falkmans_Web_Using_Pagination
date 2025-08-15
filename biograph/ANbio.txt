@@ -1,7 +1,2 @@
-<<<<<<< HEAD
 ﻿
 This will be the biography page for Anna Noren.
-=======
-﻿
-This will be the biography page for Anna Noren.
->>>>>>> 48a4ce1 (first commit)

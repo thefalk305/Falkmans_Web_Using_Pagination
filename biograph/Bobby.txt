@@ -1,10 +1,4 @@
-<<<<<<< HEAD
 Robert J. Falkman
 
 First Married and living in Lombard. Working for White Hen Pantry stores.
-=======
-Robert J. Falkman
-
-First Married and living in Lombard. Working for White Hen Pantry stores.
->>>>>>> 48a4ce1 (first commit)
 Has since moved to Naperville and now owns a White Hen Pantry Franchise.

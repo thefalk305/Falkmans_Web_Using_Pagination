@@ -1,7 +1,2 @@
-<<<<<<< HEAD
 ﻿
 This will be the bio page for John Lufgren.
-=======
-﻿
-This will be the bio page for John Lufgren.
->>>>>>> 48a4ce1 (first commit)

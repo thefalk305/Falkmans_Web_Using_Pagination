@@ -1,7 +1,2 @@
-<<<<<<< HEAD
 ﻿
 This will be the biography page for James Carroll.
-=======
-﻿
-This will be the biography page for James Carroll.
->>>>>>> 48a4ce1 (first commit)

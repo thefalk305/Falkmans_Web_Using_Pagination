@@ -1,7 +1,2 @@
-<<<<<<< HEAD
 ﻿
 This will be the biography page for Karen Falkman
-=======
-﻿
-This will be the biography page for Karen Falkman
->>>>>>> 48a4ce1 (first commit)

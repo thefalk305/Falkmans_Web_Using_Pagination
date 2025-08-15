@@ -1,7 +1,2 @@
-<<<<<<< HEAD
 ﻿
 This will become the biographical page for Christina Noren.
-=======
-﻿
-This will become the biographical page for Christina Noren.
->>>>>>> 48a4ce1 (first commit)

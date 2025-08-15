@@ -1,7 +1,2 @@
-<<<<<<< HEAD
 ﻿
 This will be the biography page for Theodore Falkman.
-=======
-﻿
-This will be the biography page for Theodore Falkman.
->>>>>>> 48a4ce1 (first commit)
