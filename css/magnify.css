@@ -65,14 +65,10 @@ h4 {
 	pointer-events: none;
  }
 
-/* .img-magnifier-container:hover .img-magnifier-glass {
-  opacity: 1;
-} */
-
 /* Comment out to see cursor in mag glass */
 .magImage.hide-cursor {
   cursor: none !important;
-} 
+}
 
 #glassToggle {
 	  background-color:#EBDF9F;
@@ -169,22 +165,25 @@ h4 {
   margin-right: 140px;
 }
 
-#content p {
-  margin-top: 0px;
-  text-align: justify;
-  text-indent: 2em;
-  margin-top: 1em;
-  /* margin-bottom: 0em; */
-}
-
 /* #content h3 {
   margin: 0em;
 } */
+#content p {
+  text-align: justify;
+  text-indent: 2em;
+  margin-top: 1em;
+}
 
-#content #enMag {
-  margin-top: 0px;
-  font-size: small;
-  text-align: center;
+#content p#enMag {
+  margin-top: 0px  ;
+  font-size: small ;
+  text-align: center ;
+}
+
+#container p#enMag {
+  margin-top: 0px  ;
+  font-size: small ;
+  text-align: center ;
 }
 
 #back-to-top {
@@ -207,3 +206,27 @@ h4 {
   #back-to-top.show {
        opacity: 1;
   }
+
+.magImage {
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 10px;
+  margin-inline-end: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1em;
+  padding: 1em;
+}
+
+.image-grid img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}

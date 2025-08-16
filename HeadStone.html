@@ -1,105 +1,254 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
+<!DOCTYPE html>
+<html>
 <head>
-<title>Falkman Family History</title>
-<meta content="Falkman family history site." name="description" />
-<meta content="family history, ancestors, family, parents, grand parents, aunts & uncles, sibling, brothers & sisters, great-grandparents, cousins" name="keywords" />
-<meta content="text/html; charset=windows-1252" http-equiv="Content-Type" />
-<meta content="en-us" http-equiv="Content-Language" />
-<meta content="Allen Falkman" name="author"
-<meta content="General" name="rating" />
-<meta content="no" http-equiv="imagetoolbar" />
-<meta content="Copyright © 2010, Allen Falkman All Rights Reserved" name="copyright" />
-<link href="css/falkman.css" rel="stylesheet" type="text/css" />
 
+	<title>Falkman Family History</title>
+	<meta content="Falkman family history site." name="description" />
+	<meta content="family history, ancestors, family, parents, grand parents, aunts & uncles, sibling, brothers & sisters, great-grandparents, cousins" name="keywords" />
+	<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" />
+	<meta content="en-us" http-equiv="Content-Language" />
+	<meta content="Allen Falkman" name="author"/>
+	<meta content="General" name="rating" />
+	<meta content="no" http-equiv="imagetoolbar" />
+	<meta content="Copyright © 2025, Allen Falkman All Rights Reserved" name="copyright" />
+	<link href="css/magnify.css" rel="stylesheet" type="text/css" />
+
+  <style>
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(20, 5vh); /* Adjust row height as needed */
+  position: relative;
+  /* width: 100vw;
+  height: 100vh; */
+  gap: 0;
+}
+
+.img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* First image: top-left corner */
+.img-9 {
+  grid-column: 1 / span 3;
+  grid-row: 1 / span 4;
+  width: 95%;
+}
+
+/* Second image: right of first, shifted down by half the height */
+.img-4 {
+  grid-column: 8 / span 4;
+  grid-row: 1 / span 4; /* starts halfway down from img-1 */
+}
+/* Third image: right of first, shifted down by half the height */
+.img-8 {
+  grid-column: 5 / span 3;
+  grid-row: 5 / span 4; /* starts halfway down from img-1 */
+  width: 84%
+}
+/* Fourth image: right of first, shifted down by half the height */
+.img-7 {
+  grid-column: 9 / span 4;
+  grid-row: 9 / span 4; /* starts halfway down from img-1 */
+}
+/* Fifth image: right of first, shifted down by half the height */
+.img-6 {
+  grid-column: 5 / span 4;
+  grid-row: 14 / span 4; /* starts halfway down from img-1 */
+}
+/* Sixth image: right of first, shifted down by half the height */
+.img-1 {
+  grid-column: 2 / span 3;
+  grid-row: 20 / span 4; /* starts halfway down from img-1 */
+}
+/* Seventh image: right of first, shifted down by half the height */
+.img-3 {
+  grid-column: 2 / span 4;
+  grid-row: 24 / span 4; /* starts halfway down from img-1 */
+}
+/* Eighth image: right of first, shifted down by half the height */
+.img-2 {
+  grid-column: 8 / span 4;
+  grid-row: 22 / span 4; /* starts halfway down from img-1 */
+}
+</style>
 </head>
-
 <body>
-
 <div id="container">
 	
-	<div class="Banner"> 
-    <img src="images/Banner.gif" Style="width: 100%"> 
-    </div> 
-	<div id="topmenu" style="width: 100%; height: 70">
-	
-	
-		<ul>
-			<li><a href="Blog.html" title="Blog Page.">Our Blog</a>&ensp;&ensp;
-				<a href="http://freepages.family.rootsweb.ancestry.com/~falkman/" title="Family Tree.">Family Tree</a>&ensp;&ensp;
-				<a title="Family Photos." href="photopages.html">Family Photos</a>&ensp;&ensp;
-				<a href="links.html" title="Links.">Links</a>
-			 </li>
-		</ul>
-		
-		<!-- <div id="clockbox"></div>-->
-		
+  <!-- Inserts the common header-->
+  <div id="header"></div>
+  <script src="./js/loadHeader.js"></script>
+
+  <!-- header-row contains the page title, the magnifier checkbox and input for magnification value. -->
+  <div class="heading-row" >
+    <h1>Head Stones & Grave Markers</h1>
+  
+    <label class="heading-checkbox">
+      <input type="checkbox" id="mag-checkbox" class="myCheckbox" />
+      Enable Mag
+    </label>
+
+    <input
+      type="text"
+      id="mag"
+      class="myMag"
+      placeholder="Mag Value (2)"
+      style="display: none"
+    />
+  </div>
+  
+  <!-- content contains the remainder of the page. -->
+  <p id="enMag" >Enable Mag - Mouse over the image.</p>
+
+
+  <p align="center">(Can you identify them?)</p>
+  <p>Below you will find several pictures of head stones, or grave markers if
+  you prefer. Each one a little bit out of focus. Your task is to pick the right name with the right head stone... Three misses and you'll have to
+  start over... Good Luck..</p>
+  <div class="image-grid">
+
+    <div class="img-magnifier-container img img-9">
+      <img
+        class="magImage"
+          src="images/stone-9.jpg" 
+          alt="Stone 9"
+      />
+    <figcaption>Stone 9</figcaption>
+    </div>
+
+    <div class="img-magnifier-container img img-4">
+      <img
+        class="magImage"
+          src="images/stone-4.jpg"
+          alt="Stone 4"
+        style="width: 100%;"
+      />
+    <figcaption>Stone 4</figcaption>
+    </div>
+
+    <div class="img-magnifier-container img img-8">
+      <img
+        class="magImage"
+          src="images/stone-8.jpg"
+          alt="Stone 8"
+        style="width: 100%;"
+      />
+    <figcaption>Stone 8</figcaption>
+    </div>
+
+    <div class="img-magnifier-container img img-7">
+      <img
+        class="magImage"
+          src="images/stone-7.jpg"
+          alt="Stone 7"
+        style="width: 100%;"
+      />
+    <figcaption>Stone 7</figcaption>
+    </div>
+
+    <div class="img-magnifier-container img img-6">
+      <img
+        class="magImage"
+          src="images/stone-6.jpg"
+          alt="Stone 6"
+        style="width: 100%;"
+      />
+    <figcaption>Stone 6</figcaption>
+    </div>
+
+    <div class="img-magnifier-container img img-1">
+      <img
+        class="magImage"
+          src="images/stone-1.jpg"
+          alt="Stone 1"
+        style="width: 100%;"
+      />
+    <figcaption>Stone 1</figcaption>
+    </div>
+
+    <div class="img-magnifier-container img img-3">
+      <img
+        class="magImage"
+          src="images/stone-3.jpg"
+          alt="Stone 3"
+        style="width: 100%;"
+      />
+    <figcaption>Stone 3</figcaption>
+    </div>
+
+    <div class="img-magnifier-container img img-2">
+      <img
+        class="magImage"
+          src="images/stone-2.jpg"
+          alt="Stone 2"
+        style="width: 100%;"
+      />
+    <figcaption>Stone 2</figcaption>
+    </div>
+  </div>
+    <div id="footer"></div>
+    <script src="./js/loadFooter.js"></script>
+
 </div>
+<a href="#" id="back-to-top" style="display: inline;">
+  <img src="../images/rocket4.png" >
+</a>  
 
-<h1 align="center">Head Stones &amp; Grave  Markers</h1>
+<script type="module">
+	// Magnifier glass controls
+  import { toggleMagnifier, defaultMagConfig } from './js/magnifier.js';
 
-    <p align="center">(Can you identify them?)</p>
-    <p>Below you will find several pictures of head stones, or grave markers if 
-    you prefer. Each one a little bit out of focus. Your task is to pick the 
-    right name with the right head stone... Three misses and you'll have to 
-    start over... Good Luck..</p>
+  // change page title to page heading
+  // comment out if not desired
+  document.getElementsByTagName("title")[0].textContent = document.querySelector('.heading-row h1').textContent;
 
-<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber1" height="1179">
-  <tr>
-    <td width="20%" height="220" valign="top">
-    <p align="center">
-    <img border="0" src="images/stone-9.jpg" width="278" height="154"></td>
-    <td width="20%" height="220">&nbsp;</td>
-    <td width="20%" height="220">&nbsp;</td>
-    <td width="20%" height="220" valign="top">
-    <p align="center">
-    <img border="0" src="images/stone-4.jpg" width="393" height="130"></td>
-    <td width="20%" height="220">&nbsp;</td>
-  </tr>
-  <tr>
-    <td width="20%" height="286">&nbsp;</td>
-    <td width="20%" height="286" valign="top">
-    <p align="center">
-    <img border="0" src="images/stone-8.jpg" width="238" height="190"></td>
-    <td width="20%" height="286">&nbsp;</td>
-    <td width="20%" height="286" valign="bottom">
-    <img border="0" src="images/stone-7.jpg" width="393" height="129"></td>
-    <td width="20%" height="286">&nbsp;</td>
-  </tr>
-  <tr>
-    <td width="20%" height="70">&nbsp;</td>
-    <td width="20%" height="70">&nbsp;</td>
-    <td width="20%" height="70">&nbsp;</td>
-    <td width="20%" height="70">&nbsp;</td>
-    <td width="20%" height="70">&nbsp;</td>
-  </tr>
-  <tr>
-    <td width="20%" height="314" valign="bottom">
-    <p align="center">
-    <img border="0" src="images/stone-1.jpg" width="293" height="149"></td>
-    <td width="20%" height="314" valign="top">
-    <img border="0" src="images/stone-6.jpg" width="311" height="175"></td>
-    <td width="20%" height="314">&nbsp;</td>
-    <td width="20%" height="314">&nbsp;</td>
-    <td width="20%" height="314">&nbsp;</td>
-  </tr>
-  <tr>
-    <td width="20%" height="289" valign="bottom">
-    <p align="center">
-    <img border="0" src="images/stone-5.jpg" width="295" height="147"></td>
-    <td width="20%" height="289">&nbsp;</td>
-    <td width="20%" height="289">&nbsp;</td>
-    <td width="20%" height="289" valign="top">
-    <p align="center">
-    <img border="0" src="images/stone-3.jpg" width="385" height="183"></td>
-    <td width="20%" height="289">&nbsp;</td>
-  </tr>
-</table>
+  const checkbox = document.getElementById('mag-checkbox');
+  const zoomInput = document.getElementById('mag');
 
-<p align="center"><b><a href="index.html">Return</a></b></p>
+  checkbox.addEventListener('change', () => {
+    zoomInput.style.display = checkbox.checked ? 'block' : 'none';
+    toggleMagnifier(checkbox.checked, defaultMagConfig);
+  });
 
+  zoomInput.addEventListener('input', () => {
+    toggleMagnifier(checkbox.checked, defaultMagConfig);
+  });
+
+// =======================
+// Back to Top Scroll Button
+// =======================
+
+document.addEventListener("DOMContentLoaded", function () {
+  var link = document.getElementById("back-to-top");
+  if (!link) return; // ✅ safely exit if not found
+
+  var amountScrolled = 500;
+
+  window.addEventListener("scroll", function () {
+    if (window.pageYOffset > amountScrolled) {
+      link.classList.add("show");
+    } else {
+      link.classList.remove("show");
+    }  
+  });
+
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+    var distance = 0 - window.pageYOffset;
+    var increments = distance / (500 / 16);
+
+    function animateScroll() {
+      window.scrollBy(0, increments);
+      if (window.pageYOffset <= document.body.offsetTop) {
+        clearInterval(runAnimation);
+      }
+    }
+    var runAnimation = setInterval(animateScroll, 16);
+    });
+});
+</script>
 </body>
-
 </html>

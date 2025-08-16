@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -18,7 +17,7 @@
 
 <body>
 
-<div id="container">
+<div id="container" style="text-align: center;" >
 	
   <!-- Inserts the common header-->
   <div id="header"></div>
@@ -42,11 +41,7 @@
     />
   </div>
   
-	<!-- content contains the remainder of the page. -->
-	<div id="content" >
-
-		<p>Enable Mag - Mouse over the image.</p>
-
+<p id="enMag" style=" margin-top: 0;">Enable Mag - Mouse over the image.</p>
 		<div class="img-magnifier-container">
 			<img
 				class="magImage"
@@ -57,8 +52,10 @@
 			/>
 		</div>
 		<h2>Bremen sea port circa 1890</h2>
+	<!-- content contains the remainder of the page. -->
+	<div id="content" >
 
-		<div style=" margin-left:140px; margin-right: 140px;">
+
 
 			<p>Welcome to Bremen, Germany. Bremen was one of the many ports through which immigrants traveled on their way to America, Canada, and even Australia.Bremen, Germany played a significant role in the movement of transmigrants—especially during the 19th and early 20th centuries—serving as a vital gateway for millions seeking new lives across the 
 			Atlantic.
@@ -98,7 +95,6 @@
 			<p>If you're diving into migration history, Bremen is a fascinating case study—its blend 
 			of commerce, compassion, and logistics made it a lifeline for countless hopeful travelers. Want to explore how 
 			Liverpool’s role compares? I know that’s a topic close to your heart.</p>
-		</div>
 		<!-- Inserts the common footer. -->
 	<div id="footer"></div>
 	<script src="./js/loadFooter.js"></script>
@@ -122,8 +118,40 @@
 	zoomInput.addEventListener('input', () => {
 		toggleMagnifier(checkbox.checked, defaultMagConfig);
 	});
+
+	
+// =======================
+// Back to Top Scroll Button
+// =======================
+
+document.addEventListener("DOMContentLoaded", function () {
+  var link = document.getElementById("back-to-top");
+  if (!link) return; // ✅ safely exit if not found
+  var amountScrolled = 600;
+
+  window.addEventListener("scroll", function () {
+    if (window.pageYOffset > amountScrolled) {
+      link.classList.add("show");
+    } else {
+      link.classList.remove("show");
+    }  
+  });
+
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+    var distance = 0 - window.pageYOffset;
+    var increments = distance / (500 / 16);
+
+    function animateScroll() {
+      window.scrollBy(0, increments);
+      if (window.pageYOffset <= document.body.offsetTop) {
+        clearInterval(runAnimation);
+      }
+    }
+
+    var runAnimation = setInterval(animateScroll, 16);
+  });
+});
 </script>
-
 </body>
-
-</body>
+</html>

@@ -1,47 +1,51 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
+<!DOCTYPE html>
 <head>
-<title>Falkman Family History</title>
-<meta content="Falkman family history site." name="description" />
-<meta content="family history, ancestors, family, parents, grand parents, aunts & uncles, sibling, brothers & sisters, great-grandparents, cousins" name="keywords" />
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
-<meta content="en-us" http-equiv="Content-Language" />
-<meta content="Allen Falkman" name="author"
-<meta content="General" name="rating" />
-<meta content="no" http-equiv="imagetoolbar" />
-<meta content="Copyright � 2010, Allen Falkman All Rights Reserved" name="copyright" />
-<link href="css/falkman.css" rel="stylesheet" type="text/css" />
-
+	<title>Falkman Family History</title>
+	<meta content="Falkman family history site." name="description" />
+	<meta content="family history, ancestors, family, parents, grand parents, aunts & uncles, sibling, brothers & sisters, great-grandparents, cousins" name="keywords" />
+	<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" />
+	<meta content="en-us" http-equiv="Content-Language" />
+	<meta content="Allen Falkman" name="author"/>
+	<meta content="General" name="rating" />
+	<meta content="no" http-equiv="imagetoolbar" />
+	<meta content="Copyright © 2025, Allen Falkman All Rights Reserved" name="copyright" />
+	<link href="css/magnify.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
 
 <div id="container">
 	
-	<div class="Banner"> 
-    <img src="images/Banner.gif" Style="width: 100%"> 
-    </div> 
+  <!-- Inserts the common header-->
+  <div id="header"></div>
+  <script src="./js/loadHeader.js"></script>
 
-	<div id="topmenu" style="width: 100%; height: 70">
-	
-	
-		<ul>
-			<li><a href="Blog.html" title="Blog Page.">Our Blog</a>&ensp;&ensp;
-				<a href="http://freepages.family.rootsweb.ancestry.com/~falkman/" title="Family Tree.">Family Tree</a>&ensp;&ensp;
-				<a title="Family Photos." href="photopages.htm">Family Photos</a>&ensp;&ensp;
-				<a href="links.html" title="Links.">Links</a>
-			 </li>
-		</ul>
+  <!-- header-row contains the page title, the magnifier checkbox and input for magnification value. -->
+  <div class="heading-row" >
+    <h1>Arbrå, Sweden</h1>
+  
+    <label class="heading-checkbox">
+      <input type="checkbox" id="mag-checkbox" class="myCheckbox" />
+      Enable Mag
+    </label>
+
+    <input
+      type="text"
+      id="mag"
+      class="myMag"
+      placeholder="Mag Value (2)"
+      style="display: none"
+    />
+  </div>
+  
+  <!-- content contains the remainder of the page. -->
+  <div id="content" >
+
 		
-		<!-- <div id="clockbox"></div>-->
-		
-</div>
 
-<h1 align="center">Arbrå, Sweden</h1>
+    <p id="enMag" >Enable Mag - Mouse over the image.</p>
 
-<p style="text-align: justify">&nbsp;&nbsp;&nbsp;Welcome to Arbrå, Sweden. It is here that Corine
+<p> Welcome to Arbrå, Sweden. It is here that Corine
 Noren was born on the out skirts of Arbrå. A little east of town center. The Local area was known 
 as "Koldamo". Arbrå itself is located about 15 Km (about 9.3 miles) north of Ballnas, and 5 Km 
 (about 3.1 miles) south of Vallsta, along the Ljusnan River. Her home was an old, rather large 
@@ -50,30 +54,25 @@ the custom in those times (17<sup>th</sup> to 18<sup>th</sup> century). And not 
 hither and thither, as was done in the large cities. The homestead was near a large wood. With a 
 small inland lake and wood.</p>
 
-<!--<tr>				
-	<td height="300" width="400"><img border="0" src="images/arbra.jpg" width="50%" height="75%">
-	<table border="0" width="93%" height="304" bgcolor="#FFFFFF" cellpadding="5"> </td>
-  </tr> -->
+		<figure>
+      <div class="img-magnifier-container">
+        <img
+          class="magImage"
+          src="./images/arbra.jpg"
+          alt="Arbrå Farm"
+        />
+      </div>
+		</figure>
+<b>This is a tipical Homestead (farm) around Arbrå</b>
 
-<div style="text-align: center;">
-	<img decoding="async" src="images/arbra.jpg" alt="Arbrå Farm">
-	<figure>
-	<figcaption><b>This is a tipical Homestead (farm) around Arbrå</b>
-	</figcaption>
-	</figure>
-</div>
-
-
-
-
-<p style="text-align: justify">&nbsp;&nbsp;&nbsp;Corine's mother, Gölin Pehrsdotter, died 
+<p>Corine's mother, Gölin Pehrsdotter, died
 when Corine was about a year old. Corine was the youngest of 3 sisters. Of necessity, it was 
 not long before there was a stepmother installed in the house. Corine's stepmother's name was 
 Stina Sjon Andersdotter. After which there came several more childres. Her stepmother was a 
 good and kind mother to all the chrildren. And there was no cause for complaint from the older 
 children.</p>
 
-<p style="text-align: justify">&nbsp;&nbsp;&nbsp;&nbsp;Karin's father was an intellectual man. 
+<p Karin's father was an intellectual man. 
 He became a lay preacher. Starting a church, later to be nown as the Swedish Covenant Church. 
 And had studied a great deal and wrote considerably. He and several of his parishioners erected 
 a church for the town. Corine's father, Pehr Noren passed away when Karin was about 14 years 
@@ -81,7 +80,7 @@ old. From Arbrå. Corine traveled to Hudiksvall. Presumably to learn a trade. (s
 to be a seamstress). This is where she might have met Nils Peter (my great-grandfather). They 
 were both in Hudiksvall durning the same period.</p>
 
-<p style="text-align: justify">&nbsp;&nbsp;&nbsp;&nbsp;Corine Norén migrated to America in early
+<p Corine Norén migrated to America in early
 May of 1892. She left from Göteborg, the same as Nils.  She traveled on the SS Norden. Which 
 took her to her first stop, Humburg, Germany. From Humburg she traveled by train to Breman. And 
 from Breman, she boarded the SS Trave, a steamer that would take her to New York City, America. 
@@ -89,31 +88,86 @@ Upon her arrival she set off immediately for Du Bois Penn. And there she met up 
 within several days of her arrival she was married. That would have been on the 25th of May 1892.</p>
 
 
-<p style="text-align: justify">&nbsp;&nbsp;&nbsp;Arbrå, located in Hälsingland, Sweden, was part 
+<p></p>Arbrå, located in Hälsingland, Sweden, was part 
 of a broader regional pattern of emigration during the 19th and early 20th centuries. 
 While Arbrå itself may not be widely documented in emigration studies, it fits into the 
 larger story of rural Swedish communities sending thousands to North America.
-<p align="justify">🌍<b>Why People Left Arbrå and Similar Areas</b> Economic hardship:
+<p >🌍<b>Why People Left Arbrå and Similar Areas</b> Economic hardship:
 Crop failures, limited farmland, and industrialization displaced many rural workers.
 Religious and social pressures: The dominance of the Lutheran State Church and rigid 
 class structures pushed people to seek freedom elsewhere. Population growth: Sweden’s 
 population doubled between 1750 and 1850, straining resources.</p>
-<p align="justify"></p>🚢 <b>The Journey to America</b> Most emigrants from Arbrå would have 
+<p ></p>🚢 <b>The Journey to America</b> Most emigrants from Arbrå would have 
 traveled to Gothenburg, then taken a feeder ship to Hull, England, followed by a train 
 to Liverpool, and finally boarded a transatlantic liner to the U.S. The trip could take 
-10–20 days, often in cramped steerage conditions.</p>
-<p align="justify">📍 <b>Where They Settled</b>. Many Swedes from Hälsingland ended up in 
+10 - 20 days, often in cramped steerage conditions.</p>
+<p >📍 <b>Where They Settled</b>. Many Swedes from Hälsingland ended up in 
 Minnesota, Illinois, and Wisconsin, drawn by farming opportunities and established 
 Swedish communities3. Some moved to urban centers like Chicago, working in construction 
 or domestic service.</p>
 
+    <!-- Inserts the common footer. -->
+    <div id="footer"></div>
+    <script src="./js/loadFooter.js"></script>
+  </div>
+</div>
 
+<a href="#" id="back-to-top" style="display: inline;">
+  <img src="../images/rocket4.png" >
+</a>  
 
+<script type="module">
+	// Magnifier glass controls
+  import { toggleMagnifier, defaultMagConfig } from './js/magnifier.js';
 
+  // change page title to page heading
+  // comment out if not desired
+  document.getElementsByTagName("title")[0].textContent = document.querySelector('.heading-row h1').textContent;
 
-<p align="center"><b><a href="index.html">Return</a></b><br>
-</p>
+  const checkbox = document.getElementById('mag-checkbox');
+  const zoomInput = document.getElementById('mag');
 
+  checkbox.addEventListener('change', () => {
+    zoomInput.style.display = checkbox.checked ? 'block' : 'none';
+    toggleMagnifier(checkbox.checked, defaultMagConfig);
+  });
+
+  zoomInput.addEventListener('input', () => {
+    toggleMagnifier(checkbox.checked, defaultMagConfig);
+  });
+
+// =======================
+// Back to Top Scroll Button
+// =======================
+
+document.addEventListener("DOMContentLoaded", function () {
+  var link = document.getElementById("back-to-top");
+  if (!link) return; // ✅ safely exit if not found
+
+  var amountScrolled = 500;
+
+  window.addEventListener("scroll", function () {
+    if (window.pageYOffset > amountScrolled) {
+      link.classList.add("show");
+    } else {
+      link.classList.remove("show");
+    }  
+  });
+
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+    var distance = 0 - window.pageYOffset;
+    var increments = distance / (500 / 16);
+
+    function animateScroll() {
+      window.scrollBy(0, increments);
+      if (window.pageYOffset <= document.body.offsetTop) {
+        clearInterval(runAnimation);
+      }
+    }
+    var runAnimation = setInterval(animateScroll, 16);
+    });
+});
+</script>
 </body>
-
 </html>
