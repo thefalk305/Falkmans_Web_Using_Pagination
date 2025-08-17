@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Falkman's Family History</title>
+	<meta content="Falkman family history site." name="description" />
+	<meta content="family history, ancestors, family, parents, grand parents, aunts & uncles, sibling, brothers & sisters, great-grandparents, cousins" name="keywords" />
+	<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" />
+	<meta content="en-us" http-equiv="Content-Language" />
+	<meta content="Allen Falkman" name="author"/>
+	<meta content="General" name="rating" />
+	<meta content="no" http-equiv="imagetoolbar" />
+	<meta content="Copyright © 2025, Allen Falkman All Rights Reserved" name="copyright" />
+  <!-- <title>Head Stones & Grave Markers</title> -->
+	<link href="css/magnify.css" rel="stylesheet" type="text/css" />
+  <link href="css/HeadStoneGame.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+	
+  <!-- Inserts the common header-->
+  <div id="header"></div>
+  <script src="./js/loadHeader.js"></script>
+
+  <!-- header-row contains the page title, the magnifier checkbox and input for magnification value. -->
+  <div class="heading-row" >
+    <h1>Head Stones & Grave Markers</h1>
+  
+    <label class="heading-checkbox">
+      <input type="checkbox" id="mag-checkbox" class="myCheckbox" />
+      Enable Mag
+    </label>
+
+    <input
+      type="text"
+      id="mag"
+      class="myMag"
+      placeholder="Mag Value (2)"
+      style="display: none"
+    />
+  </div>
+  
+  <!-- content contains the remainder of the page. -->
+  <div  >
+
+    <p id="enMag">Enable Mag - Mouse over the image.</p>
+    <div id="headstones">
+
+      <p>(Can you identify them?)</p>
+      <p class="headstoneGame">
+        Below you will find several images of head stones, or grave markers if you prefer. Each one a little bit out of focus. Your task is to pick the right name with the right head stone... Five misses and you'll have to start over... Good Luck.. OR you can <button id="deblurAll">Deblur All</button>
+      </p>
+      <p>Total Score = <span id="score">0</span></p>
+      <button id="refreshScore">Refresh Score</button>
+      <div class="grid-container" id="grid"></div>
+    </div>
+
+    <!-- This is the modal that appears when you click on a headstone. -->
+    <div id="modal" class="modal-mask" style="display: none;">
+      <div class="modal-container">
+        <h2>Match the headstone with the name. Five tries. Points count down with each try!</h2>
+        <div class="modal-body">
+          <img id="modalImage" style="filter: blur(8px) sepia(1); width: 100%; max-height: 300px;" />
+          <button id="blurBtn">blur</button>
+          <button id="deblurBtn">deblur</button>
+        </div>
+        <div class="modal-header" id="radioGroup"></div>
+        <span id="selected">You chose: <span id="chosenName"></span></span>
+        <div id="results" style="display: none;">
+          <button id="clearResults">Clear Results</button>
+          <p id="resultText"></p>
+        </div>
+        <div class="modal-footer">
+          <button id="checkAnswer">Check Selection</button>
+          <button id="pointsBtn">Points: 5</button>
+          <button id="totalScoreBtn">Total Score: 0</button>
+          <button id="closeModal">Close</button>
+        </div>
+      </div>
+    </div>
+    <!-- Inserts the common footer. -->
+    <div id="footer"></div>
+    <script src="./js/loadFooter.js"></script>
+  </div>
+</div>
+
+<a href="#" id="back-to-top" style="display: inline;">
+  <img src="../images/rocket4.png" >
+</a>  
+
+
+<script type="module">
+  
+  let images = [];
+
+  fetch("images/headstones/headstones.json")
+    .then(res => res.json())
+    .then(files => {
+      images = files.filter(name => !name.includes("stone"));
+      renderGrid(); // or whatever function you use to display them
+    });
+
+  let score = 0;
+  let currentStone = "";
+  let points = 5;
+  let correct = false;
+
+  const grid = document.getElementById("grid");
+  const scoreDisplay = document.getElementById("score");
+  const refreshBtn = document.getElementById("refreshScore");
+  const deblurAllBtn = document.getElementById("deblurAll");
+
+  const modal = document.getElementById("modal");
+  const modalImage = document.getElementById("modalImage");
+  const radioGroup = document.getElementById("radioGroup");
+  const chosenName = document.getElementById("chosenName");
+  const resultText = document.getElementById("resultText");
+  const results = document.getElementById("results");
+  const pointsBtn = document.getElementById("pointsBtn");
+  const totalScoreBtn = document.getElementById("totalScoreBtn");
+
+  function renderGrid() {
+    grid.innerHTML = "";
+    images.forEach((stone, index) => {
+      const div = document.createElement("div");
+      div.className = "stone img-magnifier-container";
+      const img = document.createElement("img");
+      img.className = "magImage";
+      img.src = `images/headstones/${stone}`;
+      img.alt = stone;
+      img.onclick = () => openModal(stone);
+      div.appendChild(img);
+      grid.appendChild(div);
+    });
+  }
+
+  function openModal(stone) {
+    currentStone = stone;
+    points = 5;
+    correct = false;
+    modalImage.src = `images/headstones/${stone}`;
+    modalImage.style.filter = "blur(8px) sepia(1)";
+    pointsBtn.textContent = `Points: ${points}`;
+    totalScoreBtn.textContent = `Total Score: ${score}`;
+    chosenName.textContent = "";
+    results.style.display = "none";
+    radioGroup.innerHTML = "";
+
+    const names = [...new Set(images.map(img => img.split(".")[0]))];
+    names.forEach((name, i) => {
+      const input = document.createElement("input");
+      input.type = "radio";
+      input.className = "radioBtn";
+      input.name = "hstone";
+      input.value = name;
+      input.id = `item#${i}`;
+      input.onclick = () => chosenName.textContent = name;
+
+      const label = document.createElement("label");
+      label.htmlFor = input.id;
+      label.textContent = name;
+
+      radioGroup.appendChild(input);
+      radioGroup.appendChild(label);
+      radioGroup.appendChild(document.createElement("br"));
+    });
+
+    modal.style.display = "flex";
+  }
+
+  function blurImage(delta) {
+    const regex = /\d+/g;
+    let blurValue = parseInt(modalImage.style.filter.match(regex)?.[0] || "1");
+    blurValue += delta;
+    modalImage.style.filter = `blur(${Math.max(blurValue, 0)}px) sepia(1)`;
+  }
+
+  function checkAnswer() {
+    const selected = document.querySelector('input[name="hstone"]:checked');
+    if (!selected) {
+      alert("Please select a headstone name.");
+      return;
+    }
+
+    results.style.display = "block";
+    if (selected.value === currentStone.split(".")[0]) {
+      if (!correct) {
+        score += points;
+        scoreDisplay.textContent = score;
+        totalScoreBtn.textContent = `Total Score: ${score}`;
+        modalImage.style.filter = "sepia(1)";
+        resultText.textContent = "Correct! Please try the next headstone.";
+        images.splice(images.indexOf(currentStone), 1);
+        renderGrid();
+        correct = true;
+      }
+    } else {
+      resultText.textContent = "Incorrect. Please try again.";
+      radioGroup.removeChild(selected.nextSibling); // remove label
+      radioGroup.removeChild(selected); // remove input
+      points = Math.max(0, points - 1);
+      pointsBtn.textContent = `Points: ${points}`;
+      blurImage(-1);
+    }
+  }
+
+  document.getElementById("checkAnswer").onclick = checkAnswer;
+  document.getElementById("blurBtn").onclick = () => blurImage(1);
+  document.getElementById("deblurBtn").onclick = () => blurImage(-1);
+  document.getElementById("clearResults").onclick = () => results.style.display = "none";
+  document.getElementById("closeModal").onclick = () => modal.style.display = "none";
+
+  refreshBtn.onclick = () => {
+    score = 0;
+    scoreDisplay.textContent = score;
+    fetch("images/headstones/headstones.json")
+      .then(res => res.json())
+      .then(files => {
+        images = files.filter(name => !name.includes("stone"));
+        renderGrid(); // or whatever function you use to display them
+      });
+
+
+
+    // images.splice(0, images.length, ...imageFilenames.filter(name => !name.includes("stone")));
+    // renderGrid();
+  };
+
+deblurAllBtn.onclick = () => {
+  document.querySelectorAll(".stone img").forEach(img => {
+    img.setAttribute("style", "filter: none !important");
+  });
+};
+
+
+	import { toggleMagnifier, defaultMagConfig } from './js/magnifier.js';
+
+	// change page title to page heading
+	// comment out if not desired
+	document.getElementsByTagName("title")[0].textContent = document.querySelector('.heading-row h1').textContent;
+
+	const checkbox = document.getElementById('mag-checkbox');
+	const zoomInput = document.getElementById('mag');
+
+	checkbox.addEventListener('change', () => {
+		zoomInput.style.display = checkbox.checked ? 'block' : 'none';
+		toggleMagnifier(checkbox.checked, defaultMagConfig);
+	});
+
+	zoomInput.addEventListener('input', () => {
+		toggleMagnifier(checkbox.checked, defaultMagConfig);
+	});
+
+	
+// =======================
+// Back to Top Scroll Button
+// =======================
+
+document.addEventListener("DOMContentLoaded", function () {
+  var link = document.getElementById("back-to-top");
+  if (!link) return; // ✅ safely exit if not found
+  var amountScrolled = 600;
+
+  window.addEventListener("scroll", function () {
+    if (window.pageYOffset > amountScrolled) {
+      link.classList.add("show");
+    } else {
+      link.classList.remove("show");
+    }  
+  });
+
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+    var distance = 0 - window.pageYOffset;
+    var increments = distance / (500 / 16);
+
+    function animateScroll() {
+      window.scrollBy(0, increments);
+      if (window.pageYOffset <= document.body.offsetTop) {
+        clearInterval(runAnimation);
+      }
+    }
+
+    var runAnimation = setInterval(animateScroll, 16);
+  });
+});
+
+
+
+  // Initial render
+  renderGrid();
+</script>
+</body>
+</html>
