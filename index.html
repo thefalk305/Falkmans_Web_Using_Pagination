@@ -285,42 +285,7 @@
   <img src="images/rocket4.png" >
 </a>  
 
-
-
-<script type="module">
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
-  var link = document.getElementById("back-to-top");
-  if (!link) return; // ✅ safely exit if not found
-  var amountScrolled = 600;
-
-  window.addEventListener("scroll", function () {
-    if (window.pageYOffset > amountScrolled) {
-      link.classList.add("show");
-    } else {
-      link.classList.remove("show");
-    }  
-  });
-
-  link.addEventListener("click", function (e) {
-    e.preventDefault();
-    var distance = 0 - window.pageYOffset;
-    var increments = distance / (500 / 16);
-
-    function animateScroll() {
-      window.scrollBy(0, increments);
-      if (window.pageYOffset <= document.body.offsetTop) {
-        clearInterval(runAnimation);
-      }
-    }
-    var runAnimation = setInterval(animateScroll, 16);
-  });
-});
-
-</script>
+<script type="module" src="./js/mag&scroll.js"></script>
 
 </body>
-
 </html>

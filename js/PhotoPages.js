@@ -24,10 +24,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Modal close event handlers
   exitBtn.addEventListener("click", () => {
     modal.style.display = "none";
-  });
+    document.querySelectorAll(".info-card.expanded").forEach(c => c.classList.remove("expanded"));
+});
 
   closeIcon.addEventListener("click", () => {
     modal.style.display = "none";
+    document.querySelectorAll(".info-card.expanded").forEach(c => c.classList.remove("expanded"));
   });
 
   modal.addEventListener("click", (e) => {

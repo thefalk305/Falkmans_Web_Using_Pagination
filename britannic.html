@@ -10,157 +10,102 @@
 <meta content="no" http-equiv="imagetoolbar" />
 <meta content="Copyright 2025, Allen Falkman All Rights Reserved" name="copyright" />
 <link href="css/magnify.css" rel="stylesheet" type="text/css" />
+<link rel="icon" href="assets/favicon.ico">
 
 </head>
 
 <body>
-  <div id="container">
-	
-    <!-- Inserts the common header-->
-    <div id="header"></div>
-    <script src="./js/loadHeader.js"></script>
+<div id="container">
 
-    <!-- header-row contains the page title, the magnifier checkbox and input for magnification value. -->
-    <div class="heading-row" >
-      <h1>H.M.S. Britannic</h1>
-    
-      <label class="heading-checkbox">
-        <input type="checkbox" id="mag-checkbox" class="myCheckbox" />
-        Enable Mag
-      </label>
+  <!-- Inserts the common header-->
+  <div id="header"></div>
+  <script src="./js/loadHeader.js"></script>
 
-      <input
-        type="text"
-        id="mag"
-        class="myMag"
-        placeholder="Mag Value (2)"
-        style="display: none"
+  <!-- header-row contains the page title, the magnifier checkbox and input for magnification value. -->
+  <div class="heading-row" >
+    <h1>H.M.S. Britannic</h1>
+  
+    <label class="heading-checkbox">
+      <input type="checkbox" id="mag-checkbox" class="myCheckbox" />
+      Enable Mag
+    </label>
+
+    <input
+      type="text"
+      id="mag"
+      class="myMag"
+      placeholder="Mag Value (2)"
+      style="display: none"
+    />
+  </div>
+
+  <!-- content contains the remainder of the page. -->
+  <div id="content" >
+    <p id="enMag">Enable Mag - Mouse over the image.</p>
+
+    <p >This is the ship that Nils Falkman sailed on from Liverpool to America. (New York city)</p>
+
+    <!-- enable magnification on the image. -->
+    <div class="img-magnifier-container">
+      <img
+        class="magImage"
+        src="images/brit1.jpg"
+        width="400"
+
+        alt="SS Romeo"
       />
     </div>
 
-    <!-- content contains the remainder of the page. -->
-    <div id="content" >
+    <p>H.M.S. Britannic. From Liverpool To New York city, direct.</p>
 
-    <p id="enMag">Enable Mag - Mouse over the image.</p>
-
-      <p >This is the ship that Nils Falkman sailed on from Liverpool to America. (New York city)</p>
-
-      <!-- enable magnification on the image. -->
-      <div class="img-magnifier-container">
-        <img
-          class="magImage"
-          src="images/brit1.jpg"
-          width="400"
-
-          alt="SS Romeo"
-        />
-			</div>
-
-      <p>H.M.S. Britannic. From Liverpool To New York city, direct.</p>
-
-      <div id="lnkcont" style="position: relative;">
-        <!-- add a link to "RomeoList.html" -->
-        <a
-          href="britpasslist.html"
-          style="position: absolute; 
-          left: 0px;
-          top: 46.9%;
-          width: 34%;
-          height: .7%;
-          background-color: rgba(255, 0, 0, 0);"></a>
-        </a>
-
-        <!-- add a link to "norwayheritage.com" -->
-        <a href="https://www.norwayheritage.com"
-          style="position: absolute;
-          left: 0px;
-          top: 99.3%;
-          width: 18%;
-          height: .5%;
-          background-color: rgba(255, 255, 0, .4);">
+    <div id="lnkcont" style="position: relative;">
+      <!-- add a link to "RomeoList.html" -->
+      <a
+        href="britpasslist.html"
+        style="position: absolute; 
+        left: 0px;
+        top: 46.9%;
+        width: 34%;
+        height: .7%;
+        background-color: rgba(255, 0, 0, 0);"></a>
       </a>
 
-      <!-- enable magnification on the image. -->
-      <div class="img-magnifier-container">
-        <img
-          class="magImage"
-          src="images/brit2.jpg"
-          width="902"
-          alt="SS Britannic"
-        />
-        </div>
-      </div>
+      <!-- add a link to "norwayheritage.com" -->
+      <a href="https://www.norwayheritage.com"
+        style="position: absolute;
+        left: 7px;
+        top: 98.8%;
+        width: 20%;
+        height: .5%;
+        background-color: rgba(255, 255, 0, .5);">
+    </a>
 
-       <p style="color: blue">
-        Feel free to change the strength of the magnifier glass when initiating the magnify function.
-      </p>
+    <!-- enable magnification on the image. -->
+    <div class="img-magnifier-container">
+      <img
+        class="magImage"
+        src="images/brit2.jpg"
+        width="902"
+        alt="SS Britannic"
+      />
+      </div>
     </div>
 
-    <!-- Inserts the common footer. -->
-    <div id="footer"></div>
-    <script src="./js/loadFooter.js"></script>
+      <p style="color: blue">
+      Feel free to change the strength of the magnifier glass when initiating the magnify function.
+    </p>
   </div>
+
+  <!-- Inserts the common footer. -->
+  <div id="footer"></div>
+  <script src="./js/loadFooter.js"></script>
+</div>
 
 <a href="#" id="back-to-top" style="display: inline;">
   <img src="../images/rocket4.png" >
 </a>  
 
+<script type="module" src="./js/mag&scroll.js"></script>
 
-  <script type="module">
-    // script and controls for magnification
-    import { toggleMagnifier, defaultMagConfig } from './js/magnifier.js';
-
-		// change page title to page heading
-		// comment out if not desired
-		document.getElementsByTagName("title")[0].textContent = document.querySelector('.heading-row h1').textContent;
-
-    const checkbox = document.getElementById('mag-checkbox');
-    const zoomInput = document.getElementById('mag');
-
-    checkbox.addEventListener('change', () => {
-      zoomInput.style.display = checkbox.checked ? 'block' : 'none';
-      toggleMagnifier(checkbox.checked, defaultMagConfig);
-    });
-
-    zoomInput.addEventListener('input', () => {
-      toggleMagnifier(checkbox.checked, defaultMagConfig);
-    });
-
-    
-// =======================
-// Back to Top Scroll Button
-// =======================
-
-document.addEventListener("DOMContentLoaded", function () {
-  var link = document.getElementById("back-to-top");
-  if (!link) return; // ✅ safely exit if not found
-  var amountScrolled = 1000;
-
-  window.addEventListener("scroll", function () {
-    if (window.pageYOffset > amountScrolled) {
-      link.classList.add("show");
-    } else {
-      link.className = "back-to-top";
-    }
-  });
-
-  link.addEventListener("click", function (e) {
-    e.preventDefault();
-    var distance = 0 - window.pageYOffset;
-    var increments = distance / (500 / 16);
-
-    function animateScroll() {
-      window.scrollBy(0, increments);
-      if (window.pageYOffset <= document.body.offsetTop) {
-        clearInterval(runAnimation);
-      }
-    }
-
-    var runAnimation = setInterval(animateScroll, 16);
-  });
-});
-
-
-  </script>
 </body>
 </html>

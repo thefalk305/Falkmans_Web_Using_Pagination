@@ -10,6 +10,7 @@
 	<meta content="no" http-equiv="imagetoolbar" />
 	<meta content="Copyright © 2025, Allen Falkman All Rights Reserved" name="copyright" />
 	<link href="css/magnify.css" rel="stylesheet" type="text/css" />
+<link rel="icon" href="assets/favicon.ico">
 </head>
 
 <body>
@@ -58,71 +59,16 @@
         <p>By 1914, more than one million Eastern European Jews had emigrated to the United States through the port of Hamburg. To attract immigrants, the HAPAG set up shipping companies throughout Germany and neighboring countries to entice immigrants to come through the port of Hamburg. The improved conditions of the ships also improved the port's reputation. Clean and hygienic accommodations were built in 1900, called Auswandererhallen (Emigrant halls)to house the increasing number of emigrants. This attracted even more emigrants to the port of Hamburg.</p>
         <p> Previous to this, barracks were constructed to house the emigrants but the conditions were deplorable and disease spread quickly. In addition to clean housing, medical exams and disinfection were conducted to ensure that only healthy individuals left the port.</p>
     <!-- Inserts the common footer. -->
+  </div>
     <div id="footer"></div>
     <script src="./js/loadFooter.js"></script>
-  </div>
 </div>
 
 <a href="#" id="back-to-top" style="display: inline;">
   <img src="../images/rocket4.png" >
 </a>  
 
-
-<script type="module">
-	import { toggleMagnifier, defaultMagConfig } from './js/magnifier.js';
-
-	// change page title to page heading
-	// comment out if not desired
-	document.getElementsByTagName("title")[0].textContent = document.querySelector('.heading-row h1').textContent;
-
-	const checkbox = document.getElementById('mag-checkbox');
-	const zoomInput = document.getElementById('mag');
-
-	checkbox.addEventListener('change', () => {
-		zoomInput.style.display = checkbox.checked ? 'block' : 'none';
-		toggleMagnifier(checkbox.checked, defaultMagConfig);
-	});
-
-	zoomInput.addEventListener('input', () => {
-		toggleMagnifier(checkbox.checked, defaultMagConfig);
-	});
-
-	
-// =======================
-// Back to Top Scroll Button
-// =======================
-
-document.addEventListener("DOMContentLoaded", function () {
-  var link = document.getElementById("back-to-top");
-  if (!link) return; // ✅ safely exit if not found
-  var amountScrolled = 600;
-
-  window.addEventListener("scroll", function () {
-    if (window.pageYOffset > amountScrolled) {
-      link.classList.add("show");
-    } else {
-      link.classList.remove("show");
-    }  
-  });
-
-  link.addEventListener("click", function (e) {
-    e.preventDefault();
-    var distance = 0 - window.pageYOffset;
-    var increments = distance / (500 / 16);
-
-    function animateScroll() {
-      window.scrollBy(0, increments);
-      if (window.pageYOffset <= document.body.offsetTop) {
-        clearInterval(runAnimation);
-      }
-    }
-
-    var runAnimation = setInterval(animateScroll, 16);
-  });
-});
-
-</script>
+<script type="module" src="./js/mag&scroll.js"></script>
 
 </body>
-
 </html>

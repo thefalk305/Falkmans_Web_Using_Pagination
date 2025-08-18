@@ -12,7 +12,6 @@
   <!-- Main gallery script -->
   <script type="module" src="./js/PhotoPages.js"></script>
   <script src="./js/scripts.js" defer></script>
-
 </head>
 
 <body>
@@ -21,91 +20,59 @@
     <div id="header"></div>
     <script src="./js/loadHeader.js"></script>
 
-      <!-- Gallery Title & Intro -->
-      <h1>My Family Photo Page</h1>
-      <p style="text-align: center">
-        Welcome to the Falkman Family Photo Gallery! Click on any photo to learn more about the family member.
-      </p>
+    <!-- Gallery Title & Intro -->
+    <h1>My Family Photo Page</h1>
+    <p style="text-align: center">
+      Welcome to the Falkman Family Photo Gallery! Click on any photo to learn more about the family member.
+    </p>
 
-        <!-- Top Pagination + Per-Page Selector -->
-      <div class="pagination-controls" style="text-align: center; margin: 20px 0;">
-        <div id="topPagination"></div>
-        <label for="imagesPerPage" style="margin-left: 40px; font-weight: 600;" >Images per page:</label>
-        <input type="number" id="imagesPerPage" min="1" max="100" value="12" style="width: 60px;">        
-      </div>
-      <!-- Gallery Container -->
-      <div id="photoGallery"></div>
+    <!-- Top Pagination + Per-Page Selector -->
+    <div class="pagination-controls" style="text-align: center; margin: 20px 0;">
+      <div id="topPagination"></div>
+      <label for="imagesPerPage" style="margin-left: 40px; font-weight: 600;" >Images per page:</label>
+      <input type="number" id="imagesPerPage" min="1" max="100" value="12" style="width: 60px;">        
+    </div>
+    <!-- Gallery Container -->
+    <div id="photoGallery"></div>
 
-      <!-- Pagination Controls -->
-      <div id="pagination" style="text-align: center; margin-top: 30px;"></div>
+    <!-- Pagination Controls -->
+    <div id="pagination" style="text-align: center; margin-top: 30px;"></div>
 
-      <!-- Modal for Expanded Bio -->
-      <div id="bioModal" class="modal">
-        <div class="modal-content modal-profile">
+    <!-- Modal for Expanded Bio -->
+    <div id="bioModal" class="modal">
+      <div class="modal-content modal-profile">
 
-          <!-- Modal Close Icon -->
-          <span class="modal-close">&times;</span>
+        <!-- Modal Close Icon -->
+        <span class="modal-close">&times;</span>
 
-          <!-- Modal Header with Name and Birth Info -->
-          <div class="modal-header">
-            <div class="modal-info">
-              <h2 id="modalName"></h2>
-              <h3 id="modalBorn"></h3>
-            </div>
-            <div class="modal-bio-image-wrapper">
-              <img id="modalBioImage" src="" alt="Bio Photo" class="modal-bio-img">
-            </div>
+        <!-- Modal Header with Name and Birth Info -->
+        <div class="modal-header">
+          <div class="modal-info">
+            <h2 id="modalName"></h2>
+            <h3 id="modalBorn"></h3>
           </div>
-
-          <!-- Bio Paragraph Content -->
-          <div class="modal-bio"></div>
-
-          <!-- Modal Exit Button -->
-          <button class="modal-exit-btn">Close</button>
+          <div class="modal-bio-image-wrapper">
+            <img id="modalBioImage" src="" alt="Bio Photo" class="modal-bio-img">
+          </div>
         </div>
+
+        <!-- Bio Paragraph Content -->
+        <div class="modal-bio"></div>
+
+        <!-- Modal Exit Button -->
+        <button class="modal-exit-btn">Close</button>
       </div>
-      <!-- Inserts the common footer. -->
-      <div id="footer"></div>
-      <script src="./js/loadFooter.js"></script>
+    </div>
   </div>
-    <!-- <a href="#" id="back-to-top" style="display: inline;">
-      <img src="../images/rocket4.png" >
-    </a>   -->
+  <!-- Inserts the common footer. -->
+  <div id="footer"></div>
+  <script src="./js/loadFooter.js"></script>
 </div>
-<!-- <script>
+<a href="#" id="back-to-top" style="display: inline;">
+<img src="../images/rocket4.png" >
+</a>  
 
-// =======================
-// Back to Top Scroll Button
-// =======================
+<script type="module" src="./js/mag&scroll.js"></script>
 
-document.addEventListener("DOMContentLoaded", function () {
-  var link = document.getElementById("back-to-top");
-  if (!link) return; // ✅ safely exit if not found
-  var amountScrolled = 200;
-
-  window.addEventListener("scroll", function () {
-    if (window.pageYOffset > amountScrolled) {
-      link.classList.add("show");
-    } else {
-      link.classList.remove("show");
-    }  
-  });
-
-  link.addEventListener("click", function (e) {
-    e.preventDefault();
-    var distance = 0 - window.pageYOffset;
-    var increments = distance / (500 / 16);
-
-    function animateScroll() {
-      window.scrollBy(0, increments);
-      if (window.pageYOffset <= document.body.offsetTop) {
-        clearInterval(runAnimation);
-      }
-    }
-    var runAnimation = setInterval(animateScroll, 16);
-  });
-});
-
-</script> -->
 </body>
 </html>

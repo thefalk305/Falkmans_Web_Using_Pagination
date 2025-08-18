@@ -231,3 +231,16 @@ h4 {
        opacity: 1;
   }
 
+figure {
+  text-align: center;
+}
+
+/*====center photo caption====*/
+figcaption {
+  display: block;
+  color: #333;
+  font-size: 1em;	
+  margin-top: 8px; /* optional spacing */
+  font-style: italic; /* optional styling */
+ }
+
