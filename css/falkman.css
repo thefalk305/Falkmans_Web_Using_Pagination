@@ -109,6 +109,10 @@ a:active {
 	vertical-align: top;
 }
 
+#content p {
+	text-align: justify;
+}
+
 figure {
   text-align: center;
 }
