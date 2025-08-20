@@ -15,6 +15,27 @@
 //   - Show and hide a modal (popup) window
 //   - Implement pagination (splitting content into pages)
 //
+// ===============================
+// DOM MANIPULATION EXPLAINED
+// ===============================
+//
+// The DOM (Document Object Model) is a way for JavaScript to interact with the HTML on your page.
+// You can use JavaScript to find elements, change their content, add new elements, or remove them.
+// This script uses DOM manipulation to build the photo gallery, pagination, and modal popup.
+//
+// Some key DOM methods used here:
+//   - document.getElementById("id")         // Finds an element by its id
+//   - document.querySelector(".class")      // Finds the first element with a class
+//   - document.createElement("div")         // Creates a new HTML element (not yet on the page)
+//   - element.appendChild(child)            // Adds a new child element to an existing element
+//   - element.innerHTML = "..."             // Sets the HTML content inside an element
+//   - element.textContent = "..."           // Sets the text content inside an element
+//   - element.classList.add("class")        // Adds a CSS class to an element
+//   - element.classList.remove("class")     // Removes a CSS class from an element
+//   - element.style.display = "none"        // Hides an element (removes it from view)
+//   - element.style.display = "block"       // Shows an element
+//   - element.addEventListener("click", fn) // Runs a function when the element is clicked
+//
 // Read the comments throughout the code to understand what each part does!
 
 // Wait until the HTML page is fully loaded before running the code inside
@@ -26,21 +47,24 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // 2. Get references to important HTML elements by their IDs or classes.
   //    These are used to display the gallery, pagination, modal, etc.
-  const gallery = document.getElementById("photoGallery");
-  const topPagination = document.getElementById("topPagination");
-  const bottomPagination = document.getElementById("pagination");
-  const perPageInput = document.getElementById("imagesPerPage");
+  //    These variables now point to real elements in your HTML.
+  const gallery = document.getElementById("photoGallery");      // Where the photo cards will go
+  const topPagination = document.getElementById("topPagination"); // Top page navigation
+  const bottomPagination = document.getElementById("pagination"); // Bottom page navigation
+  const perPageInput = document.getElementById("imagesPerPage");  // Input for images per page
 
-  const modal = document.getElementById("bioModal");
-  const modalBio = document.querySelector(".modal-bio");
-  const modalName = document.getElementById("modalName");
-  const modalBorn = document.getElementById("modalBorn");
-  const modalImage = document.getElementById("modalBioImage");
-  const exitBtn = document.querySelector(".modal-exit-btn");
-  const closeIcon = document.querySelector(".modal-close");
+  // Modal (popup) elements
+  const modal = document.getElementById("bioModal");            // The modal popup itself
+  const modalBio = document.querySelector(".modal-bio");        // Where the full bio will go
+  const modalName = document.getElementById("modalName");       // Name in the modal
+  const modalBorn = document.getElementById("modalBorn");       // Birth info in the modal
+  const modalImage = document.getElementById("modalBioImage");  // Image in the modal
+  const exitBtn = document.querySelector(".modal-exit-btn");    // "Exit" button in the modal
+  const closeIcon = document.querySelector(".modal-close");     // "X" close icon in the modal
 
   // 3. Set up event listeners to close the modal (popup) window.
   //    When the user clicks the exit button or the close icon, hide the modal.
+  //    This is DOM manipulation: changing the style to hide the modal.
   exitBtn.addEventListener("click", () => {
     modal.style.display = "none";
     // Remove the "expanded" class from any info-card (closes expanded cards)
@@ -53,6 +77,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   // If the user clicks outside the modal content, close the modal.
+  // e.target === modal means the user clicked the background, not the content.
   modal.addEventListener("click", (e) => {
     if (e.target === modal) modal.style.display = "none";
   });
@@ -69,6 +94,13 @@ document.addEventListener("DOMContentLoaded", async () => {
    *   - Clears the gallery
    *   - Adds info-cards for the photos on the current page
    *   - Adds fade-out and fade-in animation for smooth transitions
+   *
+   * DOM manipulation steps:
+   *   - Remove all children from the gallery (gallery.innerHTML = "")
+   *   - For each photo, create a new div (document.createElement)
+   *   - Set its innerHTML to the card's HTML
+   *   - Add event listeners to the card and its button
+   *   - Add the card to the gallery (gallery.appendChild)
    */
   function renderPage(page) {
     // Add a fade-out effect before changing the gallery
@@ -85,9 +117,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       // For each photo, create an info-card and add it to the gallery
       pagePhotos.forEach((photo) => {
-        // Create a div for the info-card
-        const card = document.createElement("div");
-        card.className = "info-card";
+        // Create a div for each info-card
+        const card = document.createElement("div"); // <div></div>
+        card.className = "info-card"; // <div class="info-card"></div>
 
         // Set the HTML content of the card
         card.innerHTML = `
@@ -117,18 +149,20 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
 
         // When the "Read More" button is clicked, show the modal with full bio
+        // e.stopPropagation() prevents the card's click event from firing
         card.querySelector(".toggle-bio").addEventListener("click", (e) => {
-          e.stopPropagation(); // Prevent the card click event
+          e.stopPropagation();
+          // Fill in the modal with the photo's info
           modalName.textContent = photo.name;
           modalBorn.textContent = `Born ${photo.born}`;
           modalImage.src = `img/${photo.pic}`;
           modalImage.alt = photo.name;
           // Replace line breaks in bioText with <br> for HTML display
           modalBio.innerHTML = `<p>${photo.bioText.replace(/\r?\n/g, '<br>')}</p>`;
-          modal.style.display = "flex"; // Show the modal
+          modal.style.display = "flex"; // Show the modal (display: flex)
         });
 
-        // Add the card to the gallery
+        // Add the card to the gallery (the main photo area)
         gallery.appendChild(card);
       });
 
@@ -144,6 +178,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   /**
    * Create a pagination control (the row of page number buttons).
    * Returns a div element containing the pagination buttons.
+   *
+   * DOM manipulation steps:
+   *   - Create a div for the pagination container
+   *   - For each page, create a button and add it to the container
+   *   - Add event listeners to the buttons to change the page
    */
   function generatePaginationElement() {
     const container = document.createElement("div");
@@ -202,6 +241,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   /**
    * Update both the top and bottom pagination controls.
    * This function clears the old controls and adds new ones.
+   *
+   * DOM manipulation steps:
+   *   - Remove all children from the pagination containers
+   *   - Add new pagination controls by calling generatePaginationElement()
    */
   function updatePagination() {
     if (topPagination) {
@@ -219,6 +262,10 @@ document.addEventListener("DOMContentLoaded", async () => {
    * Handle user input for images per page.
    * When the user types a new number, update the gallery and pagination.
    * Uses a debounce timer to avoid updating too often while typing.
+   *
+   * DOM manipulation steps:
+   *   - Listen for input events on the perPageInput element
+   *   - When the value changes, update imagesPerPage and re-render the gallery
    */
   let debounceTimer;
   perPageInput.addEventListener("input", (e) => {
