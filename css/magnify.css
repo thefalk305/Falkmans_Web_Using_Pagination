@@ -165,6 +165,15 @@ h4 {
   margin-right: 140px;
 }
 
+
+/* 📱 Mobile override */
+@media (max-width: 600px) {
+	#content {
+		margin-right: 10px;
+		margin-left: 10px;
+	}
+}
+
 /* #content h3 {
   margin: 0em;
 } */
