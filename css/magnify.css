@@ -248,3 +248,27 @@ figcaption {
    text-align: left; 
    display: block;
  } */
+
+ 
+  .hover-trigger {
+    position: relative;
+    cursor: pointer;
+    color: darkblue;
+    text-decoration: underline;
+  }
+
+  .hover-image {
+    position: absolute;
+    top: 1.5em;
+    left: 0;
+    display: none;
+    width: 400px;
+    border: 2px solid #333;
+    background: white;
+    z-index: 10;
+  }
+
+  .hover-trigger:hover .hover-image {
+    display: block;
+		left: -200px;
+  }

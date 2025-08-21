@@ -109,6 +109,13 @@ a:active {
 	vertical-align: top;
 }
 
+/* 📱 Mobile override */
+@media (max-width: 600px) {
+	#content {
+		margin-right: 10px;
+		margin-left: 10px;
+	}
+}
 #content p {
 	text-align: justify;
 }

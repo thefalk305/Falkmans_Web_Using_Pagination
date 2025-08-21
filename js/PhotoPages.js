@@ -122,6 +122,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         card.className = "info-card"; // <div class="info-card"></div>
 
         // Set the HTML content of the card
+        // This creates a "figure-card" element for each photo on the page with the details (pic, name, born, bioText) coming from PhotoPagesData.json (fetched above)
         card.innerHTML = `
           <div class="figure-card">
             <div class="image-wrapper">
