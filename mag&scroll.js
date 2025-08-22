@@ -3,7 +3,7 @@
 
   // change page title to page heading
   // comment out if not desired
-  document.getElementsByTagName("title")[0].textContent = document.querySelector('.heading-row h1').textContent;
+  document.getElementsByTagName("title")[0].textContent = document.querySelector('#heading-row h1').textContent;
 
   const checkbox = document.getElementById('mag-checkbox');
   const zoomInput = document.getElementById('mag');
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var link = document.getElementById("back-to-top");
   if (!link) return; // ✅ safely exit if not found
 
-  var amountScrolled = 500;
+  var amountScrolled = 600;
 
   window.addEventListener("scroll", function () {
     if (window.pageYOffset > amountScrolled) {

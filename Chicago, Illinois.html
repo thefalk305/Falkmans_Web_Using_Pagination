@@ -21,61 +21,48 @@
   <div id="header"></div>
   <script src="./js/loadHeader.js"></script>
 
-  <!-- header-row contains the page title, the magnifier checkbox and input for magnification value. -->
-  <div class="heading-row" >
-    <h1>S.S. Romeo</h1>
-  
-    <label class="heading-checkbox">
-      <input type="checkbox" id="mag-checkbox" class="myCheckbox" />
-      Enable Mag
-    </label>
-
-    <input
-      type="text"
-      id="mag"
-      class="myMag"
-      placeholder="Mag Value (2)"
-      style="display: none"
-    />
-  </div>
-  
   <!-- content contains the remainder of the page. -->
   <div id="content" >
-
-    <p id="enMag" >Enable Mag - Mouse over the image.</p>
-
-    <div id="lnkcont" style="position: relative;">
-      <a
-        href="RomeoList.html"
-        style="position: absolute; 
-        z-index: 99; 
-        left: 78%;
-        top: 40.9%;
-        width: 15%;
-        height: 1.0%;
-        background-color: rgba(255, 0, 0, 0);">
-      </a>
 
       <div class="img-magnifier-container">
         <img
           class="magImage"
-          src="./images/romeo.jpg"
-          alt="SS Romeo"
+          src="./images/chicago-2.jpg"
+          alt="Chicago Skyline"
+          style="width: 100%;"
         />
       </div>
-    </div>
+		<figcaption>The Chicago Skyline</figcaption>
 
-    <b>This is the ship that Nils P. Falkman sailed on from Göteborg to Hull, England.<br> The high lighted text will take you to the ships manifest.</p>
+		<p>The Falkman family finally settle in Chicago. Here is were they set down their
+		roots. With many generations born and living in and around the Chicago area.
+		</p>
 
-    <!-- Inserts the common footer. -->
+      <div class="img-magnifier-container">
+        <img
+          class="magImage"
+          src="./images/Beach scene along Lake Michigan - July 1942-2.jpg"
+          alt="Arbrå Farm"
+          style="width: 100%;"
+        />
+			<figcaption>Beach scene along Lake Michigan with cityscape in background, Chicago, Illinois, USA, Arthur Rothstein, U.S. Office of War Information, July 1942</figcaption>
+     </div>
+
+		<div class="img-magnifier-container">
+			<img
+				class="magImage"
+				src="./images/this-image-from-1924-shows-a-scene-in-chicago-featuring-the-work-of-artist-Falk-2.jpg"
+				alt="Arbrå Farm"
+	          style="width: 100%;"
+			/>
+			<figcaption>This image from 1924 shows a scene in Chicago, featuring the work of artist Falk. The work captures the essence of the city during the 1920s, reflecting its urban atmosphere and historical context.</figcaption>
+		</div>
+
   </div>
     <div id="footer"></div>
     <script src="./js/loadFooter.js"></script>
 </div>
 
-<a href="#" id="back-to-top" style="display: inline;">
-  <img src="images/rocket4.png" >
-</a>  
 
 <script type="module" src="./js/mag&scroll.js"></script>
 

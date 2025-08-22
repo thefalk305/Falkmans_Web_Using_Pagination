@@ -13,6 +13,31 @@
   .then(html => {
     document.getElementById("header").innerHTML = html;
 
+    // Now that the footer is injected, check the filename
+    const encodedFile = window.location.pathname;
+    const path = decodeURIComponent(encodedFile.split('/').pop());
+
+    var filename = path.substring(path.lastIndexOf('/') + 1);
+     filename = filename.split('.')[0];
+
+    if(filename === "index") 
+      document.querySelector('#heading-row h1').innerHTML = "Welcome to the Falkman Family's History Website";
+    else
+      document.querySelector('#heading-row h1').innerHTML = filename;
+
+
+
+    // do not display 'Return' if page === index.html
+    if (filename === "index.html" || filename === "") {
+      const pageTitle = document.getElementById("return");
+      if (pageTitle) {
+        pageTitle.style.display = "none";
+      }
+    }
+console.log(filename); // e.g., "index.html";
+
+
+
     // ⏰ Now safely initialize the clock
     const tday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const tmonth = [

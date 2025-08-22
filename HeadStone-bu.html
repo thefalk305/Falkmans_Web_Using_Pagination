@@ -56,7 +56,7 @@
   <script src="./js/loadHeader.js"></script>
 
   <!-- header-row contains the page title, the magnifier checkbox and input for magnification value. -->
-  <div class="heading-row" >
+  <div id="heading-row" >
     <h1>Head Stones & Grave Markers</h1>
   
     <label class="heading-checkbox">
@@ -171,7 +171,7 @@
 
   // change page title to page heading
   // comment out if not desired
-  document.getElementsByTagName("title")[0].textContent = document.querySelector('.heading-row h1').textContent;
+  document.getElementsByTagName("title")[0].textContent = document.querySelector('#heading-row h1').textContent;
 
   const checkbox = document.getElementById('mag-checkbox');
   const zoomInput = document.getElementById('mag');

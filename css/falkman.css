@@ -82,6 +82,10 @@ a:link {
 	background: transparent;
 	text-decoration: underline;
 }
+#content a:link  {
+	background-color: rgba(255, 255, 0, 0.4);
+}
+
 a:visited {
 	font-weight: bold;
 	color: #1705b8;
@@ -93,7 +97,9 @@ a:hover {
 	font-weight: bold;
 	text-decoration : none;
 	background: #0f41e6;
-	color: #eee56d;}
+	color: #eee56d;
+}
+
 a:active {
 	font-weight: bold;
 	text-decoration : underline;
@@ -214,7 +220,7 @@ Navigation Bar - Left hand side
 
 /*============== Styles for footer ===================*/
 #footer {
-	border-top: 2px solid #242F24;
+	/* border-top: 2px solid #242F24; */
 	/* clear: both;
 	padding: 5px; */
 	background-color: rgb(255, 255, 255);
@@ -406,4 +412,8 @@ figcaption {
   .hover-trigger:hover .hover-image {
     display: block;
 		left: -200px;
+  }
+
+#heading-row h1 {
+  margin: 0px;
   }

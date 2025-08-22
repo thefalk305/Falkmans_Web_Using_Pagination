@@ -82,28 +82,6 @@
   <div id="header"></div>
   <script src="./js/loadHeader.js"></script>
 
-  <!-- header-row contains the page title, the magnifier checkbox and input for magnification value. -->
-  <div class="heading-row" >
-    <h1>Head Stones & Grave Markers</h1>
-  
-    <label class="heading-checkbox">
-      <input type="checkbox" id="mag-checkbox" class="myCheckbox" />
-      Enable Mag
-    </label>
-
-    <input
-      type="text"
-      id="mag"
-      class="myMag"
-      placeholder="Mag Value (2)"
-      style="display: none"
-    />
-  </div>
-  
-  <!-- content contains the remainder of the page. -->
-  <p id="enMag" >Enable Mag - Mouse over the image.</p>
-
-
   <p align="center">(Can you identify them?)</p>
   <p>Below you will find several pictures of head stones, or grave markers if
   you prefer. Each one a little bit out of focus. Your task is to pick the right name with the right head stone... Three misses and you'll have to
@@ -203,7 +181,7 @@
 
   // change page title to page heading
   // comment out if not desired
-  document.getElementsByTagName("title")[0].textContent = document.querySelector('.heading-row h1').textContent;
+  document.getElementsByTagName("title")[0].textContent = document.querySelector('#heading-row h1').textContent;
 
   const checkbox = document.getElementById('mag-checkbox');
   const zoomInput = document.getElementById('mag');

@@ -23,28 +23,6 @@
   <div id="header"></div>
   <script src="./js/loadHeader.js"></script>
 
-  <!-- header-row contains the page title, the magnifier checkbox and input for magnification value. -->
-  <div class="heading-row" >
-    <h1>Head Stones & Grave Markers</h1>
-  
-    <label class="heading-checkbox">
-      <input type="checkbox" id="mag-checkbox" class="myCheckbox" />
-      Enable Mag
-    </label>
-
-    <input
-      type="text"
-      id="mag"
-      class="myMag"
-      placeholder="Mag Value (2)"
-      style="display: none"
-    />
-  </div>
-  
-  <!-- content contains the remainder of the page. -->
-  <div  >
-
-    <p id="enMag">Enable Mag - Mouse over the image.</p>
     <div id="headstones">
 
       <p>(Can you identify them?)</p>
@@ -84,10 +62,6 @@
     <div id="footer"></div>
     <script src="./js/loadFooter.js"></script>
 </div>
-
-<a href="#" id="back-to-top" style="display: inline;">
-  <img src="images/rocket4.png" >
-</a>  
 
 
 <script type="module">
@@ -262,7 +236,7 @@
   import { toggleMagnifier, defaultMagConfig } from './js/magnifier.js';
 
   // Change the page title to match the page heading.
-  document.getElementsByTagName("title")[0].textContent = document.querySelector('.heading-row h1').textContent;
+  document.getElementsByTagName("title")[0].textContent = document.querySelector('#heading-row h1').textContent;
 
   const checkbox = document.getElementById('mag-checkbox');
   const zoomInput = document.getElementById('mag');

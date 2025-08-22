@@ -6,7 +6,7 @@
 
 document.addEventListener("DOMContentLoaded", function () {
   var link = document.getElementById("back-to-top");
-  var amountScrolled = 1500;
+  var amountScrolled = 600;
 
   window.addEventListener("scroll", function () {
     if (window.pageYOffset > amountScrolled) {

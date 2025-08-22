@@ -21,28 +21,8 @@
   <div id="header"></div>
   <script src="./js/loadHeader.js"></script>
 
-  <!-- header-row contains the page title, the magnifier checkbox and input for magnification value. -->
-  <div class="heading-row" >
-    <h1>H.M.S. Britannic</h1>
-  
-    <label class="heading-checkbox">
-      <input type="checkbox" id="mag-checkbox" class="myCheckbox" />
-      Enable Mag
-    </label>
-
-    <input
-      type="text"
-      id="mag"
-      class="myMag"
-      placeholder="Mag Value (2)"
-      style="display: none"
-    />
-  </div>
-
   <!-- content contains the remainder of the page. -->
   <div id="content" >
-    <p id="enMag">Enable Mag - Mouse over the image.</p>
-
     <p >This is the ship that Nils Falkman sailed on from Liverpool to America. (New York city)</p>
 
     <!-- enable magnification on the image. -->
@@ -59,15 +39,13 @@
     <p>H.M.S. Britannic. From Liverpool To New York city, direct.</p>
 
     <div id="lnkcont" style="position: relative;">
-      <!-- add a link to "RomeoList.html" -->
+      <!-- add a link to "S S Romeo Passenger List.html" -->
       <a
-        href="britpasslist.html"
-        style="position: absolute; 
-        left: 0px;
+        href="R M S Britannic Passenger List.html"
+        style="left: 0px;
         top: 46.9%;
         width: 34%;
-        height: .7%;
-        background-color: rgba(255, 0, 0, 0);"></a>
+        height: .7%;">
       </a>
 
       <!-- add a link to "norwayheritage.com" -->
@@ -100,10 +78,6 @@
   <div id="footer"></div>
   <script src="./js/loadFooter.js"></script>
 </div>
-
-<a href="#" id="back-to-top" style="display: inline;">
-  <img src="images/rocket4.png" >
-</a>  
 
 <script type="module" src="./js/mag&scroll.js"></script>
 
