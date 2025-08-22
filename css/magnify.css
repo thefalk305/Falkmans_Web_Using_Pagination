@@ -38,16 +38,6 @@ h4 {
 	font-size: .9em;
 }
 
-.img-magnifier-container {
-  text-align: center;
-  position:relative;
-  /* width: 100%; */
-}
-
-.img-magnifier-container img {
-  display: inline-block; /* Ensures it responds properly to text-align */
-}
-
  /*Set the size of the magnifier glass:*/
 .img-magnifier-glass {
   position: absolute;
@@ -308,4 +298,18 @@ figcaption {
   position: absolute;
 }
 
+
+.img-magnifier-container {
+  text-align: center;
+  position:relative;
+  /* width: 100%; */
+}
+
+.img-magnifier-container p {
+  text-align: center !important;
+}
+
+.img-magnifier-container img {
+  display: inline-block; /* Ensures it responds properly to text-align */
+}
 

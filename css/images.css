@@ -25,17 +25,13 @@ body img {
 }
 /*=================== styles for top banner ========================*/
 #banner {
-	background-position: center 85%;
-	padding: 1px;
-	background-color: #FFFFFF;
-	background-image: url('../images/Banner.png');
-	background-size: 80%;
-	height: 150px;
-	width: 80%;
-	color: #000000;
+	background-image: url('/images/banner2.png');
+	width: 100%;
+	background-repeat: no-repeat;
 }
 /*
-.Banner {  
+#banner
+ {  
 display: flex; 
 justify-content: center 80%;
 align-items: center;}
