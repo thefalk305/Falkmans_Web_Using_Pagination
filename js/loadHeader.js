@@ -22,7 +22,7 @@ function toTitleCase(str) {
     // Capitalize first letter of each word in filename
     const title = toTitleCase(filename);
 
-    if (title !== "index") {
+    if (title !== "Index") {
       document.querySelector('#heading-row h1').innerHTML = title;
       document.querySelector('#banner img').src = "/images/banner2.png";
     } else {
