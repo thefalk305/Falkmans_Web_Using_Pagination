@@ -25,7 +25,7 @@ body img {
 }
 /*=================== styles for top banner ========================*/
 #banner {
-	background-image: url('/images/banner2.png');
+	/* background-image: url('/images/banner2.png'); */
 	width: 100%;
 	background-repeat: no-repeat;
 }
