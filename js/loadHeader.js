@@ -2,6 +2,12 @@
 // This script fetches the top portion of each web page from an external file ("./html/header.html") and injects it into the page just below <div id=container>  header.html contains the Banner, top-nav-menu and the page name along with the magnification elements.
 // This allows for easy updates to the header information without modifying the main HTML files.
 
+function toTitleCase(str) {
+  return str
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
 
   fetch("/html/header.html")
   .then(res => res.text())
@@ -12,9 +18,12 @@
     const encodedFile = window.location.pathname;
     const path = decodeURIComponent(encodedFile.split('/').pop());
     var filename = path.substring(path.lastIndexOf('/') + 1);
-     filename = filename.split('.')[0];
-    if (filename !== "index") {
-      document.querySelector('#heading-row h1').innerHTML = filename;
+    filename = filename.split('.')[0];
+    // Capitalize first letter of each word in filename
+    const title = toTitleCase(filename);
+
+    if (title !== "index") {
+      document.querySelector('#heading-row h1').innerHTML = title;
       document.querySelector('#banner img').src = "/images/banner2.png";
     } else {
       // Special case for the index.html
