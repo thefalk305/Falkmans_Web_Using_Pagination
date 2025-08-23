@@ -12,6 +12,12 @@ a {
   z-index: 99;
 }
 
+a[target="_blank"] {
+  /* color: red; */
+  font-weight: bold;
+	background-color: rgb(255, 255, 0);
+}
+
 #container {
     margin: 10px auto 10px auto;
     padding: 20px;
@@ -155,7 +161,6 @@ h4 {
   margin-right: 140px;
 }
 
-
 /* 📱 Mobile override */
 @media (max-width: 600px) {
 	#content {
@@ -195,6 +200,10 @@ h4 {
   text-align: justify;
   text-indent: 2em;
   margin-top: 1em;
+}
+
+#content p a {
+	background-color: rgb(255, 255, 0);
 }
 
 #content p#enMag {
@@ -289,7 +298,7 @@ figcaption {
 
 #lnkcont a {
    position: absolute;
-   background-color: rgba(255, 0, 0, 0);
+   background-color: rgba(255, 255, 0, 0.0);
 }
 
 #lnkcont #lnk {
