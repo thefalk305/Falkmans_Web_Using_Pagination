@@ -9,11 +9,11 @@
     const title = document.querySelector('meta[name="page-title"]').content;
     document.querySelector('#heading-row h1').textContent  = title;
 
-    if (title !== "Welcome to the Falkman Family's History Website") {
-      document.querySelector('#banner img').src = "/images/banner2.png";
+    if (title === "Welcome to the Falkman Family's History Website") {
+      document.querySelector('#banner img').src = "/images/banner.gif";
     } else {
       // Special case for the index.html
-      document.querySelector('#banner img').src = "/images/banner.gif";
+      document.querySelector('#banner img').src = "/images/banner2.png";
     }
 
     // ⏰ Now safely initialize the clock

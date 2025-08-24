@@ -134,6 +134,7 @@ figcaption {
   font-size: 1em;	
   margin-top: 8px; /* optional spacing */
   font-style: italic; /* optional styling */
+	font-weight:bold;
  }
 
 /*===========content area list items==============*/
