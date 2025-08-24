@@ -10,13 +10,12 @@ body {
 
 a {
   z-index: 99;
+  font-weight: bold;
 }
 
-a[target="_blank"] {
-  /* color: red; */
-  font-weight: bold;
+/* a[target="_blank"] {
 	background-color: rgb(255, 255, 0);
-}
+} */
 
 #container {
     margin: 10px auto 10px auto;
@@ -203,7 +202,7 @@ h4 {
 }
 
 #content p a {
-	background-color: rgb(255, 255, 0);
+	background-color: rgb(255, 255, 0, 0.4);
 }
 
 #content p#enMag {
@@ -250,7 +249,7 @@ figure {
 /*====center photo caption====*/
 figcaption {
   display: block;
-  color: #333;
+  color: #485E48;
   font-size: 1em;	
   margin-top: 8px; /* optional spacing */
   font-style: italic; /* optional styling */
@@ -263,17 +262,17 @@ figcaption {
  } */
 
  
-  .hover-trigger {
-    position: relative;
-    cursor: pointer;
-    color: darkblue;
-    text-decoration: underline;
-  }
+.hover-trigger {
+  position: relative;
+  cursor: none;
+  text-decoration: underline;
+  background-color: rgb(0, 255, 0, 0.1);
+}
 
   .hover-image {
     position: absolute;
     top: 1.5em;
-    left: 0;
+    left: -170;
     display: none;
     width: 400px;
     border: 2px solid #333;
@@ -283,7 +282,6 @@ figcaption {
 
   .hover-trigger:hover .hover-image {
     display: block;
-		left: -200px;
   }
 
   hr {
@@ -317,6 +315,8 @@ figcaption {
 
 .img-magnifier-container p {
   text-align: center !important;
+  font-weight: bold;
+  color: #485E48;
 }
 
 .img-magnifier-container img {
