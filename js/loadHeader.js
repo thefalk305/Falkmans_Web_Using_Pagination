@@ -11,11 +11,13 @@
 
     if (title === "Welcome to the Falkman Family's History Website") {
       document.querySelector('#banner img').src = "/images/banner.gif";
+    } else if (title === "PhotoPages") {
+        document.querySelector('#banner img').src = "/img/Banner-Photo.png";
     } else {
-      // Special case for the index.html
-      document.querySelector('#banner img').src = "/images/banner2.png";
+    // Special case for the index.html
+    document.querySelector('#banner img').src = "/images/banner2.png";
     }
-
+    
     // ⏰ Now safely initialize the clock
     const tday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const tmonth = [
