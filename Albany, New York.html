@@ -55,7 +55,10 @@ In 1868, Mary’s grandmother, Ellen Allen (née Slattery), migrated to Chicago 
   <script src="./js/loadFooter.js"></script>
 </div>
 
-<script type="module" src="./js/mag&scroll.js"></script>
+<script type="module">
+  import { initMagnifierControls } from './js/magnifier.js';
+  initMagnifierControls();
+</script>
 
 </body>
 </html>

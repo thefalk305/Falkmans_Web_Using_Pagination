@@ -126,7 +126,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         card.innerHTML = `
           <div class="figure-card">
             <div class="image-wrapper">
-              <img src="img/${photo.pic}" alt="${photo.name}" class="figure-img">
+              <div class="img-magnifier-container ">
+                <img
+                  class="magImage figure-img"
+                  src="img/${photo.pic}" alt="${photo.name}"
+                  style="width: 190px; box-shadow: none;"
+                >
+              </div>
               <div class="caption">${photo.name}</div>
             </div>
             <figcaption class="bio-text">

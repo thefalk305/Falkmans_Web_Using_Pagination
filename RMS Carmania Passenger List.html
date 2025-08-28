@@ -27,13 +27,13 @@
     <!-- content contains the remainder of the page. -->
     <div id="content" >
 
-    <p><b style="color:fuchsia">You will find Aldofina Chytra six lines down the page.</b></p>
 
     <div id="lnkcont" style="position: relative;">
       <div id="lnk"
-        style="top: 34.8%; width:384px; height: 2%; ">
+        style="top: 37.2%; width:384px; height: 2%; ">
       </div>
       <div class="img-magnifier-container">
+        <p>You will find Aldofina Chytra six lines down the page. The manifest shows that she was 17 years of age.</p>
         <img class="magImage" 
         src="./images/ChytraPassList.png" alt="ChytraPassList" 
         style="width: 902px;
@@ -51,7 +51,10 @@
       <script src="./js/loadFooter.js"></script>
  </div>
 
-<script type="module" src="./js/mag&scroll.js"></script>
+<script type="module">
+  import { initMagnifierControls } from './js/magnifier.js';
+  initMagnifierControls();
+</script>
 
 </body>
 </html>

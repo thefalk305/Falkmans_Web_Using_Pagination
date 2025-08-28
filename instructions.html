@@ -16,8 +16,7 @@
   <meta name="page-title" content="Instructions" />
 
   <!-- <link href="css/photos.css" rel="stylesheet" type="text/css" /> -->
-  <script src="./js/scripts.js" defer></script>
-<link rel="icon" href="assets/favicon.ico">
+  <link rel="icon" href="assets/favicon.ico">
   <link href="css/magnify.css" rel="stylesheet" type="text/css" />
 
 </head>
@@ -49,7 +48,10 @@
 </div>
 
 <script src="./js/loadFooter.js"></script>
-<script type="module" src="./js/mag&scroll.js"></script>
+<script type="module">
+  import { initMagnifierControls } from './js/magnifier.js';
+  initMagnifierControls();
+</script>
 
 </body>
 </html>

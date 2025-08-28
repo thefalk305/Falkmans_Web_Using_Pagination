@@ -11,11 +11,10 @@
   <link rel="stylesheet" href="./css/magnify.css">
 
 
-  <meta name="page-title" content="PhotoPages" />
+  <meta name="page-title" content="Photo Pages" />
 
   <!-- Main gallery script -->
   <script type="module" src="./js/PhotoPages.js"></script>
-  <script src="./js/scripts.js" defer></script>
 </head>
 
 <body>
@@ -71,7 +70,10 @@
   <script src="./js/loadFooter.js"></script>
 </div>
 
-<script type="module" src="./js/mag&scroll.js"></script>
+<script type="module">
+  import { initMagnifierControls } from './js/magnifier.js';
+  initMagnifierControls();
+</script>
 
 </body>
 </html>

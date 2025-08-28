@@ -6,19 +6,26 @@
   .then(res => res.text())
   .then(html => {
     document.getElementById("header").innerHTML = html;
+    
     const title = document.querySelector('meta[name="page-title"]').content;
     document.querySelector('#heading-row h1').textContent  = title;
 
     if (title === "Welcome to the Falkman Family's History Website") {
       document.querySelector('#banner img').src = "/images/banner.gif";
     } else if (title === "PhotoPages") {
+    // Special case for the PhotoPages.html
         document.querySelector('#banner img').src = "/img/Banner-Photo.png";
     } else {
     // Special case for the index.html
     document.querySelector('#banner img').src = "/images/banner2.png";
     }
     
-    // ⏰ Now safely initialize the clock
+    // =======================
+    // Dynamic Clock 
+    //
+    // Displays the date and time in 
+    // the clockbox <div> in the header
+    // =======================
     const tday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const tmonth = [
       "January", "February", "March", "April", "May", "June",
