@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <img
                   class="magImage figure-img"
                   src="img/${photo.pic}" alt="${photo.name}"
-                  style="width: 190px; box-shadow: none;"
+                  style="width: 236px; box-shadow: none;"
                 >
               </div>
               <div class="caption">${photo.name}</div>
