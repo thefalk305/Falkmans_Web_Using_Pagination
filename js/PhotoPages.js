@@ -39,6 +39,8 @@
 // Read the comments throughout the code to understand what each part does!
 
 // Wait until the HTML page is fully loaded before running the code inside
+import { setupMagnifier, defaultMagConfig } from './magnifier.js';
+
 document.addEventListener("DOMContentLoaded", async () => {
   // 1. Load photo data from a JSON file using fetch.
   //    The JSON file contains an array of photo objects (name, pic, bioText, etc).
@@ -172,6 +174,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Add the card to the gallery (the main photo area)
         gallery.appendChild(card);
       });
+
+      // Re-bind magnifier to newly added images
+      setupMagnifier(defaultMagConfig);
 
       // Add fade-in effect after updating the gallery
       gallery.classList.remove("fade-out");

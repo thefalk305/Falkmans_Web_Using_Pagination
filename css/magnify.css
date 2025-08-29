@@ -60,11 +60,6 @@ h4 {
 	pointer-events: none;
  }
 
-/* Comment out to see cursor in mag glass */
-.magImage.hide-cursor {
-  cursor: none !important;
-}
-
 #glassToggle {
 	  background-color:#EBDF9F;
     height: 60px;
@@ -178,6 +173,17 @@ h4 {
   margin-inline-end: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
   border-radius: 10px;
+}
+.magImage {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  /* aspect-ratio: 100 / 123; */
+}
+
+/* Comment out to see cursor in mag glass */
+.magImage.hide-cursor {
+  cursor: none !important;
 }
 
 .image-grid {
