@@ -50,8 +50,12 @@
 <script src="./js/loadFooter.js"></script>
 <script type="module">
   import { initMagnifierControls } from './js/magnifier.js';
-  initMagnifierControls();
+  document.addEventListener('DOMContentLoaded', () => {
+    // Wait briefly to ensure header/footer are loaded
+    setTimeout(() => {
+      initMagnifierControls();
+    }, 100); // You can adjust this delay if needed
+  });
 </script>
-
 </body>
 </html>

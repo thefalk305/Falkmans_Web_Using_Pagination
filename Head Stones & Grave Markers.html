@@ -68,9 +68,13 @@
 
 <script type="module">
   import { initMagnifierControls } from './js/magnifier.js';
-  initMagnifierControls();
-</script>
-<script type="module" src="./js/HeadStoneGame.js"></script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Wait briefly to ensure header/footer are loaded
+    setTimeout(() => {
+      initMagnifierControls();
+    }, 100); // You can adjust this delay if needed
+  });
+</script><script type="module" src="./js/HeadStoneGame.js"></script>
 
 </body>
 </html>
