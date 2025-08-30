@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           // Fill in the modal with the photo's info
           modalName.textContent = photo.name;
           modalBorn.textContent = `Born ${photo.born}`;
-          modalImage.src = `img/${photo.pic}`;
+          modalImage.src = `../img/${photo.pic}`;
           modalImage.alt = photo.name;
           // Replace line breaks in bioText with <br> for HTML display
           modalBio.innerHTML = `<p>${photo.bioText.replace(/\r?\n/g, '<br>')}</p>`;
