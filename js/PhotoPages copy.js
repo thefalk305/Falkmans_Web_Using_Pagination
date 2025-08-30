@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             <figcaption class="bio-text">
               <h2>${photo.name}</h2>
               <h3>Born ${photo.born}</h3>
-              <h3>Family Search: <a href="https://www.familysearch.org/en/tree/pedigree/landscape/${photo.famSrchLink}" target="_blank">View Profile</a></h3>              
+              <h3>Family Search: ${photo.famSrchLink}</h3>
               <p class="bio-snippet">${photo.bioText.replace(/\r?\n/g, '<br>')}</p>
               <button class="toggle-bio">Read More</button>
             </figcaption>
