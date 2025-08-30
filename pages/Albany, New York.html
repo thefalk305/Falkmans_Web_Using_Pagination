@@ -12,8 +12,8 @@
 
   <meta name="page-title" content="Albany, New York" />
 
-	<link href="css/magnify.css" rel="stylesheet" type="text/css" />
-  <link rel="icon" href="assets/favicon.ico">
+	<link href="../css/magnify.css" rel="stylesheet" type="text/css" />
+  <link rel="icon" href="../assets/favicon.ico">
 </head>
 
 <body>
@@ -22,14 +22,14 @@
 	
   <!-- Inserts the common header-->
   <div id="header"></div>
-  <script src="./js/loadHeader.js"></script>
+  <script src="../js/loadHeader.js"></script>
 
   <!-- content contains the remainder of the page. -->
   <div id="content" >
       <div class="img-magnifier-container">
         <img
           class="magImage"
-          src="./images/State Street and Lark Street.webp"
+          src="../images/State Street and Lark Street.webp"
           alt="State Street and Lark Street, Albany, New York"
           style="width: 100%;"
         />
@@ -43,7 +43,7 @@ In 1868, Mary’s grandmother, Ellen Allen (née Slattery), migrated to Chicago 
     <div class="img-magnifier-container">
       <img
         class="magImage"
-        src="./images/AlbanyNYPanorama1906.jpg"
+        src="../images/AlbanyNYPanorama1906.jpg"
         alt="Albany Panorama, New York"
         style="width: 100%;"
       />
@@ -52,11 +52,11 @@ In 1868, Mary’s grandmother, Ellen Allen (née Slattery), migrated to Chicago 
 
   </div>
   <div id="footer"></div>
-  <script src="./js/loadFooter.js"></script>
+  <script src="../js/loadFooter.js"></script>
 </div>
 
 <script type="module">
-  import { initMagnifierControls } from './js/magnifier.js';
+  import { initMagnifierControls } from '../js/magnifier.js';
   document.addEventListener('DOMContentLoaded', () => {
     // Wait briefly to ensure header/footer are loaded
     setTimeout(() => {

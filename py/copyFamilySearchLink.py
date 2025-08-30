@@ -1,4 +1,5 @@
-# This script copies 'famSrchLink' from an excel file to a json file if the names match
+# This script copies the 'famSrchLink' field from the excel 
+# file to a json file if the names in both files match.
 
 import json
 import pandas as pd

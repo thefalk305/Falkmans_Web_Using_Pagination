@@ -14,8 +14,8 @@
 
   <meta name="page-title" content="New York City" />
 
-	<link href="css/magnify.css" rel="stylesheet" type="text/css" />
-<link rel="icon" href="assets/favicon.ico">
+	<link href="../css/magnify.css" rel="stylesheet" type="text/css" />
+<link rel="icon" href="../assets/favicon.ico">
 
 </head>
 
@@ -26,7 +26,7 @@
   <!-- Inserts the common header-->
    <!-- header contains 'banner', navigation and magnification controls -->
   <div id="header"></div>
-  <script src="./js/loadHeader.js"></script>
+  <script src="../js/loadHeader.js"></script>
 
   <!-- header-row contains the page title, the magnifier checkbox and input for magnification value.
   <div id="heading-row" >
@@ -52,7 +52,7 @@
 		<div class="img-magnifier-container">
 			<img
 				class="magImage"
-				src="images/NYC-1900s.jpg"
+				src="../images/NYC-1900s.jpg"
 				width="100%"
 				alt="New York City, 1900"
 			/>
@@ -60,7 +60,7 @@
 		</div>
 
     <h2 > New York City: The Golden Door of 19th-Century Immigration</h2>
-    <p>In the 1800s, New York City stood as the beating heart of American immigration. From the cobbled streets of Lower Manhattan to the bustling piers along the Hudson River, the city became a symbol of hope and opportunity for millions seeking refuge and renewal. By the mid-19th century, more than 70% of immigrants entering the United States passed through New York, earning it the nickname <b>"The Golden Door"</b>. The journey to America was often long and perilous. Immigrants traveled in cramped steerage compartments aboard steamships, enduring rough seas, illness, and uncertainty. Upon arrival, they were greeted by the imposing skyline of Manhattan and the promise of a new beginning. From 1855 to 1890, <span class="hover-trigger" >Castle Garden<img class="hover-image" src="images/castle-garden.jpg" alt="Castle Garden"></span> served as the city's first official immigration station. Located at the southern tip of Manhattan, it processed over eight million immigrants before Ellis Island took over in 1892.</p>
+    <p>In the 1800s, New York City stood as the beating heart of American immigration. From the cobbled streets of Lower Manhattan to the bustling piers along the Hudson River, the city became a symbol of hope and opportunity for millions seeking refuge and renewal. By the mid-19th century, more than 70% of immigrants entering the United States passed through New York, earning it the nickname <b>"The Golden Door"</b>. The journey to America was often long and perilous. Immigrants traveled in cramped steerage compartments aboard steamships, enduring rough seas, illness, and uncertainty. Upon arrival, they were greeted by the imposing skyline of Manhattan and the promise of a new beginning. From 1855 to 1890, <span class="hover-trigger" >Castle Garden<img class="hover-image" src="../images/castle-garden.jpg" alt="Castle Garden"></span> served as the city's first official immigration station. Located at the southern tip of Manhattan, it processed over eight million immigrants before Ellis Island took over in 1892.</p>
 
     <h2> Waves of Migration and Their Roots </h2>
     <p>
@@ -76,11 +76,11 @@
   </div>
 <!-- Inserts the common footer. -->
 <div id="footer"></div>
-<script src="./js/loadFooter.js"></script>
+<script src="../js/loadFooter.js"></script>
 </div>
 
 <script type="module">
-  import { initMagnifierControls } from './js/magnifier.js';
+  import { initMagnifierControls } from '../js/magnifier.js';
   document.addEventListener('DOMContentLoaded', () => {
     // Wait briefly to ensure header/footer are loaded
     setTimeout(() => {

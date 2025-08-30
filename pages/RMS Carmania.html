@@ -12,8 +12,8 @@
 
   <meta name="page-title" content="RMS Carmania" />
 
-	<link href="css/magnify.css" rel="stylesheet" type="text/css" />
-<link rel="icon" href="assets/favicon.ico">
+	<link href="../css/magnify.css" rel="stylesheet" type="text/css" />
+<link rel="icon" href="../assets/favicon.ico">
 </head>
 
 <body>
@@ -22,7 +22,7 @@
 	
   <!-- Inserts the common header-->
   <div id="header"></div>
-  <script src="./js/loadHeader.js"></script>
+  <script src="../js/loadHeader.js"></script>
   
   <!-- content contains the remainder of the page. -->
   <div id="content">
@@ -31,7 +31,7 @@
 			<p >This is the ship that Adolfina Chytra traveled on from Liverpool, England to America (New York City) in January 1914.</p>
 		<img
 				class="magImage"
-				src="./images/RMS Carmania.jpg"
+				src="../images/RMS Carmania.jpg"
 				width="441"
 				alt="R.M.S. Carmania"
 			/>
@@ -56,12 +56,12 @@
 			</p>
     <!-- Inserts the common footer. -->
     <div id="footer"></div>
-    <script src="./js/loadFooter.js"></script>
+    <script src="../js/loadFooter.js"></script>
   </div>
 </div>
 
 <script type="module">
-  import { initMagnifierControls } from './js/magnifier.js';
+  import { initMagnifierControls } from '../js/magnifier.js';
   document.addEventListener('DOMContentLoaded', () => {
     // Wait briefly to ensure header/footer are loaded
     setTimeout(() => {

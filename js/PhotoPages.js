@@ -44,7 +44,7 @@ import { setupMagnifier, defaultMagConfig } from './magnifier.js';
 document.addEventListener("DOMContentLoaded", async () => {
   // 1. Load photo data from a JSON file using fetch.
   //    The JSON file contains an array of photo objects (name, pic, bioText, etc).
-  const response = await fetch("./data/PhotoPagesData.json");
+  const response = await fetch("../data/PhotoPagesData.json");
   const enrichedPhotos = await response.json();
 
   // 2. Get references to important HTML elements by their IDs or classes.
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               <div class="img-magnifier-container ">
                 <img
                   class="magImage figure-img"
-                  src="img/${photo.pic}" alt="${photo.name}"
+                  src="../img/${photo.pic}" alt="${photo.name}"
                   style="width: 236px; box-shadow: none;"
                 >
               </div>

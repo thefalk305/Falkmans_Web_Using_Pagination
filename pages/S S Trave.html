@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-	<title>The Immigrants Journey</title>
+	<title>S S Romeo</title>
 	<meta content="Falkman family history site." name="description" />
 	<meta content="family history, ancestors, family, parents, grand parents, aunts & uncles, sibling, brothers & sisters, great-grandparents, cousins" name="keywords" />
 	<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" />
@@ -10,10 +10,10 @@
 	<meta content="no" http-equiv="imagetoolbar" />
 	<meta content="Copyright © 2025, Allen Falkman All Rights Reserved" name="copyright" />
 
-  <meta name="page-title" content="The Immigrants Journey" />
+  <meta name="page-title" content="S S Trave" />
 
-	<link href="css/magnify.css" rel="stylesheet" type="text/css" />
-	<link rel="icon" href="assets/favicon.ico" />
+	<link href="../css/magnify.css" rel="stylesheet" type="text/css" />
+	<link rel="icon" href="../assets/favicon.ico" />
 </head>
 
 <body>
@@ -22,30 +22,43 @@
 	
   <!-- Inserts the common header-->
   <div id="header"></div>
-  <script src="./js/loadHeader.js"></script>
+  <script src="../js/loadHeader.js"></script>
 
   <!-- content contains the remainder of the page. -->
   <div id="content" >
+
 		<div class="img-magnifier-container">
+			<p >This is the ship that Karin Noren traveled on from Bremen, Germany to America (New York City) in May of 1892.</p>
 			<img
 				class="magImage"
-				src="./images/PassTraf.jpg"
-				width="736"
-				height="478"
-				alt="PassTraf"
+				src="../images/trave.jpg"
+				style="width: 80%;" 
+				alt="SS Trave"
 			/>
 		</div>
-		<p>The majority of Swedish emigrants after late 1880's traveled by boat from Göteborg to Hull and then by train to Liverpool from which the journey continued with the big transatlantic passenger steamers. This is the route that my great grand-father, Nils P. Falkman took when he left Sweden. Headed to America. My great-grandmother on the other hand, traveled from Arbrä (not shown), to Göteborg. From there she boarded a boat to Hamburg, Germany, and from Hamburg traveled by train to Bremen. And it was from Bremen that she sailed to America.
-		</p>
 
+		<figcaption >SS Trave. From Bremen To New York, via South Hampton.</figcaption>
+    		<div class="img-magnifier-container">
+			<img
+				class="magImage"
+				src="../images/SS Trave Prepaid Passenger Receipt.jpg"
+				style="width: 60%;" 
+				alt="SS Trave"
+			/>
+		</div>
+		<figcaption>SS Trave Prepaid Passenger Receipt</figcaption>
+			<p>Here is the 
+			<a href="SS Trave Passenger List.html">SS Trave's 
+			passenger list</a>. You'll find Karin Noren about eight lined down the page (passenger 756).
+			</p>
   </div>
 	<!-- Inserts the common footer. -->
 	<div id="footer"></div>
-	<script src="./js/loadFooter.js"></script>
+	<script src="../js/loadFooter.js"></script>
 </div>
 
 <script type="module">
-  import { initMagnifierControls } from './js/magnifier.js';
+  import { initMagnifierControls } from '../js/magnifier.js';
   document.addEventListener('DOMContentLoaded', () => {
     // Wait briefly to ensure header/footer are loaded
     setTimeout(() => {

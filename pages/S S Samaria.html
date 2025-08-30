@@ -12,8 +12,8 @@
 
   <meta name="page-title" content="S S Samaria" />
 
-	<link href="css/magnify.css" rel="stylesheet" type="text/css" />
-	<link rel="icon" href="assets/favicon.ico" />
+	<link href="../css/magnify.css" rel="stylesheet" type="text/css" />
+	<link rel="icon" href="../assets/favicon.ico" />
 </head>
 
 <body>
@@ -22,7 +22,7 @@
 	
   <!-- Inserts the common header-->
   <div id="header"></div>
-  <script src="./js/loadHeader.js"></script>
+  <script src="../js/loadHeader.js"></script>
 
   <!-- content contains the remainder of the page. -->
   <div id="content" >
@@ -32,7 +32,7 @@
     <p>This is the ship that Ingred Löfgren traveled on to America.</p>
 			<img
 				class="magImage"
-				src="./images/SSSamaria.jpg"
+				src="../images/SSSamaria.jpg"
 				alt="S.S. Samaria"
         style="width: 66%;"
 			/>
@@ -50,11 +50,11 @@
 <p>Queenstown is now known as Cobh, a seaport town located on the south coast of County Cork, Ireland. It's situated on the south side of Great Island in Cork Harbour. Cobh was formerly named Queenstown in honor of Queen Victoria's visit in 1849. Once described as the saddest place in Ireland, the Port of Cobh was the embarkation point for the millions that left the country throughout the 19th Century. Today the compelling Queenstown Story exhibition in the town, tells their sad tale. If your ancestors were Irish, the chances are that they left Ireland from the port of Cobh, or Queenstown as it was called before it reverted back to its original Irish name. Cobh was Ireland's most important port of emigration and from 1815 to 1970 over 3 million people boarded here, heading for new lives in North America.</p>
 
     <div id="lnkcont">
-      <a href="/S S Samaria Passenger List.html"
+      <a href="S S Samaria Passenger List.html"
         style="left:1%; top: 77.5%; width: 45%; height: 1.6%; background-color: rgba(255, 0, 0, 0.5);">
       </a>
       <div class="img-magnifier-container">
-        <img class="magImage" src="./images/SamariaList.jpg" alt="Samaria List" style="width: 100%;"  /> 
+        <img class="magImage" src="../images/SamariaList.jpg" alt="Samaria List" style="width: 100%;"  /> 
       </div>
     </div>
 
@@ -62,11 +62,11 @@
   </div>
   <!-- Inserts the common footer. -->
   <div id="footer"></div>
-  <script src="./js/loadFooter.js"></script>
+  <script src="../js/loadFooter.js"></script>
 </div>
 
 <script type="module">
-  import { initMagnifierControls } from './js/magnifier.js';
+  import { initMagnifierControls } from '../js/magnifier.js';
   document.addEventListener('DOMContentLoaded', () => {
     // Wait briefly to ensure header/footer are loaded
     setTimeout(() => {

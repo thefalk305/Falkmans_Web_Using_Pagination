@@ -14,7 +14,7 @@
 
   <meta name="page-title" content="SS Trave Passenger List (partial)" />
 
-<link href="css/magnify.css" rel="stylesheet" type="text/css" />
+<link href="../css/magnify.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -22,7 +22,7 @@
 
     <!-- Inserts the common header-->
     <div id="header"></div>
-    <script src="./js/loadHeader.js"></script>
+    <script src="../js/loadHeader.js"></script>
 
     <!-- content contains the remainder of the page. -->
     <div id="content" >
@@ -30,7 +30,7 @@
       <div class="img-magnifier-container">
         <p>This is the first page of the SS Trave passenger list for May 21, 1892.</p>
         <img class="magImage" 
-        src="./images/SSTravePL.png" alt="Trave Passenger List" 
+        src="../images/SSTravePL.png" alt="Trave Passenger List" 
         style="width: 902px;
         height: 1375px;"  />
       </div>
@@ -42,7 +42,7 @@
       <div class="img-magnifier-container">
         <p>You will find Karin Noren eight lines down the page (passenger #756).</p>
         <img class="magImage" 
-        src="./images/Trave Passenger List.png" alt="Trave Passenger List" 
+        src="../images/Trave Passenger List.png" alt="Trave Passenger List" 
         style="width: 902px;
         height: 1375px;"  />
       </div>
@@ -55,11 +55,11 @@
       <!-- Inserts the common footer. -->
     </div>
        <div id="footer"></div>
-      <script src="./js/loadFooter.js"></script>
+      <script src="../js/loadFooter.js"></script>
  </div>
 
 <script type="module">
-  import { initMagnifierControls } from './js/magnifier.js';
+  import { initMagnifierControls } from '../js/magnifier.js';
   document.addEventListener('DOMContentLoaded', () => {
     // Wait briefly to ensure header/footer are loaded
     setTimeout(() => {

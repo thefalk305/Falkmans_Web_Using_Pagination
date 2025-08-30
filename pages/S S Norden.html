@@ -15,8 +15,8 @@
 
   <meta name="page-title" content="S S Norden" />
 
-	<link href="css/magnify.css" rel="stylesheet" type="text/css" />
-	<link rel="icon" href="assets/favicon.ico" />
+	<link href="../css/magnify.css" rel="stylesheet" type="text/css" />
+	<link rel="icon" href="../assets/favicon.ico" />
 </head>
 
 <body>
@@ -25,7 +25,7 @@
 	
   <!-- Inserts the common header-->
   <div id="header"></div>
-  <script src="./js/loadHeader.js"></script>
+  <script src="../js/loadHeader.js"></script>
 
 	<div id="content" >
 
@@ -33,7 +33,7 @@
     <p>The SS Norden is the ship that Karin Noren (my great-great grandmother) traveled on from Göteborg, Sweden to Hamburg, Germany in May of 1892.</p>
 			<img
 			class="magImage"
-			src="./images/SS%20Norden.jpg"
+			src="../images/SS%20Norden.jpg"
 			width="865" 
 			height="545"
 			alt="Bremen, Germany"
@@ -45,10 +45,10 @@
 	</div>
 </div>
   <div id="footer"></div>
-  <script src="./js/loadFooter.js"></script>
+  <script src="../js/loadFooter.js"></script>
 
 <script type="module">
-  import { initMagnifierControls } from './js/magnifier.js';
+  import { initMagnifierControls } from '../js/magnifier.js';
   document.addEventListener('DOMContentLoaded', () => {
     // Wait briefly to ensure header/footer are loaded
     setTimeout(() => {

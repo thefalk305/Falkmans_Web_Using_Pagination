@@ -1,3 +1,7 @@
+# This file will read 'PhotoPagesData.json', sort the records
+# based on the date in the 'born' field and write the sorted
+# results to 'sorted.json'.
+
 import json
 
 # Load your JSON data

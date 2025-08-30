@@ -10,10 +10,10 @@
 	<meta content="no" http-equiv="imagetoolbar" />
 	<meta content="Copyright © 2025, Allen Falkman All Rights Reserved" name="copyright" />
 
-  <meta name="page-title" content="S S Romeo Passenger List" />
+  <meta name="page-title" content="S S Samaria Passenger List" />
 
-	<link href="css/magnify.css" rel="stylesheet" type="text/css" />
-	<link rel="icon" href="assets/favicon.ico" />
+	<link href="../css/magnify.css" rel="stylesheet" type="text/css" />
+	<link rel="icon" href="../assets/favicon.ico" />
 </head>
 
 <body>
@@ -22,42 +22,39 @@
 	
   <!-- Inserts the common header-->
   <div id="header"></div>
-  <script src="./js/loadHeader.js"></script>
+  <script src="../js/loadHeader.js"></script>
 
   <!-- content contains the remainder of the page. -->
   <div id="content" >
 
 		<div class="img-magnifier-container">
-	    <p>At the age of 28, Nils Pitt Falkman traveled from Göteborg, Sweden to Hull, England --- 9 Oct 1891</p>
-      <img
+    <p>Nis P. Falkman's sister-in-law, Ingried Löfgren traveled to America --- March 1887</p>
+			<img
 				class="magImage"
-				src="./images/RomeoPassList.png"
+				src="../images/SamariaList1.jpg"
 				alt="S.S. Samaria"
         style="width: 902px;"
 			/>
     </div>
 
+    <p><b style="color:fuchsia">You will find Ingreid Lofgren ten lines down the page.</b></p>
 
-
-    <p><b style="color:fuchsia">On line 34 of this page is where you'll find N.P. Falkman.</b></p>
-
-    <div id="lnkcont" style="position: relative;">
+    <div id="lnkcont">
       <div id="lnk"
-        style="top: 36.5%; width: 430px; height: 2%; ">
+        style="top: 27.5%; width: 230px; height: 2%; ">
     </div>
       <div class="img-magnifier-container">
-        <img class="magImage" src="./images/RomeoPassList2.png" alt="Samaria List" style="width: 902px;"  /> 
+        <img class="magImage" src="../images/SamariaList2.jpg" alt="Samaria List" style="width: 902px;"  /> 
       </div>
     </div>
   </div>
-  </div>
-    <!-- Inserts the common footer. -->
-    <div id="footer"></div>
-    <script src="./js/loadFooter.js"></script>
+<!-- Inserts the common footer. -->
+  <div id="footer"></div>
+  <script src="../js/loadFooter.js"></script>
 </div>
 
 <script type="module">
-  import { initMagnifierControls } from './js/magnifier.js';
+  import { initMagnifierControls } from '../js/magnifier.js';
   document.addEventListener('DOMContentLoaded', () => {
     // Wait briefly to ensure header/footer are loaded
     setTimeout(() => {

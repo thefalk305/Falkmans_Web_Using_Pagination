@@ -5,23 +5,23 @@
   <title>Photo Gallery Using Pagination</title>
 
   <!-- Favicon and stylesheet -->
-  <link rel="icon" href="./assets/favicon.ico">
-  <link rel="stylesheet" href="./css/styles.css">
-  <link rel="stylesheet" href="./css/falkman.css">
-  <link rel="stylesheet" href="./css/magnify.css">
+  <link rel="icon" href="../assets/favicon.ico">
+  <link rel="stylesheet" href="./../css/styles.css">
+  <link rel="stylesheet" href="./../css/falkman.css">
+  <link rel="stylesheet" href="./../css/magnify.css">
 
 
   <meta name="page-title" content="Photo Pages" />
 
   <!-- Main gallery script -->
-  <script type="module" src="./js/PhotoPages.js"></script>
+  <script type="module" src="../js/PhotoPages.js"></script>
 </head>
 
 <body>
   <div id="container">
 
     <div id="header"></div>
-    <script src="./js/loadHeader.js"></script>
+    <script src="../js/loadHeader.js"></script>
 
     <!-- Gallery Title & Intro -->
     <p style="text-align: center">Welcome to the Falkman Family Photo Gallery! Click on any photo to learn more about the family member.</p>
@@ -67,11 +67,11 @@
   </div>
   <!-- Inserts the common footer. -->
   <div id="footer"></div>
-  <script src="./js/loadFooter.js"></script>
+  <script src="../js/loadFooter.js"></script>
 </div>
 
 <script type="module">
-  import { initMagnifierControls } from './js/magnifier.js';
+  import { initMagnifierControls } from '../js/magnifier.js';
   document.addEventListener('DOMContentLoaded', () => {
     // Wait briefly to ensure header/footer are loaded
     setTimeout(() => {

@@ -14,8 +14,8 @@
 
   <meta name="page-title" content="Hudiksvall, Sweden" />
 
-	<link href="css/magnify.css" rel="stylesheet" type="text/css" />
-<link rel="icon" href="assets/favicon.ico">
+	<link href="../css/magnify.css" rel="stylesheet" type="text/css" />
+<link rel="icon" href="../assets/favicon.ico">
 
 </head>
 
@@ -25,13 +25,13 @@
 	
   <!-- Inserts the common header-->
   <div id="header"></div>
-  <script src="./js/loadHeader.js"></script>
+  <script src="../js/loadHeader.js"></script>
 
 	<div style="display: flex; align-items: center; gap: 20px; margin: 20px;">
 		<div class="img-magnifier-container" style="width: auto;">
 			<img
 				class="magImage"
-				src="images/hudiksvall-1.jpg" 
+				src="../images/hudiksvall-1.jpg" 
 				alt="Old Hudiksvall" 
 				style="width: 350px;"
 			/>
@@ -44,7 +44,7 @@
 		<div class="img-magnifier-container" style="width: auto;">
 			<img
 				class="magImage"
-				src="images/PresentHudiksvall.jpg" alt="Hudiksvall now"
+				src="../images/PresentHudiksvall.jpg" alt="Hudiksvall now"
 				style="width: 350px;"
 			/>
 		</div>
@@ -73,11 +73,11 @@
   </div>
   <!-- Inserts the common footer. -->
   <div id="footer"></div>
-  <script src="./js/loadFooter.js"></script>
+  <script src="../js/loadFooter.js"></script>
 </div>
 
 <script type="module">
-  import { initMagnifierControls } from './js/magnifier.js';
+  import { initMagnifierControls } from '../js/magnifier.js';
   document.addEventListener('DOMContentLoaded', () => {
     // Wait briefly to ensure header/footer are loaded
     setTimeout(() => {

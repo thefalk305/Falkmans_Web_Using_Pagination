@@ -10,10 +10,10 @@
 <meta content="no" http-equiv="imagetoolbar" />
 <meta content="Copyright 2025, Allen Falkman All Rights Reserved" name="copyright" />
 
-  <meta name="page-title" content="R M S Britannic Passenger List" />
+  <meta name="page-title" content="R M S Britannic" />
 
-<link href="css/magnify.css" rel="stylesheet" type="text/css" />
-<link rel="icon" href="assets/favicon.ico">
+<link href="../css/magnify.css" rel="stylesheet" type="text/css" />
+<link rel="icon" href="../assets/favicon.ico">
 
 </head>
 
@@ -22,54 +22,67 @@
 
   <!-- Inserts the common header-->
   <div id="header"></div>
-  <script src="./js/loadHeader.js"></script>
+  <script src="../js/loadHeader.js"></script>
 
   <!-- content contains the remainder of the page. -->
   <div id="content" >
 
     <!-- enable magnification on the image. -->
     <div class="img-magnifier-container">
+      <p >This is the ship that Nils Peter Falkman sailed on from Liverpool to America (New York City, 14 Oct. 1891)</p>
       <img
         class="magImage"
-        src="images/britpasslist1.jpg"
-        width="902"
-        alt="R.M.S. Britannic Passenger List"
+        src="../images/brit1.jpg"
+        width="400"
+
+        alt="SS Romeo"
       />
+      <figcaption>H.M.S. Britannic. From Liverpool To New York City, direct.</figcaption>
     </div>
 
     <div id="lnkcont" style="position: relative;">
-      <div id="lnk"
-        style="top: 95.7%; width: 232px; height: 1%; background-color: rgb(0,0,0,0);"><p style="color: red;">---------------------------------</p>>
-    </div>
+      <!-- add a link to "S S Romeo Passenger List.html" -->
+      <a
+        href="R M S Britannic Passenger List.html"
+        style="left: 0px;
+        top: 46.9%;
+        width: 34%;
+        height: .7%;">
+      </a>
+
+      <!-- add a link to "norwayheritage.com" -->
+      <a id="lnk" href="https://www.norwayheritage.com"
+        style="
+        left: 7px;
+        top: 98.8%;
+        width: 20%;
+        height: .5%;"
+        target="_blank">
+      </a>
+
+    <!-- enable magnification on the image. -->
     <div class="img-magnifier-container">
       <img
         class="magImage"
-        src="images/BritPassList3-1.jpg"
+        src="../images/brit2.jpg"
         width="902"
-        alt="R.M.S. Britannic Passenger List"
+        alt="SS Britannic"
       />
+      </div>
     </div>
 
-    <b style="color:fuchsia">At the bottom of the page is where you'll find N.P. Falkman.</b>
-    <div class="img-magnifier-container">
-      <img
-        class="magImage"
-        src="images/BritPassList3.jpg"
-        width="902"
-        alt="R.M.S. Britannic Passenger List"
-      />
-    </div>
-
+    <p style="color: blue">
+    Feel free to change the strength of the magnifier glass when initiating the magnify function.
+    </p>
   </div>
+
   <!-- Inserts the common footer. -->
   <div id="footer"></div>
-  <script src="./js/loadFooter.js"></script>
+  <script src="../js/loadFooter.js"></script>
 </div>
 
-<p style="text-align:center"><b>To Timothy &amp; Tyler, two great Grandkids.</b></p>
-
 <script type="module">
-  import { initMagnifierControls } from './js/magnifier.js';
+  import { initMagnifierControls } from '../js/magnifier.js';
   document.addEventListener('DOMContentLoaded', () => {
     // Wait briefly to ensure header/footer are loaded
     setTimeout(() => {
