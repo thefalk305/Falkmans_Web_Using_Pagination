@@ -25,71 +25,292 @@
       border: 2px solid red;
       pointer-events: none;
     }
-  </style>
+    #xPercent, #yPercent,  #widthPercent, #heightPercent {
+      width: 60px;
+    }
+    #title {
+      width: 50%;
+    }
+
+    .styled-form {
+  max-width: 800px;
+  margin: 2em auto;
+  padding: 1em;
+  background: #f9f9f9;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.styled-form fieldset {
+  border: none;
+}
+
+.styled-form legend {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  margin-bottom: 1em;
+}
+
+.form-row label {
+  width: 120px;
+  font-weight: bold;
+  font-size: 1em;
+  white-space: nowrap;
+}
+
+.form-row input[type="text"],
+.form-row input[type="file"],
+.form-row textarea {
+  flex: 1;
+  padding: 0.4em;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1em;
+  justify-content: flex-start;
+}
+
+.form-actions button {
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  border: none;
+  border-radius: 4px;
+  background-color: #0078d4;
+  color: white;
+  cursor: pointer;
+}
+
+.form-actions button:hover {
+  background-color: #005fa3;
+}
+
+.percent-group {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 1em;
+  margin-bottom: 1em;
+}
+
+.percent-pair {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.percent-pair label {
+  font-weight: bold;
+  font-size: 0.95em;
+  white-space: nowrap;
+}
+
+.percent-pair input[type="number"] {
+  max-width: 60px;
+  height: 2em;
+  padding: 0.2em;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+</style>
 </head>
 <body>
   <div id="container">
     <div id="header"></div>
     <script src="../js/loadHeader.js"></script>
-    <h2 id="doc-notes" style="margin-bottom: 1em;"></h2>
-    <div class="doc-container">
+    <h3 id="doc-notes" style="margin-bottom: 1em;"></h3>
+
+
+    <div id="form-container" style="display: none;">
+      <form id="doc-form" class="styled-form">
+        <fieldset>
+          <legend>Add New Document</legend>
+          <h3>This form facilitates adding a new document to the Document Archives. Fill in the Title and Notes with the appropriate information. Choose a document image from the 'records' folder.  Position and size the red box around the area of interest in the document. The 'Submit' button will copy all the form information to the clipboard which can then be pasted into the records.json file. Remember to assign a sequential 'id' when pasting the new document information into records.json.</h3>
+          <div class="form-row">
+            <label for="title">Title:</label>
+            <input type="text" id="title" />
+          </div>
+
+          <div class="form-row">
+            <label for="fileInput">File Path:</label>
+            <input type="file" id="fileInput" />
+          </div>
+
+            <div class="form-row percent-group">
+              <div class="percent-pair">
+                <label for="xPercent">xPercent:</label>
+                <input type="number" id="xPercent" />
+              </div>
+              <div class="percent-pair">
+                <label for="yPercent">yPercent:</label>
+                <input type="number" id="yPercent" />
+              </div>
+              <div class="percent-pair">
+                <label for="widthPercent">widthPercent:</label>
+                <input type="number" id="widthPercent" />
+              </div>
+              <div class="percent-pair">
+                <label for="heightPercent">heightPercent:</label>
+                <input type="number" id="heightPercent" />
+              </div>
+            </div>          
+            
+            <div class="form-row">
+              <label for="notes">Notes:</label>
+              <textarea id="notes" rows="4" cols="80"></textarea>
+            </div>
+
+          <div class="form-actions">
+            <button type="button" id="submitBtn">Submit</button>
+          </div>
+        </fieldset>
+      </form>    
+    </div> 
+      <div class="doc-container">
       <div class="img-magnifier-container">
-        <img
-          id="doc-image"
-          class="magImage"
-          src=""
-          alt="Document"
-          style="width: 100%;"
-        />
+        <img id="doc-image" class="magImage" src="" alt="Document" style="width: 100%;" />
       </div>
       <div id="highlight" class="highlight-box"></div>
     </div>
+
 
     <div id="footer"></div>
     <script src="../js/loadFooter.js"></script>
   </div>
 
-  <script type="module">
-    import { initMagnifierControls } from '../js/magnifier.js';
+<script type="module">
+  import { initMagnifierControls } from '../js/magnifier.js';
 
-    const params = new URLSearchParams(window.location.search);
-    const file = params.get('file');
-    const xPercent = parseFloat(params.get('xPercent'));
-    const yPercent = parseFloat(params.get('yPercent'));
-    const widthPercent = parseFloat(params.get('widthPercent'));
-    const heightPercent = parseFloat(params.get('heightPercent'));
+  const params = new URLSearchParams(window.location.search);
+  const isEditMode = params.get('mode') === 'edit';
+  const docId = params.get('id');
 
-    const notes = params.get('notes');
-    if (notes) {
-      document.getElementById('doc-notes').textContent = decodeURIComponent(notes);
-    }
+  const formContainer = document.getElementById('form-container');
+  formContainer.style.display = isEditMode ? 'block' : 'none';
 
-    const img = document.getElementById('doc-image');
-    const box = document.getElementById('highlight');
+  const img = document.getElementById('doc-image');
+  const box = document.getElementById('highlight');
+  const notesEl = document.getElementById('doc-notes');
 
-    img.src = file;
+  // Load document from records.json if id is present
+  if (docId) {
+    fetch('../data/records.json')
+      .then(res => res.json())
+      .then(data => {
+        let foundDoc = null;
 
-    function updateHighlightBox() {
-      const imgWidth = img.clientWidth;
-      const imgHeight = img.clientHeight;
+        for (const person of data) {
+          foundDoc = person.documents.find(doc => doc.id === docId);
+          if (foundDoc) break;
+        }
 
-      const x = (xPercent / 100) * imgWidth;
-      const y = (yPercent / 100) * imgHeight;
-      const w = (widthPercent / 100) * imgWidth;
-      const h = (heightPercent / 100) * imgHeight;
+        if (!foundDoc) {
+          notesEl.textContent = 'Document not found.';
+          return;
+        }
 
-      box.style.left = `${xPercent}%`;
-      box.style.top = `${yPercent}%`;
-      box.style.width = `${widthPercent}%`;
-      box.style.height = `${heightPercent}%`;
-    }
+        const { file, highlight, notes } = foundDoc;
 
-    img.onload = () => {
-      updateHighlightBox();
-      initMagnifierControls();
-    };
+        img.src = file;
+        notesEl.textContent = notes;
 
-    window.addEventListener('resize', updateHighlightBox);
-  </script>
+        function updateHighlightBox() {
+          box.style.left = `${highlight.xPercent}%`;
+          box.style.top = `${highlight.yPercent}%`;
+          box.style.width = `${highlight.widthPercent}%`;
+          box.style.height = `${highlight.heightPercent}%`;
+        }
+
+        img.onload = () => {
+          updateHighlightBox();
+          initMagnifierControls();
+        };
+
+        window.addEventListener('resize', updateHighlightBox);
+      })
+      .catch(err => {
+        notesEl.textContent = 'Error loading document data.';
+        console.error('Failed to load records.json:', err);
+      });
+  }
+
+  // Form logic only runs in edit mode
+  if (isEditMode) {
+    // Live update box when percent inputs change
+    const percentFields = ['xPercent', 'yPercent', 'widthPercent', 'heightPercent'];
+    percentFields.forEach(id => {
+      document.getElementById(id).addEventListener('input', () => {
+        const x = parseFloat(document.getElementById('xPercent').value) || 0;
+        const y = parseFloat(document.getElementById('yPercent').value) || 0;
+        const w = parseFloat(document.getElementById('widthPercent').value) || 0;
+        const h = parseFloat(document.getElementById('heightPercent').value) || 0;
+
+        const imgWidth = img.clientWidth;
+        const imgHeight = img.clientHeight;
+
+        const boxX = (x / 100) * imgWidth;
+        const boxY = (y / 100) * imgHeight;
+        const boxW = (w / 100) * imgWidth;
+        const boxH = (h / 100) * imgHeight;
+
+        box.style.left = `${boxX}px`;
+        box.style.top = `${boxY}px`;
+        box.style.width = `${boxW}px`;
+        box.style.height = `${boxH}px`;
+      });
+    });
+
+    // Copy JSON to clipboard on submit
+    document.getElementById('submitBtn').addEventListener('click', () => {
+      const fileInput = document.getElementById('fileInput');
+      const filename = fileInput.files[0]?.name || '';
+
+      const doc = {
+        id: "9999",
+        title: document.getElementById('title').value,
+        file: `../records/${filename}`,
+        highlight: {
+          xPercent: parseFloat(document.getElementById('xPercent').value),
+          yPercent: parseFloat(document.getElementById('yPercent').value),
+          widthPercent: parseFloat(document.getElementById('widthPercent').value),
+          heightPercent: parseFloat(document.getElementById('heightPercent').value)
+        },
+        notes: document.getElementById('notes').value
+      };
+
+      const jsonText = JSON.stringify(doc, null, 2);
+      navigator.clipboard.writeText(jsonText)
+        .then(() => alert("Document JSON copied to clipboard!"))
+        .catch(err => alert("Failed to copy: " + err));
+    });
+
+    // Preview image when file is selected
+    document.getElementById('fileInput').addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        const url = URL.createObjectURL(file);
+        img.src = url;
+        notesEl.textContent = document.getElementById('notes').value;
+        initMagnifierControls();
+      }
+    });
+  }
+</script>
+
+
 </body>
 </html>
