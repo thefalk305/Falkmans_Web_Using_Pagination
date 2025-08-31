@@ -19,6 +19,7 @@
     .doc-container {
       position: relative;
       display: inline-block;
+      width: 100%;
     }
     .highlight-box {
       position: absolute;
@@ -310,7 +311,14 @@
     });
   }
 </script>
-
+<script type="module">
+  import { initMagnifierControls } from '../js/magnifier.js';
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      initMagnifierControls();
+    }, 100);
+  });
+</script>
 
 </body>
 </html>

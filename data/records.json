@@ -15,13 +15,38 @@
         "notes": "This record is from the 1950 Census.  The Falkman family, Allen Sr, Helen, Allen Jr, Gerald, Richard and Robert are on lines 3 through 8."
       },
       { "id": "1c",
-        "title": "Illinois Draft Registrations 1940",
-        "file": "../records/Illinois Draft Registrations 1940 - Allen B Falkman.jpg",
+        "title": "Illinois Draft Registration - 1940",
+        "file": "../records/Illinois Draft Registration 1940 - Allen B Falkman.jpg",
         "highlight": { "xPercent": 4, "yPercent": 18, "widthPercent": 54, "heightPercent": 9 },
-        "notes": "This is the Illinois Draft Registrations from 1940 for Allen B Falkman Sr"
+        "notes": "This is the Illinois Draft Registration from 1940 for Allen B Falkman Sr."
+      },
+      {
+        "id": "1d",
+        "title": "Allen Sr - Messanger Worlds Fair",
+        "file": "../records/Allen Sr - Messanger Worlds Fair.BMP",
+        "highlight": {
+          "xPercent": null,
+          "yPercent": null,
+          "widthPercent": null,
+          "heightPercent": null
+        },
+        "notes": "This is a photo of Allen B Falkman Sr. at the 1933 Worlds Fair where he worked as a messenger. He was 15 years old. The 1933 World's Fair was the Century of Progress International Exposition in Chicago, Illinois, which celebrated the city's 100th anniversary with the theme \"Science Finds, Industry Applies, Man Conforms\". Held from May to October 1933 (and extended to 1934), it showcased advancements in science and technology, promoting a vision of a brighter future during the Great Depression, and featured many Art Deco-style buildings. Key attractions included the Firestone singing color fountains, a display of King Kong, and the first sale of Krispy Kreme donuts from an automated machine."
+      },
+      {
+        "id": "1e",
+        "title": "Allen Falkman Sr Collage",
+        "file": "../records/Allen Falkman Sr Collage.svg",
+        "highlight": {
+          "xPercent": null,
+          "yPercent": null,
+          "widthPercent": null,
+          "heightPercent": null
+        },
+        "notes": "Here are several photos of Al Falkman Sr. He is a messenger at the 1300 Worlds Fair.  Somehow, persuaded his mother (Mary) to chauffer him around while he was in the Army. One pic with an early admirer and a shoeshine while playing solider in Europe."
       }
     ]
   },
+
   { "id": 2,
     "name": "Helen K Alexander",
     "documents": [
@@ -50,6 +75,7 @@
       }
     ]
   },
+
     { "id": 4,
     "name": "Herman Ralph Falkman",
     "documents": [
@@ -66,6 +92,7 @@
       }
     ]
   }
-
 ]
+
+
 
