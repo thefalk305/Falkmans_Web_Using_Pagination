@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Falkman Family History</title>
+  <meta content="Falkman family history site." name="description" />
+  <meta content="family history, ancestors, family, parents, grand parents, aunts & uncles, sibling, brothers & sisters, great-grandparents, cousins" name="keywords" />
+  <meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" />
+  <meta content="en-us" http-equiv="Content-Language" />
+  <meta content="Allen Falkman" name="author"/>
+  <meta content="General" name="rating" />
+  <meta content="no" http-equiv="imagetoolbar" />
+  <meta content="Copyright © 2025, Allen Falkman All Rights Reserved" name="copyright" />
+  <meta name="page-title" content="Genealogy Document Archive" />
+
+  <link href="../css/magnify.css" rel="stylesheet" type="text/css" />
+  <link rel="icon" href="../assets/favicon.ico">
+
+  <style>
+    .doc-container {
+      position: relative;
+      display: inline-block;
+    }
+    .highlight-box {
+      position: absolute;
+      border: 2px solid red;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="header"></div>
+    <script src="../js/loadHeader.js"></script>
+    <h2 id="doc-notes" style="margin-bottom: 1em;"></h2>
+    <div class="doc-container">
+      <div class="img-magnifier-container">
+        <img
+          id="doc-image"
+          class="magImage"
+          src=""
+          alt="Document"
+          style="width: 100%;"
+        />
+      </div>
+      <div id="highlight" class="highlight-box"></div>
+    </div>
+
+    <div id="footer"></div>
+    <script src="../js/loadFooter.js"></script>
+  </div>
+
+  <script type="module">
+    import { initMagnifierControls } from '../js/magnifier.js';
+
+    const params = new URLSearchParams(window.location.search);
+    const file = params.get('file');
+    const xPercent = parseFloat(params.get('xPercent'));
+    const yPercent = parseFloat(params.get('yPercent'));
+    const widthPercent = parseFloat(params.get('widthPercent'));
+    const heightPercent = parseFloat(params.get('heightPercent'));
+
+    const notes = params.get('notes');
+    if (notes) {
+      document.getElementById('doc-notes').textContent = decodeURIComponent(notes);
+    }
+
+    const img = document.getElementById('doc-image');
+    const box = document.getElementById('highlight');
+
+    img.src = file;
+
+    function updateHighlightBox() {
+      const imgWidth = img.clientWidth;
+      const imgHeight = img.clientHeight;
+
+      const x = (xPercent / 100) * imgWidth;
+      const y = (yPercent / 100) * imgHeight;
+      const w = (widthPercent / 100) * imgWidth;
+      const h = (heightPercent / 100) * imgHeight;
+
+      box.style.left = `${xPercent}%`;
+      box.style.top = `${yPercent}%`;
+      box.style.width = `${widthPercent}%`;
+      box.style.height = `${heightPercent}%`;
+    }
+
+    img.onload = () => {
+      updateHighlightBox();
+      initMagnifierControls();
+    };
+
+    window.addEventListener('resize', updateHighlightBox);
+  </script>
+</body>
+</html>

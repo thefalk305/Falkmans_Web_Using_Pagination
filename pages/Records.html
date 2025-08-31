@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Falkman Family History</title>
+  <meta content="Falkman family history site." name="description" />
+  <meta content="family history, ancestors, family, parents, grand parents, aunts & uncles, sibling, brothers & sisters, great-grandparents, cousins" name="keywords" />
+  <meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" />
+  <meta content="en-us" http-equiv="Content-Language" />
+  <meta content="Allen Falkman" name="author"/>
+  <meta content="General" name="rating" />
+  <meta content="no" http-equiv="imagetoolbar" />
+  <meta content="Copyright © 2025, Allen Falkman All Rights Reserved" name="copyright" />
+  <meta name="page-title" content="Genealogy Document Archive" />
+
+  <link href="../css/magnify.css" rel="stylesheet" type="text/css" />
+  <link rel="icon" href="../assets/favicon.ico">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2em;
+    }
+    .person-section {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 1em;
+    }
+    .person-section h2 {
+      margin-bottom: 0.5em;
+    }
+    .doc-list li {
+      margin: 0.3em 0;
+    }
+    .doc-note {
+      font-size: 0.9em;
+      color: #555;
+      margin-left: 1em;
+    }
+  </style>
+</head>
+
+<body>
+<div id="container">
+  <div id="header"></div>
+  <script src="../js/loadHeader.js"></script>
+
+  <div id="content">
+    <div id="document-container"></div>
+
+    <script>
+      fetch('../data/records.json')
+        .then(res => res.json())
+        .then(data => {
+          const container = document.getElementById('document-container');
+
+          data.forEach(person => {
+            const section = document.createElement('div');
+            section.className = 'person-section';
+
+            const nameHeader = document.createElement('h2');
+            nameHeader.textContent = person.name;
+            section.appendChild(nameHeader);
+
+            const list = document.createElement('ul');
+            list.className = 'doc-list';
+
+            person.documents.forEach(doc => {
+              const li = document.createElement('li');
+
+              const link = document.createElement('a');
+              const highlight = doc.highlight;
+              const notes = doc.notes || '';
+
+              link.href = `record-viewer.html?file=${encodeURIComponent(doc.file)}&xPercent=${highlight.xPercent}&yPercent=${highlight.yPercent}&widthPercent=${highlight.widthPercent}&heightPercent=${highlight.heightPercent}&notes=${encodeURIComponent(notes)}`;
+              link.textContent = doc.title;
+              link.target = '_blank';
+
+              // const noteSpan = document.createElement('span');
+              // noteSpan.className = 'doc-note';
+              // noteSpan.textContent = notes;
+
+              li.appendChild(link);
+              // li.appendChild(noteSpan);
+              list.appendChild(li);
+            });
+
+            section.appendChild(list);
+            container.appendChild(section);
+          });
+        })
+        .catch(err => {
+          document.getElementById('document-container').textContent = 'Error loading document data.';
+          console.error('Failed to load JSON:', err);
+        });
+    </script>
+  </div>
+
+  <div id="footer"></div>
+  <script src="../js/loadFooter.js"></script>
+</div>
+
+<script type="module">
+  import { initMagnifierControls } from '../js/magnifier.js';
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      initMagnifierControls();
+    }, 100);
+  });
+</script>
+</body>
+</html>

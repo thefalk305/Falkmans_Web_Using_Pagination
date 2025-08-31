@@ -1,0 +1,36 @@
+[
+  {
+    "name": "Allen B Falkman Sr",
+    "documents": [
+      {
+        "title": "1920 Census - Allen B Falkman",
+        "file": "../records/Census 1920 - Allen B Falkman Sr.jpg",
+        "highlight": { "xPercent": 7, "yPercent": 48, "widthPercent": 32, "heightPercent": 8 },
+        "notes": "The Falkman family, Herman, Mary, Bea and Allen are on lines 70 - 73.  Mary's father, Gerald Allen is on line 74."
+      },
+      {
+        "title": "1950 Census - Allen B Falkman",
+        "file": "../records/Census 1950 - Allen B Falkman Sr.jpg",
+        "highlight": { "xPercent": 6, "yPercent": 32, "widthPercent": 50, "heightPercent": 8 },
+        "notes": "The Falkman family, Allen Sr, Helen, Allen Jr, Gerald, Richard and Robert are on lines 3 through 8."
+      },
+      {
+        "title": "Illinois Draft Registrations 1940",
+        "file": "../records/Illinois Draft Registrations 1940 - Allen B Falkman.jpg",
+        "highlight": { "xPercent": 4, "yPercent": 18, "widthPercent": 54, "heightPercent": 9 },
+        "notes": "This is the Illinois Draft Registrations from 1940 for Allen B Falkman Sr"
+      }
+    ]
+  },
+  {
+    "name": "Helen K Alexander",
+    "documents": [
+      {
+        "title": "New Jersey Census 1930",
+        "file": "../records/New Jersey Census 1930 - Helen K Alexander.jpg",
+        "highlight": { "xPercent": 4, "yPercent": 78, "widthPercent": 44, "heightPercent": 8 },
+        "notes": "Although difficult to see, the Alexander family, Frank Sr, Ida, Frank Jr, Violet and Helen are on lines 42 through 46.  Use the magnifier to get a better look."
+      }
+    ]
+  }
+]
