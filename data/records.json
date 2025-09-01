@@ -1,7 +1,8 @@
 [
   { "id": 1,
     "name": "Allen B Falkman Sr",
-    "documents": [
+    "documents": 
+    [
       { "id": "1a",
         "title": "1920 Census - Allen B Falkman",
         "file": "../records/Census 1920 - Allen B Falkman Sr.jpg",
@@ -49,7 +50,8 @@
 
   { "id": 2,
     "name": "Helen K Alexander",
-    "documents": [
+    "documents": 
+    [
       { "id": "2a",
         "title": "New Jersey Census 1930",
         "file": "../records/New Jersey Census 1930 - Helen K Alexander.jpg",
@@ -67,7 +69,8 @@
 
   { "id": 3,
     "name": "Nils Peter Falkman",
-    "documents": [
+    "documents": 
+    [
       { "id": "3a",
         "title": "1910 Census - Nils Falkman and Family",
         "file": "../records/1910 Census - Nils Falkman.jpg",
@@ -83,27 +86,28 @@
   },
 
   { "id": 4,
-  "name": "Herman Ralph Falkman",
-  "documents": [
-    { "id": "4a",
-      "title": "1940 Cook County Census - Herman Falkman and Family",
-      "file": "../records/Cook County Census 1940 - Herman Falkman.jpg",
-  "highlight": {
-    "xPercent": 8,
-    "yPercent": 29,
-    "widthPercent": 37,
-    "heightPercent": 6
-  },
-    "notes": "This image is from the 1940 census in Cook County Illinois.  It contain the Herman Falkman family, Herman, wife Mary and son Allen on lines 6 through 8."
-  },
-  { "id": "4b",
-    "title": "1920 Census -Herman R Falkman",
-    "file": "../records/Census 1920 - Allen B Falkman Sr.jpg",
-    "highlight": { "xPercent": 7, "yPercent": 48, "widthPercent": 32, "heightPercent": 8 },
-    "notes": "This record is from the 1920 Census.  The Falkman family, Herman, Mary, Bea and Allen are on lines 70 - 73.  Mary's father, Gerald Allen is on line 74."
-  }
-]
-}      
+    "name": "Herman Ralph Falkman",
+    "documents": 
+    [
+      { "id": "4a",
+        "title": "1940 Cook County Census - Herman Falkman and Family",
+        "file": "../records/Cook County Census 1940 - Herman Falkman.jpg",
+        "highlight": {
+          "xPercent": 8,
+          "yPercent": 29,
+          "widthPercent": 37,
+          "heightPercent": 6
+        },
+        "notes": "This image is from the 1940 census in Cook County Illinois.  It contain the Herman Falkman family, Herman, wife Mary and son Allen on lines 6 through 8."
+      },
+      { "id": "4b",
+        "title": "1920 Census -Herman R Falkman",
+        "file": "../records/Census 1920 - Allen B Falkman Sr.jpg",
+        "highlight": { "xPercent": 7, "yPercent": 48, "widthPercent": 32, "heightPercent": 8 },
+        "notes": "This record is from the 1920 Census.  The Falkman family, Herman, Mary, Bea and Allen are on lines 70 - 73.  Mary's father, Gerald Allen is on line 74."
+      }
+    ]
+  }      
 ]
 
 
