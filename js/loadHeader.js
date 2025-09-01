@@ -8,16 +8,27 @@
     document.getElementById("header").innerHTML = html;
     
     const title = document.querySelector('meta[name="page-title"]').content;
+
+    // Get pageName and query param
+    const url = new URL(window.location.href);
+    const path = url.pathname;  
+    const page = path.split("/").pop();
+    const pageName = page.split(".")[0];
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');       // "9999"
+
     document.querySelector('#heading-row h1').textContent  = title;
+    document.querySelector('#banner img').src = "/images/banner2.png";
 
     if (title === "Welcome to the Falkman Family's History Website") {
+     // Special case for index.html
       document.querySelector('#banner img').src = "/images/banner.gif";
-    } else if (title === "PhotoPages") {
-    // Special case for the PhotoPages.html
-        document.querySelector('#banner img').src = "/img/Banner-Photo.png";
-    } else {
-    // Special case for the index.html
-    document.querySelector('#banner img').src = "/images/banner2.png";
+    } else if (title === "Photo Pages") {
+    // Special case for PhotoPages.html
+      document.querySelector('#banner img').src = "/img/Banner-Photo.png";
+    } else if (pageName === "record-viewer") {
+    // Special case for record-viewer.html - set '#heading-row h1' to include document #
+      document.querySelector('#heading-row h1').textContent  = title + " -- Document No. " + id;
     }
     
     // =======================

@@ -107,8 +107,19 @@
         "notes": "This record is from the 1920 Census.  The Falkman family, Herman, Mary, Bea and Allen are on lines 70 - 73.  Mary's father, Gerald Allen is on line 74."
       }
     ]
-  }      
+  },
+  { "id": 5,
+    "name": "Karen Norén",
+    "documents": 
+    [
+      {
+      "id": "5a",
+      "title": "Delsbo Parish Family Census 1883-1892 - Karin Norén",
+      "file": "../records/Delsbo Parish Family Census 1883–1892  Karin Noren.jpg",
+      "highlight": {"xPercent": 9, "yPercent": 83, "widthPercent": 86, "heightPercent": 5 },
+      "notes": "This is a page from the Delsbo Parish Family Census 1883-1892. Karin Norén Left Sweden in May of 1892 so this is the last Delsbo Parish Family Census that Karin's name appears in."
+      }
+    ]
+  }
 ]
-
-
 

@@ -10,7 +10,7 @@
   <meta content="General" name="rating" />
   <meta content="no" http-equiv="imagetoolbar" />
   <meta content="Copyright © 2025, Allen Falkman All Rights Reserved" name="copyright" />
-  <meta name="page-title" content="Genealogy Document Archive" />
+  <meta name="page-title" content="Genealogy Document Archives" />
   <link rel="icon" href="../assets/favicon.ico">
 
   <link href="../css/magnify.css" rel="stylesheet" type="text/css" />
@@ -171,11 +171,20 @@
         id: "9999",
         title: document.getElementById('title').value,
         file: `../records/${filename}`,
-        highlight: {xPercent: parseFloat(document.getElementById('xPercent').value),yPercent: parseFloat(document.getElementById('yPercent').value), widthPercent: parseFloat(document.getElementById('widthPercent').value),heightPercent: parseFloat(document.getElementById('heightPercent').value) },
+        highlight: {xPercent: parseFloat(document.getElementById('xPercent').value), yPercent: parseFloat(document.getElementById('yPercent').value), widthPercent: parseFloat(document.getElementById('widthPercent').value), heightPercent: parseFloat(document.getElementById('heightPercent').value) },
         notes: document.getElementById('notes').value
       };
 
-      const jsonText = JSON.stringify(doc, null, 2);
+      const jsonText = `
+      {
+        "id": "${doc.id}",
+        "title": "${doc.title}",
+        "file": "${doc.file}",
+        "highlight": { "xPercent": ${doc.highlight.xPercent}, "yPercent": ${doc.highlight.yPercent}, "widthPercent": ${doc.highlight.widthPercent}, "heightPercent": ${doc.highlight.heightPercent} },
+        "notes": "${doc.notes}"
+      }`;
+
+      // const jsonText = JSON.stringify(doc, null, 2);
       navigator.clipboard.writeText(jsonText)
         .then(() => alert("Document JSON copied to clipboard!"))
         .catch(err => alert("Failed to copy: " + err));
