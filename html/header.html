@@ -1,7 +1,8 @@
 <!-- 'header' information common to all web pages -->
 <div id="banner"> 
-	<img src="/images/banner.gif" width="100%" >
-	</div> 
+	<img src="" width="100%" >
+	</div>
+	<!-- navigation menu -->
 	<nav id="top-nav-menu">
 		<table border="0" width="100%">
 			<tr>
@@ -22,20 +23,23 @@
 </div>
 <!-- The 'heading-row' contains the page title, the magnifier checkbox and input for magnification strength. -->
 <div id="heading-row" >
+	<!-- Page Title is set in loadHeader.js -->
 	<h1>Page Title</h1>
 	
 	<label class="heading-checkbox">
-		<input type="checkbox" id="mag-checkbox" class="myCheckbox" />
+		<input 
+		id="mag-checkbox" 
+		type="checkbox" 
+	/>
 		Enable Mag
 	</label>
 
 	<input
-		type="text"
 		id="mag"
-		class="myMag"
+		type="text"
 		placeholder="Mag Value (2)"
 		style="display: none"
 	/>
 </div>
-
+<!-- Message under Page Title -->
 <p id="enMag" style=" margin-top: 0;">Enable Mag - Mouse over the image.</p>

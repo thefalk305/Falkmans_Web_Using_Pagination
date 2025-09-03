@@ -1,22 +1,22 @@
-    body {
-      font-family: Arial, sans-serif;
-      /* margin: 2em; */
-    }
-    .person-section {
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 1em;
-    }
-    .person-section h2 {
-      margin-bottom: 0.5em;
-    }
-    .doc-list li {
-      margin: 0.1em 0;
-    }
-    .doc-note {
-      font-size: 0.9em;
-      color: #555;
-      margin-left: 1em;
-    }
+body {
+  font-family: Arial, sans-serif;
+  /* margin: 2em; */
+}
+.person-section {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 1em;
+}
+.person-section h2 {
+  margin-bottom: 0.5em;
+}
+.doc-list li {
+  margin: 0.1em 0;
+}
+.doc-note {
+  font-size: 0.9em;
+  color: #555;
+  margin-left: 1em;
+}
 
 .edit-button {
   display: inline-block;
@@ -33,22 +33,32 @@
   background-color: #005fa3;
 }
 
-    .doc-container {
-      position: relative;
-      display: inline-block;
-      width: 100%;
-    }
-    .highlight-box {
-      position: absolute;
-      border: 2px solid red;
-      pointer-events: none;
-    }
-    #xPercent, #yPercent,  #widthPercent, #heightPercent {
-      width: 60px;
-    }
-    #title {
-      width: 50%;
-    }
+.doc-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.highlight-box {
+  position: absolute;
+  border: 2px solid red;
+  pointer-events: none;
+}
+.highlight-box.area{
+  border: 2px solid rgba(255,0,0,0.5);
+}
+
+.highlight-box.area {
+  pointer-events: auto;
+  /* background-color: rgba(255, 255, 0, 0.2); optional: makes them visible */
+  cursor: pointer;
+}
+
+#xPercent, #yPercent,  #widthPercent, #heightPercent {
+  width: 60px;
+}
+#title {
+  width: 50%;
+}
 
 .styled-form {
   max-width: 800px;

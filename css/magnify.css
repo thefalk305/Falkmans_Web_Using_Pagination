@@ -166,14 +166,15 @@ h4 {
 #content h2 {
   text-align: justify;
 }
-.magImage {
+
+/* .magImage {
   margin-block-start: 1em;
   margin-block-end: 1em;
   margin-inline-start: 5px;
   margin-inline-end: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
   border-radius: 10px;
-}
+} */
 .magImage {
   width: auto;
   height: auto;

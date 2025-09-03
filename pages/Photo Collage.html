@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Falkman Family History</title>
+<meta content="Falkman family history site." name="description" />
+<meta content="family history, ancestors, family, parents, grand parents, aunts & uncles, sibling, brothers & sisters, great-grandparents, cousins" name="keywords" />
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+<meta content="en-us" http-equiv="Content-Language" />
+<meta content="Allen Falkman" name="author" />
+<meta content="General" name="rating" />
+<meta content="no" http-equiv="imagetoolbar" />
+<meta content="Copyright � 2010, Allen Falkman All Rights Reserved" name="copyright" />
+
+  <meta name="page-title" content="Photo College for Allen Falkman Sr" />
+
+	<link href="../css/magnify.css" rel="stylesheet" type="text/css" />
+	<link href="../css/records.css" rel="stylesheet" type="text/css" />
+<link rel="icon" href="../assets/favicon.ico">
+<style>
+.doc-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.highlight-box {
+  position: absolute;
+  border: 2px solid red;
+  pointer-events: none;
+}
+.highlight-box.area{
+  border: 2px solid rgba(255,0,0,0.5);
+}
+
+.highlight-box.area {
+  pointer-events: auto;
+  /* background-color: rgba(255, 255, 0, 0.2); optional: makes them visible */
+  cursor: pointer;
+}
+
+.highlight-box.enlarged {
+  position: absolute;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%);
+  z-index: 2000;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  transition: all 0.3s ease;
+  background-repeat: no-repeat;
+
+.magImage {
+  margin-block-start: 0em !important;
+  margin-block-end: 0em !important;
+  margin-inline-start: 0px !important;
+  margin-inline-end: 0px !important;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+}
+
+.zoom-caption {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  margin-top: 12px;
+  background: rgba(0,0,0,0.95);
+  color: #8f8;
+  padding: 6px 18px;
+  border-radius: 8px;
+  font-size: 1.1em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  z-index: 2100;
+  pointer-events: none;
+  white-space: nowrap;
+  font-family: inherit;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container" style="text-align: center;" >
+	
+  <!-- Inserts the common header-->
+   <!-- header contains 'banner', navigation and magnification controls -->
+  <div id="header"></div>
+  <script src="../js/loadHeader.js"></script>
+
+
+
+  <div class="doc-container">
+    <div class="img-magnifier-container">
+      <img id="doc-image" class="magImage" src="../records/Allen Falkman Sr Collage.svg" alt="Document" style="width: 100%;" />
+
+      <div id="area1" class="highlight-box area" style="left: 2%; top: 3%; width: 31%; height: 53%;" data-caption="At age 15, Allen was a messenger for the 1933 Worlds Fair in Chicago."></div>
+      <div id="area2" class="highlight-box area" style="left: 36%; top: 2%; width: 57%; height: 55%;" data-caption="Somehow Al persuaded his mother (Mary) to chauffer him around while he was in the Army."></div>
+      <div id="area3" class="highlight-box area" style="left: 1%; top: 60%; width: 29%; height: 39%;" data-caption="Doesn't Al look sharp in uniform. What a good looking soldier."></div>
+      <div id="area4" class="highlight-box area" style="left: 32%; top: 61%; width: 26%; height: 38%;" data-caption="Here's a pic of young Al with an even younger admirer."></div>
+      <div id="area5" class="highlight-box area" style="left: 61%; top: 60%; width: 32%; height: 39%;" data-caption="Al has to look sharp for the ladies of Europe."></div>
+    </div>
+  </div>  
+  <!-- Inserts the common footer. -->
+  <div id="footer"></div>
+  <script src="../js/loadFooter.js"></script>
+</div>
+<div id="footer"></div>
+<script src="../js/loadFooter.js"></script>
+
+<script type="module">
+  import { initMagnifierControls } from '../js/magnifier.js';
+  document.addEventListener('DOMContentLoaded', () => {
+    // Wait briefly to ensure header/footer are loaded
+    setTimeout(() => {
+      initMagnifierControls();
+    }, 100); // You can adjust this delay if needed
+  });
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const img = document.getElementById('doc-image');
+  const imgSrc = img.src;
+  const ENLARGED_WIDTH_PERCENT = 60;
+
+  // Cache original dimensions for each highlight box
+  document.querySelectorAll('.highlight-box.area').forEach(box => {
+    box.dataset.originalWidth = box.style.width;
+    box.dataset.originalHeight = box.style.height;
+    box.dataset.originalLeft = box.style.left;
+    box.dataset.originalTop = box.style.top;
+    box.dataset.originalTransform = box.style.transform || '';
+  });
+
+  document.querySelectorAll('.highlight-box.area').forEach(box => {
+    box.addEventListener('click', (e) => {
+      e.stopPropagation();
+
+      const isAlreadyEnlarged = box.classList.contains('enlarged');
+
+      // Reset all boxes to original size and position
+      document.querySelectorAll('.highlight-box.enlarged').forEach(el => {
+        el.classList.remove('enlarged');
+        el.style.width = el.dataset.originalWidth;
+        el.style.height = el.dataset.originalHeight;
+        el.style.left = el.dataset.originalLeft;
+        el.style.top = el.dataset.originalTop;
+        el.style.transform = el.dataset.originalTransform;
+        el.style.backgroundImage = '';
+        el.style.backgroundSize = '';
+        el.style.backgroundPosition = '';
+      });
+
+      if (!isAlreadyEnlarged) {
+        // Get original box dimensions and position (percentages)
+        const originalWidthPercent = parseFloat(box.dataset.originalWidth);
+        const originalHeightPercent = parseFloat(box.dataset.originalHeight);
+        const originalLeftPercent = parseFloat(box.dataset.originalLeft);
+        const originalTopPercent = parseFloat(box.dataset.originalTop);
+
+        // Calculate aspect ratio
+        const aspectRatio = originalHeightPercent / originalWidthPercent;
+
+        // Set enlarged size
+        const enlargedWidthPercent = ENLARGED_WIDTH_PERCENT;
+        const enlargedHeightPercent = enlargedWidthPercent * aspectRatio;
+
+        box.style.width = `${enlargedWidthPercent}%`;
+        box.style.height = `${enlargedHeightPercent}%`;
+
+        // Center the box in the image container
+        box.style.left = '50%';
+        box.style.top = '50%';
+        box.style.transform = 'translate(-50%, -50%)';
+
+        // Get the image's current pixel dimensions
+        const imgRect = img.getBoundingClientRect();
+        const imgWidth = img.width;
+        const imgHeight = img.height;
+
+        // Calculate the original box's position and size in pixels
+        const boxLeftPx = imgWidth * (originalLeftPercent / 100);
+        const boxTopPx = imgHeight * (originalTopPercent / 100);
+        const boxWidthPx = imgWidth * (originalWidthPercent / 100);
+        const boxHeightPx = imgHeight * (originalHeightPercent / 100);
+
+        // Calculate the enlarged box's size in pixels
+        const enlargedBoxWidthPx = imgWidth * (enlargedWidthPercent / 100);
+        const enlargedBoxHeightPx = imgHeight * (enlargedHeightPercent / 100);
+
+        // The zoom factor is how much larger the enlarged box is compared to the original box
+        const zoomFactor = enlargedBoxWidthPx / boxWidthPx;
+
+        // Set the background image and size (zoomed)
+        box.style.backgroundImage = `url('${imgSrc}')`;
+        box.style.backgroundSize = `${imgWidth * zoomFactor}px ${imgHeight * zoomFactor}px`;
+
+        // Calculate the background position so the original area is centered in the enlarged box
+        // Center of the original box in image coordinates
+        const centerX = boxLeftPx + boxWidthPx / 2;
+        const centerY = boxTopPx + boxHeightPx / 2;
+
+        // In the zoomed image, the center moves by the zoom factor
+        const bgCenterX = centerX * zoomFactor;
+        const bgCenterY = centerY * zoomFactor;
+
+        // The background position should move the center of the zoomed area to the center of the box
+        const bgPosX = enlargedBoxWidthPx / 2 - bgCenterX;
+        const bgPosY = enlargedBoxHeightPx / 2 - bgCenterY;
+
+        box.style.backgroundPosition = `${bgPosX}px ${bgPosY}px`;
+
+        // Remove any existing captions
+        document.querySelectorAll('.zoom-caption').forEach(caption => caption.remove());
+
+        // Add caption below the enlarged box
+        const caption = document.createElement('div');
+        caption.className = 'zoom-caption';
+        caption.textContent = box.dataset.caption || 'zoomed image';
+        box.appendChild(caption); // <-- append to the box
+
+        // No need for setTimeout or manual left/top calculation
+        // The CSS will position it just below the box
+
+        box.classList.add('enlarged');
+      } else {
+        // Restore to original size and position
+        box.classList.remove('enlarged');
+        box.style.width = box.dataset.originalWidth;
+        box.style.height = box.dataset.originalHeight;
+        box.style.left = box.dataset.originalLeft;
+        box.style.top = box.dataset.originalTop;
+        box.style.transform = box.dataset.originalTransform;
+        box.style.backgroundImage = '';
+        box.style.backgroundSize = '';
+        box.style.backgroundPosition = '';
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>

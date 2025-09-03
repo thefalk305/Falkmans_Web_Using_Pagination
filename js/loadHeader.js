@@ -7,17 +7,20 @@
   .then(html => {
     document.getElementById("header").innerHTML = html;
     
-    const title = document.querySelector('meta[name="page-title"]').content;
 
-    // Get pageName and query param
+    // Get pageName and query param for Genealogy Document Archives -- Document No. 
     const url = new URL(window.location.href);
     const path = url.pathname;  
     const page = path.split("/").pop();
     const pageName = page.split(".")[0];
     const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');       // "9999"
+    const id = params.get('id');
 
+    // get 'page-title' for '#heading-row h1'
+    const title = document.querySelector('meta[name="page-title"]').content;
     document.querySelector('#heading-row h1').textContent  = title;
+
+    // set default 'banner'
     document.querySelector('#banner img').src = "/images/banner2.png";
 
     if (title === "Welcome to the Falkman Family's History Website") {
