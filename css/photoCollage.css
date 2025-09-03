@@ -1,0 +1,35 @@
+.highlight-box.area {
+  pointer-events: auto;
+  border-color: rgba(255, 255, 0, 0.0) !important; 
+  background-color: rgba(255, 255, 0, 0.0) !important; 
+  cursor: pointer;
+}
+
+.highlight-box.enlarged {
+  position: absolute;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%);
+  z-index: 2000;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  transition: all 0.3s ease;
+  background-repeat: no-repeat;
+}
+
+.zoom-caption {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  margin-top: 12px;
+  background: rgba(0,0,0,0.95);
+  color: #8f8;
+  padding: 6px 18px;
+  border-radius: 8px;
+  font-size: 1.1em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  z-index: 2100;
+  pointer-events: none;
+  white-space: nowrap;
+  font-family: inherit;
+}

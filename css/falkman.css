@@ -425,3 +425,32 @@ figcaption {
   border-radius: 4px;
   /* font-family: 'Courier New', monospace; */
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 96%;
+  padding: 0.5em 2em;
+  font-size: 1em;
+}
+
+.nav-left {
+  flex: 1;
+}
+
+.nav-center {
+  flex: 2;
+  text-align: center;
+}
+
+.nav-right {
+  flex: 1;
+  text-align: right;
+  font-size: small;
+}
+
+.nav-center a {
+  margin: 0 1em;
+  text-decoration: none;
+}

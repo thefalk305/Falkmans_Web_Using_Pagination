@@ -43,19 +43,9 @@ body {
   border: 2px solid red;
   pointer-events: none;
 }
-.highlight-box.area{
-  border: 2px solid rgba(255,0,0,0.5);
-}
 
-.highlight-box.area {
-  pointer-events: auto;
-  /* background-color: rgba(255, 255, 0, 0.2); optional: makes them visible */
-  cursor: pointer;
-}
-
-#xPercent, #yPercent,  #widthPercent, #heightPercent {
-  width: 60px;
-}
+/* styles for the  Add New Document to the 
+  Genealogy Document Archives form */
 #title {
   width: 50%;
 }
@@ -153,6 +143,10 @@ body {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+
+}
+#xPercent, #yPercent,  #widthPercent, #heightPercent {
+  width: 60px;
 }
 
 .person-section ul {
