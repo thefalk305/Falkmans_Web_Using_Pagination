@@ -10,11 +10,11 @@
   <meta content="General" name="rating" />
   <meta content="no" http-equiv="imagetoolbar" />
   <meta content="Copyright © 2025, Allen Falkman All Rights Reserved" name="copyright" />
-  <meta name="page-title" content="Genealogy Document Archives" />
+  <meta name="page-title" content="Photo Collages" />
+  <link rel="icon" href="../assets/favicon.ico">
 
   <link href="../css/magnify.css" rel="stylesheet" type="text/css" />
-  <link href="../css/records.css" rel="stylesheet" type="text/css" />
-  <link rel="icon" href="../assets/favicon.ico">
+  <link href="../css/collage.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -24,23 +24,18 @@
   <script src="../js/loadHeader.js"></script>
 
   <div id="content">
-    <!-- div to 'Add New Document to the Genealogy Document Archives' -->
-    <div style="margin-bottom: 1.5em;">
-      <a href="record-viewer.html?mode=edit" class="edit-button">➕ Add New Document to the Genealogy Document Archives</a>
-    </div>
-    <!-- 'document-container' displays the names and links contained in records.json -->
     <div id="document-container"></div>
 
-    <!-- displays the names and links contained in records.json  -->
+    <!-- displays the names and links contained in collage.json  -->
     <script>
-      fetch('../data/records.json')
+      fetch('../data/collage.json')
         .then(res => res.json())
         .then(data => {
           // create the container that will display the individuals name and links
           const container = document.getElementById('document-container');
 
-          // for each record in 'records.json' create a section that displays 
-          // the name and the list of the records for that individual
+          // for each collage in 'collage.json' create a section that displays 
+          // the name and the list of the collage for that individual
           data.forEach(person => {
             const section = document.createElement('div');
             section.className = 'person-section';
@@ -59,10 +54,10 @@
               // const highlight = doc.highlight;
               // const notes = doc.notes || '';
 
-              // create the link to record-viewer, appending the 'doc.id 
-              // from records.json as the query parameter'
-              // record-viewer.html will use this query parameter to fetch the remainder of the record to populate the page.
-              link.href = `record-viewer.html?id=${doc.id}`;              
+              // create the link to collage-viewer, appending the 'doc.id 
+              // from collage.json as the query parameter'
+              // collage-viewer.html will use this query parameter to fetch the remainder of the collage to populate the page.
+              link.href = `collage-viewer.html?id=${doc.id}`;              
               link.target = '_blank';
               link.textContent = doc.title;
               // const noteSpan = document.createElement('span');

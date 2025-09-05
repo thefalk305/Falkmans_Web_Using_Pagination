@@ -85,7 +85,7 @@ body {
 }
 
 .form-row input[type="text"],
-.form-row input[type="file"],
+.form-row input[type="url"],
 .form-row textarea {
   flex: 1;
   padding: 0.4em;

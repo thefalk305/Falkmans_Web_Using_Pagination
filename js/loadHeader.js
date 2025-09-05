@@ -32,7 +32,11 @@
     } else if (pageName === "record-viewer") {
     // Special case for record-viewer.html - set '#heading-row h1' to include document #
       document.querySelector('#heading-row h1').textContent  = title + " -- Document No. " + id;
+    } else if (pageName === "collage-viewer") {
+    // Special case for record-viewer.html - set '#heading-row h1' to include document #
+      document.querySelector('#heading-row h1').textContent  = title + " -- Collage No. " + id;
     }
+
     
     // =======================
     // Dynamic Clock 

@@ -1,30 +1,30 @@
 [
   { "id": 1,
-    "name": "Allen B Falkman Sr",
-    "documents": 
+    "name": "Allen Bernard Falkman Sr",
+    "links": 
     [
       { "id": "1a",
         "title": "1920 Census - Allen B Falkman",
-        "file": "../records/Census 1920 - Allen B Falkman Sr.jpg",
-        "highlight": { "xPercent": 7, "yPercent": 48, "widthPercent": 32, "heightPercent": 8 },
-        "notes": "This record is from the 1920 Census.  The Falkman family, Herman, Mary, Bea and Allen are on lines 70 - 73.  Mary's father, Gerald Allen is on line 74."
+        "url": "../records/Census 1920 - Allen B Falkman Sr.jpg",
+        "notes": "This record is from the 1921 Census.  The Falkman family, Herman, Mary, Bea and Allen are on lines 70 - 73.  Mary's father, Gerald Allen is on line 74.",
+        "highlight": { "xPercent": 7, "yPercent": 48, "widthPercent": 32, "heightPercent": 8 }
       },
       { "id": "1b",
         "title": "1950 Census - Allen B Falkman",
-        "file": "../records/Census 1950 - Allen B Falkman Sr.jpg",
+        "url": "../records/Census 1950 - Allen B Falkman Sr.jpg",
         "highlight": { "xPercent": 6, "yPercent": 32, "widthPercent": 50, "heightPercent": 8 },
         "notes": "This record is from the 1950 Census.  The Falkman family, Allen Sr (husband), Helen (wife) and their four boys, Allen Jr, Gerald, Richard and Robert, ages 5, 4, 3 and 2, are on lines 3 through 8. Notice that two of the boys, Gerald and Richard, were born in California, 'The Golden State'!"
       },
       { "id": "1c",
         "title": "Illinois Draft Registration - 1940",
-        "file": "../records/Illinois Draft Registration 1940 - Allen B Falkman.jpg",
+        "url": "../records/Illinois Draft Registration 1940 - Allen B Falkman.jpg",
         "highlight": { "xPercent": 4, "yPercent": 18, "widthPercent": 54, "heightPercent": 9 },
         "notes": "This is the Illinois Draft Registration from 1940 for Allen B Falkman Sr."
       },
       {
         "id": "1d",
         "title": "Allen Sr - Messanger Worlds Fair",
-        "file": "../records/Allen Sr - Messanger Worlds Fair.BMP",
+        "url": "../records/Allen Sr - Messanger Worlds Fair.BMP",
         "highlight": {
           "xPercent": null,
           "yPercent": null,
@@ -36,7 +36,7 @@
       {
         "id": "1e",
         "title": "Allen Falkman Sr Collage",
-        "file": "../records/Allen Falkman Sr Collage.svg",
+        "url": "../records/Allen Falkman Sr Collage.svg",
         "highlight": {
           "xPercent": null,
           "yPercent": null,
@@ -49,18 +49,18 @@
   },
 
   { "id": 2,
-    "name": "Helen K Alexander",
-    "documents": 
+    "name": "Helen Katherine Alexander",
+    "links": 
     [
       { "id": "2a",
         "title": "New Jersey Census 1930",
-        "file": "../records/New Jersey Census 1930 - Helen K Alexander.jpg",
+        "url": "../records/New Jersey Census 1930 - Helen K Alexander.jpg",
         "highlight": { "xPercent": 4, "yPercent": 78, "widthPercent": 44, "heightPercent": 8 },
         "notes": "This document is from the 1930 Census. Although difficult to see, the Alexander family, Frank Sr, Ida, Frank Jr, Violet and Helen are on lines 42 through 46. Violet is listed as Walley.  I understand that they called her Walley because she was a wall-flower.  Use the magnifier to get a better look."
       },      
       { "id": "2b",
         "title": "1950 Census - Helen K Falkman",
-        "file": "../records/Census 1950 - Allen B Falkman Sr.jpg",
+        "url": "../records/Census 1950 - Allen B Falkman Sr.jpg",
         "highlight": { "xPercent": 6, "yPercent": 32, "widthPercent": 50, "heightPercent": 8 },
         "notes": "This record is from the 1950 Census.  The Falkman family, Allen Sr, Helen K (née Alexander), Allen Jr, Gerald, Richard and Robert are on lines 3 through 8."
       }
@@ -69,11 +69,11 @@
 
   { "id": 3,
     "name": "Nils Peter Falkman",
-    "documents": 
+    "links": 
     [
       { "id": "3a",
         "title": "1910 Census - Nils Falkman and Family",
-        "file": "../records/1910 Census - Nils Falkman.jpg",
+        "url": "../records/1910 Census - Nils Falkman.jpg",
         "highlight": {
           "xPercent": 6,
           "yPercent": 21,
@@ -87,11 +87,11 @@
 
   { "id": 4,
     "name": "Herman Ralph Falkman",
-    "documents": 
+    "links": 
     [
       { "id": "4a",
         "title": "1940 Cook County Census - Herman Falkman and Family",
-        "file": "../records/Cook County Census 1940 - Herman Falkman.jpg",
+        "url": "../records/Cook County Census 1940 - Herman Falkman.jpg",
         "highlight": {
           "xPercent": 8,
           "yPercent": 29,
@@ -101,8 +101,8 @@
         "notes": "This image is from the 1940 census in Cook County Illinois.  It contain the Herman Falkman family, Herman, wife Mary and son Allen on lines 6 through 8."
       },
       { "id": "4b",
-        "title": "1920 Census -Herman R Falkman",
-        "file": "../records/Census 1920 - Allen B Falkman Sr.jpg",
+        "title": "1920 Census - Herman R Falkman",
+        "url": "../records/Census 1920 - Allen B Falkman Sr.jpg",
         "highlight": { "xPercent": 7, "yPercent": 48, "widthPercent": 32, "heightPercent": 8 },
         "notes": "This record is from the 1920 Census.  The Falkman family, Herman, Mary, Bea and Allen are on lines 70 - 73.  Mary's father, Gerald Allen is on line 74."
       }
@@ -110,12 +110,12 @@
   },
   { "id": 5,
     "name": "Karen Norén",
-    "documents": 
+    "links": 
     [
       {
       "id": "5a",
       "title": "Delsbo Parish Family Census 1883-1892 - Karin Norén",
-      "file": "../records/Delsbo Parish Family Census 1883–1892  Karin Noren.jpg",
+      "url": "../records/Delsbo Parish Family Census 1883–1892  Karin Noren.jpg",
       "highlight": {"xPercent": 9, "yPercent": 83, "widthPercent": 86, "heightPercent": 5 },
       "notes": "This is a page from the Delsbo Parish Family Census 1883-1892. Karin Norén Left Sweden in May of 1892 so this is the last Delsbo Parish Family Census that Karin's name appears in."
       }

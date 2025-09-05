@@ -1,0 +1,281 @@
+[
+  {"id": 1,
+    "name": "Allen Bernard Falkman Sr",
+    "links": 
+    [
+      { "id": "1a",
+        "title": "Collage #1 - Allen B Falkman",
+        "url": "../records/Allen Falkman Sr Collage.svg",
+        "notes": "This record is from the 1920 Census.  The Falkman family, Herman, Mary, Bea and Allen are on lines 70 - 73.  Mary's father, Gerald Allen is on line 74.",
+        "areas": 
+        [
+          {
+            "id": "area1",
+            "x": 2,
+            "y": 3,
+            "width": 31,
+            "height": 53,
+            "caption": "At age 15, Allen was a messenger for the 1933 Worlds Fair in Chicago.",
+            "zoom": 2.0
+          },
+          {
+            "id": "area2",
+            "x": 36,
+            "y": 2,
+            "width": 57,
+            "height": 55,
+            "caption": "Somehow Al persuaded his mother (Mary) to chauffer him around while he was in the Army.",
+            "zoom": 3.0
+          },
+          {
+            "id": "area3",
+            "x": 1,
+            "y": 60,
+            "width": 29,
+            "height": 39,
+            "caption": "Doesn't Al look sharp in uniform. What a good looking soldier.",
+            "zoom": 4.0
+          },
+          {
+            "id": "area4",
+            "x": 32,
+            "y": 61,
+            "width": 26,
+            "height": 38,
+            "caption": "Here's a pic of young Al with an even younger admirer.",
+            "zoom": 5.0
+          },
+          {
+            "id": "area5",
+            "x": 61,
+            "y": 60,
+            "width": 32,
+            "height": 39,
+            "caption": "Al has to look sharp for the ladies of Europe.",
+            "zoom": 6.0
+          }
+        ]
+      },
+      { "id": "1b",
+        "title": "Collage #2 - Allen B Falkman",
+        "url": "../records/Allen Falkman Sr Collage.svg",
+        "notes": "This record is from the 1930 Census.  The Falkman family, Herman, Mary, Bea and Allen are on lines 70 - 73.  Mary's father, Gerald Allen is on line 74.",
+        "areas": 
+        [
+          {
+            "id": "area1",
+            "x": 2,
+            "y": 3,
+            "width": 31,
+            "height": 53,
+            "caption": "At age 15, Allen was a messenger for the 1933 Worlds Fair in Chicago.",
+            "zoom": 2.0
+          },
+          {
+            "id": "area2",
+            "x": 36,
+            "y": 2,
+            "width": 57,
+            "height": 55,
+            "caption": "Somehow Al persuaded his mother (Mary) to chauffer him around while he was in the Army.",
+            "zoom": 2.0
+          },
+          {
+            "id": "area3",
+            "x": 1,
+            "y": 60,
+            "width": 29,
+            "height": 39,
+            "caption": "Doesn't Al look sharp in uniform. What a good looking soldier.",
+            "zoom": 2.0
+          },
+          {
+            "id": "area4",
+            "x": 32,
+            "y": 61,
+            "width": 26,
+            "height": 38,
+            "caption": "Here's a pic of young Al with an even younger admirer.",
+            "zoom": 2.0
+          },
+          {
+            "id": "area5",
+            "x": 61,
+            "y": 60,
+            "width": 32,
+            "height": 39,
+            "caption": "Al has to look sharp for the ladies of Europe.",
+            "zoom": 2.0
+          }
+        ]
+      }
+    ]
+  },
+
+  { "id": 2, 
+    "name": "Helen Katherine Alexander",
+    "links":
+    [
+      { "id": "2a",
+      "title": "Collage #1 - Helen Alexander",
+      "url": "../records/Helen Alexander Collage.svg",
+        "notes": "This record is from the 1940 Census.  The Falkman family, Herman, Mary, Bea and Allen are on lines 70 - 73.  Mary's father, Gerald Allen is on line 74.",
+      "areas": 
+        [
+          {
+            "id": "area1",
+            "x": 7,
+            "y": 2,
+            "width": 31,
+            "height": 31,
+            "caption": "Helen Alexander - Mom was in the U.S Army.",
+            "zoom": 2.0
+          },
+          {
+            "id": "area2",
+            "x": 38,
+            "y": 2,
+            "width": 25,
+            "height": 28,
+            "caption": "Helen Falkman (née Alexander) in San Mateo, California (circa 1046)",
+            "zoom": 2.0
+          },
+          {
+            "id": "area3",
+            "x": 7.2,
+            "y": 33.5,
+            "width": 24.5,
+            "height": 27,
+            "caption": "Helen Falkman and her beau. And is that infant Al Jr?",
+            "zoom": 2.0
+          },
+          {
+            "id": "area4",
+            "x": 64,
+            "y": 2,
+            "width": 29,
+            "height": 30,
+            "caption": "Helen Alexander just became a nurse (circa 1942).",
+            "zoom": 2.0
+          },
+          {
+            "id": "area5",
+            "x": 33,
+            "y": 31,
+            "width": 30,
+            "height": 30,
+            "caption": "Helen Falkman (née Alexander) circa 09-1944",
+            "zoom": 2.0
+          },
+          {
+            "id": "area6",
+            "x": 64.4,
+            "y": 32.5,
+            "width": 27,
+            "height": 28,
+            "caption": "Helen Falkman (née Alexander) with Al Sr and Al Jr.",
+            "zoom": 2.0
+          },
+          {
+            "id": "area7",
+            "x": 6,
+            "y": 61,
+            "width": 58,
+            "height": 38,
+            "caption": "Looks like someone was just married - 18 Nov 1943",
+            "zoom": 2.0
+          },
+          {
+            "id": "area8",
+            "x": 64,
+            "y": 62,
+            "width": 30,
+            "height": 37,
+            "caption": "Helen Alexander and her twin sister, Helena (Bob, this one's for you!)",
+            "zoom": 2.0
+          }
+        ]
+      },
+      { "id": "2b",
+        "title": "Collage #2 - Helen Alexander",
+        "url": "../records/Helen Alexander Collage.svg",
+        "notes": "This record is from the 1950 Census.  The Falkman family, Herman, Mary, Bea and Allen are on lines 70 - 73.  Mary's father, Gerald Allen is on line 74.",
+        "areas": 
+        [
+          {
+            "id": "area1",
+            "x": 7,
+            "y": 2,
+            "width": 31,
+            "height": 31,
+            "caption": "Helen Alexander - Mom was in the U.S Army.",
+            "zoom": 2.0
+          },
+          {
+            "id": "area2",
+            "x": 38,
+            "y": 2,
+            "width": 25,
+            "height": 28,
+            "caption": "Helen Falkman (née Alexander) in San Mateo, California (circa 1046)",
+            "zoom": 2.0
+          },
+          {
+            "id": "area3",
+            "x": 7.2,
+            "y": 33.5,
+            "width": 24.5,
+            "height": 27,
+            "caption": "Helen Falkman and her beau. And is that infant Al Jr?",
+            "zoom": 2.0
+          },
+          {
+            "id": "area4",
+            "x": 64,
+            "y": 2,
+            "width": 29,
+            "height": 30,
+            "caption": "Helen Alexander just became a nurse (circa 1942).",
+            "zoom": 2.0
+          },
+          {
+            "id": "area5",
+            "x": 33,
+            "y": 31,
+            "width": 30,
+            "height": 30,
+            "caption": "Helen Falkman (née Alexander) circa 09-1944",
+            "zoom": 2.0
+          },
+          {
+            "id": "area6",
+            "x": 64.4,
+            "y": 32.5,
+            "width": 27,
+            "height": 28,
+            "caption": "Helen Falkman (née Alexander) with Al Sr and Al Jr.",
+            "zoom": 2.0
+          },
+          {
+            "id": "area7",
+            "x": 6,
+            "y": 61,
+            "width": 58,
+            "height": 38,
+            "caption": "Looks like someone was just married - 18 Nov 1943",
+            "zoom": 2.0
+          },
+          {
+            "id": "area8",
+            "x": 64,
+            "y": 62,
+            "width": 30,
+            "height": 37,
+            "caption": "Helen Alexander and her twin sister, Helena (Bob, this one's for you!)",
+            "zoom": 2.0
+          }
+        ]
+      }
+    ]
+  }
+]

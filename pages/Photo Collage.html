@@ -16,8 +16,20 @@
 
 	<link href="../css/magnify.css" rel="stylesheet" type="text/css" />
 	<link href="../css/records.css" rel="stylesheet" type="text/css" />
-	<link href="../css/photoCollage.css" rel="stylesheet" type="text/css" />
+	<link href="../css/collage.css" rel="stylesheet" type="text/css" />
   <link rel="icon" href="../assets/favicon.ico">
+<style>
+.highlight-box.area {
+  pointer-events: auto;
+  border-color: rgba(255, 255, 0, 0.9) !important; 
+  background-color: rgba(255, 255, 0, 0.2) !important; 
+  cursor: pointer;
+}
+
+
+
+</style>
+
 
 </head>
 
@@ -31,16 +43,19 @@
   <script src="../js/loadHeader.js"></script>
   
   <h2>Click on an image to zoom it.</h2>
-  <div class="doc-container">
+  <div id="collage">
     <div class="img-magnifier-container">
-      <img id="doc-image" class="magImage" src="../records/Allen Falkman Sr Collage.svg" alt="Document" style="width: 100%;" />
-
       <div id="area1" class="highlight-box area" style="left: 2%; top: 3%; width: 31%; height: 53%;" data-caption="At age 15, Allen was a messenger for the 1933 Worlds Fair in Chicago."></div>
       <div id="area2" class="highlight-box area" style="left: 36%; top: 2%; width: 57%; height: 55%;" data-caption="Somehow Al persuaded his mother (Mary) to chauffer him around while he was in the Army."></div>
       <div id="area3" class="highlight-box area" style="left: 1%; top: 60%; width: 29%; height: 39%;" data-caption="Doesn't Al look sharp in uniform. What a good looking soldier."></div>
       <div id="area4" class="highlight-box area" style="left: 32%; top: 61%; width: 26%; height: 38%;" data-caption="Here's a pic of young Al with an even younger admirer."></div>
       <div id="area5" class="highlight-box area" style="left: 61%; top: 60%; width: 32%; height: 39%;" data-caption="Al has to look sharp for the ladies of Europe."></div>
+
+      <img id="doc-image" class="magImage" src="../records/Allen Falkman Sr Collage.svg" alt="Document" style="width: 100%;" />
+
+
     </div>
+
   </div>  
   <!-- Inserts the common footer. -->
   <div id="footer"></div>

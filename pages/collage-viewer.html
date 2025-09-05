@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Falkman Family History</title>
+  <meta content="Falkman family history site." name="description" />
+  <meta content="family history, ancestors, family, parents, grand parents, aunts & uncles, sibling, brothers & sisters, great-grandparents, cousins" name="keywords" />
+  <meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" />
+  <meta content="en-us" http-equiv="Content-Language" />
+  <meta content="Allen Falkman" name="author"/>
+  <meta content="General" name="rating" />
+  <meta content="no" http-equiv="imagetoolbar" />
+  <meta content="Copyright © 2025, Allen Falkman All Rights Reserved" name="copyright" />
+  <meta name="page-title" content="Collage Archives" />
+  <link rel="icon" href="../assets/favicon.ico">
+
+  <link href="../css/magnify.css" rel="stylesheet" type="text/css" />
+  <link href="../css/records.css" rel="stylesheet" type="text/css" />
+
+ <style>
+.highlight-box.area {
+  pointer-events: auto;
+  border-color: rgba(255, 0, 0, 0.0) !important; 
+  background-color: rgba(255, 255, 0, 0.0) !important; 
+  cursor: pointer;
+}
+
+
+
+</style>
+
+ 
+</head>
+<body>
+  <div id="container">
+    <div id="header"></div>
+    <script src="../js/loadHeader.js"></script>
+
+    <h3 id="doc-notes" style="margin-bottom: 1em;"></h3>
+
+    <div class="doc-container">
+      <div class="img-magnifier-container">
+        <!-- insert areas here -->
+        <img id="doc-image" class="magImage" src="" alt="Document" style="width: 100%;" />
+      </div>
+      <!-- <div id="highlight" class="highlight-box"></div> -->
+    </div>
+
+
+    <div id="footer"></div>
+    <script src="../js/loadFooter.js"></script>
+    
+  </div>
+
+<script type="module">
+  import { initPhotoCollage } from '../js/photoCollage.js';
+  import { initMagnifierControls } from '../js/magnifier.js';
+
+  const params = new URLSearchParams(window.location.search);
+  // const isEditMode = params.get('mode') === 'edit';
+  const docId = params.get('id');
+
+  const docContainer = document.getElementsByClassName('doc-container')[0];
+  // formContainer.style.display = isEditMode ? 'block' : 'none';
+
+  const img = document.getElementById('doc-image');
+  // const box = document.getElementById('highlight');
+  const notesEl = document.getElementById('doc-notes');
+
+  // Load document from collage.json if id is present
+  if (docId) {
+    fetch('../data/collage.json')
+      .then(res => res.json())
+      .then(data => {
+      let foundDoc = null;
+
+      for (const person of data) {
+        foundDoc = person.links.find(doc => doc.id === docId);
+        if (foundDoc) break;
+      }
+
+      if (!foundDoc) {
+        notesEl.textContent = 'Document not found.';
+        return;
+      }
+
+      const { url, areas, notes } = foundDoc;
+
+      img.src = url;
+      notesEl.textContent = notes;
+      let styleX = "";
+      let styleY = "%";
+      let styleWidth = "%";
+      let styleHeight = "%";
+      let caption = "";
+      let zoom = 0
+    areas.forEach((areaData, index) => {
+      const area = document.createElement('div');
+      area.className = "highlight-box area";
+      zoom = areaData.zoom
+
+      // Extract style values from JSON
+       styleX = areaData.x + "%";
+       styleY = areaData.y + "%";
+       styleWidth = areaData.width + "%";
+       styleHeight = areaData.height + "%";
+       caption = areaData.caption;
+
+      // Apply styles and attributes
+      area.style.left = styleX;
+      area.style.top = styleY;
+      area.style.width = styleWidth;
+      area.style.height = styleHeight;
+      area.dataset.caption = caption;
+      area.id = areaData.id;
+
+      // Append to container
+      docContainer.appendChild(area);
+    });
+
+
+
+      img.onload = () => {
+        initMagnifierControls();
+        initPhotoCollage(zoom);
+      };
+
+    })
+    .catch(err => {
+      notesEl.textContent = 'Error loading document data.';
+      console.error('Failed to load collage.json:', err);
+    });
+    
+  }
+  </script>
+<script type="module">
+  import { initMagnifierControls } from '../js/magnifier.js';
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      initMagnifierControls();
+    }, 100);
+  });
+</script>
+
+
+<!-- script for Photo Collage -->
+<!-- Just before closing </body> -->
+<script type="module" src="../js/photoCollage.js"></script>
+</body>
+</html>
