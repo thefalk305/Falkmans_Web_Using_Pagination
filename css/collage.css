@@ -5,12 +5,18 @@
   cursor: pointer;
 }
 
+
+.magImage, #doc-image {
+  position: relative;
+  z-index: 1; /* base layer */
+}
+
 .highlight-box.enlarged {
   position: absolute;
+  z-index: 2000; /* much higher than the image */
   left: 50% !important;
   top: 50% !important;
   transform: translate(-50%, -50%);
-  z-index: 2000;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
   transition: all 0.3s ease;
   background-repeat: no-repeat;

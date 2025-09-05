@@ -10,7 +10,7 @@ body {
 	padding: 0;
 	background-color: #E4D47F; /*parchment*/;
 	color: #000000; /*black*/
-}
+	font-family: 'IM Fell English', serif;}
 /*===============indicates no border around any image ============*/
 body img {
 	border: 0px;

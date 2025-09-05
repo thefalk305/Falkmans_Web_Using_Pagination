@@ -13,14 +13,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <meta name="page-title" content="RMS Carmania Passenger List" />
+	<link rel="icon" href="../assets/favicon.ico" />
 
-<link href="../css/magnify.css" rel="stylesheet" type="text/css" />
+  <link href="../css/magnify.css" rel="stylesheet" type="text/css" />
+	<link href="../css/collage.css" rel="stylesheet" type="text/css" />
+
 <style>
-.highlight-box {
-  left: 0;
-  top: 37%;
-  width: 100%;
-  height: 3%;
+.highlight-box.area {
+  border-color: rgba(255, 0, 0, 0.9)  !important; 
+  background-color: rgba(255, 255, 0, 0.0) !important; 
 }
 </style>
 
@@ -37,16 +38,20 @@
     <div id="content" >
 
 
-    <div id="lnkcont" style="position: relative;">
-      <div id="highlight" class="highlight-box" ></div>    
-      <div class="img-magnifier-container">
         <p>You will find Aldofina Chytra six lines down the page. The manifest shows that she was 17 years of age.</p>
+      <div class="img-magnifier-container">
         <img class="magImage" 
-        src="../images/ChytraPassList.png" alt="ChytraPassList" 
-        style="width: 902px;
-        height: 1375px;"  />
+          id="doc-image" 
+          src="../images/ChytraPassList.png" alt="ChytraPassList" 
+          style="width: 902px;
+          height: 1375px;"  />
+        <div
+          class="highlight-box area"
+          data-caption="Adolphina Chytra is on the sixth line"
+          style="left:12%;top:34%;width:42%;height:3%;"
+          data-zoom="100">
+        </div>
       </div>
-    </div>
 
       <p style="color: blue">
         Feel free to change the strength of the magnifier glass when initiating the magnify function.
@@ -65,6 +70,14 @@
     setTimeout(() => {
       initMagnifierControls();
     }, 100); // You can adjust this delay if needed
+  });
+</script>
+<script type="module">
+  import { initPhotoCollage } from '../js/photoCollage.js';
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      initPhotoCollage();
+    }, 200); // Wait for header/footer and images to load
   });
 </script>
 </body>

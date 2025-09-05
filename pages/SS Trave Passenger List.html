@@ -15,14 +15,21 @@
   <meta name="page-title" content="SS Trave Passenger List (partial)" />
 
 <link href="../css/magnify.css" rel="stylesheet" type="text/css" />
+	<link href="../css/collage.css" rel="stylesheet" type="text/css" />
 
 <style>
-.highlight-box {
+
+  .highlight-box.area {
+  border-color: rgba(255, 0, 0, 0.9)  !important; 
+  background-color: rgba(255, 255, 0, 0.0) !important; 
+}
+
+/* .highlight-box {
 left: 0;
 top: 25%;
 width: 100%;
 height: 4%;
-}
+} */
 </style>
 
 </head>
@@ -46,13 +53,20 @@ height: 4%;
       </div>
 
     <div id="lnkcont" style="position: relative;">
-      <div id="highlight" class="highlight-box" ></div>    
+      <p>You will find Karin Norén eight lines down this page (passenger #756).</p>
       <div class="img-magnifier-container">
-        <p>You will find Karin Noren eight lines down the page (passenger #756).</p>
-        <img class="magImage" 
-        src="../images/Trave Passenger List.png" alt="Trave Passenger List" 
-        style="width: 902px;
-        height: 1375px;"  />
+        <img 
+          id="doc-image" 
+          class="magImage" 
+          src="../images/Trave Passenger List.png" alt="Trave Passenger List" 
+          style="width: 902px;
+          height: 1375px;"  />
+      <div
+        class="highlight-box area"
+        data-caption="Karen Norén, line 756"
+        style="left:1%;top:22.4%;width:45%;height:3.5%;"
+        data-zoom="100">
+      </div>
       </div>
     </div>
 
@@ -73,6 +87,15 @@ height: 4%;
     setTimeout(() => {
       initMagnifierControls();
     }, 100); // You can adjust this delay if needed
+  });
+</script>
+
+<script type="module">
+  import { initPhotoCollage } from '../js/photoCollage.js';
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      initPhotoCollage();
+    }, 200); // Wait for header/footer and images to load
   });
 </script>
 </body>

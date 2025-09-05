@@ -52,9 +52,10 @@ export function initPhotoCollage(zoom) {
         const originalHeightPercent = parseFloat(box.dataset.originalHeight);
         const originalLeftPercent = parseFloat(box.dataset.originalLeft);
         const originalTopPercent = parseFloat(box.dataset.originalTop);
+        const zoom = parseFloat(box.dataset.zoom);
 
         const aspectRatio = originalHeightPercent / originalWidthPercent;
-        const enlargedWidthPercent = ENLARGED_WIDTH_PERCENT;
+        const enlargedWidthPercent = Math.max(ENLARGED_WIDTH_PERCENT, zoom);
         const enlargedHeightPercent = enlargedWidthPercent * aspectRatio;
 
         box.style.width = `${enlargedWidthPercent}%`;
@@ -89,11 +90,14 @@ export function initPhotoCollage(zoom) {
         const bgPosY = enlargedBoxHeightPx / 2 - bgCenterY;
         box.style.backgroundPosition = `${bgPosX}px ${bgPosY}px`;
 
+        // Remove any existing captions
+        document.querySelectorAll('.zoom-caption').forEach(caption => caption.remove());
+
+        // Add caption below the enlarged box
         const caption = document.createElement('div');
         caption.className = 'zoom-caption';
         caption.textContent = box.dataset.caption || 'zoomed image';
         box.appendChild(caption);
-
         box.classList.add('enlarged');
       }
     });

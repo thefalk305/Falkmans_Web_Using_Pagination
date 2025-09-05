@@ -13,7 +13,8 @@
   <meta name="page-title" content="Collage Archives" />
   <link rel="icon" href="../assets/favicon.ico">
 
-  <link href="../css/magnify.css" rel="stylesheet" type="text/css" />
+   <link href="../css/collage.css" rel="stylesheet" type="text/css" />
+ <link href="../css/magnify.css" rel="stylesheet" type="text/css" />
   <link href="../css/records.css" rel="stylesheet" type="text/css" />
 
  <style>
@@ -95,24 +96,17 @@
       let zoom = 0
     areas.forEach((areaData, index) => {
       const area = document.createElement('div');
-      area.className = "highlight-box area";
-      zoom = areaData.zoom
 
-      // Extract style values from JSON
-       styleX = areaData.x + "%";
-       styleY = areaData.y + "%";
-       styleWidth = areaData.width + "%";
-       styleHeight = areaData.height + "%";
-       caption = areaData.caption;
-
+      // Extract info values from JSON
       // Apply styles and attributes
-      area.style.left = styleX;
-      area.style.top = styleY;
-      area.style.width = styleWidth;
-      area.style.height = styleHeight;
-      area.dataset.caption = caption;
       area.id = areaData.id;
-
+      area.className = "highlight-box area";
+      area.style.left = areaData.x + "%";;
+      area.style.top = areaData.y + "%";
+      area.style.width = areaData.width + "%";
+      area.style.height = areaData.height + "%";
+      area.dataset.caption = areaData.caption;
+      area.dataset.zoom = areaData.zoom;
       // Append to container
       docContainer.appendChild(area);
     });
@@ -142,8 +136,6 @@
 </script>
 
 
-<!-- script for Photo Collage -->
-<!-- Just before closing </body> -->
 <script type="module" src="../js/photoCollage.js"></script>
 </body>
 </html>

@@ -13,18 +13,15 @@
 <meta name="page-title" content="R M S Britannic Passenger List" />
 
 <link href="../css/magnify.css" rel="stylesheet" type="text/css" />
+	<link href="../css/collage.css" rel="stylesheet" type="text/css" />
 <link rel="icon" href="../assets/favicon.ico">
 
-<style>
-.highlight-box {
-left: 0;
-top: 89%;
-width: 100%;
-height: 3%;
-}
-
-</style>
-
+  <style>
+  .highlight-box.area {
+    border-color: rgba(255, 0, 0, 0.9)  !important; 
+    background-color: rgba(255, 255, 0, 0.0) !important; 
+  }
+  </style>
 </head>
 
 <body>
@@ -47,22 +44,26 @@ height: 3%;
       />
     </div>
 
-    <div id="lnkcont" style="position: relative;">
-
-      <div id="highlight" class="highlight-box" ></div>    
       <div class="img-magnifier-container">
-      <img
-        class="magImage"
-        src="../images/BritPassList3-1.jpg"
-        width="902"
-        alt="R.M.S. Britannic Passenger List"
-      />
-    </div>
-
-    <b style="color:fuchsia">At the bottom of the page is where you'll find N.P. Falkman (line 147).</b>
+        <img
+          id="doc-image" 
+          class="magImage"
+          src="../images/BritPassList3-1.jpg"
+          width="902"
+          alt="R.M.S. Britannic Passenger List"
+        />
+        <div
+          class="highlight-box area"
+          data-caption="N.P. Falkman (line 147)"
+          style="left:1%;top:92.3%;width:32%;height:2.5%;"
+          data-zoom="100">
+        </div>
+  </div>
+     <b style="color:fuchsia">At the bottom of the page is where you'll find N.P. Falkman (line 147).</b>
 
   </div>
-  <!-- Inserts the common footer. -->
+
+ <!-- Inserts the common footer. -->
   <div id="footer"></div>
   <script src="../js/loadFooter.js"></script>
 </div>
@@ -78,5 +79,14 @@ height: 3%;
     }, 100); // You can adjust this delay if needed
   });
 </script>
+<script type="module">
+  import { initPhotoCollage } from '../js/photoCollage.js';
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      initPhotoCollage();
+    }, 200); // Wait for header/footer and images to load
+  });
+</script>
+
 </body>
 </html>

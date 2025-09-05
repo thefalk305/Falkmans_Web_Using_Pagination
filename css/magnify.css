@@ -6,6 +6,7 @@ body {
 	background-color: #E4D47F; /*parchment*/;
 	color: #000000; /*black*/
   margin: 0;
+  font-family: 'IM Fell English', serif;
 }
 
 a {
@@ -135,7 +136,7 @@ h4 {
 }
 
 #top-nav-menu {
-  font-size: .90em;
+  font-size: 1.2em;
   padding-top: 5px;
   padding-bottom: 5px;
   margin-top: 5px;
@@ -318,6 +319,7 @@ figcaption {
   text-align: center;
   position:relative;
   /* width: 100%; */
+  z-index: 1;
 }
 
 .img-magnifier-container p {
@@ -342,7 +344,7 @@ z-index: 9;
   justify-content: space-between;
   align-items: center;
   width: 96%;
-  padding: 0.5em 2em;
+  padding: 0.2em 1em;
   font-size: 1em;
 }
 
@@ -351,7 +353,7 @@ z-index: 9;
 }
 
 .nav-center {
-  flex: 2;
+  flex: 4;
   text-align: center;
 }
 

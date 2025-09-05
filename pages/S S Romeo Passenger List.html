@@ -11,15 +11,15 @@
 	<meta content="Copyright © 2025, Allen Falkman All Rights Reserved" name="copyright" />
 
   <meta name="page-title" content="S S Romeo Passenger List" />
+	<link rel="icon" href="../assets/favicon.ico" />
 
 	<link href="../css/magnify.css" rel="stylesheet" type="text/css" />
-	<link rel="icon" href="../assets/favicon.ico" />
+	<link href="../css/collage.css" rel="stylesheet" type="text/css" />
+
   <style>
-  .highlight-box {
-    left: 0;
-    top: 36%;
-    width: 100%;
-    height: 3%;
+  .highlight-box.area {
+    border-color: rgba(255, 0, 0, 0.9)  !important; 
+    background-color: rgba(255, 255, 0, 0.0) !important; 
   }
   </style>
 </head>
@@ -45,14 +45,20 @@
 			/>
     </div>
 
+    <p><b style="color:fuchsia">On line 9534 of this page is where you'll find N.P. Falkman.</b></p>
 
-
-    <p><b style="color:fuchsia">On line 34 of this page is where you'll find N.P. Falkman.</b></p>
-
-    <div id="lnkcont" style="position: relative;">
-      <div id="highlight" class="highlight-box" ></div>    
-      <div class="img-magnifier-container">
-        <img class="magImage" src="../images/RomeoPassList2.png" alt="Samaria List" style="width: 902px;"  /> 
+    <div id="highlight" class="highlight-box" ></div>    
+      <div
+       class="img-magnifier-container">
+        <img 
+          id="doc-image" 
+          class="magImage" src="../images/RomeoPassList2.png" alt="Samaria List" style="width: 902px;"  /> 
+        <div
+          class="highlight-box area"
+          data-caption="N. P. Falkman on line 9534"
+          style="left:7%;top:36%;width:39%;height:2.4%;"
+          data-zoom="100">
+        </div>
       </div>
     </div>
   </div>
@@ -71,5 +77,15 @@
     }, 100); // You can adjust this delay if needed
   });
 </script>
+
+<script type="module">
+  import { initPhotoCollage } from '../js/photoCollage.js';
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      initPhotoCollage();
+    }, 200); // Wait for header/footer and images to load
+  });
+</script>
+
 </body>
 </html>
