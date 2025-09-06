@@ -7,43 +7,79 @@
         "title": "1920 Census - Allen B Falkman",
         "url": "../records/Census 1920 - Allen B Falkman Sr.jpg",
         "notes": "This record is from the 1921 Census.  The Falkman family, Herman, Mary, Bea and Allen are on lines 70 - 73.  Mary's father, Gerald Allen is on line 74.",
-        "highlight": { "xPercent": 7, "yPercent": 48, "widthPercent": 32, "heightPercent": 8 }
+        "areas": [
+          {
+            "id": "area1",
+            "x": 6.5,
+            "y": 48,
+            "width": 31,
+            "height": 8.5,
+            "caption": "At age 15, Allen was a messenger for the 1933 Worlds Fair in Chicago.",
+            "zoom": 80
+ }
+        ]
       },
       { "id": "1b",
         "title": "1950 Census - Allen B Falkman",
         "url": "../records/Census 1950 - Allen B Falkman Sr.jpg",
-        "highlight": { "xPercent": 6, "yPercent": 32, "widthPercent": 50, "heightPercent": 8 },
-        "notes": "This record is from the 1950 Census.  The Falkman family, Allen Sr (husband), Helen (wife) and their four boys, Allen Jr, Gerald, Richard and Robert, ages 5, 4, 3 and 2, are on lines 3 through 8. Notice that two of the boys, Gerald and Richard, were born in California, 'The Golden State'!"
+        "notes": "This record is from the 1950 Census.  Notice that two of the boys, Gerald and Richard, were born in California, 'The Golden State'!",
+        "areas": [
+          {
+            "id": "area1",
+            "x": 7,
+            "y": 31.5,
+            "width": 37,
+            "height": 8,
+            "caption": "The Falkman family, Allen Sr (husband), Helen (wife) and their four boys, Allen Jr, Gerald, Richard and Robert, ages 5, 4, 3 and 2, are on lines 3 through 8.",
+            "zoom": 70 }
+        ]
       },
       { "id": "1c",
         "title": "Illinois Draft Registration - 1940",
         "url": "../records/Illinois Draft Registration 1940 - Allen B Falkman.jpg",
-        "highlight": { "xPercent": 4, "yPercent": 18, "widthPercent": 54, "heightPercent": 9 },
-        "notes": "This is the Illinois Draft Registration from 1940 for Allen B Falkman Sr."
+        "notes": "This is the Illinois Draft Registration from 1940 for Allen B Falkman Sr.",
+        "areas": [
+          {
+            "id": "area1",
+            "x": 4,
+            "y": 18,
+            "width": 54,
+            "height": 9,
+            "caption": "At age 15, Allen was a messenger for the 1933 Worlds Fair in Chicago.",
+            "zoom": 70 }
+        ]
       },
       {
         "id": "1d",
         "title": "Allen Sr - Messanger Worlds Fair",
         "url": "../records/Allen Sr - Messanger Worlds Fair.BMP",
-        "highlight": {
-          "xPercent": null,
-          "yPercent": null,
-          "widthPercent": null,
-          "heightPercent": null
-        },
-        "notes": "This is a photo of Allen B Falkman Sr. at the 1933 Worlds Fair where he worked as a messenger. He was 15 years old. The 1933 World's Fair was the Century of Progress International Exposition in Chicago, Illinois, which celebrated the city's 100th anniversary with the theme \"Science Finds, Industry Applies, Man Conforms\". Held from May to October 1933 (and extended to 1934), it showcased advancements in science and technology, promoting a vision of a brighter future during the Great Depression, and featured many Art Deco-style buildings. Key attractions included the Firestone singing color fountains, a display of King Kong, and the first sale of Krispy Kreme donuts from an automated machine."
+        "notes": "This is a photo of Allen B Falkman Sr. at the 1933 Worlds Fair where he worked as a messenger. He was 15 years old. The 1933 World's Fair was the Century of Progress International Exposition in Chicago, Illinois, which celebrated the city's 100th anniversary with the theme \"Science Finds, Industry Applies, Man Conforms\". Held from May to October 1933 (and extended to 1934), it showcased advancements in science and technology, promoting a vision of a brighter future during the Great Depression, and featured many Art Deco-style buildings. Key attractions included the Firestone singing color fountains, a display of King Kong, and the first sale of Krispy Kreme donuts from an automated machine.",
+        "areas": [
+          {
+            "id": "area1",
+            "x": null,
+            "y": null,
+            "width": null,
+            "height": null,
+            "caption": "At age 15, Allen was a messenger for the 1933 Worlds Fair in Chicago.",
+            "zoom": 70 }
+        ]
       },
       {
         "id": "1e",
         "title": "Allen Falkman Sr Collage",
         "url": "../records/Allen Falkman Sr Collage.svg",
-        "highlight": {
-          "xPercent": null,
-          "yPercent": null,
-          "widthPercent": null,
-          "heightPercent": null
-        },
-        "notes": "Here are several photos of Al Falkman Sr. He is a messenger at the 1300 Worlds Fair.  Somehow, persuaded his mother (Mary) to chauffer him around while he was in the Army. One pic with an early admirer and a shoeshine while playing solider in Europe."
+        "notes": "Here are several photos of Al Falkman Sr. He is a messenger at the 1300 Worlds Fair.  Somehow, persuaded his mother (Mary) to chauffer him around while he was in the Army. One pic with an early admirer and a shoeshine while playing solider in Europe.",
+        "areas": [
+          {
+            "id": "area1",
+            "x": null,
+            "y": null,
+            "width": null,
+            "height": null,
+            "caption": "At age 15, Allen was a messenger for the 1933 Worlds Fair in Chicago.",
+            "zoom": 70 }
+        ]
       }
     ]
   },
@@ -55,14 +91,32 @@
       { "id": "2a",
         "title": "New Jersey Census 1930",
         "url": "../records/New Jersey Census 1930 - Helen K Alexander.jpg",
-        "highlight": { "xPercent": 4, "yPercent": 78, "widthPercent": 44, "heightPercent": 8 },
-        "notes": "This document is from the 1930 Census. Although difficult to see, the Alexander family, Frank Sr, Ida, Frank Jr, Violet and Helen are on lines 42 through 46. Violet is listed as Walley.  I understand that they called her Walley because she was a wall-flower.  Use the magnifier to get a better look."
+        "notes": "This document is from the 1930 Census. Although difficult to see, the Alexander family, Frank Sr, Ida, Frank Jr, Violet and Helen are on lines 42 through 46. Violet is listed as Walley.  I understand that they called her Walley because she was a wall-flower.  Use the magnifier to get a better look.",
+        "areas": [
+          {
+            "id": "area1",
+            "x": 4,
+            "y": 78,
+            "width": 44,
+            "height": 8,
+            "caption": "At age 15, Allen was a messenger for the 1933 Worlds Fair in Chicago.",
+            "zoom": 70 }
+        ]
       },      
       { "id": "2b",
         "title": "1950 Census - Helen K Falkman",
         "url": "../records/Census 1950 - Allen B Falkman Sr.jpg",
-        "highlight": { "xPercent": 6, "yPercent": 32, "widthPercent": 50, "heightPercent": 8 },
-        "notes": "This record is from the 1950 Census.  The Falkman family, Allen Sr, Helen K (née Alexander), Allen Jr, Gerald, Richard and Robert are on lines 3 through 8."
+        "notes": "This record is from the 1950 Census.  The Falkman family, Allen Sr, Helen K (née Alexander), Allen Jr, Gerald, Richard and Robert are on lines 3 through 8.",
+        "areas": [
+          {
+            "id": "area1",
+            "x": 6,
+            "y": 32,
+            "width": 50,
+            "height": 8,
+            "caption": "At age 15, Allen was a messenger for the 1933 Worlds Fair in Chicago.",
+            "zoom": 70 }
+        ]
       }
     ]
   },
@@ -74,13 +128,17 @@
       { "id": "3a",
         "title": "1910 Census - Nils Falkman and Family",
         "url": "../records/1910 Census - Nils Falkman.jpg",
-        "highlight": {
-          "xPercent": 6,
-          "yPercent": 21,
-          "widthPercent": 33,
-          "heightPercent": 10
-        },
-        "notes": "This is from the 1910 census in Illinois.  It contain the Falkman family, Nils Peter, Katherine, Herman, Lillian, Ester and Theodore on lines 51 through 56."
+        "notes": "This is from the 1910 census in Illinois.  It contain the Falkman family, Nils Peter, Katherine, Herman, Lillian, Ester and Theodore on lines 51 through 56.",
+        "areas": [
+          {
+            "id": "area1",
+            "x": 6,
+            "y": 21,
+            "width": 33,
+            "height": 10,
+            "caption": "At age 15, Allen was a messenger for the 1933 Worlds Fair in Chicago.",
+            "zoom": 70 }
+        ]
       }
     ]
   },
@@ -92,19 +150,32 @@
       { "id": "4a",
         "title": "1940 Cook County Census - Herman Falkman and Family",
         "url": "../records/Cook County Census 1940 - Herman Falkman.jpg",
-        "highlight": {
-          "xPercent": 8,
-          "yPercent": 29,
-          "widthPercent": 37,
-          "heightPercent": 6
-        },
-        "notes": "This image is from the 1940 census in Cook County Illinois.  It contain the Herman Falkman family, Herman, wife Mary and son Allen on lines 6 through 8."
+        "notes": "This image is from the 1940 census in Cook County Illinois.  It contain the Herman Falkman family, Herman, wife Mary and son Allen on lines 6 through 8.",
+        "areas": [
+          {
+            "id": "area1",
+            "x": 8,
+            "y": 29,
+            "width": 37,
+            "height": 9,
+            "caption": "At age 15, Allen was a messenger for the 1933 Worlds Fair in Chicago.",
+            "zoom": 70 }
+        ]
       },
       { "id": "4b",
         "title": "1920 Census - Herman R Falkman",
         "url": "../records/Census 1920 - Allen B Falkman Sr.jpg",
-        "highlight": { "xPercent": 7, "yPercent": 48, "widthPercent": 32, "heightPercent": 8 },
-        "notes": "This record is from the 1920 Census.  The Falkman family, Herman, Mary, Bea and Allen are on lines 70 - 73.  Mary's father, Gerald Allen is on line 74."
+        "notes": "This record is from the 1920 Census.  The Falkman family, Herman, Mary, Bea and Allen are on lines 70 - 73.  Mary's father, Gerald Allen is on line 74.",
+        "areas": [
+          {
+            "id": "area1",
+            "x": 7,
+            "y": 48,
+            "width": 32,
+            "height": 8,
+            "caption": "At age 15, Allen was a messenger for the 1933 Worlds Fair in Chicago.",
+            "zoom": 70 }
+        ]
       }
     ]
   },
@@ -116,8 +187,17 @@
       "id": "5a",
       "title": "Delsbo Parish Family Census 1883-1892 - Karin Norén",
       "url": "../records/Delsbo Parish Family Census 1883–1892  Karin Norén.jpg",
-      "highlight": {"xPercent": 9, "yPercent": 83, "widthPercent": 86, "heightPercent": 5 },
-      "notes": "This is a page from the Delsbo Parish Family Census 1883-1892. Karin Norén Left Sweden in May of 1892 so this is the last Delsbo Parish Family Census that Karin's name appears in."
+      "notes": "This is a page from the Delsbo Parish Family Census 1883-1892. Karin Norén Left Sweden in May of 1892 so this is the last Delsbo Parish Family Census that Karin's name appears in.",
+        "areas": [
+          {
+            "id": "area1",
+            "x": 9,
+            "y": 83,
+            "width": 86,
+            "height": 5,
+            "caption": "At age 15, Allen was a messenger for the 1933 Worlds Fair in Chicago." ,
+            "zoom": 70}
+        ]
       }
     ]
   }

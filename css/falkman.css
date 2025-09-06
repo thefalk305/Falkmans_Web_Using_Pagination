@@ -3,6 +3,7 @@
 }
 
 body {
+	font-size: 18px;
 	font-family: Tahoma, Helvetica, Arial, sans-serif;
 	height: 100%;
 	width: 100%;
@@ -427,30 +428,30 @@ figcaption {
 }
 
 .navbar {
+	font-size: 0.9em;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 96%;
   padding: 0.5em 2em;
-  font-size: 1em;
 }
 
 .nav-left {
-  flex: 1;
+  flex: 1 8;
 }
 
 .nav-center {
-  flex: 2;
+  flex: 6;
   text-align: center;
 }
 
 .nav-right {
-  flex: 1;
+  flex: 2;
   text-align: right;
   font-size: small;
 }
 
 .nav-center a {
-  margin: 0 1em;
+  margin: 0 0.5em;
   text-decoration: none;
 }

@@ -6,6 +6,8 @@ export function initPhotoCollage(zoom) {
   const imgSrc = img.src;
   const ENLARGED_WIDTH_PERCENT = 60;
 
+  zoom = 60;
+
   // Cache original dimensions for each highlight box
   document.querySelectorAll('.highlight-box.area').forEach(box => {
     box.dataset.originalWidth = box.style.width;
@@ -95,6 +97,7 @@ export function initPhotoCollage(zoom) {
 
         // Add caption below the enlarged box
         const caption = document.createElement('div');
+        caption.style.width = '70%';
         caption.className = 'zoom-caption';
         caption.textContent = box.dataset.caption || 'zoomed image';
         box.appendChild(caption);

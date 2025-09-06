@@ -20,16 +20,12 @@
  <style>
 .highlight-box.area {
   pointer-events: auto;
-  border-color: rgba(255, 0, 0, 0.0) !important; 
+  border-color: rgba(255, 0, 0, 0.5) !important; 
   background-color: rgba(255, 255, 0, 0.0) !important; 
   cursor: pointer;
 }
-
-
-
 </style>
 
- 
 </head>
 <body>
   <div id="container">
@@ -40,22 +36,20 @@
 
     <div class="doc-container">
       <div class="img-magnifier-container">
-        <!-- insert areas here -->
         <img id="doc-image" class="magImage" src="" alt="Document" style="width: 100%;" />
       </div>
-      <!-- <div id="highlight" class="highlight-box"></div> -->
     </div>
-
 
     <div id="footer"></div>
     <script src="../js/loadFooter.js"></script>
     
   </div>
 
-<script type="module">
+<!-- <script type="module">
   import { initPhotoCollage } from '../js/photoCollage.js';
   import { initMagnifierControls } from '../js/magnifier.js';
 
+  const jsonFile = '../data/collage.json'
   const params = new URLSearchParams(window.location.search);
   // const isEditMode = params.get('mode') === 'edit';
   const docId = params.get('id');
@@ -69,7 +63,7 @@
 
   // Load document from collage.json if id is present
   if (docId) {
-    fetch('../data/collage.json')
+    fetch(jsonFile)
       .then(res => res.json())
       .then(data => {
       let foundDoc = null;
@@ -111,12 +105,10 @@
       docContainer.appendChild(area);
     });
 
-
-
-      img.onload = () => {
-        initMagnifierControls();
-        initPhotoCollage(zoom);
-      };
+    img.onload = () => {
+      initMagnifierControls();
+      initPhotoCollage(zoom);
+    };
 
     })
     .catch(err => {
@@ -125,7 +117,7 @@
     });
     
   }
-  </script>
+  </script> -->
 <script type="module">
   import { initMagnifierControls } from '../js/magnifier.js';
   document.addEventListener('DOMContentLoaded', () => {
@@ -135,7 +127,12 @@
   });
 </script>
 
+<script type="module">
+  import { loadCollageViewer } from '../js/loadCollageViewer.js';
+  const params = new URLSearchParams(window.location.search);
+  const docId = params.get('id');
+  loadCollageViewer(docId, '../data/collage.json');
+</script>
 
-<script type="module" src="../js/photoCollage.js"></script>
 </body>
 </html>
