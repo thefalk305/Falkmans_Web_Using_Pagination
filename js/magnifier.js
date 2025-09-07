@@ -245,26 +245,6 @@ export function initMagnifierControls(config = defaultMagConfig) {
 
   updateMagnifier(); // Set initial state on load
 }
-
-// function getGlassScale(zoom, defaultZoom = 2) {
-//   if (zoom <= defaultZoom) return 1;
-
-//   // Define known points
-//   const zoomLow = 2;
-//   const zoomMid = 4;
-//   const zoomHigh = 10;
-
-//   const scaleLow = 1.0;
-//   const scaleMid = 1.75;
-
-//   // Calculate slope between zoomLow and zoomMid
-//   const slope = (scaleMid - scaleLow) / (zoomMid - zoomLow);
-
-//   // Extend linearly to zoomHigh
-//   let scale = scaleLow + slope * (zoom - zoomLow);
-//   scale = 0.25 + 0.375 * zoom;
-//   return scale;
-// }
   // scale glass size with zoom so we don't loose much area when zoomed.
   function getGlassScale(zoom) {
     return Math.max(1.0, 0.375 * zoom + 0.25);

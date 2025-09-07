@@ -97,7 +97,6 @@ export function initPhotoCollage(zoom) {
 
         // Add caption below the enlarged box
         const caption = document.createElement('div');
-        caption.style.width = '70%';
         caption.className = 'zoom-caption';
         caption.textContent = box.dataset.caption || 'zoomed image';
         box.appendChild(caption);

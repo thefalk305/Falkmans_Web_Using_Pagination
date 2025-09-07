@@ -41,8 +41,8 @@ export function loadCollageViewer(docId, jsonFile) {
       });
 
       img.onload = () => {
-        initMagnifierControls();
         initPhotoCollage();
+        initMagnifierControls();
       };
     })
     .catch(err => {

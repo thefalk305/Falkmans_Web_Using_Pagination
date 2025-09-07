@@ -20,7 +20,7 @@
  <style>
 .highlight-box.area {
   pointer-events: auto;
-  border-color: rgba(255, 0, 0, 0.5) !important; 
+  border-color: rgba(255, 0, 0, 0.1) !important; 
   background-color: rgba(255, 255, 0, 0.0) !important; 
   cursor: pointer;
 }
@@ -32,7 +32,7 @@
     <div id="header"></div>
     <script src="../js/loadHeader.js"></script>
 
-    <h3 id="doc-notes" style="margin-bottom: 1em;"></h3>
+    <h3 id="doc-notes" ></h3>
 
     <div class="doc-container">
       <div class="img-magnifier-container">
@@ -45,79 +45,13 @@
     
   </div>
 
-<!-- <script type="module">
-  import { initPhotoCollage } from '../js/photoCollage.js';
-  import { initMagnifierControls } from '../js/magnifier.js';
-
-  const jsonFile = '../data/collage.json'
+<script type="module">
+  import { loadCollageViewer } from '../js/loadCollageViewer.js';
   const params = new URLSearchParams(window.location.search);
-  // const isEditMode = params.get('mode') === 'edit';
   const docId = params.get('id');
+  loadCollageViewer(docId, '../data/collage.json');
+</script>
 
-  const docContainer = document.getElementsByClassName('doc-container')[0];
-  // formContainer.style.display = isEditMode ? 'block' : 'none';
-
-  const img = document.getElementById('doc-image');
-  // const box = document.getElementById('highlight');
-  const notesEl = document.getElementById('doc-notes');
-
-  // Load document from collage.json if id is present
-  if (docId) {
-    fetch(jsonFile)
-      .then(res => res.json())
-      .then(data => {
-      let foundDoc = null;
-
-      for (const person of data) {
-        foundDoc = person.links.find(doc => doc.id === docId);
-        if (foundDoc) break;
-      }
-
-      if (!foundDoc) {
-        notesEl.textContent = 'Document not found.';
-        return;
-      }
-
-      const { url, areas, notes } = foundDoc;
-
-      img.src = url;
-      notesEl.textContent = notes;
-      let styleX = "";
-      let styleY = "%";
-      let styleWidth = "%";
-      let styleHeight = "%";
-      let caption = "";
-      let zoom = 0
-    areas.forEach((areaData, index) => {
-      const area = document.createElement('div');
-
-      // Extract info values from JSON
-      // Apply styles and attributes
-      area.id = areaData.id;
-      area.className = "highlight-box area";
-      area.style.left = areaData.x + "%";;
-      area.style.top = areaData.y + "%";
-      area.style.width = areaData.width + "%";
-      area.style.height = areaData.height + "%";
-      area.dataset.caption = areaData.caption;
-      area.dataset.zoom = areaData.zoom;
-      // Append to container
-      docContainer.appendChild(area);
-    });
-
-    img.onload = () => {
-      initMagnifierControls();
-      initPhotoCollage(zoom);
-    };
-
-    })
-    .catch(err => {
-      notesEl.textContent = 'Error loading document data.';
-      console.error('Failed to load collage.json:', err);
-    });
-    
-  }
-  </script> -->
 <script type="module">
   import { initMagnifierControls } from '../js/magnifier.js';
   document.addEventListener('DOMContentLoaded', () => {
@@ -127,12 +61,6 @@
   });
 </script>
 
-<script type="module">
-  import { loadCollageViewer } from '../js/loadCollageViewer.js';
-  const params = new URLSearchParams(window.location.search);
-  const docId = params.get('id');
-  loadCollageViewer(docId, '../data/collage.json');
-</script>
 
 </body>
 </html>
