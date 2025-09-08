@@ -229,6 +229,8 @@ export function toggleMagnifier(enabled, config = defaultMagConfig) {
  * Initializes magnifier controls (checkbox + zoom input)
  * Automatically sets up or removes magnifier based on checkbox state
  */
+import { initPhotoCollage, removePhotoCollageListeners } from './photoCollage.js';
+
 export function initMagnifierControls(config = defaultMagConfig) {
   const checkbox = document.getElementById(config.checkboxID);
   const zoomInput = document.getElementById(config.zoomInputID);
@@ -236,16 +238,31 @@ export function initMagnifierControls(config = defaultMagConfig) {
   if (!checkbox || !zoomInput) return;
 
   const updateMagnifier = () => {
-    zoomInput.style.display = checkbox.checked ? 'block' : 'none';
-    toggleMagnifier(checkbox.checked, config);
-  };
+    const enabled = checkbox.checked;
+    zoomInput.style.display = enabled ? 'block' : 'none';
+    toggleMagnifier(enabled, config);
 
-  checkbox.addEventListener('change', updateMagnifier);
-  zoomInput.addEventListener('input', updateMagnifier);
+    if (enabled) {
+      removePhotoCollageListeners();
+      document.querySelectorAll('.highlight-box.area').forEach(box => {
+        box.style.pointerEvents = 'none';
+      });
+    } else {
+      document.querySelectorAll('.highlight-box.area').forEach(box => {
+        box.style.pointerEvents = 'auto';
+      });
 
-  updateMagnifier(); // Set initial state on load
+      initPhotoCollage(); // ✅ Let it handle deduplication internally
+    }  };
+
+    checkbox.addEventListener('change', updateMagnifier);
+    zoomInput.addEventListener('input', updateMagnifier);
+
+  // ❌ Remove this line to prevent auto-trigger on page load
+  // updateMagnifier();
 }
-  // scale glass size with zoom so we don't loose much area when zoomed.
+
+// scale glass size with zoom so we don't loose much area when zoomed.
   function getGlassScale(zoom) {
     return Math.max(1.0, 0.375 * zoom + 0.25);
   }

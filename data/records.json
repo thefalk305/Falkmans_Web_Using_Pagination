@@ -192,11 +192,11 @@
           {
             "id": "area1",
             "x": 9,
-            "y": 83,
-            "width": 86,
-            "height": 5,
-            "caption": "At age 15, Allen was a messenger for the 1933 Worlds Fair in Chicago." ,
-            "zoom": 70}
+            "y": 85.6,
+            "width": 40,
+            "height": 4,
+            "caption": "This records shows that Karin Norén was born on the 12th day of the 12 month in the year 1867." ,
+            "zoom": 80}
         ]
       }
     ]
