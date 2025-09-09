@@ -19,7 +19,8 @@ export const defaultMagConfig = {
 };
 
 /**
- * Initializes magnifier glasses for all .magImage elements.
+ * Initializes magnifier glasses for all .magImage 
+ * elements when enabled is toggled ON.
  * Dynamically scales glass size based on zoom level and CSS-defined defaults.
  */
 export function setupMagnifier({
@@ -43,7 +44,7 @@ export function setupMagnifier({
   // Exit early if magnifier is not enabled
   if (!magnifierActive) return;
 
-  // Create a temporary glass element to read default size from CSS
+  // Create (then remove) a temporary glass element to read default size from CSS
   const tempGlass = document.createElement('div');
   tempGlass.className = 'img-magnifier-glass';
   tempGlass.style.position = 'absolute';
@@ -57,6 +58,7 @@ export function setupMagnifier({
   document.body.removeChild(tempGlass);
 
   // Loop through each image to attach magnifier logic
+  // there may be several images ona page
   images.forEach(img => {
     // Remove old event listeners if they exist
     const oldHandlers = attachedImages.get(img);
@@ -88,7 +90,7 @@ export function setupMagnifier({
     };
 
     glass.style.backgroundImage = `url('${img.src}')`;
-    glass.style.backgroundRepeat = 'no-repeat';
+    // glass.style.backgroundRepeat = 'no-repeat';
     updateBackgroundSize();
 
     // Store reference to glass
@@ -187,7 +189,8 @@ export function setupMagnifier({
 }
 
 /**
- * Removes all magnifier glasses and resets styles and event listeners
+ * Removes all magnifier glasses and resets styles 
+ * and event listeners when enable is toggled OFF
  */
 export function removeMagnifiers() {
   document.querySelectorAll('.img-magnifier-glass').forEach(glass => glass.remove());
@@ -213,7 +216,7 @@ export function removeMagnifiers() {
 }
 
 /**
- * Toggles magnifier on or off based on a boolean flag
+ * Toggles magnifier ON or OFF based on a boolean flag
  * @param {boolean} enabled - Whether magnifier should be active
  * @param {object} config - Optional configuration overrides
  */
@@ -258,8 +261,6 @@ export function initMagnifierControls(config = defaultMagConfig) {
     checkbox.addEventListener('change', updateMagnifier);
     zoomInput.addEventListener('input', updateMagnifier);
 
-  // ❌ Remove this line to prevent auto-trigger on page load
-  // updateMagnifier();
 }
 
 // scale glass size with zoom so we don't loose much area when zoomed.

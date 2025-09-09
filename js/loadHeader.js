@@ -23,7 +23,8 @@
     // set default 'banner'
     document.querySelector('#banner img').src = "/images/banner2.png";
 
-    if (title === "Welcome to the Falkman Family's History Website") {
+    // some pages have a different banner or heading-row h1
+    if (title === "Welcome to the Falkman's Family History Website") {
      // Special case for index.html
       document.querySelector('#banner img').src = "/images/banner.gif";
     } else if (title === "Photo Pages") {
@@ -33,7 +34,7 @@
     // Special case for record-viewer.html - set '#heading-row h1' to include document #
       document.querySelector('#heading-row h1').textContent  = title + " -- Document No. " + id;
     } else if (pageName === "collage-viewer") {
-    // Special case for record-viewer.html - set '#heading-row h1' to include document #
+    // Special case for collage-viewer.html - set '#heading-row h1' to include document #
       document.querySelector('#heading-row h1').textContent  = title + " -- Collage No. " + id;
     }
 

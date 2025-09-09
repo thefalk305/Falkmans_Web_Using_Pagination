@@ -65,20 +65,13 @@
 
 <script type="module">
   import { initMagnifierControls } from '../js/magnifier.js';
+  import { initPhotoCollage } from '../js/photoCollage.js';
   document.addEventListener('DOMContentLoaded', () => {
     // Wait briefly to ensure header/footer are loaded
     setTimeout(() => {
       initMagnifierControls();
-    }, 100); // You can adjust this delay if needed
-  });
-</script>
-
-<script type="module">
-  import { initPhotoCollage } from '../js/photoCollage.js';
-  document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
       initPhotoCollage();
-    }, 200); // Wait for header/footer and images to load
+    }, 100); // You can adjust this delay if needed
   });
 </script>
 
