@@ -1,6 +1,7 @@
 // PhotoPages.js
-// This script dynamically loads photo data, renders paginated info-cards,
-// and manages modal interactions for the Falkman Family Photo Gallery.
+// This script dynamically loads photo data, 
+// renders paginated info-cards and manages
+// modal interactions for the Falkman Family Photo Gallery.
 //
 // ===============================
 // BEGINNER-FRIENDLY DOCUMENTATION
@@ -19,14 +20,19 @@
 // DOM MANIPULATION EXPLAINED
 // ===============================
 //
-// The DOM (Document Object Model) is a way for JavaScript to interact with the HTML on your page.
-// You can use JavaScript to find elements, change their content, add new elements, or remove them.
-// This script uses DOM manipulation to build the photo gallery, pagination, and modal popup.
+// The DOM (Document Object Model) is a way for 
+// JavaScript to interact with the HTML on your page.
+// 
+// You can use JavaScript to find elements, change 
+// their content, add new elements, or remove them.
+// 
+// This script uses DOM manipulation to build the 
+// photo gallery, pagination, and modal popup.
 //
 // Some key DOM methods used here:
 //   - document.getElementById("id")         // Finds an element by its id
 //   - document.querySelector(".class")      // Finds the first element with a class
-//   - document.createElement("div")         // Creates a new HTML element (not yet on the page)
+//   - document.createElement("div")         // Creates a new HTML <div> element (not yet on the page)
 //   - element.appendChild(child)            // Adds a new child element to an existing element
 //   - element.innerHTML = "..."             // Sets the HTML content inside an element
 //   - element.textContent = "..."           // Sets the text content inside an element
@@ -34,7 +40,7 @@
 //   - element.classList.remove("class")     // Removes a CSS class from an element
 //   - element.style.display = "none"        // Hides an element (removes it from view)
 //   - element.style.display = "block"       // Shows an element
-//   - element.addEventListener("click", fn) // Runs a function when the element is clicked
+//   - element.addEventListener("click", fn) // Runs the function (fn) when the element is clicked
 //
 // Read the comments throughout the code to understand what each part does!
 
@@ -69,10 +75,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   //    This is DOM manipulation: changing the style to hide the modal.
   exitBtn.addEventListener("click", () => {
     modal.style.display = "none";
-    // Remove the "expanded" class from any info-card (closes expanded cards)
+    // Remove the "expanded" class from any (and all) info-card (closes expanded cards)
     document.querySelectorAll(".info-card.expanded").forEach(c => c.classList.remove("expanded"));
   });
-
+  // Do the same for the 'close' icon
   closeIcon.addEventListener("click", () => {
     modal.style.display = "none";
     document.querySelectorAll(".info-card.expanded").forEach(c => c.classList.remove("expanded"));
@@ -124,11 +130,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         card.className = "info-card"; // <div class="info-card"></div>
 
         // Set the HTML content of the card
-        // This creates a "figure-card" element for each photo on the page with the details (pic, name, born, bioText) coming from PhotoPagesData.json (fetched above)
+        // This creates a "figure-card" element (and all it's children) for each photo 
+        // on the page with the details (pic, name, born, bioText) 
+        // coming from PhotoPagesData.json (fetched above)
         card.innerHTML = `
           <div class="figure-card">
             <div class="image-wrapper">
-              <div class="img-magnifier-container ">
+              <div class="magGlass-container ">
                 <img
                   class="magImage figure-img"
                   src="../img/${photo.pic}" alt="${photo.name}"
@@ -147,7 +155,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           </div>
         `;
 
-        // When the card is clicked, expand or collapse it
+        // When the card is clicked, collapse or expand it
         card.addEventListener("click", () => {
           if (card.classList.contains("expanded")) {
             card.classList.remove("expanded");
@@ -159,7 +167,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
 
         // When the "Read More" button is clicked, show the modal with full bio
-        // e.stopPropagation() prevents the card's click event from firing
+        // e.stopPropagation() prevents the card's normal click event from firing
         card.querySelector(".toggle-bio").addEventListener("click", (e) => {
           e.stopPropagation();
           // Fill in the modal with the photo's info

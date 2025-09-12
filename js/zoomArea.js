@@ -1,13 +1,14 @@
-// photoCollage.js
-
+// zoomArea.js 
+// used to enlarge and center an area of an image.
+// 
 // A WeakMap is like a special object for storing key/value pairs,
 // but the keys must be objects. Here, we use it to remember which
 // highlight boxes already have click listeners attached.
 const highlightBoxHandlers = new WeakMap();
 
 // This function sets up the click-to-zoom behavior for highlight boxes.
-export function initPhotoCollage(defaultZoom = 60) {
-  // Get the main collage image from the page.
+export function zoomArea(defaultZoom = 60) {
+  // The image was loaded by 'create-areas.js'.
   const img = document.getElementById('doc-image');
   if (!img) return; // If there's no image, stop.
 
@@ -32,43 +33,43 @@ export function initPhotoCollage(defaultZoom = 60) {
     const clickHandler = (e) => {
       e.stopPropagation(); // Prevent the click from affecting other elements.
 
+      const checkbox = document.getElementById('mag-checkbox');
+      if(checkbox.checked)
+        return;
+
       const isAlreadyEnlarged = box.classList.contains('enlarged');
 
+      function resetBoxStyles(el) {
+        el.classList.remove('enlarged');
+        el.style.width = el.dataset.originalWidth;
+        el.style.height = el.dataset.originalHeight;
+        el.style.left = el.dataset.originalLeft;
+        el.style.top = el.dataset.originalTop;
+        el.style.transform = el.dataset.originalTransform;
+        el.style.backgroundImage = '';
+        el.style.backgroundSize = '';
+        el.style.backgroundPosition = '';
+        // enable the 'mag-checkbox'
+        checkbox.disabled = false;
+      }
+
+      // If it's already enlarged, reset it to its original state.
       if (isAlreadyEnlarged) {
-        // If it's already enlarged, reset it to its original state.
-        box.classList.remove('enlarged');
-        box.style.width = box.dataset.originalWidth;
-        box.style.height = box.dataset.originalHeight;
-        box.style.left = box.dataset.originalLeft;
-        box.style.top = box.dataset.originalTop;
-        box.style.transform = box.dataset.originalTransform;
-        box.style.backgroundImage = '';
-        box.style.backgroundSize = '';
-        box.style.backgroundPosition = '';
-        document.querySelectorAll('.zoom-caption').forEach(caption => caption.remove());
+        resetBoxStyles(box);
+        const caption = box.querySelector('.zoom-caption');
+        if (caption) caption.remove();  
         boxes.forEach(el => el.style.pointerEvents = 'auto');
         return;
       }
 
       // Reset any other enlarged boxes.
       document.querySelectorAll('.highlight-box.enlarged').forEach(el => {
-        if (el !== box) {
-          el.classList.remove('enlarged');
-          el.style.width = el.dataset.originalWidth;
-          el.style.height = el.dataset.originalHeight;
-          el.style.left = el.dataset.originalLeft;
-          el.style.top = el.dataset.originalTop;
-          el.style.transform = el.dataset.originalTransform;
-          el.style.backgroundImage = '';
-          el.style.backgroundSize = '';
-          el.style.backgroundPosition = '';
-        }
+        if (el !== box) resetBoxStyles(el);
       });
 
       // Enable all boxes, then disable all except the one clicked.
-      boxes.forEach(el => el.style.pointerEvents = 'auto');
       boxes.forEach(el => {
-        if (el !== box) el.style.pointerEvents = 'none';
+        el.style.pointerEvents = (el === box) ? 'auto' : 'none';
       });
 
       // Read original (box) size/position from data attributes.
@@ -130,18 +131,18 @@ export function initPhotoCollage(defaultZoom = 60) {
 
       // Mark this box as enlarged.
       box.classList.add('enlarged');
+      // disable the 'mag-checkbox'
+      checkbox.disabled = true;
     };
 
     // Attach the click handler to the box and remember it in the WeakMap.
     box.addEventListener('click', clickHandler);
     highlightBoxHandlers.set(box, clickHandler);
   });
-
-  console.log('Highlight box listeners attached');
 }
 
 // Removes all click listeners from highlight boxes.
-export function removePhotoCollageListeners() {
+export function removeZoomAreaListeners() {
   document.querySelectorAll('.highlight-box.area').forEach(box => {
     const handler = highlightBoxHandlers.get(box);
     if (handler) {

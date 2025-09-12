@@ -1,21 +1,23 @@
-body {
-  font-family: Arial, sans-serif;
-  /* margin: 2em; */
-}
+/* records.css
+Used for the record archives */
 .person-section {
   border-bottom: 1px solid #ccc;
   padding-bottom: 1em;
 }
 .person-section h2 {
-  margin-bottom: 0.5em;
+  margin-bottom: 0.0em;
 }
-.doc-list li {
+
+.person-section ul {
+  margin: 0;
+}
+
+.link-list {
+  margin-top: 0;
+}
+
+.link-list li {
   margin: 0.1em 0;
-}
-.doc-note {
-  font-size: 0.9em;
-  color: #555;
-  margin-left: 1em;
 }
 
 #doc-notes {
@@ -24,7 +26,7 @@ body {
   width: 80%;
   margin: auto;
 }
-.edit-button {
+#edit-button {
   display: inline-block;
   padding: 0.6em 1.2em;
   /* background-color: #0078d4;
@@ -35,20 +37,14 @@ body {
   font-size: 1em;
 }
 
-.edit-button:hover {
-  background-color: #005fa3;
+#edit-button:hover {
+  background-color: aquamarine;
 }
 
-.doc-container {
+#doc-container {
   position: relative;
   display: inline-block;
   width: 100%;
-}
-.highlight-box {
-  position: absolute;
-  border: 2px solid red;
-  pointer-events: none;
-  border-radius: 10px;
 }
 
 /* styles for the  Add New Document to the 
@@ -58,7 +54,7 @@ body {
 }
 
 .styled-form {
-  max-width: 800px;
+  max-width: 950px;
   margin: 2em auto;
   padding: 1em;
   background: #f9f9f9;
@@ -72,16 +68,16 @@ body {
 }
 
 .styled-form legend {
-  font-size: 1.4em;
+  font-size: 1.2em;
   font-weight: bold;
-  margin-bottom: 1em;
+  margin-bottom: 0em;
 }
 
 .form-row {
+  width: 90%;
   display: flex;
   align-items: center;
-  gap: 1em;
-  margin-bottom: 1em;
+  margin-bottom: 0.6em;
 }
 
 .form-row label {
@@ -126,7 +122,7 @@ body {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  gap: 1em;
+  gap: 0.4em;
   margin-bottom: 1em;
 }
 
@@ -154,8 +150,4 @@ body {
 }
 #xPercent, #yPercent,  #widthPercent, #heightPercent {
   width: 60px;
-}
-
-.person-section ul {
-  margin: 0;
 }

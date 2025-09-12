@@ -9,9 +9,13 @@
     "Cobh",
     "Falkman",
     "Gävleborg",
+    "Hinneyrd",
     "Hudiksvall",
+    "infotable",
     "Ingred",
     "Johan",
+    "Johansson",
+    "Kronoberg",
     "Lofgren",
     "Löfgren",
     "Norén",
@@ -19,9 +23,12 @@
     "Norín",
     "Ogdensburg",
     "Slattery",
+    "Svenshult",
     "tday",
     "tmonth",
+    "torp",
+    "torps",
     "transmigrants",
-    "infotable"  
+    "zoomable"
   ]
 }

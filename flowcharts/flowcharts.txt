@@ -1,0 +1,152 @@
+┌────────────────────────────────────────────┐
+│ zoomArea(defaultZoom = 60)                 │
+│ ────────────────────────────────────────── │
+│ • Get image element (#doc-image)           │
+│ • Exit if image not found                  │
+│ • Get image src and zoom level             │
+│ • Select all .highlight-box.area elements  │
+└────────────────────────────────────────────┘
+
+            ↓
+
+┌────────────────────────────────────────────┐
+│ For each box:                              │
+│ ────────────────────────────────────────── │
+│ • Skip if already has a click handler      │
+│ • Store original size/position in dataset  │
+│ • Define clickHandler(e)                   │
+└────────────────────────────────────────────┘
+
+            ↓
+
+┌────────────────────────────────────────────┐
+│ clickHandler(e)                            │
+│ ────────────────────────────────────────── │
+│ • Stop propagation                         │
+│ • If magnifier checkbox is checked → exit  │
+│ • Check if box is already enlarged         │
+│ • Define resetBoxStyles(el)                │
+└────────────────────────────────────────────┘
+
+            ↓
+
+┌────────────────────────────────────────────┐
+│ If box is already enlarged:                │
+│ ────────────────────────────────────────── │
+│ • Reset styles                             │
+│ • Remove caption                           │
+│ • Re-enable pointer events                 │
+│ • Re-enable magnifier checkbox             │
+│ • Exit                                     │
+└────────────────────────────────────────────┘
+
+            ↓
+
+┌────────────────────────────────────────────┐
+│ If box is not enlarged:                    │
+│ ────────────────────────────────────────── │
+│ • Reset other enlarged boxes               │
+│ • Read original size/position from dataset │
+│ • Calculate aspect ratio and zoom size     │
+│ • Center box in viewport                   │
+│ • Convert % to px for image dimensions     │
+│ • Calculate zoom factor                    │
+│ • Set background image and size            │
+│ • Center zoomed background position        │
+│ • Add caption                              │
+│ • Add 'enlarged' class                     │
+│ • Disable magnifier checkbox               │
+└────────────────────────────────────────────┘
+
+            ↓
+
+┌────────────────────────────────────────────┐
+│ Attach clickHandler to box                 │
+│ Store handler in WeakMap                   │
+└────────────────────────────────────────────┘
+
+            ↓
+
+┌────────────────────────────────────────────┐
+│ removeZoomAreaListeners()                  │
+│ ────────────────────────────────────────── │
+│ • For each box:                            │
+│   ├─ Get handler from WeakMap              │
+│   ├─ Remove click listener                 │
+│   └─ Delete from WeakMap                   │
+│ • Log removal                              │
+└────────────────────────────────────────────┘
+
+
+┌────────────────────────────────────────────┐
+│ initMagnifierControls(config)              │
+│ ────────────────────────────────────────── │
+│ • Get checkbox and strength input          │
+│ • Attach 'change' and 'input' listeners    │
+│ • On change → call updateMagnifier()       │
+└────────────────────────────────────────────┘
+
+            ↓
+
+┌────────────────────────────────────────────┐
+│ updateMagnifier()                          │
+│ ────────────────────────────────────────── │
+│ • Check if magnifier is enabled            │
+│ • Show/hide strength input                 │
+│ • Call toggleMagnifier(enabled, config)    │
+└────────────────────────────────────────────┘
+
+            ↓
+
+┌────────────────────────────────────────────┐
+│ toggleMagnifier(enabled, config)           │
+│ ────────────────────────────────────────── │
+│ • If enabled → setupMagnifier(config)      │
+│ • Else → removeMagnifiers()                │
+└────────────────────────────────────────────┘
+
+            ↓
+
+┌────────────────────────────────────────────┐
+│ setupMagnifier(config)                     │
+│ ────────────────────────────────────────── │
+│ • Clear old magnifier glasses              │
+│ • Get checkbox, strength input, images     │
+│ • If checkbox not checked → exit early     │
+│ • For each image:                          │
+│   ├─ Remove old listeners                  │
+│   ├─ Create magnifier glass                │
+│   ├─ Scale glass size                      │
+│   ├─ Set background image                  │
+│   ├─ Attach moveMagnifier()                │
+│   ├─ Attach mouseleave listener            │
+│   └─ Observe resizing                      │
+│ • Attach strengthInput listener            │
+└────────────────────────────────────────────┘
+
+            ↓
+
+┌────────────────────────────────────────────┐
+│ moveMagnifier(e)                           │
+│ ────────────────────────────────────────── │
+│ • Prevent default                          │
+│ • Get mouse position relative to image     │
+│ • If outside bounds → hide glass,			 │
+│		restore cursor						 │
+│ • Else:                                    │
+│   ├─ Show glass, hide cursor               │
+│   ├─ Clamp position                        │
+│   ├─ Position glass                        │
+│   └─ Update background position            │
+└────────────────────────────────────────────┘
+
+            ↓
+
+┌────────────────────────────────────────────┐
+│ removeMagnifiers()                         │
+│ ────────────────────────────────────────── │
+│ • Remove all magnifier glasses             │
+│ • Remove event listeners from images       │
+│ • Restore cursor                           │
+│ • Disconnect ResizeObserver                │
+└────────────────────────────────────────────┘

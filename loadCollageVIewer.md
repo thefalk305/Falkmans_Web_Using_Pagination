@@ -2,7 +2,8 @@
 
 | **Code** | **Plain English Explanation** |
 |----------|--------------------------------|
-| `import { initPhotoCollage } from './photoCollage.js';` | Bring in the function that sets up clickable highlight boxes. |
+| `import { initPhotoCollage } from './zoomArea.js
+';` | Bring in the function that sets up clickable highlight boxes. |
 | `import { initMagnifierControls } from './magnifier.js';` | Bring in the function that sets up the magnifier toggle and zoom controls. |
 | `export function loadCollageViewer(docId, jsonFile) {` | Define a function to load and display a specific collage from a JSON file. |
 | `const docContainer = document.getElementsByClassName('doc-container')[0];` | Find the container element where highlight boxes will be placed. |

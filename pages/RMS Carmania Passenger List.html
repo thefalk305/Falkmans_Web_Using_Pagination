@@ -21,7 +21,6 @@
 <style>
 .highlight-box.area {
   border-color: rgb(131 32 32 / 90%)  !important; 
- 
   background-color: rgba(255, 255, 0, 0.0) !important; 
 }
 </style>
@@ -40,9 +39,8 @@
 
 
         <p>You will find Aldofina Chytra six lines down the page. The manifest shows that she was 17 years of age.</p>
-      <div class="img-magnifier-container">
-        <img class="magImage" 
-          id="doc-image" 
+      <div class="magGlass-container">
+        <img id="doc-image" 
           src="../images/ChytraPassList.png" alt="ChytraPassList" 
           style="width: 902px;
           height: 1375px;"  />
@@ -66,12 +64,12 @@
 
 <script type="module">
   import { initMagnifierControls } from '../js/magnifier.js';
-  import { initPhotoCollage } from '../js/photoCollage.js';
+  import { zoomArea } from '../js/zoomArea.js';
   document.addEventListener('DOMContentLoaded', () => {
     // Wait briefly to ensure header/footer are loaded
     setTimeout(() => {
       initMagnifierControls();
-      initPhotoCollage();
+      zoomArea();
     }, 100); // You can adjust this delay if needed
   });
 </script>

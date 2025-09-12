@@ -19,7 +19,6 @@
   <style>
   .highlight-box.area {
     border-color: rgb(131 32 32 / 90%)  !important; 
- 
     background-color: rgba(255, 255, 0, 0.0) !important; 
   }
   </style>
@@ -35,20 +34,24 @@
   <!-- content contains the remainder of the page. -->
   <div id="content" >
     <!-- enable magnification on the image. -->
-    <div class="img-magnifier-container">
+    <div class="magGlass-container">
     <p>This is the ship that brought Nils Peter Falkman to America.</p>
       <img
-        class="magImage"
         src="../images/britpasslist1.jpg"
         width="902"
         alt="R.M.S. Britannic Passenger List"
       />
+        <!-- <div
+          class="highlight-box area"
+          data-caption="N.P. Falkman (line 147)"
+          style="left:12%;top:8%;width:33%;height:14%;"
+          data-zoom="100">
+        </div> -->
     </div>
 
-      <div class="img-magnifier-container">
+      <div class="magGlass-container">
         <img
           id="doc-image" 
-          class="magImage"
           src="../images/BritPassList3-1.jpg"
           width="902"
           alt="R.M.S. Britannic Passenger List"
@@ -59,10 +62,10 @@
           style="left:1%;top:92.3%;width:32%;height:2.5%;"
           data-zoom="100">
         </div>
-  </div>
+      </div>
      <b style="color:fuchsia">At the bottom of the page is where you'll find N.P. Falkman (line 147).</b>
 
-  </div>
+    </div>
 
  <!-- Inserts the common footer. -->
   <div id="footer"></div>
@@ -73,12 +76,12 @@
 
 <script type="module">
   import { initMagnifierControls } from '../js/magnifier.js';
-  import { initPhotoCollage } from '../js/photoCollage.js';
+  import { zoomArea } from '../js/zoomArea.js';
   document.addEventListener('DOMContentLoaded', () => {
     // Wait briefly to ensure header/footer are loaded
     setTimeout(() => {
       initMagnifierControls();
-      initPhotoCollage();
+      zoomArea();
     }, 100); // You can adjust this delay if needed
   });
 </script>

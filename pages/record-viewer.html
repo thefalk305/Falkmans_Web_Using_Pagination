@@ -13,16 +13,16 @@
   <meta name="page-title" content="Genealogy Document Archives" />
   <link rel="icon" href="../assets/favicon.ico">
 
+	<link href="../css/font-awesome-7.0.1-all.min.css" rel="stylesheet" type="text/css" />
+
   <link href="../css/collage.css" rel="stylesheet" type="text/css" />
   <link href="../css/magnify.css" rel="stylesheet" type="text/css" />
   <link href="../css/records.css" rel="stylesheet" type="text/css" />
 
 <style>
 .highlight-box.area {
-  pointer-events: auto;
   border-color: rgba(255, 0, 0, 0.5) !important; 
   background-color: rgba(255, 255, 0, 0.0) !important; 
-  cursor: pointer;
 }
 </style>
 
@@ -37,9 +37,15 @@
     <div id="form-container" style="display: none;">
       <form id="doc-form" class="styled-form">
         <fieldset>
-          <legend>Add New Document</legend>
-          <h3>This form facilitates adding a new document to the Document Archives. Fill in the Title, Notes and Caption with the appropriate information. Choose a document image from the 'records' folder.  Position and size the red box around the area of interest in the document. The 'Submit' button will copy all the form information to the clipboard which can then be pasted into the records.json file. Remember to assign a sequential 'id's when pasting the new document information into records.json.</h3>
-          
+          <legend>Instructions for adding a new document to the Document Archives: </legend>
+          <ul style="width: 90%;">
+            <li>Fill in the Title, Notes and Caption with the appropriate information.</li>
+            <li>Choose a document image from the 'records' folder</li>
+            <li>Position and size the <span style="color: red;">red box </span> around the area of interest in the document.</li>
+            <p style="margin: 0.2em;" >Note: The <span style="color: red;">red box </span> will move as you click the <i class="fa-solid fa-arrows-up-down"></i> arrows to adjust it's size and position.</p>
+            <li>Click the <span style="font-weight: bold;">'Submit' </span>  button when all fields are filled in.  This action will copy the form data to the clipboard.</li>
+            <li>The formatted data can then be pasted into the records.json file. Remember to assign sequential 'id's when pasting the new document information into records.json.</li>
+          </ul>          
           <div class="form-row">
             <label for="title">Title:</label>
             <input type="text" id="title" />
@@ -53,30 +59,30 @@
           <div class="form-row percent-group">
             <div class="percent-pair">
               <label for="x">x:</label>
-              <input type="number" id="x" />
+              <input type="number" id="x" value="5">
             </div>
             <div class="percent-pair">
               <label for="y">y:</label>
-              <input type="number" id="y" />
+              <input type="number" id="y" value="10" />
             </div>
             <div class="percent-pair">
               <label for="width">width:</label>
-              <input type="number" id="width" />
+              <input type="number" id="width" value="20" />
             </div>
             <div class="percent-pair">
               <label for="height">height:</label>
-              <input type="number" id="height" />
+              <input type="number" id="height" value="10" />
             </div>
           </div>          
           
           <div class="form-row">
             <label for="notes">Notes:</label>
-            <textarea id="notes" rows="4" cols="80"></textarea>
+            <textarea id="notes" rows="2" cols="80"></textarea>
           </div>
 
           <div class="form-row">
             <label for="caption">Caption:</label>
-            <textarea id="caption" rows="4" cols="80"></textarea>
+            <textarea id="caption" rows="2" cols="80"></textarea>
           </div>
 
           <div class="form-actions">
@@ -85,9 +91,9 @@
         </fieldset>
       </form>    
     </div>
-    <div class="doc-container">
-      <div class="img-magnifier-container">
-        <img id="doc-image" class="magImage" src="" alt="Document" style="width: 100%;" />
+    <div id="doc-container">
+      <div class="magGlass-container">
+        <img id="doc-image" src="" alt="Document" style="width: 100%;" />
       <div id="highlight" class="highlight-box"></div>
       </div>
     </div>
@@ -98,88 +104,38 @@
 
 
 <script type="module">
-  import { initMagnifierControls } from '../js/magnifier.js';
-  import { loadCollageViewer } from '../js/loadCollageViewer.js';
+  import { createAreas } from '../js/create-areas.js';
 
   const params = new URLSearchParams(window.location.search);
-  const docId = params.get('id');
-  const isEditMode = params.get('mode') === 'edit';
-
-  const formContainer = document.getElementById('form-container');
-  formContainer.style.display = isEditMode ? 'block' : 'none';
-
-  const img = document.getElementById('doc-image');
-  const box = document.getElementById('highlight');
-  const notesEl = document.getElementById('doc-notes');
-
-  // Load document from records.json if id is present
-  if (docId) {
-    fetch('../data/records.json')
-      .then(res => res.json())
-      .then(data => {
-      let foundDoc = null;
-      const params = new URLSearchParams(window.location.search);
-      const docId = params.get('id');
-      loadCollageViewer(docId, '../data/records.json');
-
-      for (const person of data) {
-        foundDoc = person.documents.find(doc => doc.id === docId);
-        if (foundDoc) break;
-      }
-
-      if (!foundDoc) {
-        notesEl.textContent = 'Document not found.';
-        return;
-      }
-
-      const { file, highlight, notes } = foundDoc;
-
-      img.src = file;
-      notesEl.textContent = notes;
-
-      function updateHighlightBox() {
-        box.style.left = `${highlight.x}%`;
-        box.style.top = `${highlight.y}%`;
-        box.style.width = `${highlight.width}%`;
-        box.style.height = `${highlight.height}%`;
-      }
-
-      img.onload = () => {
-        updateHighlightBox();
-        initMagnifierControls();
-      };
-
-      window.addEventListener('resize', updateHighlightBox);
-    })
-    .catch(err => {
-      notesEl.textContent = 'Error loading document data.';
-      console.error('Failed to load records.json:', err);
-    });
-  }
-
   // Form logic only runs in edit mode
-  if (isEditMode) {
+  if (params.get('mode') === 'edit') {
+
+    document.getElementById('form-container').style.display = 'block'
+    function updateHighlightBoxFromInputs() {
+      const x = parseFloat(document.getElementById('x').value) || 20;
+      const y = parseFloat(document.getElementById('y').value) || 20;
+      const w = parseFloat(document.getElementById('width').value) || 20;
+      const h = parseFloat(document.getElementById('height').value) || 10;
+
+      const imgWidth = img.clientWidth;
+      const imgHeight = img.clientHeight;
+      const boxX = (x / 100) * imgWidth;
+      const boxY = (y / 100) * imgHeight;
+      const boxW = (w / 100) * imgWidth;
+      const boxH = (h / 100) * imgHeight;
+
+      box.style.left = `${boxX}px`;
+      box.style.top = `${boxY}px`;
+      box.style.width = `${boxW}px`;
+      box.style.height = `${boxH}px`;
+    }
+
     // Live update box when percent inputs change
     const percentFields = ['x', 'y', 'width', 'height'];
     percentFields.forEach(id => {
       document.getElementById(id).addEventListener('input', () => {
-        const x = parseFloat(document.getElementById('x').value) || 0;
-        const y = parseFloat(document.getElementById('y').value) || 0;
-        const w = parseFloat(document.getElementById('width').value) || 0;
-        const h = parseFloat(document.getElementById('height').value) || 0;
 
-        const imgWidth = img.clientWidth;
-        const imgHeight = img.clientHeight;
-
-        const boxX = (x / 100) * imgWidth;
-        const boxY = (y / 100) * imgHeight;
-        const boxW = (w / 100) * imgWidth;
-        const boxH = (h / 100) * imgHeight;
-
-        box.style.left = `${boxX}px`;
-        box.style.top = `${boxY}px`;
-        box.style.width = `${boxW}px`;
-        box.style.height = `${boxH}px`;
+        updateHighlightBoxFromInputs();
       });
     });
 
@@ -200,6 +156,7 @@
                 notes: document.getElementById('notes').value
       };
 
+      // format data for records.json file
       const jsonText = `
       { "id": "9999",
         "title": "${doc.title}",
@@ -231,30 +188,23 @@
         const url = URL.createObjectURL(file);
         img.src = url;
         notesEl.textContent = document.getElementById('notes').value;
-        initMagnifierControls();
+
+        img.onload = () => {
+          setTimeout(() => {
+            updateHighlightBoxFromInputs(); // now layout is stable
+            initMagnifierControls();
+          }, 50); // adjust if needed
+        };
       }
-    });
+    });  
+  } else {
+    // not edit mode - continue to display record
+    const params = new URLSearchParams(window.location.search);
+    const docId = params.get('id');
+    createAreas(docId, '../data/records.json');
   }
 </script>
 
-
-
-<script type="module">
-  import { initMagnifierControls } from '../js/magnifier.js';
-  document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-      initMagnifierControls();
-    }, 100);
-  });
-</script>
-
-<!-- <script type="module">
-  import { loadCollageViewer } from '../js/loadCollageViewer.js';
-
-  const params = new URLSearchParams(window.location.search);
-  const docId = params.get('id');
-  loadCollageViewer(docId, '../data/records.json');
-</script> -->
 </body>
 </html>
 

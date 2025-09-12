@@ -1,8 +1,11 @@
-// loadCollageViewer.js
-// Documentation:
-// Bring in two helper functions from other files.
+// create-areas.js
+// Documentation: createAreas will read jsonFile and 
+// append a div for each area in the section.
+// It also reads the url and notes from the jsonFile
+
+// import in two helper functions from other files.
 // These will be used later to set up the interactive features.
-import { initPhotoCollage } from './photoCollage.js';
+import { zoomArea } from './zoomArea.js';
 import { initMagnifierControls } from './magnifier.js';
 
 /**
@@ -10,11 +13,11 @@ import { initMagnifierControls } from './magnifier.js';
  * @param {string} docId - The ID of the collage to display.
  * @param {string} jsonFile - The path to the JSON file containing collage data.
  */
-export function loadCollageViewer(docId, jsonFile) {
+export function createAreas(docId, jsonFile) {
   // Get references to important HTML elements on the page.
-  const docContainer = document.getElementsByClassName('doc-container')[0]; // Where highlight boxes will go
-  const img = document.getElementById('doc-image'); // The main collage image
-  const notesEl = document.getElementById('doc-notes'); // The notes/caption area
+  const docContainer = document.getElementById('doc-container'); // Where highlight boxes will go
+  const img = document.getElementById('doc-image'); // Where the image goes
+  const notesEl = document.getElementById('doc-notes'); // Where the notes/caption area
 
   // If any required info or elements are missing, stop here.
   if (!docId || !docContainer || !img || !notesEl) return;
@@ -66,7 +69,7 @@ export function loadCollageViewer(docId, jsonFile) {
 
       // Wait until the image is fully loaded before enabling interactivity.
       img.onload = () => {
-        initPhotoCollage();       // Make highlight boxes clickable/zoomable
+        zoomArea();       // Make highlight boxes clickable/zoomable
         initMagnifierControls();  // Enable magnifier toggle and zoom controls
       };
     })

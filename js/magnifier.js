@@ -1,6 +1,11 @@
 // =======================
+// magnifier.js 
 // Magnifier Module
+// magnifier.js controls the magnifier glass that is used 
+// to enlarge an area of an image to show greater detail.
 // =======================
+  const baseGlassWidth = 250;
+  const baseGlassHeight = 150;
 
 // Tracks which images have magnifier event listeners attached
 let attachedImages = new WeakMap();
@@ -14,19 +19,19 @@ let resizeObserver = null;
 // Default configuration for magnifier controls
 export const defaultMagConfig = {
   checkboxID: 'mag-checkbox',     // ID of checkbox that toggles magnifier
-  zoomInputID: 'mag',             // ID of input controlling zoom level
-  defaultZoom: 2                  // Default zoom factor
+  strengthInputID: 'mag-strength',// ID of input controlling mag-strength level
+  defaultMagStrength: 2                  // Default mag-strength factor
 };
 
 /**
  * Initializes magnifier glasses for all .magImage 
  * elements when enabled is toggled ON.
- * Dynamically scales glass size based on zoom level and CSS-defined defaults.
+ * Dynamically scales glass size based on mag-strength level and CSS-defined defaults.
  */
 export function setupMagnifier({
   checkboxID = 'mag-checkbox',
-  zoomInputID = 'mag',
-  defaultZoom = 2
+  strengthInputID = 'mag-strength',
+  defaultMagStrength = 2
 } = {}) {
   // Remove any existing magnifier glasses from previous sessions
   document.querySelectorAll('.img-magnifier-glass').forEach(glass => glass.remove());
@@ -34,28 +39,14 @@ export function setupMagnifier({
 
   // Get control elements
   const checkbox = document.getElementById(checkboxID);
-  const zoomInput = document.getElementById(zoomInputID);
-  const images = document.querySelectorAll('.magImage');
-
-  // Determine if magnifier is enabled and get current zoom level
+  const strengthInput = document.getElementById(strengthInputID);
+  const images = document.querySelectorAll('.magGlass-container img');
+  // Determine if magnifier is enabled and get current mag-strength level
   let magnifierActive = checkbox?.checked;
-  let currentZoom = parseFloat(zoomInput?.value) || defaultZoom;
+  let currentMagStrength = parseFloat(strengthInput?.value) || defaultMagStrength;
 
   // Exit early if magnifier is not enabled
   if (!magnifierActive) return;
-
-  // Create (then remove) a temporary glass element to read default size from CSS
-  const tempGlass = document.createElement('div');
-  tempGlass.className = 'img-magnifier-glass';
-  tempGlass.style.position = 'absolute';
-  tempGlass.style.visibility = 'hidden';
-  document.body.appendChild(tempGlass);
-
-  const computedStyle = window.getComputedStyle(tempGlass);
-  const baseGlassWidth = parseFloat(computedStyle.width);
-  const baseGlassHeight = parseFloat(computedStyle.height);
-
-  document.body.removeChild(tempGlass);
 
   // Loop through each image to attach magnifier logic
   // there may be several images ona page
@@ -69,24 +60,22 @@ export function setupMagnifier({
 
     // Create magnifier glass element
     const glass = document.createElement('div');
-    glass.className = 'img-magnifier-glass';
+    glass.className = 'img-magnifier-glass hide-cursor';
     glass.style.pointerEvents = 'none';
     glass.style.opacity = '0';
+    glass.style.cursor = 'none';
 
-    // Scale glass size based on zoom level
-    const scale = getGlassScale(currentZoom, defaultZoom);
-    const scaledWidth = baseGlassWidth * scale;
-    const scaledHeight = baseGlassHeight * scale;
-    glass.style.width = `${scaledWidth}px`;
-    glass.style.height = `${scaledHeight}px`;
+    // Scale glass size based on mag-strength level
+    const scale = getGlassScale(currentMagStrength, defaultMagStrength);
+    glass.style.width = `${baseGlassWidth * scale}px`;
+    glass.style.height = `${baseGlassHeight * scale}px`;
 
     // Insert glass into DOM before the image
     img.parentElement.insertBefore(glass, img);
 
     // Set background image and size for zoom effect
     const updateBackgroundSize = () => {
-      const rect = img.getBoundingClientRect();
-      glass.style.backgroundSize = `${rect.width * currentZoom}px ${rect.height * currentZoom}px`;
+      updateGlassBackground(glass, img, currentMagStrength);
     };
 
     glass.style.backgroundImage = `url('${img.src}')`;
@@ -102,16 +91,15 @@ export function setupMagnifier({
     const moveMagnifier = (e) => {
       e.preventDefault();
 
-      const rect = img.getBoundingClientRect();
+    const rect = img.getBoundingClientRect();
       const containerRect = img.parentElement.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
 
       // Hide glass and show cursor if cursor is outside image bounds
-      if (x < 0 || y < 0 || x > rect.width || y > rect.height) {
+      if (x < -1 || y < -1 || x > rect.width || y > rect.height) {
         glass.style.opacity = '0';
-        img.classList.remove('hide-cursor');
-        img.parentElement.classList.remove('hide-cursor');
+        restoreCursor(img)
         return;
       }
 
@@ -123,16 +111,16 @@ export function setupMagnifier({
       // Clamp position to avoid edge overflow
       const w = glass.offsetWidth / 2;
       const h = glass.offsetHeight / 2;
-      const clampedX = Math.max(w / currentZoom, Math.min(x, rect.width - w / currentZoom));
-      const clampedY = Math.max(h / currentZoom, Math.min(y, rect.height - h / currentZoom));
+      const clampedX = Math.max(w / currentMagStrength, Math.min(x, rect.width - w / currentMagStrength));
+      const clampedY = Math.max(h / currentMagStrength, Math.min(y, rect.height - h / currentMagStrength));
 
       // Position glass relative to container
       glass.style.left = `${e.clientX - containerRect.left - w}px`;
       glass.style.top = `${e.clientY - containerRect.top - h}px`;
 
       // Adjust background position for zoom effect
-      const bgX = (clampedX / rect.width) * (rect.width * currentZoom) - w;
-      const bgY = (clampedY / rect.height) * (rect.height * currentZoom) - h;
+      const bgX = (clampedX / rect.width) * (rect.width * currentMagStrength) - w;
+      const bgY = (clampedY / rect.height) * (rect.height * currentMagStrength) - h;
       glass.style.backgroundPosition = `-${bgX}px -${bgY}px`;
     };
 
@@ -146,8 +134,7 @@ export function setupMagnifier({
       if (glass) {
         glass.style.opacity = '0';
       }
-      img.classList.remove('hide-cursor');
-      img.parentElement.classList.remove('hide-cursor');
+      restoreCursor(img)
     });
 
     // Store event handlers for cleanup
@@ -160,8 +147,7 @@ export function setupMagnifier({
     if (!resizeObserver) {
       resizeObserver = new ResizeObserver(() => {
         magnifierGlasses.forEach((glass, img) => {
-          const rect = img.getBoundingClientRect();
-          glass.style.backgroundSize = `${rect.width * currentZoom}px ${rect.height * currentZoom}px`;
+        updateGlassBackground(glass, img, currentMagStrength);
         });
       });
     }
@@ -169,21 +155,16 @@ export function setupMagnifier({
   });
 
   /**
-   * Updates zoom level and resizes magnifier glass when zoom input changes
+   * Updates mag-strength level and resizes magnifier glass when mag-strength input changes
    */
-  zoomInput?.addEventListener('input', (e) => {
-    currentZoom = parseFloat(e.target.value) || defaultZoom;
+  strengthInput?.addEventListener('input', (e) => {
+    currentMagStrength = parseFloat(e.target.value) || defaultMagStrength;
 
     magnifierGlasses.forEach((glass, img) => {
-      const rect = img.getBoundingClientRect();
-      glass.style.backgroundSize = `${rect.width * currentZoom}px ${rect.height * currentZoom}px`;
-
-      const scale = getGlassScale(currentZoom, defaultZoom);
-      const scaledWidth = baseGlassWidth * scale;
-      const scaledHeight = baseGlassHeight * scale;    
-      glass.style.width = `${scaledWidth}px`;
-      glass.style.height = `${scaledHeight}px`;
-
+      updateGlassBackground(glass, img, currentMagStrength);
+      const scale = getGlassScale(currentMagStrength, defaultMagStrength);
+      glass.style.width = `${baseGlassWidth * scale}px`;
+      glass.style.height = `${baseGlassHeight * scale}px`;
     });
   });
 }
@@ -196,10 +177,8 @@ export function removeMagnifiers() {
   document.querySelectorAll('.img-magnifier-glass').forEach(glass => glass.remove());
   magnifierGlasses.clear();
 
-  document.querySelectorAll('.magImage').forEach(img => {
-    img.classList.remove('hide-cursor');
-    img.parentElement.classList.remove('hide-cursor');
-
+  document.querySelectorAll('.magGlass-container img').forEach(img => {
+    restoreCursor(img)
     const handlers = attachedImages.get(img);
     if (handlers) {
       img.removeEventListener('mousemove', handlers.mouse);
@@ -213,6 +192,18 @@ export function removeMagnifiers() {
     resizeObserver.disconnect();
     resizeObserver = null;
   }
+}
+
+// un-hide the cursor if outside img or mag is OFF
+function restoreCursor(img) {
+  img.classList.remove('hide-cursor');
+  img.parentElement.classList.remove('hide-cursor');
+}
+
+// Updates the background size of the magnifier glass based on image size and strength
+function updateGlassBackground(glass, img, strength) {
+  const rect = img.getBoundingClientRect();
+  glass.style.backgroundSize = `${rect.width * strength}px ${rect.height * strength}px`;
 }
 
 /**
@@ -229,41 +220,38 @@ export function toggleMagnifier(enabled, config = defaultMagConfig) {
 }
 
 /**
- * Initializes magnifier controls (checkbox + zoom input)
+ * Initializes magnifier controls (checkbox + mag-strength input)
  * Automatically sets up or removes magnifier based on checkbox state
  */
-import { initPhotoCollage, removePhotoCollageListeners } from './photoCollage.js';
+import { zoomArea, removeZoomAreaListeners } from './zoomArea.js';
 
 export function initMagnifierControls(config = defaultMagConfig) {
   const checkbox = document.getElementById(config.checkboxID);
-  const zoomInput = document.getElementById(config.zoomInputID);
+  const strengthInput = document.getElementById(config.strengthInputID);
 
-  if (!checkbox || !zoomInput) return;
+  if (!checkbox || !strengthInput) return;
 
   const updateMagnifier = () => {
     const enabled = checkbox.checked;
-    zoomInput.style.display = enabled ? 'block' : 'none';
+    strengthInput.style.display = enabled ? 'block' : 'none';
     toggleMagnifier(enabled, config);
 
-    if (enabled) {
-      removePhotoCollageListeners();
-      document.querySelectorAll('.highlight-box.area').forEach(box => {
-        box.style.pointerEvents = 'none';
-      });
-    } else {
-      document.querySelectorAll('.highlight-box.area').forEach(box => {
-        box.style.pointerEvents = 'auto';
-      });
+    document.querySelectorAll('.highlight-box.area').forEach(box => {
+      box.style.pointerEvents = enabled ? 'none' : 'auto';
+    });
 
-      initPhotoCollage(); // ✅ Let it handle deduplication internally
-    }  };
-
+    // if (enabled) {
+    //   removeZoomAreaListeners();
+    //   // Magnifier is active — zoom boxes will ignore clicks via internal guard
+    // } else {
+    //   zoomArea(); // Reinitialize zoom logic
+    // }  
+  };
     checkbox.addEventListener('change', updateMagnifier);
-    zoomInput.addEventListener('input', updateMagnifier);
-
+    strengthInput.addEventListener('input', updateMagnifier);
 }
 
-// scale glass size with zoom so we don't loose much area when zoomed.
-  function getGlassScale(zoom) {
-    return Math.max(1.0, 0.375 * zoom + 0.25);
+// scale glass size with mag-strength so we don't loose much area when zoomed.
+  function getGlassScale(magStrength) {
+    return Math.max(1.0, 0.375 * magStrength + 0.25);
   }

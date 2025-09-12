@@ -15,6 +15,7 @@
 
   <link href="../css/magnify.css" rel="stylesheet" type="text/css" />
   <link href="../css/collage.css" rel="stylesheet" type="text/css" />
+  <link href="../css/records.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -23,68 +24,23 @@
   <div id="header"></div>
   <script src="../js/loadHeader.js"></script>
 
-  <div id="content">
-    <div id="document-container"></div>
-
-    <!-- displays the names and links contained in collage.json  -->
-    <script>
-      fetch('../data/collage.json')
-        .then(res => res.json())
-        .then(data => {
-          // create the container that will display the individuals name and links
-          const container = document.getElementById('document-container');
-
-          // for each collage in 'collage.json' create a section that displays 
-          // the name and the list of the collage for that individual
-          data.forEach(person => {
-            const section = document.createElement('div');
-            section.className = 'person-section';
-            // <h2> to display individuals name
-            const nameHeader = document.createElement('h2');
-            nameHeader.textContent = person.name;
-            section.appendChild(nameHeader);
-            // <ul> to display the links
-            const list = document.createElement('ul');
-            list.className = 'doc-list';
-            // Add the <li>'s that contain the links
-            person.links.forEach(doc => {
-              const li = document.createElement('li');
-
-              const link = document.createElement('a');
-              // const highlight = doc.highlight;
-              // const notes = doc.notes || '';
-
-              // create the link to collage-viewer, appending the 'doc.id 
-              // from collage.json as the query parameter'
-              // collage-viewer.html will use this query parameter to fetch the remainder of the collage to populate the page.
-              link.href = `collage-viewer.html?id=${doc.id}`;              
-              link.target = '_blank';
-              link.textContent = doc.title;
-
-              // Append the link to the <li>
-              li.appendChild(link);
-              // li.appendChild(noteSpan);
-
-              // Append the <li> to teh list
-              list.appendChild(li);
-            });
-            // Append the list to the section
-            section.appendChild(list);
-            // Finally, append the section to the container
-            container.appendChild(section);
-          });
-        })
-        .catch(err => {
-        // Display an error message in the console if something went wrong
-          document.getElementById('document-container').textContent = 'Error loading document data.';
-          console.error('Failed to load JSON:', err);
-        });
-    </script>
-  </div>
+  <!-- 'content' will displays the names 
+  and links contained in records.json -->
+  <div id="content"></div>
 
   <div id="footer"></div>
   <script src="../js/loadFooter.js"></script>
 </div>
+
+<script type="module">
+  import { listBuilder } from '../js/list-builder.js';
+
+  const jsonFile = '../data/collage.json';
+  const viewer = 'collage-viewer.html';
+
+  listBuilder({ jsonFile, viewer });
+</script>
+
 
 <!-- <script type="module">
   import { initMagnifierControls } from '../js/magnifier.js';

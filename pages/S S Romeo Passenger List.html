@@ -19,7 +19,6 @@
   <style>
   .highlight-box.area {
     border-color: rgb(131 32 32 / 90%)  !important; 
- 
     background-color: rgba(255, 255, 0, 0.0) !important; 
   }
   </style>
@@ -36,10 +35,9 @@
   <!-- content contains the remainder of the page. -->
   <div id="content" >
 
-		<div class="img-magnifier-container">
+		<div class="magGlass-container">
 	    <p>At the age of 28, Nils Pitt Falkman traveled from Göteborg, Sweden to Hull, England --- 9 Oct 1891</p>
       <img
-				class="magImage"
 				src="../images/RomeoPassList.png"
 				alt="S.S. Samaria"
         style="width: 902px;"
@@ -48,18 +46,16 @@
 
     <p><b style="color:fuchsia">On line 9534 of this page is where you'll find N.P. Falkman.</b></p>
 
-    <div id="highlight" class="highlight-box" ></div>    
+    <div
+      class="magGlass-container">
+      <img 
+        id="doc-image" 
+        src="../images/RomeoPassList2.png" alt="Samaria List" style="width: 902px;"  /> 
       <div
-       class="img-magnifier-container">
-        <img 
-          id="doc-image" 
-          class="magImage" src="../images/RomeoPassList2.png" alt="Samaria List" style="width: 902px;"  /> 
-        <div
-          class="highlight-box area"
-          data-caption="N. P. Falkman on line 9534"
-          style="left:7%;top:36%;width:39%;height:2.4%;"
-          data-zoom="100">
-        </div>
+        class="highlight-box area"
+        data-caption="N. P. Falkman on line 9534"
+        style="left:7%;top:36%;width:39%;height:2.4%;"
+        data-zoom="100">
       </div>
     </div>
   </div>
@@ -71,12 +67,12 @@
 
 <script type="module">
   import { initMagnifierControls } from '../js/magnifier.js';
-  import { initPhotoCollage } from '../js/photoCollage.js';
+  import { zoomArea } from '../js/zoomArea.js';
   document.addEventListener('DOMContentLoaded', () => {
     // Wait briefly to ensure header/footer are loaded
     setTimeout(() => {
       initMagnifierControls();
-      initPhotoCollage();
+      zoomArea();
     }, 100); // You can adjust this delay if needed
   });
 </script>

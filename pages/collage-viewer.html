@@ -3,28 +3,23 @@
 <head>
   <title>Falkman Family History</title>
   <meta content="Falkman family history site." name="description" />
-  <meta content="family history, ancestors, family, parents, grand parents, aunts & uncles, sibling, brothers & sisters, great-grandparents, cousins" name="keywords" />
-  <meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" />
-  <meta content="en-us" http-equiv="Content-Language" />
+  <meta charset="UTF-8">  
   <meta content="Allen Falkman" name="author"/>
-  <meta content="General" name="rating" />
-  <meta content="no" http-equiv="imagetoolbar" />
   <meta content="Copyright © 2025, Allen Falkman All Rights Reserved" name="copyright" />
   <meta name="page-title" content="Collage Archives" />
   <link rel="icon" href="../assets/favicon.ico">
-
-   <link href="../css/collage.css" rel="stylesheet" type="text/css" />
- <link href="../css/magnify.css" rel="stylesheet" type="text/css" />
+  <link href="../css/collage.css" rel="stylesheet" type="text/css" />
+  <link href="../css/magnify.css" rel="stylesheet" type="text/css" />
   <link href="../css/records.css" rel="stylesheet" type="text/css" />
 
- <style>
-.highlight-box.area {
-  pointer-events: auto;
-  border-color: rgba(255, 0, 0, 0.1) !important; 
-  background-color: rgba(255, 255, 0, 0.0) !important; 
-  cursor: pointer;
-}
-</style>
+  <style>
+  .highlight-box.area {
+    /* pointer-events: auto; */
+    border-color: rgba(255, 0, 0, 0.0) !important; 
+    background-color: rgba(255, 255, 0, 0.0) !important; 
+    /* cursor: pointer; */
+  }
+  </style>
 
 </head>
 <body>
@@ -34,11 +29,9 @@
 
     <h3 id="doc-notes" ></h3>
 
-    <div class="doc-container">
-      <div class="img-magnifier-container">
-        <img id="doc-image" class="magImage" src="" alt="Document" style="width: 100%;" />
+      <div id="doc-container" class="magGlass-container">
+        <img id="doc-image" src="" alt="Document" style="width: 100%;" />
       </div>
-    </div>
 
     <div id="footer"></div>
     <script src="../js/loadFooter.js"></script>
@@ -46,21 +39,11 @@
   </div>
 
 <script type="module">
-  import { loadCollageViewer } from '../js/loadCollageViewer.js';
+  import { createAreas } from '../js/create-areas.js';
   const params = new URLSearchParams(window.location.search);
   const docId = params.get('id');
-  loadCollageViewer(docId, '../data/collage.json');
+  createAreas(docId, '../data/collage.json');
 </script>
-
-<!-- <script type="module">
-  import { initMagnifierControls } from '../js/magnifier.js';
-  document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-      initMagnifierControls();
-    }, 100);
-  });
-</script> -->
-
 
 </body>
 </html>

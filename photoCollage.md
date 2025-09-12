@@ -1,4 +1,5 @@
-# photoCollage.js — Code vs. Plain English
+# zoomArea.js
+ — Code vs. Plain English
 
 | **Code** | **Plain English Explanation** |
 |----------|--------------------------------|

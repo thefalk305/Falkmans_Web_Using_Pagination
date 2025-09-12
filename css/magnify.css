@@ -9,6 +9,10 @@ body {
   font-family: 'IM Fell English', serif;
 }
 
+body {
+  font-size: 18px;
+	}
+
 a {
   z-index: 99;
   font-weight: bold;
@@ -44,7 +48,11 @@ h4 {
 	font-size: .9em;
 }
 
- /*Set the size of the magnifier glass:*/
+/*=========================================================
+  All <img> elements are a child of .img-magnifier-glass.
+  This enables the use of the magnifier glass on the image
+==========================================================*/
+/*Set the size of the magnifier glass:*/
 .img-magnifier-glass {
   position: absolute;
   border: 1px solid #f00;
@@ -62,6 +70,30 @@ h4 {
 	pointer-events: none;
  }
 
+.magGlass-container.hide-cursor,
+.magGlass-container.hide-cursor * {
+  cursor: none !important;
+}
+
+.img-magnifier-glass img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+.img-magnifier-glass {
+  outline: 2px dashed red;
+}
+/* Comment out to see cursor in mag glass */
+/* Hide cursor when applied to the image */
+.img-magnifier-glass img.hide-cursor {
+  cursor: none !important;
+}
+
+/* Hide cursor when applied to the container */
+.img-magnifier-glass.hide-cursor {
+  cursor: none !important;
+}
+
 #glassToggle {
 	  background-color:#EBDF9F;
     height: 60px;
@@ -74,7 +106,7 @@ h4 {
     border-radius: 15px;
 	}
 
-#mag {
+#mag-strength {
 	position: absolute;
   right: 194px;
   height: 24px;
@@ -177,17 +209,6 @@ h4 {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
   border-radius: 10px;
 } */
-.magImage {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  /* aspect-ratio: 100 / 123; */
-}
-
-/* Comment out to see cursor in mag glass */
-.magImage.hide-cursor {
-  cursor: none !important;
-}
 
 .image-grid {
   display: grid;
@@ -315,30 +336,29 @@ figcaption {
   position: absolute;
 }
 
-
-.img-magnifier-container {
+.magGlass-container {
   text-align: center;
   position:relative;
   /* width: 100%; */
   z-index: 1;
 }
 
-.img-magnifier-container p {
+.magGlass-container p {
   text-align: center !important;
   font-weight: bold;
   color: #485E48;
 }
 
-.img-magnifier-container img {
+.magGlass-container img {
   display: inline-block; /* Ensures it responds properly to text-align */
 }
 
 .highlight-box {
-position: absolute;
-border: 2px solid red;
-pointer-events: none;
-z-index: 9;
-border-radius: 10px;
+  position: absolute;
+  border: 2px solid red;
+  pointer-events: none;
+  z-index: 9;
+  border-radius: 10px;
 }
 
 .navbar {

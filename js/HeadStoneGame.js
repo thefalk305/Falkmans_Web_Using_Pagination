@@ -10,7 +10,7 @@
 
   // Fetch the list of headstone images from a JSON file.
   // Only images that do NOT include "stone" in their name are used in the game.
-  fetch("images/headstones/headstones.json")
+  fetch("../images/headstones/headstones.json")
     .then(res => res.json())
     .then(files => {
       images = files.filter(name => !name.includes("stone"));
@@ -43,10 +43,10 @@
     grid.innerHTML = "";
     images.forEach((stone, index) => {
       const div = document.createElement("div");
-      div.className = "stone img-magnifier-container";
+      div.className = "stone magGlass-container";
       const img = document.createElement("img");
       img.className = "magImage";
-      img.src = `images/headstones/${stone}`;
+      img.src = `../images/headstones/${stone}`;
       img.alt = stone;
       img.onclick = () => openModal(stone); // When clicked, open the guessing modal.
       div.appendChild(img);
@@ -59,7 +59,7 @@
     currentStone = stone;
     points = 5;
     correct = false;
-    modalImage.src = `images/headstones/${stone}`;
+    modalImage.src = `../images/headstones/${stone}`;
     modalImage.style.filter = "blur(8px) sepia(1)";
     pointsBtn.textContent = `Points: ${points}`;
     totalScoreBtn.textContent = `Total Score: ${score}`;
@@ -146,7 +146,7 @@
   refreshBtn.onclick = () => {
     score = 0;
     scoreDisplay.textContent = score;
-    fetch("images/headstones/headstones.json")
+    fetch("../images/headstones/headstones.json")
       .then(res => res.json())
       .then(files => {
         images = files.filter(name => !name.includes("stone"));

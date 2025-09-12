@@ -1,4 +1,7 @@
-﻿html {
+﻿/* falkman.css
+Main css file. */
+
+html {
 	height:100%;
 }
 
@@ -110,6 +113,9 @@ a:active {
 	padding: 5px;
 	text-align: left;
 	vertical-align: top;
+	body {
+		font-size: 18px;
+	}
 }
 
 /* 📱 Mobile override */
