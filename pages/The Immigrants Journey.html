@@ -26,6 +26,26 @@
   line-height: 36px;
   text-align: center;
 }
+
+#pause-btn {
+  position: relative;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  padding: 8px 16px;
+  font-size: 16px;
+  background-color: white;
+  /* border: 1px solid #ccc; */
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+	#map {
+		height: 600px; 
+		width: 80%; 
+		position: relative;
+		margin: auto;}
 	</style>
 </head>
 
@@ -36,6 +56,9 @@
   <!-- Inserts the common header-->
   <div id="header"></div>
   <script src="../js/loadHeader.js"></script>
+
+	<div id="map"></div>
+	<button id="pause-btn">Pause</button>
 
   <!-- content contains the remainder of the page. -->
   <div id="content" >
@@ -48,9 +71,6 @@
 		great-grandmother on the other hand, travelled from Arbrä, to Göteborg. And 
 		then boarded a boat to Hamburg, Germany. And from Homburg, by train to Bremen. 
 		And it was from Bremen that she sailed to America.</p>
-
-
-		<div id="map" style="width: 80%; height: 500px; margin: 0 auto;"></div>
 
 		<p aligh="justify">Here is another map that shows the may routes that have been taken 
 		by imagrents traveling from Europe to North America.By far the majority of Swedes came
