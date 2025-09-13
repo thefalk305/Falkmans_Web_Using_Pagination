@@ -1,6 +1,7 @@
 ﻿window.onload = function () {
   const map = L.map('map');
-
+  let userHasInteracted = false;
+  
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -52,6 +53,7 @@
 
   let currentIndex = 0;
   let isPaused = false;
+  let ismuted = false;
   let animationTimeout = null;
 
   const movingMarker = L.marker(allPoints[0], {
@@ -60,11 +62,11 @@
 
   function moveMarker() {
     if (isPaused) return;
-
+    playAmbientSound(segmentTypes[currentIndex]);
     if (currentIndex === 0) {
       movingMarker.setLatLng(allPoints[currentIndex]);
       movingMarker.setIcon(L.divIcon({ html: '🚂', iconSize: [24, 24], iconAnchor: [12, 12] }));
-      movingMarker.bindPopup('<b>Göteborg</b><br>Most Swedish Emigrant left from here').openPopup();
+      movingMarker.bindPopup('<b>Göteborg</b><br>Most Swedish Emigrant left from here by ship').openPopup();
       animationTimeout = setTimeout(() => {
         movingMarker.closePopup();
         currentIndex++;
@@ -103,7 +105,7 @@
         popupDelay = 3000;
         currentIndex++;      
       } else if (currentIndex === finalIndexChicago) {
-        movingMarker.bindPopup('<b>Chicago, IL</b><br>Finally settling in a new home.').openPopup();
+        movingMarker.bindPopup('<b>Chicago, IL</b><br>Finally settling in a new home about four years later.').openPopup();
         popupDelay = 4000;
         currentIndex = 0;
       } else {
@@ -117,19 +119,77 @@
     }
   }
 
+  // Add a pause button to the map
   document.getElementById('pause-btn').addEventListener('click', () => {
     isPaused = !isPaused;
     const btn = document.getElementById('pause-btn');
     btn.textContent = isPaused ? 'Resume' : 'Pause';
-
     if (!isPaused) {
+      audio.play();
       moveMarker();
     } else {
+      audio.pause();
       clearTimeout(animationTimeout);
     }
   });
 
+  // Add a 'mute' button to the map
+  document.getElementById('mute-btn').addEventListener('click', () => {
+    ismuted = !ismuted;
+    const btn = document.getElementById('mute-btn');
+    btn.textContent = ismuted ? 'UnMute' : 'Mute';
+    if (!ismuted) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  });
+
+  // Add sounds to the voyage
+const audio = document.getElementById('ambient-audio');
+audio.volume = 0.5; // 50% volume
+audio.muted = false;
+
+function playAmbientSound(type) {
+  if (!userHasInteracted) {
+  console.warn('Audio blocked until user interacts with the page.');
+  return;
+}
+
+  let src = '';
+  switch(type) {
+    case 'sea':
+      src = '../assets/sounds/ship-horn-distant-38390.mp3';
+      audio.volume = 0.2;
+      audio.playbackRate = 0.5;
+      break;
+    case 'land':
+      src = '../assets/sounds/train-whistle-306031-2sec.mp3';
+      audio.volume = 0.2;
+      audio.playbackRate = 1.0;
+      break;
+    default:
+      src = '../assets/sounds/firetruck-w-horns-0415-70775.mp3';
+      audio.volume = 0.5;
+      audio.playbackRate = 1.0;
+  } 
+
+  const resolvedSrc = new URL(src, window.location.href).href;
+
+  if (audio.src != resolvedSrc) {
+    audio.pause();
+    audio.src = src;
+    audio.load();
+    audio.play().catch(err => console.warn('Audio play failed:', err));
+  }
+}
  
+document.addEventListener('click', () => {
+  userHasInteracted = true;
+});
+document.addEventListener('keydown', () => {
+  userHasInteracted = true;
+});
   // Static markers
   const staticMarkers = [
     { coords: [57.7, 11.9], label: '<b>Göteborg</b><br>Departing Gothenburg, Sweden', open: true },
