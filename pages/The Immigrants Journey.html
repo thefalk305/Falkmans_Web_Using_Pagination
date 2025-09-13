@@ -14,6 +14,10 @@
 
 	<link href="../css/magnify.css" rel="stylesheet" type="text/css" />
 	<link rel="icon" href="../assets/favicon.ico" />
+	<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap" rel="stylesheet"/>
+	<link href="falkman.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 
 <body>
@@ -26,6 +30,24 @@
 
   <!-- content contains the remainder of the page. -->
   <div id="content" >
+		<p align="justiify">
+
+		The majority of Swedish emigrants after late 1880's travelled by boat from 
+		Göteborg to Hull and then by train to Liverpool from which the journey continued 
+		with the big transatlantic passenger steamers.This is the route that my great 
+		grand-father, Nils P. Falkman took when he left Sweden. Headed to America. My 
+		great-grandmother on the other hand, travelled from Arbrä, to Göteborg. And 
+		then boarded a boat to Hamburg, Germany. And from Homburg, by train to Bremen. 
+		And it was from Bremen that she sailed to America.</p>
+
+
+		<div id="map" style="width: 80%; height: 500px; margin: 0 auto;"></div>
+
+		<p aligh="justify">Here is another map that shows the may routes that have been taken 
+		by imagrents traveling from Europe to North America.By far the majority of Swedes came
+		through Göteborg, to Hull England. Across England to Liverpool. And from there to the 
+		Americas</p>
+
 		<div class="magGlass-container">
 			<img
 				src="../images/PassTraf.jpg"
@@ -39,9 +61,12 @@
 
   </div>
 	<!-- Inserts the common footer. -->
-	<div id="footer"></div>
-	<script src="../js/loadFooter.js"></script>
+<div id="footer"></div>
+<script src="../js/loadFooter.js"></script>
 </div>
+
+
+<script src="../js/Map.js"></script>
 
 <script type="module">
   import { initMagnifierControls } from '../js/magnifier.js';
