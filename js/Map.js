@@ -44,11 +44,17 @@
     ...Array(landRoute3.length).fill('land')
   ];
 
-  const pauseIndexDuBois = allPoints.findIndex(p => p[0] === 41.1169 && p[1] === -78.7644);
-  const finalIndexChicago = allPoints.findIndex(p => p[0] === 41.88 && p[1] === -87.65);
-  const hullIndex = allPoints.findIndex(p => p[0] === 53.74 && p[1] === -0.33);
-  const liverpoolIndex = allPoints.findIndex(p => p[0] === 53.4 && p[1] === -3.0);
-  const newYorkIndex = allPoints.findIndex(p => p[0] === 40.6985 && p[1] === -74.0405);
+  const DuBoisIndex = allPoints.findIndex(p => p[0] === 41.1169 && p[1] === -78.7644);
+  const ChicagoIndex = allPoints.findIndex(p => p[0] === 41.88 && p[1] === -87.65);
+  const HullIndex = allPoints.findIndex(p => p[0] === 53.74 && p[1] === -0.33);
+  const LiverpoolIndex = allPoints.findIndex(p => p[0] === 53.4 && p[1] === -3.0);
+  const NewYorkIndex = allPoints.findIndex(p => p[0] === 40.6985 && p[1] === -74.0405);
+  
+// DuBoisIndex 
+// ChicagoIndex
+// HullIndex
+// LiverpoolIndex
+// NewYorkIndex
   
 
   let currentIndex = 0;
@@ -88,23 +94,23 @@
 
       let popupDelay = 600;
 
-      if (currentIndex === pauseIndexDuBois) {
+      if (currentIndex === DuBoisIndex) {
         movingMarker.bindPopup('<b>DuBois, PA</b><br>Here is where N.P. Falkman met up with his brother Johan').openPopup();
         popupDelay = 3000;
         currentIndex++;      
-      } else if (currentIndex === newYorkIndex) {
+      } else if (currentIndex === NewYorkIndex) {
         movingMarker.bindPopup('<b>New Your, New York</b><br>Here we transfer to a train for the trip to DuBois, PA').openPopup();
         popupDelay = 3000;
         currentIndex++;      
-      } else if (currentIndex === hullIndex) {
+      } else if (currentIndex === HullIndex) {
         movingMarker.bindPopup('<b>Hull, England</b><br>Here we transfer to a train for Liverpool').openPopup();
         popupDelay = 3000;
         currentIndex++;      
-      } else if (currentIndex === liverpoolIndex) {
+      } else if (currentIndex === LiverpoolIndex) {
         movingMarker.bindPopup('<b>Liverpool, England</b><br>Where we board a trans-Atlantic steamer for New York').openPopup();
         popupDelay = 3000;
         currentIndex++;      
-      } else if (currentIndex === finalIndexChicago) {
+      } else if (currentIndex === ChicagoIndex) {
         movingMarker.bindPopup('<b>Chicago, IL</b><br>Finally settling in a new home about four years later.').openPopup();
         popupDelay = 4000;
         currentIndex = 0;
@@ -180,7 +186,9 @@ function playAmbientSound(type) {
     audio.pause();
     audio.src = src;
     audio.load();
-    audio.play().catch(err => console.warn('Audio play failed:', err));
+    if (!ismuted) {
+      audio.play().catch(err => console.warn('Audio play failed:', err));
+    } 
   }
 }
  
