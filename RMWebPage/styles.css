@@ -107,3 +107,39 @@ a.navlnk:hover {
   color: #444;
   vertical-align: bottom;
 }
+
+#back-to-top {
+    /* Remove the background color */
+    color: #FFFFFF;
+    opacity: 0;
+    transition: opacity .6s ease-in-out;
+    z-index: 999;
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+  
+    /* Change the width and height to match your image dimensions*/ 
+    width: 32px;
+    height: 40px;
+    box-sizing: border-box;
+    border-radius: 0%;
+}
+  
+  #back-to-top.show {
+       opacity: 1;
+  }
+
+
+/*============== Styles for footer ===================*/
+#footer {
+	/* border-top: 2px solid #242F24; */
+	/* clear: both;
+	padding: 5px; */
+	background-color: rgb(255, 255, 255);
+	text-align: center;
+}
+#footer p {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
