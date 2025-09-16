@@ -25,7 +25,12 @@ const arrivalChicago  = `A city with the representation of literally hundreds of
 
   const tourBtn = document.getElementById('tour-btn');
 
-
+  const wagonIcon = L.icon({
+    iconUrl: '../images/stagecoach.svg', // adjust path as needed
+    iconSize: [40, 40],       // size of the icon in pixels
+    iconAnchor: [20, 20],     // point of the icon which corresponds to marker's location
+    popupAnchor: [0, -20]     // where the popup opens relative to the iconAnchor
+  });
   // Routes
 
   // Svenshult to Göteborg
@@ -104,9 +109,14 @@ const arrivalChicago  = `A city with the representation of literally hundreds of
   const pauseAtIndices = [SvenshultIndex, GöteborgIndex, DuBoisIndex, ChicagoIndex, HullIndex, LiverpoolIndex, NewYorkIndex];
 
   // Moving marker
-  const movingMarker = L.marker(allPoints[0], {
-    icon: L.divIcon({ html: '🚂', iconSize: [24, 24], iconAnchor: [12, 12] })
-  }).addTo(map);
+  // const movingMarker = L.marker(allPoints[0], {
+  //   icon: L.divIcon({ html: '🚂', iconSize: [24, 24], iconAnchor: [12, 12] })
+  // }).addTo(map);
+
+const movingMarker = L.marker(allPoints[0], {
+  icon: wagonIcon
+}).addTo(map);
+
 
   function clearTimer() {
     if (animationTimeout) {
