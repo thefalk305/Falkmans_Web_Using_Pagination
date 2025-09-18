@@ -32,6 +32,21 @@
   audio.muted = false;
 
   // text for each waypoint
+  const departingArbrå =  `<b>Arbrå</b>`
+
+  const departingGothenburg =  `<b>Göteborg</b>`
+
+  const arrivalHamburg  = `<b>Kingston on Hamburg, England</b>`
+
+  const arrivalBrenem  = `<b>Brenem</b>`
+
+  const arrivalNewYork  = `<b>New York, New York</b>`
+
+  const arrivalDuBois  = `<b>DuBois</b>`
+
+  const arrivalChicago  = `A city `
+
+  // text for each waypoint
   const departingArbrå =  `<b>Arbrå</b><br>Departing Arbrå, Sweden.  This is where Nil's journey begins. And so it was that on Tuesday, the 6th of October 1891. Nils shook his father's hand and gave his mother one last hug. Then said 'Good Bye' to the rest of the family members present. And off he would go to start his journey. He left from Arbrå (See the link under Places) on the eastern coast of Sweden. It would have been a cool, crisp morning and Nils would have been anxious to start. For this would be a long journey. A journey of a life time. He wouldn't have a chance to see Karin. Nils would have either traveled by train or coach (stage coach). Had he traveled by train it would have been an all day excursion, arriving in Göteborg later that evening.  Travel by coach would have been even longer.`
 
   const departingGothenburg =  `<b>Göteborg</b><br>Upon arrival in <a href="Goteborg.html" target="_blank">Göteborg</a>, Sweden, Nil's set sail for Kingston on Hamburg on the 9th of October upon the <a href="S S Romeo.html" target="_blank">S S Romeo</a>, a steamship built and owned by the Wilson Steamship Line.`
@@ -64,30 +79,30 @@
 
   // Göteborg to Hamburg, Germany
   const oceanRoute1 = [
-    [57.70, 11.98], [56.50,11.43], [56.034672,12.65],
-    [55.59,12.79], [54.96,12.50], [54.36,11.92], [53.96,10.81],
-    [53.55,9.88]];
+    [57.70, 11.98], [57.70, 11.93], [57.69, 11.89], [57.60, 11.65],
+    [57.90, 10.78], [57.94, 10.71], [57.32, 8.53], [53.53, 0.19],
+    [53.63, -0.17], [53.73, -0.28], [53.74, -0.33]];
 
   // Hamburg to to Bremen
   const landRoute1 = [
-  [53.55, 9.90], [53.36,9.66], [53.21,9.21], [53.08,8.30]];
+    [53.74, -0.33], [53.79, -1.54], [53.47, -2.25], [53.4, -3.0]];
 
-  // Bremen to New York City
-  const oceanRoute2 = [
-  [53.08, 8.32], [53.79, 7.85], [55.95, 2.40],[59.66, -3.08], [59.66, -7.08],
-  [57.25, -10.05],[53.2843, -14.5043],[52.3186, -18.9586],[51.3529, -23.4129],
-  [50.3871, -27.8671],[49.4214, -32.3214],[48.4557, -36.7757],[47.49,   -41.23],
-  [46.5243, -45.6843],[45.5586, -50.1386],[44.5929, -54.5929],[43.6271, -59.0471],
-  [42.6614, -63.5014],[40.01, -69.9557], [40.7033, -74.0168]]
-// [40.71,   -74.03]];
+    // Bremen to New York City
+    const oceanRoute2 = [
+    [53.4, -3.0], [53.52, -3.12], [53.47, -4.49], [53.37, -5.69],
+    [52.01, -6.10], [51.70, -7.71], [51.78, -8.26], [51.81, -8.27],
+    [51.84, -8.26], [51.84, -8.29], [51.84, -8.26], [51.81, -8.27],
+    [51.78, -8.26], [51.54, -8.19], [51.22, -9.53], [50.00, -15.00],
+    [48.00, -25.00], [46.00, -35.00], [44.00, -45.00], [43.00, -55.00],
+    [42.73, -63.61], [40.18, -70.22], [40.48, -73.88], [40.55, -74.04],
+    [40.64, -74.05], [40.6986, -74.0405]];
 
   // New York City to DuBois
   const landRoute2 = [
-    [40.6986, -74.0405], [40.80, -75.16], [40.90, -76.88], [41.1169, -78.7644]];
+    [40.6986, -74.0405], [39.95, -75.16], [40.26, -76.88], [41.1169, -78.7644]];
   // DuBois to Chicago
-  
-  const landRoute3 = [[41.117, -78.77],[41.2876, -80.798],[41.2876, -82.826],
-    [41.2876, -84.854],[41.40, -87.00],[41.88,  -87.65]];
+  const landRoute3 = [
+    [41.1169, -78.7644], [41.18, -80.44], [41.60, -87.59], [41.88, -87.65]];
 
   // Draw polylines for the entire journey
   // red = wagon, blue = train, green = boat
@@ -125,14 +140,13 @@
   // Key indices
   const ArbråIndex = allPoints.findIndex(p => p[0] === 61.5 && p[1] === 16.01);
   const GöteborgIndex = allPoints.findIndex(p => p[0] === 57.70 && p[1] === 11.98);
-  const HamburgIndex = allPoints.findIndex(p => p[0] === 53.55 && p[1] === 9.90);
-  const BrenemIndex = allPoints.findIndex(p => p[0] === 53.08 && p[1] === 8.32);
+  const HamburgIndex = allPoints.findIndex(p => p[0] === 53.74 && p[1] === -0.33);
+  const BrenemIndex = allPoints.findIndex(p => p[0] === 53.4 && p[1] === -3.0);
   const NewYorkIndex = allPoints.findIndex(p => p[0] === 40.6986 && p[1] === -74.0405);
-  const DuBoisIndex = allPoints.findIndex(p => p[0] === 41.117 && p[1] === -78.77);
+  const DuBoisIndex = allPoints.findIndex(p => p[0] === 41.1169 && p[1] === -78.7644);
   const ChicagoIndex = allPoints.findIndex(p => p[0] === 41.88 && p[1] === -87.65);
 
-
-  const pauseAtIndices = [ArbråIndex, GöteborgIndex, HamburgIndex, BrenemIndex, NewYorkIndex, DuBoisIndex];
+  const pauseAtIndices = [ArbråIndex, GöteborgIndex, HamburgIndex, BrenemIndex, NewYorkIndex, DuBoisIndex, ChicagoIndex];
 
   // put 'wagon' icon at Start (Arbrå)
   const movingMarker = L.marker(allPoints[0], {
@@ -164,7 +178,10 @@ function moveMarker() {
       case BrenemIndex: popupContent = arrivalBrenem; break;
       case NewYorkIndex: popupContent = arrivalNewYork; break;
       case DuBoisIndex: popupContent = arrivalDuBois; break;
-      case ChicagoIndex:popupContent = arrivalChicago; pendingResetAtChicago = true; break;
+      case ChicagoIndex:
+        popupContent = arrivalChicago;
+        pendingResetAtChicago = true;
+        break;
     }
 
     movingMarker.bindPopup(popupContent).openPopup();
@@ -203,23 +220,11 @@ function moveMarker() {
   playAmbientSound(iconType);
 
   clearTimer();
-  
   animationTimeout = setTimeout(() => {
     if (isPaused) return;
     movingMarker.closePopup();
-
-    if (currentIndex < allPoints.length - 1) {
-      currentIndex++;
-      moveMarker();
-    } else {
-      // Final point reached — pause and show Chicago popup
-      const popupContent = arrivalChicago;
-      movingMarker.bindPopup(popupContent).openPopup();
-      isPaused = true;
-      pendingResetAtChicago = true;
-      if (tourBtn) tourBtn.textContent = 'Click to Continue';
-      clearTimer();
-    }
+    currentIndex++;
+    moveMarker();
   }, 600);
 }
 

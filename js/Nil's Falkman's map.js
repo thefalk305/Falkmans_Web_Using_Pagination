@@ -1,6 +1,35 @@
 ﻿window.onload = function () {
   const map = L.map('map');
+  // Base layer
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+
+  const tourBtn = document.getElementById('tour-btn');
+
+   // Initialize State
+  let currentIndex = 0;
+  let isPaused = false;
+  let isMuted = false;
+  let animationTimeout = null;
+  let tourStarted = false;
+  let pendingResetAtChicago = false;
+
+  const wagonIcon = L.icon({
+    iconUrl: '../images/stagecoach.svg', // adjust path as needed
+    iconSize: [40, 40],       // size of the icon in pixels
+    iconAnchor: [20, 20],     // point of the icon which corresponds to marker's location
+    popupAnchor: [0, -20]     // where the popup opens relative to the iconAnchor
+  });
+  
+  // can't start audio until user Has Interacted
   let userHasInteracted = false;
+
+  // Ambient audio
+  const audio = document.getElementById('ambient-audio');
+  audio.volume = 0.5; // 50% volume
+  audio.muted = false;
 
   // text for each waypoint
 const departingSvenshult =  `<b>Svenshult</b><br>Departing Svenshult, Sweden.  This is where Nil's journey begins. And so it was that on Tuesday, the 6th of October 1891. Nils shook his father's hand and gave his mother one last hug. Then said 'Good Bye' to the rest of the family members present. And off he would go to start his journey. He left from Svenshult (See the link under Places) on the eastern coast of Sweden. It would have been a cool, crisp morning and Nils would have been anxious to start. For this would be a long journey. A journey of a life time. He wouldn't have a chance to see Karin. Nils would have either traveled by train or coach (stage coach). Had he traveled by train it would have been an all day excursion, arriving in Göteborg later that evening.  Travel by coach would have been even longer.`
@@ -17,36 +46,39 @@ const arrivalDuBois  = `<b>DuBois</b><br>It wasn't clear why Peter had decided t
 
 const arrivalChicago  = `A city with the representation of literally hundreds of ethnic groups, <a href="Chicago, Illinois.html" target="_blank">Chicago, Illinois</a> has rightfully earned its nickname as "The Melting Pot of America". This is where, in the early 1890's, Nils Falkman and his family finally settled. Here is were they set down their roots. Many generations of Falkman's were born here and still live in and around the Chicagoland area.`
 
+  // Static markers
+  const staticMarkers = [
+    { coords: [57.7, 11.9], label: departingSvenshult, open: true },
+    { coords: [57.7, 11.9], label: departingGothenburg },
+    { coords: [53.7, -0.3], label: arrivalHullEngland },
+    { coords: [53.4, -3.0], label: arrivalLiverpoolEngland },
+    { coords: [40.6985, -74.0405], label: arrivalNewYork },
+    { coords: [41.1169, -78.7644], label: arrivalDuBois},
+    { coords: [41.88, -87.65], label: arrivalChicago}
+  ];
 
-  // Base layer
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-  }).addTo(map);
-
-  const tourBtn = document.getElementById('tour-btn');
-
-  const wagonIcon = L.icon({
-    iconUrl: '../images/stagecoach.svg', // adjust path as needed
-    iconSize: [40, 40],       // size of the icon in pixels
-    iconAnchor: [20, 20],     // point of the icon which corresponds to marker's location
-    popupAnchor: [0, -20]     // where the popup opens relative to the iconAnchor
+  staticMarkers.forEach(({ coords, label, open }) => {
+    const marker = L.marker(coords).addTo(map).bindPopup(label);
+    if (open) marker.openPopup();
   });
-  // Routes
 
+  // Routes
   // Svenshult to Göteborg
   const landRoute0 = [
     [56.57, 13.55], [56.9, 12.2], [56.9, 12.2], [56.9, 12.2], [57.2, 12.2], [57.70, 11.90]];
 
+  // Göteborg to Hamburg, Germany
   const oceanRoute1 = [
     [57.70, 11.94], [57.70, 11.93], [57.69, 11.89], [57.60, 11.65],
     [57.90, 10.78], [57.94, 10.71], [57.32, 8.53], [53.53, 0.19],
     [53.63, -0.17], [53.73, -0.28], [53.74, -0.33]];
 
+  // Hamburg to to Bremen
   const landRoute1 = [
     [53.74, -0.33], [53.79, -1.54], [53.47, -2.25], [53.4, -3.0]];
 
-  const oceanRoute2 = [
+    // Bremen to New York City
+    const oceanRoute2 = [
     [53.4, -3.0], [53.52, -3.12], [53.47, -4.49], [53.37, -5.69],
     [52.01, -6.10], [51.70, -7.71], [51.78, -8.26], [51.81, -8.27],
     [51.84, -8.26], [51.84, -8.29], [51.84, -8.26], [51.81, -8.27],
@@ -55,13 +87,15 @@ const arrivalChicago  = `A city with the representation of literally hundreds of
     [42.73, -63.61], [40.18, -70.22], [40.48, -73.88], [40.55, -74.04],
     [40.64, -74.05], [40.6986, -74.0405]];
 
+  // New York City to DuBois
   const landRoute2 = [
     [40.6986, -74.0405], [39.95, -75.16], [40.26, -76.88], [41.1169, -78.7644]];
-
+  // DuBois to Chicago
   const landRoute3 = [
-    [41.1169, -78.7644], [41.18, -80.44], [41.60, -87.59], [41.88, -87.65]];
+    [41.1169, -78.7644], [41.2, -80.44], [41.35, -80.44], [41.5, -80.44], [41.60, -87.59], [41.88, -87.65]];
 
-  // Draw polylines
+  // Draw polylines for the entire journey
+  // red = wagon, blue = train, green = boat
   [landRoute0, oceanRoute1, landRoute1, oceanRoute2, landRoute2, landRoute3].forEach((route, i) => {
     L.polyline(route, {
       color: i === 4 ? 'red' : (i % 2 === 0 ? 'blue' : 'green'),
@@ -94,26 +128,12 @@ const arrivalChicago  = `A city with the representation of literally hundreds of
   const DuBoisIndex = allPoints.findIndex(p => p[0] === 41.1169 && p[1] === -78.7644);
   const ChicagoIndex = allPoints.findIndex(p => p[0] === 41.88 && p[1] === -87.65);
 
-
-  // State
-  let currentIndex = 0;
-  let isPaused = false;
-  let isMuted = false;
-  let animationTimeout = null;
-  let tourStarted = false;
-  let pendingResetAtChicago = false;
   const pauseAtIndices = [SvenshultIndex, GöteborgIndex, DuBoisIndex, ChicagoIndex, HullIndex, LiverpoolIndex, NewYorkIndex];
-
-  // Moving marker
-  // const movingMarker = L.marker(allPoints[0], {
-  //   icon: L.divIcon({ html: '🚂', iconSize: [24, 24], iconAnchor: [12, 12] })
-  // }).addTo(map);
 
   // put 'wagon' icon at Svenshult
   const movingMarker = L.marker(allPoints[0], {
     icon: wagonIcon
   }).addTo(map);
-
 
   function clearTimer() {
     if (animationTimeout) {
@@ -208,47 +228,6 @@ const arrivalChicago  = `A city with the representation of literally hundreds of
     }, 600);
   }
 
-  // Pause/Resume button
-
-  // Start/Continue tour button
-  tourBtn.addEventListener('click', () => {
-    userHasInteracted = true;
-
-    if (!tourStarted) {
-      tourStarted = true;
-      isPaused = false;
-
-      // Skip pause at Svenshult on first click
-      if (currentIndex === SvenshultIndex) {
-        currentIndex++; // move immediately to next point
-      }
-
-      // if (tourBtn) tourBtn.textContent = 'Continue to Continue';
-      moveMarker();
-      return;
-    }
-
-    if (isPaused) {
-      isPaused = false;
-      movingMarker.closePopup();
-
-      if (pendingResetAtChicago) {
-        pendingResetAtChicago = false;
-        currentIndex = 0;
-      } else {
-        currentIndex = (currentIndex + 1) % allPoints.length;
-      }
-
-      moveMarker();
-    } else {
-      moveMarker();
-    }
-  });
-  // Ambient audio
-  const audio = document.getElementById('ambient-audio');
-  audio.volume = 0.5; // 50% volume
-  audio.muted = false;
-
   function playAmbientSound(type) {
     if (!userHasInteracted || isMuted) return;
 
@@ -295,25 +274,44 @@ const arrivalChicago  = `A city with the representation of literally hundreds of
     }
   }
 
+  // Start/Continue tour button
+  tourBtn.addEventListener('click', () => {
+    userHasInteracted = true;
+
+    if (!tourStarted) {
+      tourStarted = true;
+      isPaused = false;
+
+      // Skip pause at Svenshult on first click
+      if (currentIndex === SvenshultIndex) {
+        currentIndex++; // move immediately to next point
+      }
+
+      // if (tourBtn) tourBtn.textContent = 'Continue to Continue';
+      moveMarker();
+      return;
+    }
+
+    if (isPaused) {
+      isPaused = false;
+      movingMarker.closePopup();
+
+      if (pendingResetAtChicago) {
+        pendingResetAtChicago = false;
+        currentIndex = 0;
+      } else {
+        currentIndex = (currentIndex + 1) % allPoints.length;
+      }
+
+      moveMarker();
+    } else {
+      moveMarker();
+    }
+  });
+
   // User interaction unlock for audio
   document.addEventListener('click', () => { userHasInteracted = true; }, { once: false });
   document.addEventListener('keydown', () => { userHasInteracted = true; }, { once: false });
-
-  // Static markers
-  const staticMarkers = [
-    { coords: [57.7, 11.9], label: departingSvenshult, open: true },
-    { coords: [57.7, 11.9], label: departingGothenburg },
-    { coords: [53.7, -0.3], label: arrivalHullEngland },
-    { coords: [53.4, -3.0], label: arrivalLiverpoolEngland },
-    { coords: [40.6985, -74.0405], label: arrivalNewYork },
-    { coords: [41.1169, -78.7644], label: arrivalDuBois},
-    { coords: [41.88, -87.65], label: arrivalChicago}
-  ];
-
-  staticMarkers.forEach(({ coords, label, open }) => {
-    const marker = L.marker(coords).addTo(map).bindPopup(label);
-    if (open) marker.openPopup();
-  });
 
   // Do not auto-start; wait for "Start/Continue" button
 };
