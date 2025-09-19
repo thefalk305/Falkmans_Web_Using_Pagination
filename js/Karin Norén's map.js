@@ -306,7 +306,7 @@
       movingMarker.setIcon(wagonIcon); // optional: reset icon
       movingMarker.bindPopup(popupContent).openPopup();
       isPaused = true;
-      if (tourBtn) tourBtn.textContent = "Click to Start Karin Norén's Journey";
+      if (tourBtn) tourBtn.textContent = "Click to Start Karin Noréns Journey";
       return; // wait for user to click again
     }
     moveMarker();

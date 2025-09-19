@@ -1,9 +1,15 @@
-﻿window.onload = function () {
-console.log("Script A loaded"); // in KarinNoren-map-A.js
+﻿// window.onload = function () {
+(function () {
+
+console.log("Script A loaded"); // in Karin-Norens-map-A.js
 
 
-  const map = L.map('map');
-  // Base layer
+  if (window.activeMap) {
+    window.activeMap.remove(); // Cleanly destroy the previous map
+  }
+  const map = L.map('map'); // Create new map instance
+  window.activeMap = map;   // Store reference globally  // Base layer
+
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -11,6 +17,7 @@ console.log("Script A loaded"); // in KarinNoren-map-A.js
 
   document.querySelector('#heading-row h1').textContent = "Karin Noren's Journey";
   const tourBtn = document.getElementById('tour-btn');
+  if (tourBtn) tourBtn.textContent = "Click to Start Karin Norén's Journey";
 
   // Initialize State
   let currentIndex = 0;
@@ -48,7 +55,7 @@ console.log("Script A loaded"); // in KarinNoren-map-A.js
 
   const arrivalDuBois  = `<b><a href="DuBois, Pennsylvania.html" target="_blank">DuBois, Pennsylvania</a> </b><br>After leaving New York Karin would have arrived in DuBois the following day, meeting up with her fiancé, Nil's whom she hadn't seen for over six months. On May 25, 1892, three days after arriving in DuBois, Nil's and Karin applied for a marriage license at the county court house and three days later they had a church wedding. It was in DuBois on September 1<sup>st</sup>, 1893, that their first child, Herman (my grandfather), was born. Shortly after Herman's birth, Nil's and Karin decided to leave DuBois and relocate to Chicago, Illinois.`
 
-  const arrivalChicago  = `<b><a href="Chicago, Illinois.html" target="_blank">Chicago, Illinois</a></b><br>A city with the representation of literally hundreds of ethnic groups, has rightfully earned its nickname as "The Melting Pot of America". Perhaps this is why Nil's and Karin, being new immigrants from Sweden, decided to relocate here. This is where, in the early 1890's, Nils and Karin Falkman finally settled. This is where they set down their roots. This is where many generations of Falkman's were born, with many still living in and around the Chicagoland area.`
+  const arrivalChicago  = `<b><a href="Chicago, Illinois.html" target="_blank">Chicago, Illinois</a></b><br>A city with the representation of literally hundreds of ethnic groups, has rightfully earned its nickname as "The Melting Pot of America". Perhaps this is why Nil's and Karin, being new immigrants from Sweden, decided to relocate there. This is where, in the early 1890's, Nils and Karin Falkman finally settled. This is where they set down their roots. This is where many generations of Falkman's were born, with many still living in and around the Chicagoland area.`
 
   // Routes
   // Arbrå to Göteborg
@@ -67,12 +74,13 @@ console.log("Script A loaded"); // in KarinNoren-map-A.js
 
   // Bremen to New York City (over water)
   const oceanRoute2 = [
-    [53.08, 8.80], [53.79, 7.85], [54.20, 5.50], [53.60, 3.00], [51.00, 1.50], 
-    [50.10, -1.50], [49.00, -4.00], [48.00, -7.00], [47.00, -10.00], [46.00, -13.00], 
-    [45.00, -16.00], [44.00, -19.00], [43.00, -22.00], [42.00, -25.00], [41.00, -28.00], 
-    [40.50, -35.00], [40.40, -45.00], [40.50, -55.00], [40.60, -65.00], [40.71, -74.03]];
+    [53.08, 8.80], [53.79, 7.85], [54.20, 5.50], [53.60, 3.50], [51.00, 1.50], 
+    [50.10, -1.50], [49.49, -5.83], [48.88, -10.16], [48.27, -14.49], [47.66, -18.82],
+    [47.05, -23.15], [46.44, -27.48], [45.83, -31.81], [45.22, -36.14], [44.61, -40.47],
+    [44.00, -45.00], [43.00, -55.00], [42.73, -63.61], [40.18, -70.22], [40.48, -73.88], 
+    [40.55, -74.04], [40.64, -74.05], [40.6986, -74.0405]];
 
-  // New York City to DuBois
+    // New York City to DuBois
   const landRoute2 = [
     [40.6986, -74.0405], [40.80, -75.16], [40.90, -76.88], [41.1169, -78.7644]];
 
@@ -152,19 +160,20 @@ console.log("Script A loaded"); // in KarinNoren-map-A.js
 
   function moveMarker() {
     if (!tourStarted) return;
+    if (isPaused) return;
 
     // Ensure index stays in bounds
     if (currentIndex < 0) currentIndex = 0;
     if (currentIndex >= allPoints.length) currentIndex = 0;
 
-    tourBtn.style.display = 'none';
+    tourBtn.style.visibility = 'hidden'; // ← make sure it's visible
 
     // Pause at key waypoints BEFORE updating icon/sound
     if (pauseAtIndices.includes(currentIndex)) {
       let popupContent = '';
       pendingResetAtChicago = false;
 
-      tourBtn.style.display = 'block';
+      tourBtn.style.visibility = 'visible'; // ← make sure it's visible
       switch (currentIndex) {
         case ArbråIndex: popupContent = departingArbrå; break;
         case GöteborgIndex: popupContent = departingGothenburg; break;
@@ -226,7 +235,7 @@ console.log("Script A loaded"); // in KarinNoren-map-A.js
       isPaused = true;
       pendingResetAtChicago = true;
 
-      tourBtn.style.display = 'block'; // ← make sure it's visible
+      tourBtn.style.visibility = 'visible'; // ← make sure it's visible
       if (tourBtn) tourBtn.textContent = 'Click to Restart';
       clearTimer();
     }    
@@ -322,4 +331,4 @@ console.log("Script A loaded"); // in KarinNoren-map-A.js
 document.addEventListener('click', () => { userHasInteracted = true; }, { once: false });
 document.addEventListener('keydown', () => { userHasInteracted = true; }, { once: false });
   // Do not auto-start; wait for "Start/Continue" button
-};
+})();

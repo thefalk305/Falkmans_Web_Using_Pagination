@@ -10,7 +10,7 @@
 	<meta content="no" http-equiv="imagetoolbar" />
 	<meta content="Copyright © 2025, Allen Falkman All Rights Reserved" name="copyright" />
 
-  <meta name="page-title" content="The Immigrants Journey" />
+  <meta name="page-title" content="Karin Norén's Journey" />
 
 	<link href="../css/magnify.css" rel="stylesheet" type="text/css" />
 	<link rel="icon" href="../assets/favicon.ico" />
@@ -19,7 +19,23 @@
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-	<style>
+
+		<link href="../css/font-awesome-7.0.1-all.min.css" rel="stylesheet" type="text/css" />
+
+<style>
+#toggleScriptBtn {
+	background-color: #EBDF9F;
+	color: blue;
+  position: relative;
+	margin: 0px auto;
+	display: block;            /* Ensures margin auto works */
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+	font-weight: 700;
+  z-index: 1000;
+}	
+
 .custom-sea-icon,
 .custom-traveler-icon {
   font-size: 36px;
@@ -28,70 +44,67 @@
 }
 
 #pause-btn {
-  position: relative;
-  bottom: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  padding: 8px 16px;
-  font-size: 16px;
-  background-color: white;
-  /* border: 1px solid #ccc; */
-  border-radius: 4px;
-  cursor: pointer;
+  left: 45%;
 }
 
 #mute-btn {
-  position: relative;
-  bottom: 50px;
   left: 75%;
+}
+
+#tour-btn {
+  left: 75%;
+}
+
+#pause-btn, 
+#tour-btn, 
+#mute-btn {
+  position: relative;
+  bottom: 70px;
   transform: translateX(-50%);
   z-index: 1000;
   padding: 8px 16px;
   font-size: 16px;
-  background-color: white;
-  /* border: 1px solid #ccc; */
+  background-color: aquamarine;
   border-radius: 4px;
   cursor: pointer;
 }
+#map {
+	height: 600px; 
+	width: 80%; 
+	position: relative;
+	margin: auto;
+}
 
-	#map {
-		height: 600px; 
-		width: 80%; 
-		position: relative;
-		margin: auto;}
-	</style>
+.leaflet-popup-content {
+	max-width: 800px;
+	width: 600px;
+	max-height: 300px;
+	/* overflow-y: scroll; */
+	width: 370px !important;}
+</style>
 </head>
 
 <body>
 
 <div id="container">
-	
+
   <!-- Inserts the common header-->
   <div id="header"></div>
   <script src="../js/loadHeader.js"></script>
 
-	<div id="map"></div>
-	<button id="pause-btn">Pause</button>
-	<button id="mute-btn">Mute</button>
-	<audio id="ambient-audio" loop></audio>
+
+	<div id="map" style="height: 600px;"></div>
+	<button id="tour-btn"></button>
+	<!-- <button id="pause-btn">Pause</button> -->
+	<!-- <button id="mute-btn">Mute</button> -->
+	<audio id="ambient-audio" preload="auto"></audio>
+  <button id="toggleScriptBtn">View Karin Norén's Journey</button>
 
   <!-- content contains the remainder of the page. -->
   <div id="content" >
-		<p align="justiify">
+		<p align="justify">After the late 1880's, the majority of Swedish emigrants traveled by boat from Göteborg, Sweden to Hull, England. They would the board a train to Liverpool. From Liverpool the journey continued with the big transatlantic passenger steamers. This is the route that my great grand-father, Nils P. Falkman took when he left Sweden and headed to America. Unlike Nil's, my great-grandmother Karin Norén traveled from the village of Arbrä to the port city of Göteborg, then sailed across the sea to Hamburg, Germany. At Hamburg, she boarded a train to Bremen. It was from Bremen that she sailed across the Atlantic Ocean to America.</p>
 
-		The majority of Swedish emigrants after late 1880's travelled by boat from 
-		Göteborg to Hull and then by train to Liverpool from which the journey continued 
-		with the big transatlantic passenger steamers.This is the route that my great 
-		grand-father, Nils P. Falkman took when he left Sweden. Headed to America. My 
-		great-grandmother on the other hand, travelled from Arbrä, to Göteborg. And 
-		then boarded a boat to Hamburg, Germany. And from Homburg, by train to Bremen. 
-		And it was from Bremen that she sailed to America.</p>
-
-		<p aligh="justify">Here is another map that shows the may routes that have been taken 
-		by imagrents traveling from Europe to North America.By far the majority of Swedes came
-		through Göteborg, to Hull England. Across England to Liverpool. And from there to the 
-		Americas</p>
+		<p align="justify">Here is another map that shows the routes that have been taken by immigrants traveling from Europe to North America. By far, the majority of Swedes came through Göteborg to Hull England, then across England to Liverpool. From Liverpool, they traveled to America.</p>
 
 		<div class="magGlass-container">
 			<img
@@ -101,9 +114,6 @@
 				alt="PassTraf"
 			/>
 		</div>
-		<p>The majority of Swedish emigrants after late 1880's traveled by boat from Göteborg to Hull and then by train to Liverpool from which the journey continued with the big transatlantic passenger steamers. This is the route that my great grand-father, Nils P. Falkman took when he left Sweden. Headed to America. My great-grandmother on the other hand, traveled from Arbrä (not shown), to Göteborg. From there she boarded a boat to Hamburg, Germany, and from Hamburg traveled by train to Bremen. And it was from Bremen that she sailed to America.
-		</p>
-
   </div>
 	<!-- Inserts the common footer. -->
 <div id="footer"></div>
@@ -111,7 +121,51 @@
 </div>
 
 
-<script src="../js/Map.js"></script>
+  <script>
+    let currentVersion = 'B';
+    let activeScript = null;
+
+    const scriptPaths = {
+      A: "../js/Karin-Norens-map.js",
+      B: "../js/Nils-Falkmans-map.js"
+    };
+
+    const toggleBtn = document.getElementById('toggleScriptBtn');
+
+    function loadScript(version) {
+      if (activeScript) {
+        activeScript.remove(); // Remove previous script
+      }
+
+			const script = document.createElement('script');
+			// script.src = scriptPaths[version]; // or use cache-busting: `
+			script.src = `${scriptPaths[version]}?v=${Date.now()}`
+
+			script.onload = () => {
+				console.log(`✅ Script ${version} loaded and executed`);
+			};
+
+			script.onerror = () => {
+				console.error(`❌ Failed to load script ${version}`);
+			};
+
+			document.body.appendChild(script);
+			activeScript = script;
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      currentVersion = currentVersion === 'A' ? 'B' : 'A';
+      toggleBtn.textContent = `View ${currentVersion === `B` ? " Karin Norén's " : " Nil's Falkman's "} Journey`;
+      loadScript(currentVersion);
+    });
+
+    // Initial load
+    loadScript(currentVersion);
+  </script>
+
+
+
+<!-- <script src="../js/Karin Norén's map.js"></script> -->
 
 <script type="module">
   import { initMagnifierControls } from '../js/magnifier.js';
