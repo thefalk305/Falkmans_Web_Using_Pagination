@@ -1,4 +1,7 @@
 ﻿window.onload = function () {
+
+  console.log("Script B loaded"); // in KarinNoren-map-B.js
+
   const map = L.map('map');
   // Base layer
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

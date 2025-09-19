@@ -22,7 +22,17 @@
 
 		<link href="../css/font-awesome-7.0.1-all.min.css" rel="stylesheet" type="text/css" />
 
-	<style>
+<style>
+	#toggleScriptBtn {
+		position: fixed;
+		top: 10px;
+		left: 10px;
+		z-index: 1000;
+		padding: 8px 16px;
+		font-size: 14px;
+		cursor: pointer;
+	}
+
 .custom-sea-icon,
 .custom-traveler-icon {
   font-size: 36px;
@@ -75,6 +85,9 @@
 
 <div id="container">
 	
+  <button id="toggleScriptBtn">Load Version A</button>
+
+
   <!-- Inserts the common header-->
   <div id="header"></div>
   <script src="../js/loadHeader.js"></script>
@@ -117,7 +130,44 @@
 </div>
 
 
-<script src="../js/Karin Norén's map.js"></script>
+  <script>
+    let currentVersion = 'A';
+    let activeScript = null;
+
+    const scriptPaths = {
+      A: "../js/Karin-Norens-map.js",
+      B: "../js/Nils-Falkmans-map.js"
+    };
+
+    const toggleBtn = document.getElementById('toggleScriptBtn');
+
+    function loadScript(version) {
+      if (activeScript) {
+        activeScript.remove(); // Remove previous script
+      }
+
+      const script = document.createElement('script');
+			script.src = `${scriptPaths[version]}?v=${Date.now()}`;
+      // script.defer = true;
+      document.body.appendChild(script);
+      activeScript = script;
+			console.log(`Loading script: ${script.src}`);
+
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      currentVersion = currentVersion === 'A' ? 'B' : 'A';
+      toggleBtn.textContent = `Load Version ${currentVersion === 'A' ? 'B' : 'A'}`;
+      loadScript(currentVersion);
+    });
+
+    // Initial load
+    loadScript(currentVersion);
+  </script>
+
+
+
+<!-- <script src="../js/Karin Norén's map.js"></script> -->
 
 <script type="module">
   import { initMagnifierControls } from '../js/magnifier.js';

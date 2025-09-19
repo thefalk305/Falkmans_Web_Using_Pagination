@@ -18,7 +18,7 @@
 
     // get 'page-title' for '#heading-row h1'
     const title = document.querySelector('meta[name="page-title"]').content;
-    document.querySelector('#heading-row h1').textContent  = title;
+    document.querySelector('#heading-row h1').textContent = title;
 
     // set default 'banner'
     document.querySelector('#banner img').src = "/images/banner2.png";
