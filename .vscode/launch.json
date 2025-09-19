@@ -18,7 +18,7 @@
       "request": "launch",
       "program": "${workspaceFolder}/py/Excel_to_JSON.py",
       "console": "integratedTerminal"
-    }
+    },
        {
       "type": "node",
       "request": "launch",
