@@ -1,14 +1,26 @@
 ﻿// window.onload = function () {
 (function () {
 
-  console.log("Script B loaded"); // in KarinNoren-map-B.js
-
-
   if (window.activeMap) {
     window.activeMap.remove(); // Cleanly destroy the previous map
   }
   const map = L.map('map'); // Create new map instance
   window.activeMap = map;   // Store reference globally  // Base layer
+
+let skipNextPause = false;  // find out where you are on the map
+
+// const clickedPoints = []; // Global array to store latlngs
+
+// function onMapClick(e) {
+//   const lat = e.latlng.lat.toFixed(2);
+//   const lng = e.latlng.lng.toFixed(2);
+//   const point = `[ ${lat}, ${lng} ],`;
+//   clickedPoints.push(point);
+//   console.log("Clicked points:", clickedPoints);
+//   // alert("You clicked the map at " + point);
+// } 
+
+// map.on('click', onMapClick);
 
   // Base layer
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -16,10 +28,10 @@
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(map);
 
-  document.querySelector('#heading-row h1').textContent = "Nil's Falkman's Journey";
+  document.querySelector('#heading-row h1').textContent = "Nils Falkman's Journey";
 
   const tourBtn = document.getElementById('tour-btn');
-  if (tourBtn) tourBtn.textContent = "Click to Start Nil's Falkman's Journey";
+  if (tourBtn) tourBtn.textContent = "Click to Start Nils Falkman's Journey";
 
    // Initialize State
   let currentIndex = 0;
@@ -47,34 +59,68 @@
   // text for each waypoint
   const departingSvenshult =  `<b><a href="Svenshult.html" target="_blank">Svenshult, Sweden</a></b><br> Nil's journey begins in Svenshult, Sweden. And so it was that on Tuesday, the 6th of October 1891. Nils shook his father's hand and gave his mother one last hug. Then said 'Good Bye' to the rest of the family members present. And off he would go to start his journey. He left from Svenshult (See the link under Places) on the eastern coast of Sweden. It would have been a cool, crisp morning and Nils would have been anxious to start. For this would be a long journey. A journey of a life time. He wouldn't have a chance to see Karin. Nils would have either traveled by train or coach (stage coach). Had he traveled by train it would have been an all day excursion, arriving in Göteborg later that evening.  Travel by coach would have been even longer.`
 
-  const departingGothenburg =  `<b><a href="Goteborg.html" target="_blank">Göteborg, Sweden</a></b><br> Upon arrival in Göteborg, Sweden, Nil's set sail for Kingston on Hull on the 9th of October upon the <a href="S S Romeo.html" target="_blank">S S Romeo</a>, a steamship built and owned by the Wilson Steamship Line.`
+  const departingGothenburg =  `<b><a href="Goteborg.html" target="_blank">Göteborg, Sweden</a></b><br> Upon arrival in Göteborg, Sweden, Nils set sail for Kingston on Hull on the 9th of October upon the <a href="S S Romeo.html" target="_blank">S S Romeo</a>, a steamship built and owned by the Wilson Steamship Line.`
 
   const arrivalHullEngland  = `<b><a href="Kingston on Hull, England.html" target="_blank">Kingston on Hull, England</a></b><br>Upon arriving in Hull, Nils would have more than likely stayed on board the S S Romeo until transportation was available for the trip to Liverpool (See Kingston on Hull, under Travel Notes) Once transportation was available, Nils would have boarded a train along with the other passengers headed to Liverpool.`
 
-  const arrivalLiverpoolEngland  = `<b><a href="Liverpool, England.html" target="_blank">Liverpool, England</a></b><br>Upon arrival in Liverpool, Nil's would have headed down to the docks.  Here, in Liverpool, is where the second leg of his journey would begin. On the 14<sup>th</sup> of October, 1891, Nil's boarded the <a href="R M S Britannic.html" target="_blank">RMS Britannic</a>; the ship that would take him across the Atlantic and into New York City on October 23.`
+  const arrivalLiverpoolEngland  = `<b><a href="Liverpool, England.html" target="_blank">Liverpool, England</a></b><br>Upon arrival in Liverpool, Nils would have headed down to the docks.  Here, in Liverpool, is where the second leg of his journey would begin. On the 14<sup>th</sup> of October, 1891, Nils boarded the <a href="R M S Britannic.html" target="_blank">RMS Britannic</a>; the ship that would take him across the Atlantic and into New York City on October 23.`
 
   const arrivalNewYork  = `<b><a href="New York.html" target="_blank">New York, New York</a></b><br>Arrival New York City. In October 1891, immigrants arriving in New York were processed at the Barge Office which was located at the Battery in Lower Manhattan. This facility served as a temporary immigration station between the closure of Castle Garden and the opening of Ellis Island.  From there he would have boarded a train at Grand Central Depot. And headed to DuBois Pennsylvania. Where his brother would be waiting.`
 
-  const arrivalDuBois  = `<b><a href="DuBois, Pennsylvania.html" target="_blank">DuBois, Pennsylvania</a></b><br>It wasn't clear why Peter had decided to go to DuBois, Pennsylvania., but I recently found out that he had a brother living in DuBois, John Löfgren. John, being more than ten years older then Peter, had traveled to America some five or six years earlier. John settled in DuBois, Pa. Once Peter settled in, he plied his trade as a shoemaker and waited for his fiancé to arrive. The following year his future wife Katherine (Corine Norén as stated on their marriage license), arrived from Sweden. Nil's and Karin applied for a marriage license in the county court house on May 25, 1892. Three days later they had a church wedding. It was in DuBois on September 1<sup>st</sup>, 1893, that their first child, Herman (my grandfather), was born. Shortly after Herman's birth, Nil's and Karin decided to leave DuBois and relocate to Chicago, Illinois.`
+  const arrivalDuBois  = `<b><a href="DuBois, Pennsylvania.html" target="_blank">DuBois, Pennsylvania</a></b><br>It wasn't clear why Peter had decided to go to DuBois, Pennsylvania., but I recently found out that he had a brother living in DuBois, John Löfgren. John, being more than ten years older then Peter, had traveled to America some five or six years earlier. John settled in DuBois, Pa. Once Peter settled in, he plied his trade as a shoemaker and waited for his fiancé to arrive. The following year his future wife Katherine (Corine Norén as stated on their marriage license), arrived from Sweden. Nils and Karin applied for a marriage license in the county court house on May 25, 1892. Three days later they had a church wedding. It was in DuBois on September 1<sup>st</sup>, 1893, that their first child, Herman (my grandfather), was born. Shortly after Herman's birth, Nils and Karin decided to leave DuBois and relocate to Chicago, Illinois.`
 
-  const arrivalChicago  = `<b><a href="Chicago, Illinois.html" target="_blank">Chicago, Illinois</a></b><br>A city with the representation of literally hundreds of ethnic groups, has rightfully earned its nickname as "The Melting Pot of America". Perhaps this is why Nil's and Karin, being new immigrants from Sweden, decided to relocate there. This is where, in the early 1890's, Nils and Karin Falkman finally settled. This is where they set down their roots. This is where many generations of Falkman's were born, with many still living in and around the Chicagoland area.`
+  const arrivalChicago  = `<b><a href="Chicago, Illinois.html" target="_blank">Chicago, Illinois</a></b><br>A city with the representation of literally hundreds of ethnic groups, has rightfully earned its nickname as "The Melting Pot of America". Perhaps this is why Nils and Karin, being new immigrants from Sweden, decided to relocate there. This is where, in the early 1890's, Nils and Karin Falkman finally settled. This is where they set down their roots. This is where many generations of Falkman's were born, with many still living in and around the Chicagoland area.`
 
   // Routes
   // Svenshult to Göteborg
-  const landRoute0 = [
-    [56.57, 13.55], [56.9, 12.2], [56.9, 12.2], [56.9, 12.2], [57.2, 12.2], [57.70, 11.90]];
+  const landRoute0 = [[56.60, 13.50], [56.51, 13.35], [56.55, 13.02], [56.75, 12.85], [56.91, 12.54], [57.11, 12.33], [57.31, 12.22], [57.46, 12.10], [57.71, 11.98], [57.70, 11.94]];
 
-  // Göteborg to Hamburg, Germany
+  // Göteborg to Hull England
   const oceanRoute1 = [
-    [57.70, 11.94], [57.70, 11.93], [57.69, 11.89], [57.60, 11.65],
-    [57.90, 10.78], [57.94, 10.71], [57.32, 8.53], [53.53, 0.19],
-    [53.63, -0.17], [53.73, -0.28], [53.74, -0.33]];
+    [57.70, 11.93], [57.62, 11.72], [57.61, 11.54], [57.74, 11.20], [57.87, 10.85],
+    [57.89, 10.59], [57.82, 9.85], [57.58, 8.87], [57.05, 6.82], [56.65, 5.99],
+    [56.16, 4.76], [55.04, 2.76], [53.59, 0.37], [53.54, 0.19], [53.63, -0.16],
+    [53.74, -0.32]];
 
-  // Hamburg to to Bremen
+    // Hull to Liverpool England
+  // const landRoute0_5 = [
+  //   [53.74, -0.32], [53.74, -0.33], [53.79, -1.54], [53.47, -2.25], [53.4, -3.0],
+  //   [53.4, -3.0], [53.60, -3.30], [53.60, -4.70], [53.37, -5.00], [52.01, -5.70],
+  //   [51.00, -7.51], [50.00, -15.00], [48.00, -25.00], [46.00, -35.00], [44.00, -45.00],
+  //   [43.00, -55.00], [42.73, -63.61], [40.18, -70.22], [40.48, -73.88], [40.55, -74.04],
+  //   [40.64, -74.05], [40.6986, -74.0405]];
+
+  // Hull to Liverpool 
   const landRoute1 = [
-    [53.74, -0.33], [53.79, -1.54], [53.47, -2.25], [53.4, -3.0]];
+[53.74, -0.35],
+[53.72, -0.47],
+[53.72, -0.56],
+[53.74, -0.71],
+[53.79, -1.04],
+[53.79, -1.35],
+[53.81, -1.45],
+[53.79, -1.56],
+[53.77, -1.59],
+[53.75, -1.58],
+[53.72, -1.63],
+[53.67, -1.66],
+[53.68, -1.71],
+[53.70, -1.79],
+[53.69, -1.83],
+[53.71, -1.90],
+[53.73, -1.95],
+[53.74, -2.02],
+[53.72, -2.09],
+[53.59, -2.18],
+[53.49, -2.23],
+[53.46, -2.48],
+[53.43, -2.69],
+[53.41, -2.82],
+[53.40, -2.98],
+[53.40, -3.04],
+];
 
-    // Bremen to New York City
+    // Liverpool to New York City
     const oceanRoute2 = [
     [53.4, -3.0], [53.60, -3.30], [53.60, -4.70], [53.37, -5.00],
     [52.01, -5.70], [51.00, -7.51], [50.00, -15.00],
@@ -83,12 +129,14 @@
     [40.64, -74.05], [40.6986, -74.0405]];
 
   // New York City to DuBois
-  const landRoute2 = [
-    [40.6986, -74.0405], [39.95, -75.16], [40.26, -76.88], [41.1169, -78.7644]];
+  const landRoute2 = [[40.70, -74.10],[40.59, -74.75],[40.58, -75.41],[40.52, -76.20],
+  [40.40, -76.56],[40.55, -77.21],[40.76, -77.64],[40.95, -78.10],[41.01, -78.40], [ 41.12, -78.78 ]];
 
   // DuBois to Chicago
-  const landRoute3 = [
-    [41.1169, -78.7644], [41.2, -80.44], [41.35, -80.44], [41.5, -80.44], [41.60, -87.59], [41.88, -87.65]];
+  // // DuBois to Chicago
+  const landRoute3 = [[41.11, -78.83], [41.18, -80.21], [41.06, -80.81], [41.22, -81.45],
+  [41.33, -82.56], [41.56, -83.64], [41.64, -84.81], [41.74, -86.21], [41.56, -86.90], 
+  [41.56, -87.52], [41.90, -87.65]];
 
   // Static markers
   const staticMarkers = [
@@ -98,7 +146,7 @@
     { coords: oceanRoute2[0], label: arrivalLiverpoolEngland },
     { coords: landRoute2[0], label: arrivalNewYork },
     { coords: landRoute3[0], label: arrivalDuBois},
-    { coords: landRoute3[5], label: arrivalChicago}
+    { coords: landRoute3[10], label: arrivalChicago}
   ];
 
   // Draw polylines for the entire journey
@@ -142,7 +190,7 @@
   const NewYorkIndex = allPoints.findIndex(p => p[0] === landRoute2[0][0] && p[1] === landRoute2[0][1]);
   const DuBoisIndex = allPoints.findIndex(p => p[0] === landRoute3[0][0] && p[1] === landRoute3[0][1]);
   // ChicagoIndex is last point in landRoute3
-  const ChicagoIndex = allPoints.findIndex(p => p[0] === landRoute3[5][0] && p[1] === landRoute3[5][1]);
+  const ChicagoIndex = allPoints.findIndex(p => p[0] === landRoute3[10][0] && p[1] === landRoute3[10][1]);
 
 
   const pauseAtIndices = [SvenshultIndex, GöteborgIndex,  HullIndex, LiverpoolIndex, NewYorkIndex, DuBoisIndex];
@@ -170,9 +218,14 @@
     tourBtn.style.visibility = 'hidden';
 
   // Pause at key waypoints BEFORE updating icon/sound
-   if (pauseAtIndices.includes(currentIndex)) {
-      let popupContent = '';
-      pendingResetAtChicago = false;
+  if (skipNextPause) {
+    skipNextPause = false; // reset immediately
+    console.log("Skipping pause at index", currentIndex);
+
+  } else if (pauseAtIndices.includes(currentIndex)) {
+    audio.pause(); // ✅ Stop ambient sound immediately
+    let popupContent = '';
+    pendingResetAtChicago = false;
 
     tourBtn.style.visibility = 'visible';
 
@@ -183,16 +236,19 @@
       case LiverpoolIndex: popupContent = arrivalLiverpoolEngland; break;
       case NewYorkIndex: popupContent = arrivalNewYork; break;
       case DuBoisIndex: popupContent = arrivalDuBois; break;
-      case ChicagoIndex: popupContent = arrivalChicago;
-      pendingResetAtChicago = true; break;
+      case ChicagoIndex:
+        popupContent = arrivalChicago;
+        pendingResetAtChicago = true;
+        break;
     }
 
-      movingMarker.bindPopup(popupContent).openPopup();
-      isPaused = true;
-      if (tourBtn) tourBtn.textContent = ChicagoIndex === currentIndex ? 'Click to Restart' : 'Click to Continue';
-      clearTimer();
-      return; // Wait for user to click Continue
-    }
+    movingMarker.bindPopup(popupContent).openPopup();
+    isPaused = true;
+    if (tourBtn) tourBtn.textContent = ChicagoIndex === currentIndex ? 'Click to Restart' : 'Click to Continue';
+    clearTimer();
+    return;
+  }
+
 
     // Set icon for current segment
     const iconType = segmentTypes[currentIndex];
@@ -298,43 +354,52 @@
   // Start/Continue tour button
   tourBtn.addEventListener('click', () => {
     userHasInteracted = true;
+    movingMarker.closePopup(); // Always close popup immediately
 
-    if (!tourStarted) {
-      tourStarted = true;
-      isPaused = false;
 
-      // Skip pause at Svenshult on first click
-      if (currentIndex === SvenshultIndex) {
-        currentIndex++; // move immediately to next point
-      }
+  // ✅ Close any lingering popups, including static markers
+  movingMarker.closePopup();
+  map.eachLayer(layer => {
+    if (layer instanceof L.Marker && layer.getPopup()) {
+      layer.closePopup();
+    }
+  });
 
-      // if (tourBtn) tourBtn.textContent = 'Continue to Continue';
-      moveMarker();
-      return;
+
+
+
+  if (!tourStarted) {
+    tourStarted = true;
+    isPaused = false;
+
+    if (currentIndex === SvenshultIndex) {
+      currentIndex++;           // Skip first pause
+      skipNextPause = true;     // Prevent popup from reopening
     }
 
+    moveMarker();
+    return;
+  }  
   if (isPaused) {
     isPaused = false;
-    movingMarker.closePopup();
     currentIndex++;
+
     if (pendingResetAtChicago) {
       pendingResetAtChicago = false;
       currentIndex = 0;
-
-      // Clear any lingering popup
       movingMarker.closePopup();
 
-      // Immediately show Arbrå popup again
       const popupContent = departingSvenshult;
       movingMarker.setLatLng(allPoints[currentIndex]);
-      movingMarker.setIcon(wagonIcon); // optional: reset icon
+      movingMarker.setIcon(wagonIcon);
       movingMarker.bindPopup(popupContent).openPopup();
       isPaused = true;
-      if (tourBtn) tourBtn.textContent = "Click to Start Nil's Falkman's Journey";
-      return; // wait for user to click again
+      if (tourBtn) tourBtn.textContent = "Click to Start Nils Falkman's Journey";
+      return;
     }
+
     moveMarker();
-    } else {
+  } else {
     moveMarker();
   }
 });

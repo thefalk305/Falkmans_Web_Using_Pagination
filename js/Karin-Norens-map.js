@@ -1,14 +1,24 @@
 ﻿// window.onload = function () {
 (function () {
 
-console.log("Script A loaded"); // in Karin-Norens-map-A.js
-
-
   if (window.activeMap) {
     window.activeMap.remove(); // Cleanly destroy the previous map
   }
   const map = L.map('map'); // Create new map instance
   window.activeMap = map;   // Store reference globally  // Base layer
+
+  // find out where you are on the map
+// const clickedPoints = []; // Global array to store latlngs
+
+// function onMapClick(e) {
+//   const lat = e.latlng.lat.toFixed(2);
+//   const lng = e.latlng.lng.toFixed(2);
+//   const point = `[ ${lat}, ${lng} ],`;
+//   clickedPoints.push(point);
+//   console.log("Clicked points:", clickedPoints);
+//   // alert("You clicked the map at " + point);
+// } 
+//   map.on('click', onMapClick);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -51,20 +61,21 @@ console.log("Script A loaded"); // in Karin-Norens-map-A.js
 
   const arrivalBremen  = `<b><a href="Bremen, Germany.html" target="_blank">Bremen, Germany</a>, </b><br>Upon arrival in Bremen, Karin made her way down to the docks. It was in Bremen, Germany that she boarded the <a href="S S Trave.html" target="_blank">SS Trave</a>, the ship that would take her all the way across the Atlantic Ocean to New York City. This voyage lasted about nine days.`
 
-  const arrivalNewYork  = `<b><a href="New York.html" target="_blank">New York City</a> </b><br>Karin Norén arrived in New York City on <span class="date">📅 Friday, May 21<sup>st</sup>, 1892</span>. She had turned 24 years old the previous December. Upon arrival in New York, her ship would have docked at Ellis Island which had started operation in January of that year. From here she would have boarded a train at Grand Central Depot. The train was heading to DuBois, Pennsylvania where her fiancé, Nil's had arrived six months earlier.`
+  const arrivalNewYork  = `<b><a href="New York.html" target="_blank">New York City</a> </b><br>Karin Norén arrived in New York City on <span class="date">📅 Friday, May 21<sup>st</sup>, 1892</span>. She had turned 24 years old the previous December. Upon arrival in New York, her ship would have docked at Ellis Island which had started operation in January of that year. From here she would have boarded a train at Grand Central Depot. The train was heading to DuBois, Pennsylvania where her fiancé, Nils had arrived six months earlier.`
 
-  const arrivalDuBois  = `<b><a href="DuBois, Pennsylvania.html" target="_blank">DuBois, Pennsylvania</a> </b><br>After leaving New York Karin would have arrived in DuBois the following day, meeting up with her fiancé, Nil's whom she hadn't seen for over six months. On May 25, 1892, three days after arriving in DuBois, Nil's and Karin applied for a marriage license at the county court house and three days later they had a church wedding. It was in DuBois on September 1<sup>st</sup>, 1893, that their first child, Herman (my grandfather), was born. Shortly after Herman's birth, Nil's and Karin decided to leave DuBois and relocate to Chicago, Illinois.`
+  const arrivalDuBois  = `<b><a href="DuBois, Pennsylvania.html" target="_blank">DuBois, Pennsylvania</a> </b><br>After leaving New York Karin would have arrived in DuBois the following day, meeting up with her fiancé, Nils whom she hadn't seen for over six months. On May 25, 1892, three days after arriving in DuBois, Nils and Karin applied for a marriage license at the county court house and three days later they had a church wedding. It was in DuBois on September 1<sup>st</sup>, 1893, that their first child, Herman (my grandfather), was born. Shortly after Herman's birth, Nils and Karin decided to leave DuBois and relocate to Chicago, Illinois.`
 
-  const arrivalChicago  = `<b><a href="Chicago, Illinois.html" target="_blank">Chicago, Illinois</a></b><br>A city with the representation of literally hundreds of ethnic groups, has rightfully earned its nickname as "The Melting Pot of America". Perhaps this is why Nil's and Karin, being new immigrants from Sweden, decided to relocate there. This is where, in the early 1890's, Nils and Karin Falkman finally settled. This is where they set down their roots. This is where many generations of Falkman's were born, with many still living in and around the Chicagoland area.`
+  const arrivalChicago  = `<b><a href="Chicago, Illinois.html" target="_blank">Chicago, Illinois</a></b><br>A city with the representation of literally hundreds of ethnic groups, has rightfully earned its nickname as "The Melting Pot of America". Perhaps this is why Nils and Karin, being new immigrants from Sweden, decided to relocate there. This is where, in the early 1890's, Nils and Karin Falkman finally settled. This is where they set down their roots. This is where many generations of Falkman's were born, with many still living in and around the Chicagoland area.`
 
   // Routes
   // Arbrå to Göteborg
   const landRoute0 = [
-    [61.5, 16.01], [60.7, 17.0], [59.8, 17.5], [59.3, 18.0], [59, 16.15], [58.9, 14.42], [58.4,13.8], [58.03, 12.77], [57.7, 11.97]];
+[61.50, 16.02],[61.09, 16.51],[60.68, 17.14],[60.17, 16.63],[59.62, 16.58],[59.20, 15.08],
+[58.88, 14.36],[58.46, 13.82],[58.27, 13.01],[57.93, 12.50],[57.71, 11.97],[57.70, 11.97]];
 
   // Göteborg to Hamburg, Germany
   const oceanRoute1 = [
-    [57.70, 11.98], [56.50,11.43], [56.034672,12.65],
+    [57.70, 11.98], [57.65, 11.70], [56.90,11.63], [56.034672,12.65],
     [55.59,12.79], [54.96,12.50], [54.36,11.92], [53.96,10.81],
     [53.55,9.88]];
 
@@ -80,13 +91,15 @@ console.log("Script A loaded"); // in Karin-Norens-map-A.js
     [44.00, -45.00], [43.00, -55.00], [42.73, -63.61], [40.18, -70.22], [40.48, -73.88], 
     [40.55, -74.04], [40.64, -74.05], [40.6986, -74.0405]];
 
-    // New York City to DuBois
-  const landRoute2 = [
-    [40.6986, -74.0405], [40.80, -75.16], [40.90, -76.88], [41.1169, -78.7644]];
+  // New York City to DuBois
+  const landRoute2 = [[40.70, -74.10],[40.59, -74.75],[40.58, -75.41],[40.52, -76.20],
+  [40.40, -76.56],[40.55, -77.21],[40.76, -77.64],[40.95, -78.10],[41.01, -78.40], [ 41.12, -78.78 ]];
 
   // DuBois to Chicago
-  const landRoute3 = [[41.117, -78.77],[41.2876, -80.798],[41.2876, -82.826],
-    [41.2876, -84.854],[41.40, -87.00],[41.88,  -87.65]];
+  const landRoute3 = [[41.11, -78.83], [41.18, -80.21], [41.06, -80.81], [41.22, -81.45],
+  [41.33, -82.56], [41.56, -83.64], [41.64, -84.81], [41.74, -86.21], [41.56, -86.90], 
+  [41.56, -87.52], [41.90, -87.65]];
+
 
     // define Static markers
   const staticMarkers = [
@@ -96,7 +109,7 @@ console.log("Script A loaded"); // in Karin-Norens-map-A.js
     { coords: oceanRoute2[0], label: arrivalBremen },
     { coords: landRoute2[0], label: arrivalNewYork },
     { coords: landRoute3[0], label: arrivalDuBois},
-    { coords: landRoute3[5], label: arrivalChicago}
+    { coords: landRoute3[10], label: arrivalChicago}
   ];
 
   // Draw polylines for the entire journey
@@ -142,7 +155,7 @@ console.log("Script A loaded"); // in Karin-Norens-map-A.js
   const NewYorkIndex = allPoints.findIndex(p => p[0] === landRoute2[0][0] && p[1] === landRoute2[0][1]);
   const DuBoisIndex = allPoints.findIndex(p => p[0] === landRoute3[0][0] && p[1] === landRoute3[0][1]);
   // ChicagoIndex is last point in landRoute3
-  const ChicagoIndex = allPoints.findIndex(p => p[0] === landRoute3[5][0] && p[1] === landRoute3[5][1]);
+  const ChicagoIndex = allPoints.findIndex(p => p[0] === landRoute3[10][0] && p[1] === landRoute3[10][1]);
 
   const pauseAtIndices = [ArbråIndex, GöteborgIndex, HamburgIndex, BremenIndex, NewYorkIndex, DuBoisIndex];
 

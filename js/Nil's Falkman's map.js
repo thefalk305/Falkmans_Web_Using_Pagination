@@ -6,7 +6,7 @@
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(map);
 
-  document.querySelector('#heading-row h1').textContent = "Nil's Falkman's Journey";
+  document.querySelector('#heading-row h1').textContent = "Nils Falkman's Journey";
 
   const tourBtn = document.getElementById('tour-btn');
 
@@ -36,7 +36,7 @@
   // text for each waypoint
 const departingSvenshult =  `<b>Svenshult</b><br>Departing Svenshult, Sweden.  This is where Nil's journey begins. And so it was that on Tuesday, the 6th of October 1891. Nils shook his father's hand and gave his mother one last hug. Then said 'Good Bye' to the rest of the family members present. And off he would go to start his journey. He left from Svenshult (See the link under Places) on the eastern coast of Sweden. It would have been a cool, crisp morning and Nils would have been anxious to start. For this would be a long journey. A journey of a life time. He wouldn't have a chance to see Karin. Nils would have either traveled by train or coach (stage coach). Had he traveled by train it would have been an all day excursion, arriving in Göteborg later that evening.  Travel by coach would have been even longer.`
 
-const departingGothenburg =  `<b>Göteborg</b><br>Upon arrival in <a href="Goteborg.html" target="_blank">Göteborg</a>, Sweden, Nil's set sail for Kingston on Hull on the 9th of October upon the <a href="S S Romeo.html" target="_blank">S S Romeo</a>, a steamship built and owned by the Wilson Steamship Line.`
+const departingGothenburg =  `<b>Göteborg</b><br>Upon arrival in <a href="Goteborg.html" target="_blank">Göteborg</a>, Sweden, Nils set sail for Kingston on Hull on the 9th of October upon the <a href="S S Romeo.html" target="_blank">S S Romeo</a>, a steamship built and owned by the Wilson Steamship Line.`
 
 const arrivalHullEngland  = `<b>Kingston on Hull, England</b><br>Upon arriving in <a href="Kingston on Hull, England.html" target="_blank">Hull</a>, Nils would have more than likely stayed on board the ship until transportation was available for the trip to Liverpool (See Kingston on Hull, under Travel Notes) Once transportation was available, Nils would have boarded a train. Along with the other passengers headed to Liverpool. And the second leg of his journey would begin.`
 
@@ -323,7 +323,7 @@ const arrivalChicago  = `A city with the representation of literally hundreds of
       movingMarker.setIcon(wagonIcon); // optional: reset icon
       movingMarker.bindPopup(popupContent).openPopup();
       isPaused = true;
-      if (tourBtn) tourBtn.textContent = "Click to Start Nil's Falkman's Journey";
+      if (tourBtn) tourBtn.textContent = "Click to Start Nils Falkman's Journey";
       return; // wait for user to click again
     }
     moveMarker();
