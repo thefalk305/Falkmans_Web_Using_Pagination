@@ -7,8 +7,8 @@
   const map = L.map('map'); // Create new map instance
   window.activeMap = map;   // Store reference globally  // Base layer
 
-let skipNextPause = false;  // find out where you are on the map
-
+let skipNextPause = false;  // find out where you are on the
+  // find out where you are on the map
 // const clickedPoints = []; // Global array to store latlngs
 
 // function onMapClick(e) {
@@ -19,8 +19,7 @@ let skipNextPause = false;  // find out where you are on the map
 //   console.log("Clicked points:", clickedPoints);
 //   // alert("You clicked the map at " + point);
 // } 
-
-// map.on('click', onMapClick);
+//   map.on('click', onMapClick);
 
   // Base layer
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -28,7 +27,7 @@ let skipNextPause = false;  // find out where you are on the map
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(map);
 
-  document.querySelector('#heading-row h1').textContent = "Nils Falkman's Journey";
+  // document.querySelector('#heading-row h1').textContent = "Nils Falkman's Journey";
 
   const tourBtn = document.getElementById('tour-btn');
   if (tourBtn) tourBtn.textContent = "Click to Start Nils Falkman's Journey";
@@ -57,7 +56,7 @@ let skipNextPause = false;  // find out where you are on the map
   audio.muted = false;
 
   // text for each waypoint
-  const departingSvenshult =  `<b><a href="Svenshult.html" target="_blank">Svenshult, Sweden</a></b><br> Nil's journey begins in Svenshult, Sweden. And so it was that on Tuesday, the 6th of October 1891. Nils shook his father's hand and gave his mother one last hug. Then said 'Good Bye' to the rest of the family members present. And off he would go to start his journey. He left from Svenshult (See the link under Places) on the eastern coast of Sweden. It would have been a cool, crisp morning and Nils would have been anxious to start. For this would be a long journey. A journey of a life time. He wouldn't have a chance to see Karin. Nils would have either traveled by train or coach (stage coach). Had he traveled by train it would have been an all day excursion, arriving in Göteborg later that evening.  Travel by coach would have been even longer.`
+  const departingSvenshult =  `<b><a href="Svenshult, Sweden.html" target="_blank">Svenshult, Sweden</a></b><br> Nil's journey begins in Svenshult, Sweden. And so it was that on Tuesday, the 6th of October 1891. Nils shook his father's hand and gave his mother one last hug. Then said 'Good Bye' to the rest of the family members present. And off he would go to start his journey. He left from Svenshult (See the link under Places) on the eastern coast of Sweden. It would have been a cool, crisp morning and Nils would have been anxious to start. For this would be a long journey. A journey of a life time. He wouldn't have a chance to see Karin. Nils would have either traveled by train or coach (stage coach). Had he traveled by train it would have been an all day excursion, arriving in Göteborg later that evening.  Travel by coach would have been even longer.`
 
   const departingGothenburg =  `<b><a href="Goteborg.html" target="_blank">Göteborg, Sweden</a></b><br> Upon arrival in Göteborg, Sweden, Nils set sail for Kingston on Hull on the 9th of October upon the <a href="S S Romeo.html" target="_blank">S S Romeo</a>, a steamship built and owned by the Wilson Steamship Line.`
 
@@ -92,33 +91,12 @@ let skipNextPause = false;  // find out where you are on the map
 
   // Hull to Liverpool 
   const landRoute1 = [
-[53.74, -0.35],
-[53.72, -0.47],
-[53.72, -0.56],
-[53.74, -0.71],
-[53.79, -1.04],
-[53.79, -1.35],
-[53.81, -1.45],
-[53.79, -1.56],
-[53.77, -1.59],
-[53.75, -1.58],
-[53.72, -1.63],
-[53.67, -1.66],
-[53.68, -1.71],
-[53.70, -1.79],
-[53.69, -1.83],
-[53.71, -1.90],
-[53.73, -1.95],
-[53.74, -2.02],
-[53.72, -2.09],
-[53.59, -2.18],
-[53.49, -2.23],
-[53.46, -2.48],
-[53.43, -2.69],
-[53.41, -2.82],
-[53.40, -2.98],
-[53.40, -3.04],
-];
+  [53.74, -0.35],[53.72, -0.47],[53.72, -0.56],[53.74, -0.71],[53.79, -1.04],
+  [53.79, -1.35],[53.81, -1.45],[53.79, -1.56],[53.77, -1.59],[53.75, -1.58],
+  [53.72, -1.63],[53.67, -1.66],[53.68, -1.71],[53.70, -1.79],[53.69, -1.83],
+  [53.71, -1.90],[53.73, -1.95],[53.74, -2.02],[53.72, -2.09],[53.59, -2.18],
+  [53.49, -2.23],[53.46, -2.48],[53.43, -2.69],[53.41, -2.82],[53.40, -2.98],
+  [53.40, -3.04]];
 
     // Liverpool to New York City
     const oceanRoute2 = [

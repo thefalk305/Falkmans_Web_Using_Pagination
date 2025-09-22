@@ -23,7 +23,7 @@
 		<link href="../css/font-awesome-7.0.1-all.min.css" rel="stylesheet" type="text/css" />
 
 <style>
-#togglePersonBtn {
+#toggleScriptBtn {
 	background-color: #EBDF9F;
 	color: blue;
   position: relative;
@@ -98,7 +98,7 @@
 	<!-- <button id="pause-btn">Pause</button> -->
 	<!-- <button id="mute-btn">Mute</button> -->
 	<audio id="ambient-audio" preload="auto"></audio>
-  <button id="togglePersonBtn">View Karin Norén's Journey</button>
+  <button id="toggleScriptBtn">View Karin Norén's Journey</button>
 
   <!-- content contains the remainder of the page. -->
   <div id="content" >
@@ -121,30 +121,48 @@
 </div>
 
 
-<script type="module">
-  let currentTraveler = 0;
-  const jsonFile = '../data/journeys.json';
-  const toggleBtn = document.getElementById('togglePersonBtn');
+  <script>
+    let currentVersion = 'B';
+    let activeScript = null;
 
-  // Toggle between Nils and Karin
-  toggleBtn.addEventListener('click', () => {
-    currentTraveler = currentTraveler === 0 ? 1 : 0;
-    toggleBtn.textContent = `View ${currentTraveler === 0 ? "Karin Norén's" : "Nils Falkman's"} Journey`;
+    const scriptPaths = {
+      A: "../js/Karin-Norens-map.js",
+      B: "../js/Nils-Falkmans-map.js"
+    };
 
-    // Rebuild the map with the updated person
-    mapBuilder(jsonFile, currentTraveler);
-  });
+    const toggleBtn = document.getElementById('toggleScriptBtn');
 
-  // Import the map builder
-  import { mapBuilder } from '../js/The Immigrants Journey.js';
+    function loadScript(version) {
+      if (activeScript) {
+        activeScript.remove(); // Remove previous script
+      }
 
-  // Initialize map on page load
-  document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-      mapBuilder(jsonFile, currentTraveler);
-    }, 100); // Delay to ensure header/footer are loaded
-  });
-</script>
+			const script = document.createElement('script');
+			// script.src = scriptPaths[version]; // or use cache-busting: `
+			script.src = `${scriptPaths[version]}?v=${Date.now()}`
+
+			script.onload = () => {
+				console.log(`✅ Script ${version} loaded and executed`);
+			};
+
+			script.onerror = () => {
+				console.error(`❌ Failed to load script ${version}`);
+			};
+
+			document.body.appendChild(script);
+			activeScript = script;
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      currentVersion = currentVersion === 'A' ? 'B' : 'A';
+      toggleBtn.textContent = `View ${currentVersion === `B` ? " Karin Norén's " : " Nil's Falkman's "} Journey`;
+      loadScript(currentVersion);
+    });
+
+    // Initial load
+    loadScript(currentVersion);
+  </script>
+
 
 
 <!-- <script src="../js/Karin Norén's map.js"></script> -->

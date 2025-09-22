@@ -127,18 +127,42 @@ const arrivalChicago  = `A city with the representation of literally hundreds of
     ...Array(landRoute3.length).fill('train')
   ];
 
-  // Key indices
-  const SvenshultIndex = allPoints.findIndex(p => p[0] === landRoute0[0][0] && p[1] === landRoute0[0][1]);
-  const GöteborgIndex = allPoints.findIndex(p => p[0] === oceanRoute1[0][0] && p[1] === oceanRoute1[0][1]);
-  const HullIndex = allPoints.findIndex(p => p[0] === landRoute1[0][0] && p[1] === landRoute1[0][1]);
-  const LiverpoolIndex = allPoints.findIndex(p => p[0] === oceanRoute2[0][0] && p[1] === oceanRoute2[0][1]);
-  const NewYorkIndex = allPoints.findIndex(p => p[0] === landRoute2[0][0] && p[1] === landRoute2[0][1]);
-  const DuBoisIndex = allPoints.findIndex(p => p[0] === landRoute3[0][0] && p[1] === landRoute3[0][1]);
-  // ChicagoIndex is last point in landRoute3
-  const ChicagoIndex = allPoints.findIndex(p => p[0] === landRoute3[5][0] && p[1] === landRoute3[5][1]);
+  // // Key indices
+  // const SvenshultIndex = allPoints.findIndex(p => p[0] === landRoute0[0][0] && p[1] === landRoute0[0][1]);
+  // const GöteborgIndex = allPoints.findIndex(p => p[0] === oceanRoute1[0][0] && p[1] === oceanRoute1[0][1]);
+  // const HullIndex = allPoints.findIndex(p => p[0] === landRoute1[0][0] && p[1] === landRoute1[0][1]);
+  // const LiverpoolIndex = allPoints.findIndex(p => p[0] === oceanRoute2[0][0] && p[1] === oceanRoute2[0][1]);
+  // const NewYorkIndex = allPoints.findIndex(p => p[0] === landRoute2[0][0] && p[1] === landRoute2[0][1]);
+  // const DuBoisIndex = allPoints.findIndex(p => p[0] === landRoute3[0][0] && p[1] === landRoute3[0][1]);
+  // // ChicagoIndex is last point in landRoute3
+  // const ChicagoIndex = allPoints.findIndex(p => p[0] === landRoute3[5][0] && p[1] === landRoute3[5][1]);
 
 
-  const pauseAtIndices = [SvenshultIndex, GöteborgIndex,  HullIndex, LiverpoolIndex, NewYorkIndex, DuBoisIndex];
+  // const pauseAtIndices = [SvenshultIndex, GöteborgIndex,  HullIndex, LiverpoolIndex, NewYorkIndex, DuBoisIndex];
+
+  const pausePoints = [];
+  let cumulativeIndex = 0;
+
+  Object.values(markers).forEach((marker, i) => {
+    const routeLength = marker.route.length;
+    const name = marker.url.toLowerCase(); // normalize for matching
+
+    pausePoints.push({
+      name,               // e.g. "svenshult, sweden"
+      index: cumulativeIndex,
+      popup: marker.popup,
+      mode: marker.mode
+    });
+
+    cumulativeIndex += routeLength;
+  });
+
+  // Optional: ChicagoIndex as last point of last marker
+  const lastMarker = Object.values(markers).at(-1);
+  const ChicagoIndex = allPoints.findIndex(p =>
+    p[0] === lastMarker.route.at(-1)[0] &&
+    p[1] === lastMarker.route.at(-1)[1]
+  );
 
   // put 'wagon' icon at Svenshult
   const movingMarker = L.marker(allPoints[0], {

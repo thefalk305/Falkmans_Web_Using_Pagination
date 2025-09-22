@@ -111,7 +111,17 @@
 </div>
 
 
-<script src="../js/Map.js"></script>
+<!-- <script src="../js/Map.js"></script> -->
+
+<script type="module">
+  import { mapBuilder } from '../js/Nils-Falkmans-map-json.js';
+  document.addEventListener('DOMContentLoaded', () => {
+    // Wait briefly to ensure header/footer are loaded
+    setTimeout(() => {
+      mapBuilder(journeys.json);
+    }, 100); // You can adjust this delay if needed
+  });
+</script>
 
 <script type="module">
   import { initMagnifierControls } from '../js/magnifier.js';
