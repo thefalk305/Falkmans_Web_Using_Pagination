@@ -202,5 +202,18 @@
       moveMarker();
       }
     });
+  // find out where you are on the map
+// const clickedPoints = []; // Global array to store latlngs
+
+// function onMapClick(e) {
+//   const lat = e.latlng.lat.toFixed(2);
+//   const lng = e.latlng.lng.toFixed(2);
+//   const point = `[ ${lat}, ${lng} ],`;
+//   clickedPoints.push(point);
+//   console.log("Clicked points:", clickedPoints);
+//   // alert("You clicked the map at " + point);
+// } 
+//   map.on('click', onMapClick);
   });
+
 }

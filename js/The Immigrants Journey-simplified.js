@@ -44,9 +44,7 @@
 
       waypoints.forEach((wp, i) => {
         const color = wp.mode === 'wagon' ? 'blue' :
-                      wp.mode === 'boat'  ? 'green' :
-                      wp.mode === 'train' ? (i === 4 ? 'red' : 'blue') :
-                      'gray';
+          wp.mode === 'boat'  ? 'green' : wp.mode === 'train' ? (i === 4 ? 'red' : 'blue') : 'gray';
         const dashArray = wp.mode === 'wagon' || wp.mode === 'train' ? '10,5' : null;
         L.polyline(wp.route, { color, weight: 2, opacity: 0.8, dashArray }).addTo(map);
 
@@ -58,14 +56,16 @@
       // let movingMarker = L.marker(allPoints[0], { icon: wagonIcon }).addTo(map);
       let currentIndex = 0;
       let isPaused = true;
-      let tourStarted = false;
-      let lastPointReached = false;
       let animationTimeout = null;
       let userHasInteracted = false;
+      let tourStarted = false;
+      let lastPointReached = false;
       let skipNextPause = false;
       let updateIcon = false;
 
+
       function initMapAndVariables() {
+      tourBtn.style.visibility = 'visible';
         movingMarker = L.marker(allPoints[0]).addTo(map);
         currentIndex = 0;
         isPaused = true;
@@ -109,8 +109,8 @@
             audio.volume = 0.3;
             break;
           default:
-            src = '../assets/sounds/firetruck-w-horns-0415-70775.mp3';
-            audio.volume = 0.5;
+            // src = '../assets/sounds/firetruck-w-horns-0415-70775.mp3';
+            // audio.volume = 0.2;
         }
         const resolvedSrc = new URL(src, window.location.href).href;
 
@@ -175,13 +175,16 @@ function dispatchEvent(type) {
       currentIndex++;
       moveMarker();
       }, 1000);
+
+    if (currentIndex === allPoints.length - 1) {
+      tourBtn.textContent = "Click to Restart Journey";
+      lastPointReached = true;
+    }  
+
       break;
 
     case "journeyComplete":
-      tourBtn.textContent = "Click to Restart Journey";
-      tourBtn.style.visibility = 'visible';
-      tourStarted = false;
-      currentIndex = 0;
+      initMapAndVariables();
       break;
   }
 }
@@ -190,35 +193,61 @@ function moveMarker() {
   // if (!tourStarted || isPaused) return;
 
   if (currentIndex >= allPoints.length) {
+    tourBtn.textContent = "Click to Restart Journey";
     dispatchEvent("journeyComplete");
     return;
   }
 
+  // ✅ Move first, then check pause
+  movingMarker.setLatLng(allPoints[currentIndex]);
+  map.setView(allPoints[currentIndex], 10);
+
   if (pauseAtIndices.includes(currentIndex)) {
     dispatchEvent("pausePointReached");
+    currentIndex++; // ✅ Advance so we don’t loop
     return;
   }
 
-  dispatchEvent("moveToNextPoint");
+  animationTimeout = setTimeout(() => {
+    currentIndex++;
+    moveMarker();
+  }, 1000);
+
 }
 
 tourBtn.addEventListener('click', () => {
-  if (!tourStarted) {
-    tourStarted = true; // ✅ Start the journey
-    tourBtn.textContent = `Click to Continue ${name}'s Journey`;
-  }
+  // if (!tourStarted) {
+  //   tourStarted = true; // ✅ Start the journey
+  //   tourBtn.textContent = `Click to Continue ${name}'s Journey`;
+  // }
   
+  // tourBtn.style.visibility = 'hidden';
+  // // isPaused = false;
+  // skipNextPause = true;
+  //   movingMarker.setIcon(setIcon(currentIndex));
+
   tourBtn.style.visibility = 'hidden';
-  // isPaused = false;
-  skipNextPause = true;
-    movingMarker.setIcon(setIcon(currentIndex));
+  isPaused = false;
+
+  // ✅ Set icon only when resuming
+  movingMarker.setIcon(setIcon(currentIndex));
 
   moveMarker();
 
-  if (currentIndex === allPoints.length - 1) {
-    lastPointReached = true;
-  }  
 });
+  // find out where you are on the map
+// const clickedPoints = []; // Global array to store latlngs
+
+// function onMapClick(e) {
+//   const lat = e.latlng.lat.toFixed(2);
+//   const lng = e.latlng.lng.toFixed(2);
+//   const point = `[ ${lat}, ${lng} ],`;
+//   clickedPoints.push(point);
+//   console.log("Clicked points:", clickedPoints);
+//   // alert("You clicked the map at " + point);
+// } 
+//   map.on('click', onMapClick);
+
 
 });
 }

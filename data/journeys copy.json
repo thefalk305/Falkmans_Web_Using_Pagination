@@ -12,6 +12,48 @@
           [57.11, 12.33], [57.31, 12.22], [57.46, 12.10], [57.71, 11.98]],
         "popup": "<b><a href=\"Svenshult, Sweden.html\" target=\"_blank\">Svenshult, Sweden</a></b><br> Nil's journey begins in Svenshult, Sweden. And so it was that on Tuesday, the 6th of October 1891. Nils shook his father's hand and gave his mother one last hug. Then said 'Good Bye' to the rest of the family members present. And off he would go to start his journey. He left from Svenshult (See the link under Places) on the eastern coast of Sweden. It would have been a cool, crisp morning and Nils would have been anxious to start. For this would be a long journey. A journey of a life time. He wouldn't have a chance to see Karin. Nils would have either traveled by train or coach (stage coach). Had he traveled by train it would have been an all day excursion, arriving in Göteborg later that evening. Travel by coach would have been even longer."
       },
+      { "waypoint": 1,
+        "url": "Goteborg, Sweden",
+        "mode": "boat",
+        "boat": "S S Romeo",
+        "route": [
+          [57.71, 11.98], [57.71, 11.98], [57.62, 11.72], [57.61, 11.54], [57.74, 11.20], [57.87, 10.85],
+          [57.89, 10.59], [57.82, 9.85], [57.58, 8.87], [57.05, 6.82], [56.65, 5.99],
+          [56.16, 4.76], [55.04, 2.76], [53.59, 0.37], [53.54, 0.19], [53.63, -0.16],
+          [53.74, -0.32]],
+        "popup": "<b><a href=\"Goteborg.html\" target=\"_blank\">Göteborg, Sweden</a></b><br> Upon arrival in Göteborg, Sweden, Nils set sail for Kingston on Hull on the 9th of October upon the <a href=\"S S Romeo.html\" target=\"_blank\">S S Romeo</a>, a steamship built and owned by the Wilson Steamship Line."
+      },
+      { "waypoint": 2,
+        "url": "Hull, England",
+        "mode": "train",
+        "route":  [
+          [53.74, -0.32],[53.74, -0.32],[53.72, -0.47],[53.72, -0.56],[53.74, -0.71],
+          [53.79, -1.35],[53.79, -1.56],[53.77, -1.59],
+          [53.68, -1.71],[53.70, -1.79],
+          [53.74, -2.02],[53.72, -2.09],
+          [53.49, -2.23],[53.43, -2.69],[53.41, -2.82],
+          [53.40, -3.00]],
+        "popup": "<b><a href=\"Kingston on Hull, England.html\" target=\"_blank\">Kingston on Hull, England</a></b><br>Upon arriving in Hull, Nils would have more than likely stayed on board the S S Romeo until transportation was available for the trip to Liverpool (See Kingston on Hull, under Travel Notes) Once transportation was available, Nils would have boarded a train along with the other passengers headed to Liverpool."
+      },
+      { "waypoint": 3,
+        "url": "Liverpool, England",
+        "mode": "boat",
+        "boat": "R M S Britannic",
+        "route": [
+          [53.40, -3.00], [53.40, -3.00], [53.60, -3.30], [53.60, -4.70], [53.37, -5.00],
+          [52.01, -5.70], [51.00, -7.51], [50.00, -15.00],
+          [48.00, -25.00], [46.00, -35.00], [44.00, -45.00], [43.00, -55.00],
+          [42.73, -63.61], [40.18, -70.22], [40.48, -73.88], [40.55, -74.04],
+          [40.64, -74.05], [40.6986, -74.0405]],
+        "popup": "<b><a href=\"Liverpool, England.html\" target=\"_blank\">Liverpool, England</a></b><br>Upon arrival in Liverpool, Nils would have headed down to the docks.  Here, in Liverpool, is where the second waypoint of his journey would begin. On the 14<sup>th</sup> of October, 1891, Nils boarded the <a href=\"R M S Britannic.html\" target=\"_blank\">RMS Britannic</a>; the ship that would take him across the Atlantic and into New York City on October 23."
+      },
+      { "waypoint": 4,
+        "url": "New York",
+        "mode": "train",
+        "route": [[40.6986, -74.0405],[40.6986, -74.0405],[40.59, -74.75],[40.58, -75.41],[40.52, -76.20],
+          [40.40, -76.56],[40.55, -77.21],[40.76, -77.64],[40.95, -78.10],[41.01, -78.40], [ 41.12, -78.78 ]],
+        "popup": "<b><a href=\"New York.html\" target=\"_blank\">New York, New York</a></b><br>Arrival New York City. In October 1891, immigrants arriving in New York were processed at the Barge Office which was located at the Battery in Lower Manhattan. This facility served as a temporary immigration station between the closure of Castle Garden and the opening of Ellis Island.  From there he would have boarded a train at Grand Central Depot. And headed to DuBois Pennsylvania. Where his brother would be waiting."
+      },
       { "waypoint": 5,
         "url": "DuBois, Pennsylvania",
         "mode": "train",

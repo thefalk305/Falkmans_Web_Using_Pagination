@@ -107,6 +107,10 @@
   import { createAreas } from '../js/create-areas.js';
 
   const params = new URLSearchParams(window.location.search);
+  const img = document.getElementById('doc-image');
+  const notesEl = document.getElementById('doc-notes');
+  const box = document.getElementById('highlight');
+
   // Form logic only runs in edit mode
   if (params.get('mode') === 'edit') {
 
@@ -185,9 +189,10 @@
     document.getElementById('fileInput').addEventListener('change', (event) => {
       const file = event.target.files[0];
       if (file) {
+
         const url = URL.createObjectURL(file);
         img.src = url;
-        notesEl.textContent = document.getElementById('notes').value;
+        notesEl.textContent = document.getElementById('notes').value;        
 
         img.onload = () => {
           setTimeout(() => {
