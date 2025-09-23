@@ -57,7 +57,7 @@
       let movingMarker = L.marker(allPoints[0]).addTo(map);
       // let movingMarker = L.marker(allPoints[0], { icon: wagonIcon }).addTo(map);
       let currentIndex = 0;
-      let isPaused = false;
+      let isPaused = true;
       let tourStarted = false;
       let lastPointReached = false;
       let animationTimeout = null;
@@ -68,7 +68,7 @@
       function initMapAndVariables() {
         movingMarker = L.marker(allPoints[0]).addTo(map);
         currentIndex = 0;
-        isPaused = false;
+        isPaused = true;
         tourStarted = false;
         lastPointReached = false;
         animationTimeout = null;
@@ -91,13 +91,14 @@
         }
       }
 
+      // play audio and zoom bounds
       function playAmbientSound(type) {
         if (!userHasInteracted || audio.muted) return;
         let src = '';
         switch (type) {
           case 'wagon':
             src = '../assets/sounds/horse-gallop-loop2-103633.mp3';
-            audio.volume = 0.3;
+            audio.volume = 0.4;
             break;
           case 'boat':
             src = '../assets/sounds/ship-horn-distant-38390.mp3';
@@ -105,14 +106,34 @@
             break;
           case 'train':
             src = '../assets/sounds/train-whistle-306031-2sec.mp3';
-            audio.volume = 0.2;
+            audio.volume = 0.3;
             break;
           default:
             src = '../assets/sounds/firetruck-w-horns-0415-70775.mp3';
             audio.volume = 0.5;
         }
-        audio.src = src;
-        audio.play();
+        const resolvedSrc = new URL(src, window.location.href).href;
+
+          // Fit bounds between current and next segment
+          const pauseIndex = pauseAtIndices.indexOf(currentIndex - 1);
+          const nextPauseIndex = pauseAtIndices[pauseIndex + 1];
+        // Only swap source when it changes
+        // if (audio.src !== resolvedSrc) {
+          audio.pause();
+          audio.src = src;
+          audio.load();
+          audio.play();
+
+
+          if (pauseIndex !== -1 && nextPauseIndex !== undefined) {
+            const segmentBounds = L.latLngBounds([
+              allPoints[currentIndex],
+              allPoints[nextPauseIndex]
+            ]);
+            map.fitBounds(segmentBounds, { padding: [20, 20] });
+          }
+        // }
+
       }
 
       function setIcon(index) {
@@ -129,78 +150,75 @@
         }
       }
 
-    function moveMarker() {
-      if (!tourStarted || isPaused) return;
+function dispatchEvent(type) {
+  switch (type) {
+    case "pausePointReached":
+      const pauseIndex = pauseAtIndices.indexOf(currentIndex);
+      const pausePoint = waypoints[pauseIndex];
+      map.setView(allPoints[currentIndex], 10);
+      audio.pause();
+      movingMarker.bindPopup(pausePoint.popup, {offset: L.point(0, -15)}).openPopup();
+      tourBtn.style.visibility = 'visible';
+      isPaused = true;
+      currentIndex++;
+      break;
 
-      if (currentIndex >= allPoints.length) {
-        tourBtn.textContent = `Click to Restart ${name}'s Journey`;
-        tourBtn.style.visibility = 'visible';
-        tourStarted = false;
-        currentIndex = 0;
-        return;
+    case "moveToNextPoint":
+      if(isPaused) {
+        isPaused = false;
+        setIcon(currentIndex);
       }
-
-      // ✅ Only pause if we're at a pause point AND not skipping
-      if (pauseAtIndices.includes(currentIndex) && !skipNextPause) {
-        const pauseIndex = pauseAtIndices.indexOf(currentIndex);
-        const pausePoint = waypoints[pauseIndex];
-        // Zoom to current point
-        map.setView(allPoints[currentIndex], 10); // Adjust zoom level as needed
-        audio.pause()
-        movingMarker.bindPopup(pausePoint.popup).openPopup();
-        lastPointReached = pausePoint.url.toLowerCase().includes("chicago");
-        isPaused = true;
-        tourBtn.style.visibility = 'visible';
-        updateIcon = true
-        return;
-      }
-
-      // ✅ Resume: close popup and move forward
       movingMarker.closePopup();
       movingMarker.setLatLng(allPoints[currentIndex]);
-
-      skipNextPause = false; // reset if we had skipped one
+      // setIcon(currentIndex);
       animationTimeout = setTimeout(() => {
-        currentIndex++;
-        moveMarker();
-      }, 1000);
-    }
-    tourBtn.addEventListener('click', () => {
-      if (!tourStarted) {
-        movingMarker.closePopup();
-        tourStarted = true;
-        currentIndex = 0;
-        isPaused = false;
-        tourBtn.textContent = `Click to Continue ${name}'s Journey`;
-        moveMarker();
-      } else if (lastPointReached) {
-        currentIndex = 0;
-        lastPointReached = false;
-        isPaused = false;
-        tourBtn.textContent = `Click to Restart ${name}'s Journey`;
-        movingMarker.closePopup();
-        map.removeLayer(movingMarker);
-        initMapAndVariables();
-        moveMarker();
-      } else {
-      tourBtn.style.visibility = 'hidden';
-      isPaused = false;
-      skipNextPause = true;
-
-      // Fit bounds between current and next segment
-      const pauseIndex = pauseAtIndices.indexOf(currentIndex);
-      const nextPauseIndex = pauseAtIndices[pauseIndex + 1];
-
-      if (pauseIndex !== -1 && nextPauseIndex !== undefined) {
-        const segmentBounds = L.latLngBounds([
-          allPoints[currentIndex],
-          allPoints[nextPauseIndex]
-        ]);
-        map.fitBounds(segmentBounds, { padding: [20, 20] });
-      }
-      movingMarker.setIcon(setIcon(currentIndex));
+      currentIndex++;
       moveMarker();
-      }
-    });
-  });
+      }, 1000);
+      break;
+
+    case "journeyComplete":
+      tourBtn.textContent = "Click to Restart Journey";
+      tourBtn.style.visibility = 'visible';
+      tourStarted = false;
+      currentIndex = 0;
+      break;
+  }
+}
+
+function moveMarker() {
+  // if (!tourStarted || isPaused) return;
+
+  if (currentIndex >= allPoints.length) {
+    dispatchEvent("journeyComplete");
+    return;
+  }
+
+  if (pauseAtIndices.includes(currentIndex)) {
+    dispatchEvent("pausePointReached");
+    return;
+  }
+
+  dispatchEvent("moveToNextPoint");
+}
+
+tourBtn.addEventListener('click', () => {
+  if (!tourStarted) {
+    tourStarted = true; // ✅ Start the journey
+    tourBtn.textContent = `Click to Continue ${name}'s Journey`;
+  }
+  
+  tourBtn.style.visibility = 'hidden';
+  // isPaused = false;
+  skipNextPause = true;
+    movingMarker.setIcon(setIcon(currentIndex));
+
+  moveMarker();
+
+  if (currentIndex === allPoints.length - 1) {
+    lastPointReached = true;
+  }  
+});
+
+});
 }

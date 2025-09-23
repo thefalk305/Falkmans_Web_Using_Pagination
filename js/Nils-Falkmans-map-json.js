@@ -49,7 +49,6 @@ export function mapBuilder( jsonFile, currentTraveler ) {
 
 
    // Initialize State
-  // const pauseAtIndices = [];
   let skipNextPause = false;  // find out where you are on the
   let currentIndex = 0;
   let isPaused = false;
@@ -58,7 +57,6 @@ export function mapBuilder( jsonFile, currentTraveler ) {
   let tourStarted = false;
   let pendingResetAtChicago = false;
   let waypointIndex = 0;
-  // let cumulativeIndex = 0;
 
   //create wagon icon
   const wagonIcon = L.icon({
@@ -73,16 +71,18 @@ export function mapBuilder( jsonFile, currentTraveler ) {
   audio.volume = 0.5; // 50% volume
   audio.muted = false;
 
-let cumulativeIndex = 0;
-const pauseAtIndices = waypoints.map(wp => {
-  const entry = { index: cumulativeIndex, data: wp };
-  cumulativeIndex += wp.route.length;
-  return entry;
-});
-// waypoints.forEach((waypoint) => {
-//   pauseAtIndices.push(cumulativeIndex); // store the starting index of this waypoint
-//   cumulativeIndex += waypoint.route.length; // advance by the number of points in this segment
+// let cumulativeIndex = 0;
+// const pauseAtIndices = waypoints.map(wp => {
+//   const entry = { index: cumulativeIndex, data: wp };
+//   cumulativeIndex += wp.route.length;
+//   return entry;
 // });
+  let cumulativeIndex = 0;
+  const pauseAtIndices = [];
+  waypoints.forEach((waypoint) => {
+  pauseAtIndices.push(cumulativeIndex); // store the starting index of this waypoint
+  cumulativeIndex += waypoint.route.length; // advance by the number of points in this segment
+});
 
 // Draw polylines for the entire journey
   // red = wagon, blue = train, green = boat

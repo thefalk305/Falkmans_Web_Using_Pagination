@@ -1,0 +1,97 @@
+┌────────────────────────────┐
+│ Start: mapBuilder() called │
+└────────────┬───────────────┘
+             │
+             ▼
+┌────────────────────────────────────────────┐
+│ Fetch JSON file and extract traveler data  │
+└────────────┬───────────────────────────────┘
+             │
+             ▼
+┌────────────────────────────────────────────┐
+│ Initialize map, tile layer, and audio      │
+│ - Set heading and tour button text         │
+│ - Remove previous map if exists            │
+│ - Add OpenStreetMap tile layer             │
+│ - Create wagon icon                        │
+│ - Set audio volume and loop                │
+└────────────┬───────────────────────────────┘
+             │
+             ▼
+┌────────────────────────────────────────────┐
+│ Process waypoints                          │
+│ - Build pauseAtIndices                     │
+│ - Flatten allPoints and segmentTypes       │
+│ - Fit map to full journey bounds           │
+│ - Draw polylines and static markers        │
+└────────────┬───────────────────────────────┘
+             │
+             ▼
+┌────────────────────────────────────────────┐
+│ Initialize movingMarker at first point     │
+│ Set initial state variables                │
+└────────────┬───────────────────────────────┘
+             │
+             ▼
+┌────────────────────────────────────────────┐
+│ Wait for user interaction (click or key)   │
+└────────────┬───────────────────────────────┘
+             │
+             ▼
+┌────────────────────────────────────────────┐
+│ tourBtn clicked                            │
+│ ┌────────────────────────────────────────┐ │
+│ │ If tour not started:                   │ │
+│ │ - Close popup                          │ │
+│ │ - Set tourStarted = true               │ │
+│ │ - Reset currentIndex                   │ │
+│ │ - Update button text                   │ │
+│ │ - Call moveMarker()                    │ │
+│ └────────────────────────────────────────┘ │
+│ ┌────────────────────────────────────────┐ │
+│ │ Else if pendingResetAtChicago:        │ │
+│ │ - Reset currentIndex                  │ │
+│ │ - Clear flags                         │ │
+│ │ - Remove marker and reinit map        │ │
+│ │ - Call moveMarker()                   │ │
+│ └────────────────────────────────────────┘ │
+│ ┌────────────────────────────────────────┐ │
+│ │ Else (resuming journey):              │ │
+│ │ - Hide button                         │ │
+│ │ - Clear pause flags                   │ │
+│ │ - Fit bounds to next segment          │ │
+│ │ - Update icon                         │ │
+│ │ - Call moveMarker()                   │ │
+│ └────────────────────────────────────────┘ │
+└────────────┬───────────────────────────────┘
+             │
+             ▼
+┌────────────────────────────────────────────┐
+│ moveMarker()                               │
+│ ┌────────────────────────────────────────┐ │
+│ │ If tour not started or isPaused: return│ │
+│ └────────────────────────────────────────┘ │
+│ ┌────────────────────────────────────────┐ │
+│ │ If journey complete:                   │ │
+│ │ - Update button text                   │ │
+│ │ - Show button                          │ │
+│ │ - Reset tourStarted and currentIndex   │ │
+│ │ - return                               │ │
+│ └────────────────────────────────────────┘ │
+│ ┌────────────────────────────────────────┐ │
+│ │ If currentIndex is a pause point:     │ │
+│ │ - Zoom to current point                │ │
+│ │ - Pause audio                          │ │
+│ │ - Show popup                           │ │
+│ │ - Set flags (isPaused, pendingReset)   │ │
+│ │ - Show tourBtn                         │ │
+│ │ - return                               │ │
+│ └────────────────────────────────────────┘ │
+│ ┌────────────────────────────────────────┐ │
+│ │ Else (normal animation step):         │ │
+│ │ - Close popup                          │ │
+│ │ - Move marker to currentIndex          │ │
+│ │ - Set timeout to increment index       │ │
+│ │ - Call moveMarker() again              │ │
+│ └────────────────────────────────────────┘ │
+└────────────────────────────────────────────┘

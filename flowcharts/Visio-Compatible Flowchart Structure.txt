@@ -1,0 +1,60 @@
+Terminator: Start Journey
+Process: Fetch JSON and extract traveler data
+Process: Initialize map and tile layer
+Process: Set tourBtn.text = "Click to Start journey"
+Process: Build pauseAtIndices, allPoints, segmentTypes
+Process: Fit map to full journey bounds
+Process: Draw polylines and static markers
+Process: Initialize movingMarker and state variables
+Input/Output: Wait for user interaction (click or key)
+Decision: Is tourBtn clicked?
+
+  └─ Yes:
+    Decision: Is tourStarted false?
+      └─ Yes:
+        Process: Set tourStarted = true
+        Process: Set currentIndex = 0
+        Process: Set tourBtn.text = "Click to Continue journey"
+        Process: Call moveMarker()
+
+      └─ No:
+        Decision: Is pendingResetAtChicago?
+          └─ Yes:
+            Process: Reset currentIndex
+            Process: Clear flags
+            Process: Remove marker
+            Process: Reinitialize map
+            Process: Call moveMarker()
+
+          └─ No:
+            Process: Hide tourBtn
+            Process: Clear pause flags
+            Process: Fit bounds to next segment
+            Process: Update icon
+            Process: Call moveMarker()
+
+Process: moveMarker()
+Decision: Is tourStarted false or isPaused true?
+  └─ Yes:
+    Terminator: Return
+
+Decision: Is currentIndex ≥ allPoints.length?
+  └─ Yes:
+    Process: Set tourBtn.text = "Click to Restart journey"
+    Process: Set tourStarted = false
+    Process: Set currentIndex = 0
+    Terminator: Return
+
+Decision: Is currentIndex in pauseAtIndices AND skipNextPause is false?
+  └─ Yes:
+    Process: Zoom to current point
+    Process: Pause audio
+    Process: Show popup
+    Process: Set flags
+    Process: Show tourBtn
+    Terminator: Return
+
+Process: Close popup
+Process: Move marker to currentIndex
+Process: Set timeout to increment index
+Process: Call moveMarker()
