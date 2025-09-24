@@ -10,66 +10,73 @@
 	<meta content="no" http-equiv="imagetoolbar" />
 	<meta content="Copyright © 2025, Allen Falkman All Rights Reserved" name="copyright" />
 
-  <meta name="page-title" content="Karin Norén's Journey" />
+  <meta name="page-title" content="" />
+	<link rel="icon" href="../assets/favicon.ico" />
 
 	<link href="../css/magnify.css" rel="stylesheet" type="text/css" />
-	<link rel="icon" href="../assets/favicon.ico" />
 	<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap" rel="stylesheet"/>
 	<link href="../css/falkman.css" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+	<link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet"/>
 	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <!-- add geographical overlay -->
+
+  <!-- adds geographical overlay -->
   <script src="https://unpkg.com/leaflet-providers"></script>
 
-		<link href="../css/font-awesome-7.0.1-all.min.css" rel="stylesheet" type="text/css" />
+	<link href="../css/font-awesome-7.0.1-all.min.css" rel="stylesheet" type="text/css" />
 
 <style>
-.custom-sea-icon,
-.custom-traveler-icon {
-  font-size: 36px;
-  line-height: 36px;
-  text-align: center;
-}
+	.custom-sea-icon,
+	.custom-traveler-icon {
+		font-size: 36px;
+		line-height: 36px;
+		text-align: center;
+	}
 
-#tour-btn,
-#togglePersonBtn {
-	color: blue;
-  position: relative;
-	margin: 0px auto;
-	display: block;            /* Ensures margin auto works */
-  padding: 8px 16px;
-  font-size: 16px;
-  cursor: pointer;
-	font-weight: 700;
-  z-index: 1000;
-  border-radius: 10px;
-}	
+	#tour-btn,
+	#togglePersonBtn {
+		color: blue;
+		position: relative;
+		margin: 0px auto;
+		display: block;            /* Ensures margin auto works */
+		padding: 8px 16px;
+		font-size: 16px;
+		cursor: pointer;
+		font-weight: 700;
+		z-index: 1000;
+		border-radius: 10px;
+	}	
 
-#togglePersonBtn {
-	background-color: #EBDF9F;
-	margin: 0px auto;
-	display: block;            /* Ensures margin auto works */
-}	
+	#togglePersonBtn {
+		background-color: #EBDF9F;
+		margin: 0px auto;
+		display: block;            /* Ensures margin auto works */
+	}
 
-#tour-btn {
-  bottom: 70px;
-  transform: translateX(70%);
-  background-color: aquamarine;
-}
+	#togglePersonBtn:disabled
+		{
+			cursor: not-allowed;   /* shows the "🚫" style cursor */
+			opacity: 0.6;          /* optional: dim it further */
+		}
 
-#map {
-	height: 600px; 
-	width: 80%; 
-	position: relative;
-	margin: auto;
-}
+	#tour-btn {
+		bottom: 100px;
+		/* transform: translateX(70%); */
+		background-color: aquamarine;
+	}
 
-.leaflet-popup-content {
-	max-width: 800px;
-	width: 600px;
-	max-height: 300px;
-	/* overflow-y: scroll; */
-	width: 370px !important;}
+	#map {
+		height: 600px; 
+		width: 80%; 
+		position: relative;
+		margin: auto;
+	}
+
+	.leaflet-popup-content {
+		max-width: 800px;
+		width: 600px;
+		max-height: 300px;
+		/* overflow-y: scroll; */
+		width: 370px !important;}
 </style>
 </head>
 
@@ -81,11 +88,8 @@
   <div id="header"></div>
   <script src="../js/loadHeader.js"></script>
 
-
 	<div id="map" style="height: 600px;"></div>
 	<button id="tour-btn"></button>
-	<!-- <button id="pause-btn">Pause</button> -->
-	<!-- <button id="mute-btn">Mute</button> -->
 	<audio id="ambient-audio" preload="auto"></audio>
   <button id="togglePersonBtn">View Karin Norén's Journey</button>
 
@@ -109,7 +113,7 @@
 <script src="../js/loadFooter.js"></script>
 </div>
 
-
+<!-- script for map journey -->
 <script type="module">
   let currentTraveler = 0;
   const jsonFile = '../data/journeys.json';
@@ -120,12 +124,12 @@
     currentTraveler = currentTraveler === 0 ? 1 : 0;
     toggleBtn.textContent = `View ${currentTraveler === 0 ? "Karin Norén's" : "Nils Falkman's"} Journey`;
 
-    // Rebuild the map with the updated person
+    // Rebuild the map with the updated traveler
     mapBuilder(jsonFile, currentTraveler);
   });
 
   // Import the map builder
-  import { mapBuilder } from '../js/The Immigrants Journey-simplified.js';
+  import { mapBuilder } from '../js/The Immigrants Journey.js';
 
   // Initialize map on page load
   document.addEventListener('DOMContentLoaded', () => {
@@ -135,9 +139,7 @@
   });
 </script>
 
-
-<!-- <script src="../js/Karin Norén's map.js"></script> -->
-
+<!-- script for magnifier -->
 <script type="module">
   import { initMagnifierControls } from '../js/magnifier.js';
   document.addEventListener('DOMContentLoaded', () => {
