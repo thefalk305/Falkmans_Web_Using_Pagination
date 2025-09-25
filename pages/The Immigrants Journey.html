@@ -33,7 +33,8 @@
 	}
 
 	#tour-btn,
-	#togglePersonBtn {
+	#overlay-btn,
+	#toggleTravelerBtn {
 		color: blue;
 		position: relative;
 		margin: 0px auto;
@@ -46,20 +47,28 @@
 		border-radius: 10px;
 	}	
 
-	#togglePersonBtn {
+	#toggleTravelerBtn {
+		bottom: 70px;
 		background-color: #EBDF9F;
 		margin: 0px auto;
 		display: block;            /* Ensures margin auto works */
 	}
+	#overlay-btn {
+		background-color: aquamarine;
+		margin: 0px auto;
+		bottom: 90px;
+		margin-left: 130px;
+}
 
-	#togglePersonBtn:disabled
+
+	#toggleTravelerBtn:disabled
 		{
 			cursor: not-allowed;   /* shows the "🚫" style cursor */
 			opacity: 0.6;          /* optional: dim it further */
 		}
 
 	#tour-btn {
-		bottom: 100px;
+		bottom: 130px;
 		/* transform: translateX(70%); */
 		background-color: aquamarine;
 	}
@@ -76,7 +85,8 @@
 		width: 600px;
 		max-height: 300px;
 		/* overflow-y: scroll; */
-		width: 370px !important;}
+		width: 370px !important;
+	}
 </style>
 </head>
 
@@ -89,9 +99,10 @@
   <script src="../js/loadHeader.js"></script>
 
 	<div id="map" style="height: 600px;"></div>
+	<button id="overlay-btn">Overlay Off</button>
 	<button id="tour-btn"></button>
 	<audio id="ambient-audio" preload="auto"></audio>
-  <button id="togglePersonBtn">View Karin Norén's Journey</button>
+  <button id="toggleTravelerBtn">View Karin Norén's Journey</button>
 
   <!-- content contains the remainder of the page. -->
   <div id="content" >
@@ -117,7 +128,7 @@
 <script type="module">
   let currentTraveler = 0;
   const jsonFile = '../data/journeys.json';
-  const toggleBtn = document.getElementById('togglePersonBtn');
+  const toggleBtn = document.getElementById('toggleTravelerBtn');
 
   // Toggle between Nils and Karin
   toggleBtn.addEventListener('click', () => {

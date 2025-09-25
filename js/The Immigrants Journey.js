@@ -36,11 +36,12 @@ export function mapBuilder(jsonFile, currentTraveler) {
       const name = tripData.name;
       const waypoints = tripData.waypoints;
 
-      // init html elements 'heading-row h1' and 'tour-btn'
+      // init html elements 'heading-row h1' and 'tour-btn' and 'overlay-btn'
       document.querySelector('#heading-row h1').textContent = `${name}'s Journey`;
       const tourBtn = document.getElementById('tour-btn');
       tourBtn.textContent = `Click to Start ${name}'s Journey`;
-      const personBtn = document.getElementById('togglePersonBtn');
+      const personBtn = document.getElementById('toggleTravelerBtn');
+      const overlayBtn = document.getElementById('overlay-btn');
 
       // remove any residual maps
       if (window.activeMap) window.activeMap.remove();
@@ -52,12 +53,37 @@ export function mapBuilder(jsonFile, currentTraveler) {
         attribution: '&copy; OpenStreetMap'
       }).addTo(map);
 
+      // provide overlay to identify geography (land and water)
+      const natGeoOverlay = L.tileLayer.provider('Esri.NatGeoWorldMap').addTo(map);
+
       const wagonIcon = L.icon({
         iconUrl: '../images/stagecoach.svg',
         iconSize:  [50, 50],
         iconAnchor: null,
         popupAnchor: [0, -20]
       });
+
+      const boatIcon = L.icon({
+        iconUrl: '../images/passenger ship.png',
+        iconSize:  [60, 60],
+        iconAnchor: null,
+        popupAnchor: [0, -20]
+      });
+
+      const trainIcon = L.icon({
+        iconUrl: '../images/train.png',
+        iconSize:  [60, 60],
+        iconAnchor: null,
+        popupAnchor: [0, -20]
+      });
+
+      const hiddenIcon = L.divIcon({
+        html: '',          // no content
+        className: '',     // no default styles
+        iconSize: [0, 0]   // no visible box
+      });
+
+
 
       // initialize audio
       const audio = document.getElementById('ambient-audio');
@@ -94,13 +120,11 @@ export function mapBuilder(jsonFile, currentTraveler) {
       // initialize variables
       let movingMarker = L.marker(allPoints[0]).addTo(map);
       let currentIndex = 0;
-      let isPaused = true;
+      let journeyPaused = true;
       let animationTimeout = null;
       let userHasInteracted = false;
       let lastPointReached = false;
-
-      // provide overlay to identify geography (land and water)
-      L.tileLayer.provider('Esri.NatGeoWorldMap').addTo(map);
+      let overlayOn = true;
 
       // browsers block audio until user Has Interacted (i.e. clicked)
       document.addEventListener('click', () => { userHasInteracted = true; }, { once: false });
@@ -120,7 +144,7 @@ export function mapBuilder(jsonFile, currentTraveler) {
         // Create a fresh marker
         movingMarker = L.marker(allPoints[0]).addTo(map);
         currentIndex = 0;
-        isPaused = true;
+        journeyPaused = true;
         lastPointReached = false;
         animationTimeout = null;
         userHasInteracted = false;
@@ -172,9 +196,9 @@ export function mapBuilder(jsonFile, currentTraveler) {
         const type = segmentTypes[index];
         playAmbientSound(type);
         if (type === 'boat') {
-          return L.divIcon({ html: '<div style="font-size: 32px;">🚢</div>', iconSize: [0, 0], iconAnchor: [32, 32] });
-        } else if (type === 'train') {
-          return L.divIcon({ html: '<div style="font-size: 32px;">🚂</div>', iconSize: [0, 0], iconAnchor: [32, 32] });
+         return  boatIcon;
+        } else if (type === 'train') 
+          { return trainIcon
         } else {
           return wagonIcon;
         }
@@ -182,8 +206,9 @@ export function mapBuilder(jsonFile, currentTraveler) {
 
       // we have reached a pause point
       function pausePointReached() {
-        // reset isPaused
-        isPaused = false;
+        // reset journeyPaused
+        journeyPaused = false;
+        movingMarker.setIcon(hiddenIcon);
         personBtn.disabled = false;
         tourBtn.style.visibility = 'visible';
         tourBtn.textContent = "Click to Continue Journey";
@@ -200,9 +225,9 @@ export function mapBuilder(jsonFile, currentTraveler) {
 
       // movingMarker to next pausePoint
       function moveMarker() {
-        if (!isPaused) {
-          // set isPaused for next tourBtn click
-          isPaused = true;
+        if (!journeyPaused) {
+          // set journeyPaused for next tourBtn click
+          journeyPaused = true;
           personBtn.disabled = true;
           clearTimeout(animationTimeout);
           movingMarker.setIcon(setIcon(currentIndex));
@@ -220,24 +245,35 @@ export function mapBuilder(jsonFile, currentTraveler) {
             pausePointReached();
             return;         // stop looping here
           }
-          animationTimeout = setTimeout(step, 1000);
+          animationTimeout = setTimeout(step, 500);
         }
       step();
       }
 
-      // all actions are triggered off the tourBtn
+      // all actions are triggered off the tourBtn overlay-btn
       tourBtn.addEventListener('click', () => {
         if (lastPointReached) {
           initMapAndVariables();
           return;
         }
-        if(isPaused) {
+        if(journeyPaused) {
           pausePointReached();
           return;
         }
         // else
         moveMarker();
         return;
+      });
+
+      overlayBtn.addEventListener('click', () => {
+        overlayOn = !overlayOn;
+        if (overlayOn) {
+          map.addLayer(natGeoOverlay);
+          overlayBtn.textContent = "Overlay OFF";
+        } else {
+          map.removeLayer(natGeoOverlay);
+          overlayBtn.textContent = "Overlay ON";
+        }
       });
 
   /****************************************************************

@@ -1,0 +1,50 @@
+
+			 ┌─────────────────────────┐
+			 │   mapBuilder() called   │
+			 └──────────┬──────────────┘
+						│
+						▼
+			   Initialization:
+			   - Load JSON
+			   - Build map, routes, markers
+			   - Setup state vars
+			   - Attach tourBtn click handler
+						│
+						▼
+			 ┌─────────────────────────┐
+			 │   tourBtn clicked       │
+			 └──────────┬──────────────┘
+						│
+     ┌──────────────────┼───────────────────┐
+     │      			│                   │
+     ▼        			│                   ▼
+  [lastPointReached?]   │               [isPaused?] 
+     │               	│                   │
+     │ Yes        	   	│No                 │ Yes
+     ▼                  ▼                   ▼
+  initMap           moveMarker()       pausePointReached()
+  and reset             │              (show popup, pause)
+						│
+						▼
+				   moveMarker():
+				   - hide tourBtn
+				   - set icon
+				   - close popup
+				   - step() loop
+						│
+						▼
+				   step():
+				   - move marker to allPoints[currentIndex]
+				   - increment index
+				   - if next index ∈ pausePoints → pausePointReached()
+				   - else setTimeout(step, 500)
+						│
+						▼
+				   pausePointReached():
+				   - set isPaused=false
+				   - enable personBtn
+				   - show tourBtn ("Continue")
+				   - pause audio
+				   - zoom to current point
+				   - open popup
+				   - if last index → lastPointReached=true
