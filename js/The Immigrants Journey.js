@@ -214,7 +214,11 @@ export function mapBuilder(jsonFile, currentTraveler) {
         tourBtn.textContent = "Click to Continue Journey";
         audio.pause();
         // zoom to current point
-        map.setView(allPoints[currentIndex], 10);
+        map.flyTo(allPoints[currentIndex], 10, {
+          animate: true,
+          duration: 1 // seconds
+        });
+        // map.setView(allPoints[currentIndex], 10);
         const pauseIndex = pausePoints.indexOf(currentIndex);
         const pausePoint = waypoints[pauseIndex];
         // open popup for current location
@@ -245,7 +249,10 @@ export function mapBuilder(jsonFile, currentTraveler) {
             pausePointReached();
             return;         // stop looping here
           }
-          animationTimeout = setTimeout(step, 500);
+          map.panTo(allPoints[currentIndex], {animate: true, duration: 2.0})
+          // map.setView(allPoints[currentIndex], 8);
+
+          animationTimeout = setTimeout(step, 1000);
         }
       step();
       }
