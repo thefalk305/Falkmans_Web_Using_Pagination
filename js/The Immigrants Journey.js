@@ -24,279 +24,264 @@
 
 **************************************************************/
 export function mapBuilder(jsonFile, currentTraveler) {
-  fetch(jsonFile)
-    .then(res => res.json())
-    .then(data => {
+fetch(jsonFile)
+.then(res => res.json())
+.then(data => {
 
 /*********************************************
-          initialization starts here
+      initialization starts here
 **********************************************/
-      // get trip data from json
-      const tripData = data[currentTraveler];
-      const name = tripData.name;
-      const waypoints = tripData.waypoints;
+  // get trip data from json
+  const tripData = data[currentTraveler];
+  const name = tripData.name;
+  const waypoints = tripData.waypoints;
 
-      // init html elements 'heading-row h1' and 'tour-btn' and 'overlay-btn'
-      document.querySelector('#heading-row h1').textContent = `${name}'s Journey`;
-      const tourBtn = document.getElementById('tour-btn');
-      tourBtn.textContent = `Click to Start ${name}'s Journey`;
-      const personBtn = document.getElementById('toggleTravelerBtn');
-      const overlayBtn = document.getElementById('overlay-btn');
+  // init html elements 'heading-row h1' and 'tour-btn' and 'overlay-btn'
+  document.querySelector('#heading-row h1').textContent = `${name}'s Journey`;
+  const tourBtn = document.getElementById('tour-btn');
+  tourBtn.textContent = `Click to Start ${name}'s Journey`;
+  const personBtn = document.getElementById('toggleTravelerBtn');
+  const overlayBtn = document.getElementById('overlay-btn');
 
-      // remove any residual maps
-      if (window.activeMap) window.activeMap.remove();
-      const map = L.map('map');
-      window.activeMap = map;
+  const restartText = "Click to Restart Journey";
+  const continueText = "Click to Continue Journey";
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 20,
-        attribution: '&copy; OpenStreetMap'
-      }).addTo(map);
+  // remove any residual maps
+  if (window.activeMap) window.activeMap.remove();
+  const map = L.map('map');
+  window.activeMap = map;
 
-      // provide overlay to identify geography (land and water)
-      const natGeoOverlay = L.tileLayer.provider('Esri.NatGeoWorldMap').addTo(map);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 20,
+    attribution: '&copy; OpenStreetMap'
+  }).addTo(map);
 
-      const wagonIcon = L.icon({
-        iconUrl: '../images/stagecoach.svg',
-        iconSize:  [50, 50],
-        iconAnchor: null,
-        popupAnchor: [0, -20]
-      });
+  // provide overlay to identify geography (land and water)
+  const natGeoOverlay = L.tileLayer.provider('Esri.NatGeoWorldMap').addTo(map);
 
-      const boatIcon = L.icon({
-        iconUrl: '../images/passenger ship.png',
-        iconSize:  [60, 60],
-        iconAnchor: null,
-        popupAnchor: [0, -20]
-      });
+  const wagonIcon = L.icon({
+    iconUrl: '../images/stagecoach.svg',
+    iconSize:  [50, 50],
+    iconAnchor: null,
+    popupAnchor: [0, -20]
+  });
 
-      const trainIcon = L.icon({
-        iconUrl: '../images/train.png',
-        iconSize:  [60, 60],
-        iconAnchor: null,
-        popupAnchor: [0, -20]
-      });
+  const boatIcon = L.icon({
+    iconUrl: '../images/passenger ship.png',
+    iconSize:  [60, 60],
+    iconAnchor: null,
+    popupAnchor: [0, -20]
+  });
 
-      const hiddenIcon = L.divIcon({
-        html: '',          // no content
-        className: '',     // no default styles
-        iconSize: [0, 0]   // no visible box
-      });
+  const trainIcon = L.icon({
+    iconUrl: '../images/train.png',
+    iconSize:  [60, 60],
+    iconAnchor: null,
+    popupAnchor: [0, -20]
+  });
 
+  const hiddenIcon = L.divIcon({
+    html: '',          // no content
+    className: '',     // no default styles
+    iconSize: [0, 0]   // no visible box
+  });
 
+  // initialize audio
+  const audio = document.getElementById('ambient-audio');
+  audio.loop = true;
+  audio.volume = 0.6;
 
-      // initialize audio
-      const audio = document.getElementById('ambient-audio');
-      audio.muted = false;
-      audio.loop = true;
+  // create pause points --- first latlng in each leg
+  const pausePoints = [];
+  let cumulativeIndex = 0;
+  waypoints.forEach(wp => {
+    pausePoints.push(cumulativeIndex);
+    cumulativeIndex += wp.route.length;
+  });
 
-      // create pause points
-      const pausePoints = [];
-      let cumulativeIndex = 0;
-      waypoints.forEach(wp => {
-        pausePoints.push(cumulativeIndex);
-        cumulativeIndex += wp.route.length;
-      });
+  // array of all latlng values
+  const allPoints = waypoints.flatMap(wp => wp.route);
 
-      // array of all latlng values
-      const allPoints = waypoints.flatMap(wp => wp.route);
+  // array of modes (i.e. boat, train, wagon) for each latlng
+  const segmentTypes = waypoints.flatMap(wp => Array(wp.route.length).fill(wp.mode));
 
-      // array of all modes (i.e. boat, train, wagon)
-      const segmentTypes = waypoints.flatMap(wp => Array(wp.route.length).fill(wp.mode));
+  // zoom allPoints
+  map.fitBounds(L.polyline(allPoints, {animate: true, padding: [20, 20] }).getBounds());
 
-      // zoom allPoints
-      map.fitBounds(L.polyline(allPoints).getBounds());
+  // add routes and markers
+  waypoints.forEach((wp, i) => {
+    const color = wp.mode === 'wagon' ? 'blue' :
+      wp.mode === 'boat'  ? 'green' : wp.mode === 'train' ? (i === 4 ? 'red' : 'blue') : 'gray';
+    const dashArray = wp.mode === 'wagon' || wp.mode === 'train' ? '10,5' : null;
+    L.polyline(wp.route, { color, weight: 2, opacity: 0.8, dashArray, smoothFactor: 0.8  }).addTo(map);
 
-      // add routes and markers
-      waypoints.forEach((wp, i) => {
-        const color = wp.mode === 'wagon' ? 'blue' :
-          wp.mode === 'boat'  ? 'green' : wp.mode === 'train' ? (i === 4 ? 'red' : 'blue') : 'gray';
-        const dashArray = wp.mode === 'wagon' || wp.mode === 'train' ? '10,5' : null;
-        L.polyline(wp.route, { color, weight: 2, opacity: 0.8, dashArray }).addTo(map);
+    L.marker(wp.route[0]).addTo(map).bindPopup(wp.popup);
+  });
 
-        L.marker(wp.route[0]).addTo(map).bindPopup(wp.popup);
-      });
+  // initialize variables
+  let movingMarker = L.marker(allPoints[0]).addTo(map);
+  let currentIndex = 0;
+  let journeyPaused = true;
+  let animationTimeout = null;
+  let userHasInteracted = false;
+  let lastPointReached = false;
+  let overlayOn = true;
 
-      // initialize variables
-      let movingMarker = L.marker(allPoints[0]).addTo(map);
-      let currentIndex = 0;
-      let journeyPaused = true;
-      let animationTimeout = null;
-      let userHasInteracted = false;
-      let lastPointReached = false;
-      let overlayOn = true;
-
-      // browsers block audio until user Has Interacted (i.e. clicked)
-      document.addEventListener('click', () => { userHasInteracted = true; }, { once: false });
-      document.addEventListener('keydown', () => { userHasInteracted = true; }, { once: false });
+  // browsers block audio until user Has Interacted (i.e. clicked)
+  document.addEventListener('click', () => { userHasInteracted = true; }, { once: false });
+  document.addEventListener('keydown', () => { userHasInteracted = true; }, { once: false });
 
 /**********************************************  
-          all initialization complete
+      all initialization complete
 **********************************************/
 
-      // re-init - called when lastPointReached
-      function initMapAndVariables() {
-        // Remove the old marker if it exists
-        if (movingMarker) {
-          movingMarker.closePopup();
-          map.removeLayer(movingMarker);
-        }
-        // Create a fresh marker
-        movingMarker = L.marker(allPoints[0]).addTo(map);
-        currentIndex = 0;
-        journeyPaused = true;
-        lastPointReached = false;
-        animationTimeout = null;
-        userHasInteracted = false;
-        map.fitBounds(L.polyline(allPoints).getBounds());
-        movingMarker.closePopup();
-        tourBtn.textContent = "Click to Restart Journey";
-      }
+/**********************************************  
+      functions start here
+**********************************************/
 
-      // play audio and zoom bounds
-      function playAmbientSound(type) {
-        if (!userHasInteracted || audio.muted) return;
-        let src = '';
-        switch (type) {
-          case 'wagon':
-            src = '../assets/sounds/horse-gallop-loop2-103633.mp3';
-            audio.volume = 0.4;
-            break;
-          case 'boat':
-            src = '../assets/sounds/ship-horn-distant-38390.mp3';
-            audio.volume = 0.4;
-            break;
-          case 'train':
-            src = '../assets/sounds/train-whistle-306031-2sec.mp3';
-            audio.volume = 0.3;
-            break;
-          default:
-            // src = '../assets/sounds/firetruck-w-horns-0415-70775.mp3';
-            // audio.volume = 0.2;
-        }
-        // pause when changing src
-        audio.pause();
-        audio.src = src;
-        audio.load();
-        audio.play();
+  // re-init - only called after lastPointReached
+  function initMapAndVariables() {
+    // Remove the old marker if it exists
+    if (movingMarker) {
+      movingMarker.closePopup();
+      map.removeLayer(movingMarker);
+    }
+    // Create a fresh marker
+    movingMarker = L.marker(allPoints[0]).addTo(map);
+    currentIndex = 0;
+    journeyPaused = true;
+    lastPointReached = false;
+    animationTimeout = null;
+    userHasInteracted = false;
+    map.fitBounds(L.polyline(allPoints).getBounds());
+    tourBtn.textContent = `Click to Start ${name}'s Journey`;
+  }
 
-        // fits bounds between current and next pausePoint
-        const pauseIndex = pausePoints.indexOf(currentIndex);
-        const nextPauseIndex = pausePoints[pauseIndex + 1];
-        const segmentBounds = L.latLngBounds([
-          allPoints[currentIndex],
-          allPoints[nextPauseIndex]
-        ]);
-        map.fitBounds(segmentBounds, { padding: [20, 20] });
-      }
+  // only called when journey resuming (from pausePoint)
+  function playAmbientSound() {
+    const type = segmentTypes[currentIndex];
+    // if (!userHasInteracted ) return;
+    let src = '';
+    if(type === 'wagon')
+      src = '../assets/sounds/horse-gallop-loop2-103633.mp3';
+    else if(type === 'boat')
+      src = '../assets/sounds/ship-horn-distant-38390.mp3';
+    else
+      src = '../assets/sounds/train-whistle-306031-2sec.mp3';
 
-      // sets icon, plays audio and fits bounds
-      // (could be split into three functions)
-      function setIcon(index) {
-        const type = segmentTypes[index];
-        playAmbientSound(type);
-        if (type === 'boat') {
-         return  boatIcon;
-        } else if (type === 'train') 
-          { return trainIcon
-        } else {
-          return wagonIcon;
-        }
-      }
+    // pause when changing src
+    audio.pause();
+    audio.src = src;
+    audio.load();
+    audio.play();
+  };
 
-      // we have reached a pause point
-      function pausePointReached() {
-        // reset journeyPaused
-        journeyPaused = false;
-        movingMarker.setIcon(hiddenIcon);
-        personBtn.disabled = false;
-        tourBtn.style.visibility = 'visible';
-        tourBtn.textContent = "Click to Continue Journey";
-        audio.pause();
-        // zoom to current point
-        map.flyTo(allPoints[currentIndex], 10, {
-          animate: true,
-          duration: 1 // seconds
-        });
-        // map.setView(allPoints[currentIndex], 10);
-        const pauseIndex = pausePoints.indexOf(currentIndex);
-        const pausePoint = waypoints[pauseIndex];
-        // open popup for current location
-        movingMarker.bindPopup(pausePoint.popup, {offset: L.point(0, -15)}).openPopup();
-        // end of tour?
-        lastPointReached = (currentIndex === allPoints.length - 1) 
-      }
+  // only called when journey resuming (from pausePoint)
+  // fitBounds using current waypoint and next waypoint
+  function fitBounds() {
+    const segmentBounds = L.latLngBounds([allPoints[currentIndex],
+      allPoints[pausePoints[pausePoints.indexOf(currentIndex) + 1]]]);
+    map.flyToBounds(segmentBounds, {padding: [20, 20], duration: 2.0 });
+  };
 
-      // movingMarker to next pausePoint
-      function moveMarker() {
-        if (!journeyPaused) {
-          // set journeyPaused for next tourBtn click
-          journeyPaused = true;
-          personBtn.disabled = true;
-          clearTimeout(animationTimeout);
-          movingMarker.setIcon(setIcon(currentIndex));
-          movingMarker.closePopup();
-          tourBtn.style.visibility = 'hidden';
-        }
+  // only called when journey resuming (from pausePoint)
+  function setIcon(currentIndex) {
+    const type = segmentTypes[currentIndex];
+    if (type === 'boat') {
+      return  boatIcon;
+    } else if (type === 'train') { 
+      return trainIcon
+    } else {
+      return wagonIcon;
+    }
+  }
 
-        // loop until next pausePoint is reached
-        function step() {
-          if (currentIndex >= allPoints.length) return;
-          movingMarker.setLatLng(allPoints[currentIndex]);
-          currentIndex++;
-          // Check if the NEXT index is a pause point
-          if (pausePoints.includes(currentIndex )) {
-            pausePointReached();
-            return;         // stop looping here
-          }
-          map.panTo(allPoints[currentIndex], {animate: true, duration: 2.0})
-          // map.setView(allPoints[currentIndex], 8);
+  // we have reached a pause point
+  function pausePointReached() {
+    // reset journeyPaused
+    lastPointReached = (currentIndex === allPoints.length - 1) 
+    journeyPaused = false;
+    movingMarker.setIcon(hiddenIcon);
+    audio.pause();
+    personBtn.disabled = false;
+    tourBtn.style.visibility = 'visible';
+    tourBtn.textContent = lastPointReached ? restartText : continueText;
+    // zoom to current point
+    map.flyTo(allPoints[currentIndex], 10, {duration: 1.5, easeLinearity: 0.25 });
+    // map.setView(allPoints[currentIndex], 10);
+    const pausePoint = waypoints[pausePoints.indexOf(currentIndex)];
+    // open popup for current location
+    movingMarker.bindPopup(pausePoint.popup, {offset: L.point(0, -15)}).openPopup();
+    // end of tour?
+  }
 
-          animationTimeout = setTimeout(step, 1000);
-        }
-      step();
-      }
+  // movingMarker to next pausePoint
+  function moveMarker() {
+    if (!journeyPaused) {
+      // journey resuming
+      // set journeyPaused for next tourBtn click
+      journeyPaused = true;
+      movingMarker.setIcon(setIcon(currentIndex));
+      playAmbientSound();
+      personBtn.disabled = true;
+      tourBtn.style.visibility = 'hidden';
+      movingMarker.closePopup();
+      fitBounds();
+    }
 
-      // all actions are triggered off the tourBtn overlay-btn
-      tourBtn.addEventListener('click', () => {
-        if (lastPointReached) {
-          initMapAndVariables();
-          return;
-        }
-        if(journeyPaused) {
+    // loop until next pausePoint is reached
+    function step() {
+      if (currentIndex >= allPoints.length) return;
+      // move icon along
+        movingMarker.setLatLng(allPoints[currentIndex]);
+        currentIndex++;
+        // Check if the index is a pause point
+        if (pausePoints.includes(currentIndex)) {
           pausePointReached();
-          return;
+          return;         // stop looping here
         }
-        // else
-        moveMarker();
-        return;
-      });
+      // map.panTo(allPoints[currentIndex], {animate: true, duration: 5.0})
+      animationTimeout = setTimeout(step, 1000);
+    }
+  step();
+  }
 
-      overlayBtn.addEventListener('click', () => {
-        overlayOn = !overlayOn;
-        if (overlayOn) {
-          map.addLayer(natGeoOverlay);
-          overlayBtn.textContent = "Overlay OFF";
-        } else {
-          map.removeLayer(natGeoOverlay);
-          overlayBtn.textContent = "Overlay ON";
-        }
-      });
-
-  /****************************************************************
-      this code can assist in creating an array of latlngs
-      to use for a new route that can be added to the json file
-  *****************************************************************/  
-  // const clickedPoints = []; // Global array to store latlngs
-  // function onMapClick(e) {
-  //   const lat = e.latlng.lat.toFixed(2);
-  //   const lng = e.latlng.lng.toFixed(2);
-  //   const point = `[ ${lat}, ${lng} ],`;
-  //   clickedPoints.push(point);
-  //   console.log("Clicked points:", clickedPoints);
-  //   // alert("You clicked the map at " + point);
-  // } 
-  //   map.on('click', onMapClick);
-
+  // all actions are triggered off the tourBtn overlay-btn
+  tourBtn.addEventListener('click', () => {
+    if (lastPointReached) {
+      initMapAndVariables();
+    }
+    else if (journeyPaused) {
+      pausePointReached();
+    } else {
+      moveMarker();
+    }
   });
+
+  overlayBtn.addEventListener('click', () => {
+    overlayOn = !overlayOn;
+    if (overlayOn) {
+      map.addLayer(natGeoOverlay);
+      overlayBtn.textContent = "Overlay OFF";
+    } else {
+      map.removeLayer(natGeoOverlay);
+      overlayBtn.textContent = "Overlay ON";
+    }
+  });
+
+/****************************************************************
+  this code can assist in creating an array of latlngs
+  to use for a new route that can be added to the json file
+*****************************************************************/  
+// const clickedPoints = []; // Global array to store latlngs
+// function onMapClick(e) {
+//   const lat = e.latlng.lat.toFixed(2);
+//   const lng = e.latlng.lng.toFixed(2);
+//   const point = `[ ${lat}, ${lng} ],`;
+//   clickedPoints.push(point);
+//   console.log("Clicked points:", clickedPoints);
+//   // alert("You clicked the map at " + point);
+// } 
+//   map.on('click', onMapClick);
+});
 }
