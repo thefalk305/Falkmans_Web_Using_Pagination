@@ -28,29 +28,26 @@
         "url": "Liverpool, England",
         "mode": "boat",
         "boat": "R M S Britannic",
-        "route":[[53.40, -2.99],[53.54, -3.19],[53.46, -4.76],[51.07, -6.66],[48.67, -21.98],[45.50, -39.03],[41.88, -61.63],[40.39, -73.46],[40.52, -73.95],[40.58, -74.05],[40.67, -74.05],[40.71, -74.01]],
+        "route":[[53.40, -3.00],[53.47, -3.05],[53.49, -4.74],[52.23, -5.79],[51.76, -8.24],[51.85, -8.30],[51.76, -8.24],[50.98, -8.75],[50.16, -13.56],[47.08, -31.67],[44.32, -47.93],[40.38, -73.47],[40.52, -73.95],[40.58, -74.05],[40.67, -74.05],[40.71, -74.01]],
         "popup": "<b><a href=\"Liverpool, England.html\" target=\"_blank\">Liverpool, England</a></b><br>Upon arrival in Liverpool, Nils would have headed down to the docks.  Here, in Liverpool, is where the second waypoint of his journey would begin. On the 14<sup>th</sup> of October, 1891, Nils boarded the <a href=\"R M S Britannic.html\" target=\"_blank\">RMS Britannic</a>; the ship that would take him across the Atlantic and into New York City on October 23."
       },
       { "waypoint": 4,
         "url": "New York",
         "mode": "train",
-        "route": [[40.6986, -74.0405],[40.6986, -74.0405],[40.59, -74.75],[40.58, -75.41],[40.52, -76.20],
-          [40.40, -76.56],[40.55, -77.21],[40.76, -77.64],[40.95, -78.10],[41.01, -78.40], [41.12, -78.76]],
+        "route": [[40.6986, -74.0405],[40.6986, -74.0405],[40.59, -74.75],[40.58, -75.41],[40.52, -76.20],[40.40, -76.56],[40.55, -77.21],[40.76, -77.64],[40.95, -78.10],[41.01, -78.40], [41.12, -78.76]],
         "popup": "<b><a href=\"New York.html\" target=\"_blank\">New York, New York</a></b><br>Arrival New York City. In October 1891, immigrants arriving in New York were processed at the Barge Office which was located at the Battery in Lower Manhattan. This facility served as a temporary immigration station between the closure of Castle Garden and the opening of Ellis Island.  From there he would have boarded a train at Grand Central Depot. And headed to DuBois Pennsylvania. Where his brother would be waiting."
       },
       { "waypoint": 5,
         "url": "DuBois, Pennsylvania",
         "mode": "train",
-        "route": [[41.12, -78.76], [41.12, -78.78 ], [41.18, -80.21], [41.06, -80.81], [41.22, -81.45],
-          [41.33, -82.56], [41.56, -83.64], [41.64, -84.81], [41.74, -86.21], [41.56, -86.90], 
-          [41.56, -87.52], [41.88, -87.63]],
+        "route": [[41.12, -78.76], [41.12, -78.78 ], [41.18, -80.21], [41.06, -80.81], [41.22, -81.45],[41.33, -82.56], [41.56, -83.64], [41.64, -84.81], [41.74, -86.21], [41.56, -86.90], [41.56, -87.52], [41.88, -87.63]],
         "popup": "<b><a href=\"DuBois, Pennsylvania.html\" target=\"_blank\">DuBois, Pennsylvania</a></b><br>It wasn't clear why Peter had decided to go to DuBois, Pennsylvania., but I recently found out that he had a brother, John Löfgren, living in DuBois. Once Peter settled in, he plied his trade as a shoemaker and waited for his fiancé to arrive. The following year his future wife Karin Noren, arrived from Sweden. Nils and Karin applied for a marriage license in the county court house on May 25, 1892. Three days later they had a church wedding. It was in DuBois on September 1<sup>st</sup>, 1893, that their first child, Herman (my grandfather), was born. Shortly after Herman's birth, Nils and Karin decided to leave DuBois and relocate to Chicago, Illinois."
       },
       { "waypoint": 5,
         "url": "Chicago, Illinois",
         "mode": "",
         "route": [[41.88, -87.63]],
-        "popup": "<b><a href=\"Chicago, Illinois.html\" target=\"_blank\">Chicago, Illinois</a></b><br>A city with the representation of literally hundreds of ethnic groups, has rightfully earned its nickname as \"The Melting Pot of America\". Perhaps this is why Nils and Karin, being new immigrants from Sweden, decided to relocate there. This is where, in the early 1890's, Nils and Karin Falkman finally settled. This is where they set down their roots. This is where many generations of Falkman's were born, with many still living in and around the Chicagoland area."
+        "popup": "<b><a href=\"Chicago, Illinois.html\" target=\"_blank\">Chicago, Illinois</a></b><br>A city with the representation of literally hundreds of ethnic groups, has rightfully earned its nickname as \"The Melting Pot of America\". Perhaps this is why Nils and Karin, being new immigrants from Sweden, decided to relocate here. This is where, in the early 1890's, Nils and Karin Falkman finally settled. This is where they set down their roots. This is where many generations of Falkman's were born, with many still living in and around the Chicagoland area."
       }
     ]
   },
@@ -63,67 +60,46 @@
         "url": "Arbrå, Sweden",
         "mode": "wagon",
         "boat": "",
-        "route": [
-
-          [61.47, 16.37],
-[60.68, 17.16],
-[59.86, 17.63],
-
-[59.62, 16.58],[59.20, 15.08],
-        [58.88, 14.36],[58.46, 13.82],[58.27, 13.01],[57.93, 12.50],[57.71, 11.97],[57.70, 11.97]],
+        "route": [[61.47, 16.37],[60.68, 17.16],[59.86, 17.63],[59.62, 16.58],[59.20, 15.08],[58.88, 14.36],[58.46, 13.82],[58.27, 13.01],[57.93, 12.50],[57.71, 11.97],[57.70, 11.97]],
         "popup": "<b><a href=\"Arbrå, Sweden.html\" target=\"_blank\">Arbrå, Sweden</a></b><br> Karin Norén's Journey begins in the small town of Arbrå, Sweden, centrally located near the eastern coast of Sweden. It is situated about 42 miles south-west of <a href=\"Hudiksvall, Sweden.html\" target=\"_blank\">Hudiksvall</a>, the same town where Nils was doing his apprenticeship. She left her home in early May of 1892 and traveled to Göteborg, as did Nils."
     },
       { "waypoint": 1,
         "url": "Goteborg, Sweden",
         "mode": "boat",
         "boat": "S S Norden",
-        "route": [
-          [57.70, 11.97], [57.65, 11.70], [56.90,11.63], [56.034672,12.65],
-          [55.59,12.79], [54.96,12.50], [54.36,11.92], [53.96,10.81],
-          [53.55,10.00]],
+        "route": [[57.70, 11.97], [57.65, 11.70], [56.90,11.63], [56.034672,12.65],[55.59,12.79], [54.96,12.50], [54.36,11.92], [53.96,10.81],[53.55,10.00]],
         "popup": "<b><a href=\"Goteborg.html\" target=\"_blank\">Göteborg</a></b><br>Upon arrival in Göteborg, Sweden, Karin boarded the <a href=\"S S Norden.html\" target=\"_blank\">S.S. Norden</a>, a steamship built and owned by the Wilson Steamship Line which took her to Hamburg, Germany</a>."
       },
       { "waypoint": 2,
         "url": "Hamburg, Germany",
         "mode": "train",
-        "route":  [[53.55, 10.00],[53.54, 10.03],[53.49, 10.01],[53.46, 9.99],[53.43, 10.02],[53.41, 10.02],
-       [53.41, 9.99],[53.36, 9.92],
-          [53.32, 9.85],[53.28, 9.76],[53.22, 9.63],[53.18, 9.52],[53.12, 9.44],[53.10, 9.31],[53.10, 9.23],
-          [53.09, 9.11],[53.08, 9.01],[53.09, 8.92],[53.10, 8.85],[53.10, 8.80],[53.08, 8.80]],
-        "popup": "<b><a href=\"Hamburg, Germany.html\" target=\"_blank\">Hamburg, Germany</a></b><br>Upon arriving in Hamburg, Germany, Karin boarded a train for the short trip to Bremen, Germany, which is located about 80 miles (127 km) to the went of Hamburg."
+        "route":  [[53.55, 10.00],[53.54, 10.03],[53.49, 10.01],[53.46, 9.99],[53.43, 10.02],[53.41, 10.02],[53.41, 9.99],[53.36, 9.92],[53.32, 9.85],[53.28, 9.76],[53.22, 9.63],[53.18, 9.52],[53.12, 9.44],[53.10, 9.31],[53.10, 9.23],[53.09, 9.11],[53.08, 9.01],[53.09, 8.92],[53.10, 8.85],[53.10, 8.80],[53.08, 8.80]],
+        "popup": "<b><a href=\"Hamburg, Germany.html\" target=\"_blank\">Hamburg, Germany</a></b><br>Upon arriving in Hamburg, Germany, Karin boarded a train for the short trip to Bremen, Germany, which is located about 80 miles (127 km) to the west of Hamburg."
       },
       { "waypoint": 3,
         "url": "Bremen, Germany",
         "mode": "boat",
         "boat": "SS Trave",
-        "route": [
-          [53.08, 8.80], [53.79, 7.85], [54.20, 5.50], [53.60, 3.50], [51.00, 1.50], 
-          [50.10, -1.50], [49.49, -5.83], [48.88, -10.16], [48.27, -14.49], [47.66, -18.82],
-          [47.05, -23.15], [46.44, -27.48], [45.83, -31.81], [45.22, -36.14], [44.61, -40.47],
-          [44.00, -45.00], [43.00, -55.00], [42.73, -63.61], [40.18, -70.22], [40.48, -73.88], 
-          [40.55, -74.04], [40.64, -74.05], [40.6986, -74.0405]],
+        "route": [[53.08, 8.80], [53.79, 7.85], [54.20, 5.50], [53.60, 3.50], [51.00, 1.50], [50.10, -1.50], [49.49, -5.83], [48.88, -10.16], [48.27, -14.49], [47.66, -18.82],[47.05, -23.15], [46.44, -27.48], [45.83, -31.81], [45.22, -36.14], [44.61, -40.47],[44.00, -45.00], [43.00, -55.00], [42.73, -63.61], [40.18, -70.22], [40.48, -73.88], [40.55, -74.04], [40.64, -74.05], [40.6986, -74.0405]],
         "popup": "<b><a href=\"Bremen, Germany.html\" target=\"_blank\">Bremen, Germany</a>, </b><br>Upon arrival in Bremen, Karin made her way down to the docks. It was in Bremen, Germany that she boarded the <a href=\"S S Trave.html\" target=\"_blank\">SS Trave</a>, the ship that would take her all the way across the Atlantic Ocean to New York City. This voyage lasted about nine days."
       },
       { "waypoint": 4,
         "url": "New York",
         "mode": "train",
-        "route":[[40.70, -74.10],[40.59, -74.75],[40.58, -75.41],[40.52, -76.20],
-        [40.40, -76.56],[40.55, -77.21],[40.76, -77.64],[40.95, -78.10],[41.01, -78.40], [ 41.12, -78.78 ]],
+        "route":[[40.70, -74.10],[40.59, -74.75],[40.58, -75.41],[40.52, -76.20],[40.40, -76.56],[40.55, -77.21],[40.76, -77.64],[40.95, -78.10],[41.01, -78.40], [ 41.12, -78.78 ]],
         "popup": "<b><a href=\"New York.html\" target=\"_blank\">New York City</a> </b><br>Karin Norén arrived in New York City on <span class=\"date\">📅 Friday, May 21<sup>st</sup>, 1892</span>. She had turned 24 years old the previous December. Upon arrival in New York, her ship would have docked at Ellis Island which had started operation in January of that year. From here she would have boarded a train at Grand Central Depot. The train was heading to DuBois, Pennsylvania where her fiancé, Nils had arrived six months earlier."
       },
       { "waypoint": 5,
         "url": "DuBois, Pennsylvania",
         "mode": "train",
-        "route": [[41.12, -78.78 ], [41.18, -80.21], [41.06, -80.81], [41.22, -81.45],
-          [41.33, -82.56], [41.56, -83.64], [41.64, -84.81], [41.74, -86.21], [41.56, -86.90], 
-          [41.56, -87.52], [41.90, -87.65]],
+        "route": [[41.12, -78.78 ], [41.18, -80.21], [41.06, -80.81], [41.22, -81.45],[41.33, -82.56], [41.56, -83.64], [41.64, -84.81], [41.74, -86.21], [41.56, -86.90], [41.56, -87.52], [41.90, -87.65]],
         "popup": "<b><a href=\"DuBois, Pennsylvania.html\" target=\"_blank\">DuBois, Pennsylvania</a> </b><br>After leaving New York Karin would have arrived in DuBois the following day, meeting up with her fiancé, Nils whom she hadn't seen for over six months. On May 25, 1892, three days after arriving in DuBois, Nils and Karin applied for a marriage license at the county court house and three days later they had a church wedding. It was in DuBois on September 1<sup>st</sup>, 1893, that their first child, Herman (my grandfather), was born. Shortly after Herman's birth, Nils and Karin decided to leave DuBois and relocate to Chicago, Illinois."
       },
       { "waypoint": 6,
         "url": "Chicago, Illinois",
         "mode": "",
         "route": [[41.88, -87.63]],
-        "popup": "<b><a href=\"Chicago, Illinois.html\" target=\"_blank\">Chicago, Illinois</a></b><br>A city with the representation of literally hundreds of ethnic groups, has rightfully earned its nickname as \"The Melting Pot of America\". Perhaps this is why Nils and Karin, being new immigrants from Sweden, decided to relocate there. This is where, in the early 1890's, Nils and Karin Falkman finally settled. This is where they set down their roots. This is where many generations of Falkman's were born, with many still living in and around the Chicagoland area."
+        "popup": "<b><a href=\"Chicago, Illinois.html\" target=\"_blank\">Chicago, Illinois</a></b><br>A city with the representation of literally hundreds of ethnic groups, has rightfully earned its nickname as \"The Melting Pot of America\". Perhaps this is why Nils and Karin, being new immigrants from Sweden, decided to relocate here. This is where, in the early 1890's, Nils and Karin Falkman finally settled. This is where they set down their roots. This is where many generations of Falkman's were born, with many still living in and around the Chicagoland area."
       }
     ]
   }
