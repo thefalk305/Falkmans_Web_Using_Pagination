@@ -24,18 +24,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const picturesSelect = document.getElementById('pictures');
     const primaryImage = document.getElementById('primaryImage');
     const bioDisplay = document.getElementById('bioDisplay');
-    const bioContentDisplay = document.getElementById('bioContentDisplay');
     
-    // Modal elements
-    const imageView = document.getElementById('imageView');
-    const imageDisplay = document.getElementById('imageDisplay');
-    const bioView = document.getElementById('bioView');
-    const bioContent = document.getElementById('bioContent');
-    const closeImage = document.getElementById('closeImage');
-    const closeBio = document.getElementById('closeBio');
+  // const jsonFile = '../data/InfoTableData.json';
+  const jsonFile = '../data/infotable.json';
     
     // Load data from JSON file
-    fetch('../data/infotable.json')
+    fetch(jsonFile)
         .then(response => response.json())
         .then(data => {
             allData = data;
@@ -102,8 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Format the name field as 'Last Name, First Name Middle Initial. Suffix.'
         const nameParts = [];
-        if (person.last_name) nameParts.push(person.last_name);
-        nameParts.push(','); // Always add the comma
+        if (person.last_name) nameParts.push(person.last_name + ','); // Add comma directly to last name
         if (person.first_name) nameParts.push(person.first_name);
         if (person.mi) nameParts.push(person.mi);
         if (person.suff) nameParts.push(person.suff + '.');
@@ -143,6 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             familySearchLink.textContent = '';
             familySearchLink.onclick = null;
+            familySearchLink.style.cursor = 'default';
         }
         
         // Populate children dropdown with click functionality
@@ -281,13 +275,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     return response.text();
                 })
                 .then(bioText => {
-                    bioContentDisplay.innerHTML = bioText;
+                    bioDisplay.textContent = bioText; // Use textContent to preserve formatting
                     bioDisplay.classList.remove('hidden');
                     primaryImage.classList.add('hidden'); // Hide primary image when showing bio
                 })
                 .catch(error => {
                     console.error('Error loading bio:', error);
-                    bioContentDisplay.innerHTML = `Bio file not found: ${bioFilename}`;
+                    bioDisplay.textContent = `Bio file not found: ${bioFilename}`;
                     bioDisplay.classList.remove('hidden');
                     primaryImage.classList.add('hidden'); // Hide primary image when showing bio
                 });
@@ -301,24 +295,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Close modal handlers
-    closeImage.addEventListener('click', function() {
-        imageView.classList.add('hidden');
-    });
-    
-    closeBio.addEventListener('click', function() {
-        bioView.classList.add('hidden');
-    });
-    
-    // Hide modals when clicking outside
-    window.addEventListener('click', function(event) {
-        if (event.target === imageView) {
-            imageView.classList.add('hidden');
-        }
-        if (event.target === bioView) {
-            bioView.classList.add('hidden');
-        }
-    });
+
     
     // Hide suggestions when clicking outside
     document.addEventListener('click', function(e) {

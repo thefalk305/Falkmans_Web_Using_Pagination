@@ -13,6 +13,27 @@
       "webRoot": "${workspaceFolder}"
     },
     {
+      "name": "Run copy_fields_complete.py",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/py/copy_fields_complete.py",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Run update_bios.py",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/py/update_bios.py",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Run convert_excel_to_json.py",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/py/convert_excel_to_json.py",
+      "console": "integratedTerminal"
+    },
+    {
       "name": "Run Excel_to_JSON.py",
       "type": "debugpy",
       "request": "launch",
