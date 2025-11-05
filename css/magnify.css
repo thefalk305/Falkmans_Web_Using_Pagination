@@ -362,7 +362,7 @@ figcaption {
 
 .highlight-box {
   position: absolute;
-  border: 2px solid red;
+  border: 4px solid red;
   pointer-events: none;
   z-index: 9;
   border-radius: 10px;
