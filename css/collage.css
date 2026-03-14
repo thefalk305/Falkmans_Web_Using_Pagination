@@ -7,9 +7,7 @@ used for the photo collage pages */
   background-color: rgba(255, 255, 0, 0.0) !important; 
   cursor: pointer;
   border-radius: 10px;
-  cursor: url('images/cursor-edit.png') 0 0, pointer;
-
-
+  cursor: url('../images/cursor-edit.svg') 0 0, pointer;
 }
 
 .magImage, #doc-image {
@@ -27,6 +25,8 @@ used for the photo collage pages */
   transition: all 0.3s ease;
   background-repeat: no-repeat;
   border-radius: 20px;
+  cursor: url('../images/cursor-edit.png') 0 0, pointer;
+
 }
 
 .zoom-caption {
