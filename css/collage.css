@@ -7,6 +7,9 @@ used for the photo collage pages */
   background-color: rgba(255, 255, 0, 0.0) !important; 
   cursor: pointer;
   border-radius: 10px;
+  cursor: url('images/cursor-edit.png') 0 0, pointer;
+
+
 }
 
 .magImage, #doc-image {

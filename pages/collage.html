@@ -33,6 +33,8 @@
 </div>
 
 <script type="module">
+// listBuilder reads data from 'jsonFile' and populates the page
+// with each person's name and their associated document links.
   import { listBuilder } from '../js/list-builder.js';
 
   const jsonFile = '../data/collage.json';
@@ -41,14 +43,5 @@
   listBuilder({ jsonFile, viewer });
 </script>
 
-
-<!-- <script type="module">
-  import { initMagnifierControls } from '../js/magnifier.js';
-  document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-      initMagnifierControls();
-    }, 100);
-  });
-</script> -->
 </body>
 </html>
