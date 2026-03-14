@@ -1,7 +1,7 @@
 // create-areas.js
 // Documentation: createAreas will read jsonFile and 
-// append a div for each area in the section.
-// It also reads the url and notes from the jsonFile
+// append a div to the DOM for each area in the section.
+// It also reads the url and the notes from jsonFile
 
 // import in two helper functions from other files.
 // These will be used later to set up the interactive features.

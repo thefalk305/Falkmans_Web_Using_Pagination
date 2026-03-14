@@ -126,6 +126,8 @@ fetch(jsonFile)
   let userHasInteracted = false;
   let lastPointReached = false;
   let overlayOn = true;
+  overlayBtn.textContent = "Overlay OFF";
+
 
   // browsers block audio until user Has Interacted (i.e. clicked)
   document.addEventListener('click', () => { userHasInteracted = true; }, { once: false });
