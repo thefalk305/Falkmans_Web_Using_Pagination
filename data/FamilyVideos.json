@@ -1,0 +1,128 @@
+[
+{
+    "img_src": "allen.jpg",
+    "alt": "Allen Falkman",
+    "poster": "allen.jpg",
+    "source_src": "Allen.MP4",
+    "type": "mp4"
+},
+{
+    "img_src": "jerry.jpg",
+    "alt": "Jerry Falkman",
+    "poster": "jerry.jpg",
+    "source_src": "Jerry.MP4",
+    "type": "mp4"
+},
+{
+    "img_src": "dick.jpg",
+    "alt": "Dick Falkman",
+    "poster": "dick.jpg",
+    "source_src": "dick.MP4",
+    "type": "mp4"
+},
+{
+    "img_src": "bob.jpg",
+    "alt": "Bob Falkman",
+    "poster": "bob.jpg",
+    "source_src": "Bob.MP4",
+    "type": "mp4"
+  },
+  {
+    "img_src": "dad.png",
+    "alt": "Dad Falkman",
+    "poster": "dad.png",
+    "source_src": "dad.MP4",
+    "type": "mp4"
+  },
+  {
+    "img_src": "mom2.png",
+    "alt": "Mom Falkman",
+    "poster": "mom2.png",
+    "source_src": "mom3.mp4",
+    "type": "mp4"
+  },
+  {
+    "img_src": "aljr2.jpg",
+    "alt": "Allen Falkman",
+    "poster": "aljr2.jpg",
+    "source_src": "AlJr2.MP4",
+    "type": "mp4"
+  },
+  {
+    "img_src": "pat1.png",
+    "alt": "Pat Falkman",
+    "poster": "pat1.png",
+    "source_src": "Pat2.MP4",
+    "type": "mp4"
+  },
+  {
+    "img_src": "AlJr.jpg",
+    "alt": "Allen Falkman",
+    "poster": "AlJr.jpg",
+    "source_src": "AlJr.MP4",
+    "type": "mp4"
+  },
+  {
+    "img_src": "carol.jpg",
+    "alt": "Carol Broderick",
+    "poster": "carol.jpg",
+    "source_src": "Carol2.mp4",
+    "type": "mp4"
+  },
+  {
+    "img_src": "AllenJr.jpg",
+    "alt": "Allen Falkman",
+    "poster": "AllenJr.jpg",
+    "source_src": "AllenJr.MP4",
+    "type": "mp4"
+  },
+  {
+    "img_src": "jerry2.jpg",
+    "alt": "Jerry Falkman",
+    "poster": "jerry2.jpg",
+    "source_src": "Jerry&Guest.MP4",
+    "type": "mp4"
+  },
+  {
+    "img_src": "bonnie2.jpg",
+    "alt": "Bonnie Skaggs",
+    "poster": "bonnie2.jpg",
+    "source_src": "Bonnie2.MP4",
+    "type": "mp4"
+  },
+  {
+    "img_src": "Bonnie.jpg",
+    "alt": "Bonnie Skaggs",
+    "poster": "Bonnie.jpg",
+    "source_src": "Bonnie.MP4",
+    "type": "mp4"
+  },
+  {
+    "img_src": "BeaYoung.png",
+    "alt": "Beatrice Broderick",
+    "poster": "BeaYoung.png",
+    "source_src": "beavid.mp4",
+    "type": "mp4"
+  },
+  {
+    "img_src": "Linda.png",
+    "alt": "Linda Falkman",
+    "poster": "Linda.png",
+    "source_src": "LindaV.MP4",
+    "type": "mp4"
+  },
+  {
+    "img_src": "LindaN.png",
+    "alt": "Linda Falkman",
+    "poster": "LindaN.png",
+    "source_src": "lindaS.mp4",
+    "type": "mp4"
+  },
+  {
+    "img_src": "bonnied.jpg",
+    "alt": "Bonnie Skaggs",
+    "poster": "bonnied.jpg",
+    "source_src": "BonnieD.MP4",
+    "type": "mp4"
+  }
+]
