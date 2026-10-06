@@ -57,6 +57,7 @@ body img {
   width: 250px;
   height: 400px;
   perspective: 1000px;
+  position: relative;
 }
 
 .flip-card {
@@ -117,6 +118,29 @@ body img {
 .card-video {
     border-radius: 8px;
     margin-bottom: 10px;
+}
+
+.video-caption {
+    position: absolute;
+    /* top: 0; */
+    bottom: -60px;
+    left: -10px;
+    z-index: 1;
+    box-sizing: border-box;
+    width: 95%;
+    margin: 0;
+    padding: 8px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.flip-card:hover .video-caption {
+    opacity: 1;
 }
 
 

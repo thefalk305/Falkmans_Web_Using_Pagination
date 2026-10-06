@@ -9,7 +9,7 @@
 //        - flip-card
 //        - flip-card-inner
 //        - flip-card-front (image)
-//        - flip-card-back (video)
+//        - flip-card-back (caption and video)
 //   3. Append each completed card into <div class="gallery"> in FamilyVideos.html.
 //
 // Folder structure expected:
@@ -75,6 +75,10 @@ fetch("../data/FamilyVideos.json")
       const back = document.createElement("div");
       back.className = "flip-card-back";
 
+      const caption = document.createElement("p");
+      caption.className = "video-caption";
+      caption.textContent = item.alt;
+
       const video = document.createElement("video");
       video.className = "card-video";
 
@@ -98,7 +102,6 @@ fetch("../data/FamilyVideos.json")
       // Add the <source> to the <video>
       video.appendChild(source);
 
-      // Add the video to the back side
       back.appendChild(video);
 
 
@@ -107,6 +110,7 @@ fetch("../data/FamilyVideos.json")
       // ======================================================================
       flipInner.appendChild(front);   // front side
       flipInner.appendChild(back);    // back side
+      flipCard.appendChild(caption); // wrap both sides
       flipCard.appendChild(flipInner); // wrap both sides
 
 
