@@ -86,10 +86,10 @@ window.ALBUM = {
   backCrest: 'images/AlexCrest.png',                    // e.g. 'images/crest2.png'
   branches: [
     {
-      name: 'Falkman Family 16',
+      name: 'Falkman Family',
       color: '#8c2f39',
       crest: 'images/crest2.png',
-      blurb: 'This section is about the Falkman 16 branch of the family.',
+      blurb: 'This section is about the Falkman branch of the family.',
       photos: [
         { src: 'images/VJday.jpg', caption: 'VJ Day, 1945', date: '', size: 'medium' },
         { src: 'images/Peter.jpg', caption: 'Grandpa, 1952', date: '1952', size: 'medium' },
