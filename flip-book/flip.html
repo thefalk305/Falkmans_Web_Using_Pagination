@@ -1,0 +1,75 @@
+<!doctype html>
+<!--
+  FLIP.HTML - the page you open in the browser. It is the "frame": it holds the
+  book, the control bar and the photo viewer, and loads the style sheet and the
+  scripts that bring them to life. You rarely need to change it.
+
+  Files expected next to this page:
+    css/style.css       how everything looks
+    js/album-data.js    YOUR CONTENT (photos, captions, crests, branches)
+    js/editor.js        the "Edit album" panel (optional)
+    js/album.js         the book engine
+    images/             your photos and crest pictures
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- makes the page fit phones and tablets -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Family Photo Album</title>
+  <!-- all colours, fonts and layout -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<!-- class="cloth" gives the covers a cloth-weave texture. Remove the word "cloth"
+     for smooth leather. -->
+<body class="cloth">
+
+  <!-- The book is drawn into this empty box by js/album.js -->
+  <main class="stage" id="stage">
+    <div class="book" id="book" aria-label="Family photo album"></div>
+  </main>
+
+  <!-- The control bar at the bottom of the screen -->
+  <nav class="controls">
+    <button id="btnPrev" type="button" aria-label="Previous page">&#8592;</button>
+    <!-- shows "Pages 3 - 4", "Front cover", etc. -->
+    <span id="pageInfo" aria-live="polite"></span>
+    <button id="btnNext" type="button" aria-label="Next page">&#8594;</button>
+    <span class="hint">Drag or click a page &middot; &larr; &rarr; keys &middot; click a tab to jump &middot; click a photo to zoom</span>
+    <!-- turns the page-curl effect on and off -->
+    <button id="btnCurl" class="pill" type="button" aria-pressed="true" title="Bend pages as they turn">&#8635; Curl on</button>
+    <!-- turns the page-turn sound on and off -->
+    <button id="btnSound" class="pill" type="button" aria-pressed="true" title="Page-turn sound">&#9834; Sound on</button>
+    <!-- Opens the editor. DELETE THIS LINE when you publish the album publicly
+         (and delete the editor.js line below too). -->
+    <button id="btnEdit" class="pill" type="button" title="Add photos, branches and pages">&#9998; Edit album</button>
+  </nav>
+
+  <!-- The photo viewer: hidden until you click a photo. Zoom buttons, previous / next
+       arrows, the photo and its caption. -->
+  <div class="lightbox" id="lightbox" hidden>
+    <div class="lb-bar">
+      <button id="lbOut" type="button" aria-label="Zoom out" title="Zoom out (-)">&minus;</button>
+      <span id="lbZoomLbl">100%</span>
+      <button id="lbIn" type="button" aria-label="Zoom in" title="Zoom in (+)">+</button>
+      <button id="lbFit" type="button" class="txt" title="Fit to screen (0)">Fit</button>
+      <button id="lbActual" type="button" class="txt" title="Actual size (1)">1:1</button>
+      <button id="lbClose" type="button" aria-label="Close" title="Close (Esc)">&#10005;</button>
+    </div>
+    <button id="lbPrev" class="lb-nav lb-prev" type="button" aria-label="Previous photo">&#8249;</button>
+    <button id="lbNext" class="lb-nav lb-next" type="button" aria-label="Next photo">&#8250;</button>
+    <img id="lbImg" alt="" draggable="false">
+    <p id="lbCap"></p>
+    <p class="lb-help">Scroll or pinch to zoom &middot; double-click to zoom in &middot; drag to move</p>
+  </div>
+
+  <!-- SCRIPTS. The ORDER matters:
+       1) album-data.js  your content
+       2) editor.js      the editor and your saved edits (leave out for a public page)
+       3) album.js       the book engine, which starts everything
+       To troubleshoot, add <script src="js/diagnose.js"></script> as the FIRST script. -->
+  <script src="js/album-data.js"></script>
+  <script src="js/editor.js"></script>
+  <script src="js/album.js"></script>
+</body>
+</html>
