@@ -809,7 +809,7 @@
       h('div', { class: 'ed-btnrow col' },
         h('button', { type: 'button', class: 'solid', text: '⬇ Download backup (.json)', onclick: downloadBackup }),
         h('button', { type: 'button', text: '⬆ Restore from a backup…', onclick: () => importInput.click() }),
-        h('button', { type: 'button', class: 'danger', text: 'Start over (discard saved edits)', onclick: resetAll }),
+        h('button', { type: 'button', class: 'danger', title: "'Start over': asks first, then discards the saved edits so the book goes back to album-data.js.", text: 'Start over (discard saved edits)', onclick: resetAll }),
         importInput),
       h('p', { class: 'ed-help', text: 'Tip: you can also keep photos in an “images” folder and list them in album-data.js; that file works without any browser storage.' }));
   }

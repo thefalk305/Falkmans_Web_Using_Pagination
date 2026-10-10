@@ -1,0 +1,47 @@
+How to use it
+
+Save convert-backup.html anywhere, for example next to flip.html,
+and double-click it so it opens in your browser.
+
+Click the file box and choose family-album-backup-2026-10-07.json.
+Click Convert. A file named album-from-backup.zip downloads.
+
+Unzip it. It contains a new album-data.js and an images folder
+holding every photo you uploaded in the editor, saved as real .jpg
+or .png files.
+
+Copy the images folder next to flip.html, adding to the one you
+already have. Then make a copy of your current album-data.js, and
+put the new one in the js folder in its place.
+
+In the book, open Edit album → Backup → Start over. The book then
+shows entirely from the file.
+
+Things to know
+
+The grey sample placeholder photos are left out unless you tick the
+box on the page. They are only stand-ins and can’t be turned into
+real pictures.
+
+Your hand-added entries aren’t merged. The backup only knows the
+album as it was when you downloaded it. Anything you’ve typed into
+album-data.js since then is not in the new file. Copy those entries
+from your old file into the new one, inside the right branch’s
+photos list.
+
+File names come from your captions. For example, a photo captioned
+“Grandpa at the lake” becomes
+images/paternal-side-grandpa-at-the-lake.jpg. Photos without a
+caption are numbered.
+
+Photos you had already typed in as file paths, such as
+images/Peter.jpg, keep those paths.
+
+Hand-typed images/... photos stay as they are. The tool only
+creates image files for photos you uploaded through the editor.
+Download a fresh backup first if you’ve made editor changes since
+October 7. Otherwise the conversion will only reflect the older
+snapshot.
+
+Once you’ve done this, you can rebuild the file whenever you like.
+Download a new backup from the editor and convert it again.

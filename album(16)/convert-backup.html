@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Backup to album-data.js</title>
+<!--
+  BACKUP  ->  album-data.js   (runs entirely in your browser; nothing is uploaded)
+
+  How to use:
+    1. Open this page (double-click it, or open it from VS Code with Live Server).
+    2. Choose your family-album-backup-....json file.
+    3. Press "Convert". A ZIP file downloads. Unzip it.
+    4. Copy album-data.js into your js folder (replacing the old one - keep a copy of
+       the old one first!) and copy the images folder next to flip.html.
+    5. In the album: Edit album > Backup > Start over, so the book shows the file.
+
+  What it does: reads the backup, saves every photo you uploaded in the editor as a real
+  .jpg/.png file in an images folder, and writes an album-data.js that points to them.
+-->
+<style>
+  :root { color-scheme: light dark; --bg: #f6f1e7; --fg: #2d2418; --card: #fffaf0; --line: #cdbf9f; --accent: #8c2f39; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #1d1812; --fg: #efe6d2; --card: #2a2219; --line: #5a4a33; --accent: #e0b866; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.5 Georgia, serif; }
+  main { max-width: 42rem; margin: 0 auto; padding: 2rem 1rem 4rem; }
+  h1 { font-size: 1.5rem; margin: 0 0 .25rem; }
+  p.lead { margin: 0 0 1.5rem; opacity: .8; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: .6rem; padding: 1rem 1.1rem; margin-bottom: 1rem; }
+  label { display: block; margin: .4rem 0; cursor: pointer; }
+  button { font: inherit; padding: .55rem 1.2rem; border-radius: 2rem; border: 1px solid var(--accent); background: var(--accent); color: #fff; cursor: pointer; }
+  button:disabled { opacity: .4; cursor: default; }
+  input[type=file] { width: 100%; padding: .6rem; border: 2px dashed var(--line); border-radius: .5rem; background: transparent; color: inherit; }
+  #log { white-space: pre-wrap; font: .85rem/1.45 ui-monospace, Consolas, monospace; margin: 0; }
+  .ok { color: #2f7d4f; } .bad { color: #b3261e; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Backup &rarr; album-data.js</h1>
+  <p class="lead">Turns the backup you downloaded from Edit album into a permanent <code>album-data.js</code> plus an <code>images</code> folder. Everything stays on your computer.</p>
+
+  <div class="card">
+    <input id="file" type="file" accept=".json,application/json">
+    <label><input id="keepSamples" type="checkbox"> Keep the grey sample placeholder photos (usually leave this off)</label>
+    <p style="margin:.8rem 0 0"><button id="go" disabled>Convert</button></p>
+  </div>
+
+  <div class="card"><pre id="log">Choose your backup file to begin.</pre></div>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  const fileIn = document.getElementById('file'), go = document.getElementById('go'), logEl = document.getElementById('log');
+  const keepSamples = document.getElementById('keepSamples');
+  let backup = null, backupName = '';
+
+  const log = (t, cls) => { const s = document.createElement('span'); if (cls) s.className = cls; s.textContent = t + '\n'; logEl.appendChild(s); };
+  const clear = () => { logEl.textContent = ''; };
+
+  fileIn.addEventListener('change', async () => {
+    clear(); backup = null; go.disabled = true;
+    const f = fileIn.files[0]; if (!f) return;
+    try {
+      const j = JSON.parse(await f.text());
+      if (!j || !j.state || !Array.isArray(j.state.branches)) throw new Error('This does not look like an album backup.');
+      backup = j; backupName = f.name;
+      const photos = j.state.branches.reduce((n, b) => n + (b.photos || []).length, 0);
+      log(`Read ${f.name}: ${j.state.branches.length} branches, ${photos} photos and story pages.`, 'ok');
+      go.disabled = false;
+    } catch (e) { log('Could not read that file: ' + e.message, 'bad'); }
+  });
+
+  // ---- helpers ----
+  const SAMPLE = 'data:image/svg+xml';
+  const slug = s => String(s || 'item').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 30) || 'item';
+  const EXT = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp', 'image/gif': 'gif', 'image/svg+xml': 'svg', 'image/avif': 'avif' };
+
+  function dataToBytes(url) {
+    const m = /^data:([^;,]+)(;base64)?,(.*)$/s.exec(url);
+    if (!m) return null;
+    const mime = m[1], body = m[3];
+    let bytes;
+    if (m[2]) { const bin = atob(body); bytes = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i); }
+    else bytes = new TextEncoder().encode(decodeURIComponent(body));
+    return { mime, bytes, ext: EXT[mime] || 'bin' };
+  }
+
+  // ---- minimal ZIP writer (no compression; photos are already compressed) ----
+  const CRC = (() => { const t = new Uint32Array(256); for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
+  const crc32 = b => { let c = 0xFFFFFFFF; for (let i = 0; i < b.length; i++) c = CRC[(c ^ b[i]) & 255] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; };
+  function makeZip(files) {   // files: [{name, bytes}]
+    const enc = new TextEncoder(), parts = [], central = [];
+    let offset = 0;
+    const u16 = n => new Uint8Array([n & 255, (n >> 8) & 255]);
+    const u32 = n => new Uint8Array([n & 255, (n >> 8) & 255, (n >> 16) & 255, (n >>> 24) & 255]);
+    const cat = arr => { const out = new Uint8Array(arr.reduce((s, a) => s + a.length, 0)); let o = 0; arr.forEach(a => { out.set(a, o); o += a.length; }); return out; };
+    for (const f of files) {
+      const name = enc.encode(f.name), crc = crc32(f.bytes), size = f.bytes.length;
+      const local = cat([u32(0x04034b50), u16(20), u16(0x0800), u16(0), u16(0), u16(0x21), u32(crc), u32(size), u32(size), u16(name.length), u16(0), name]);
+      parts.push(local, f.bytes);
+      central.push(cat([u32(0x02014b50), u16(20), u16(20), u16(0x0800), u16(0), u16(0), u16(0x21), u32(crc), u32(size), u32(size), u16(name.length), u16(0), u16(0), u16(0), u16(0), u32(0), u32(offset), name]));
+      offset += local.length + size;
+    }
+    const cd = cat(central);
+    const end = cat([u32(0x06054b50), u16(0), u16(0), u16(files.length), u16(files.length), u32(cd.length), u32(offset), u16(0)]);
+    return new Blob([...parts, cd, end], { type: 'application/zip' });
+  }
+
+  // ---- the conversion ----
+  go.addEventListener('click', () => {
+    clear();
+    try {
+      const S = backup.state, files = [], used = new Set();
+      let skipped = 0, extracted = 0;
+
+      // saves a data URL as an image file and returns its path (or null)
+      const save = (dataUrl, base) => {
+        const d = dataToBytes(dataUrl); if (!d) return null;
+        let name = `${base}.${d.ext}`, n = 2;
+        while (used.has(name)) name = `${base}-${n++}.${d.ext}`;
+        used.add(name);
+        files.push({ name: 'images/' + name, bytes: d.bytes });
+        extracted++;
+        return 'images/' + name;
+      };
+
+      // the picture for something: an uploaded file inside the backup, or a path typed in the file
+      const pic = (o, dataField, urlField, base) => {
+        if (o[dataField]) return save(o[dataField], base);
+        const u = o[urlField];
+        if (typeof u === 'string' && u && !u.startsWith('blob:')) {
+          if (u.startsWith('data:')) { if (u.startsWith(SAMPLE)) return keepSamples.checked ? u : null; return save(u, base); }
+          return u;                         // an ordinary path like images/Peter.jpg
+        }
+        return null;
+      };
+
+      const out = {};
+      ['eyebrow', 'title', 'subtitle', 'dedication', 'backText', 'coverFont', 'innerCrest', 'photoIndex', 'showWhole'].forEach(k => { if (S[k] !== undefined && S[k] !== '') out[k] = S[k]; });
+      out.crest = pic(S, 'crestData', 'crest', 'crest-family');
+      out.backCrest = pic(S, 'backCrestData', 'backCrest', 'crest-back');
+
+      out.branches = S.branches.map((b, bi) => {
+        const nb = { name: b.name || 'Branch ' + (bi + 1), color: b.color };
+        if (b.tabLabel) nb.tabLabel = b.tabLabel;
+        nb.crest = pic(b, 'crestData', 'crest', 'crest-' + slug(b.name));
+        nb.blurb = b.blurb || '';
+        let n = 0;
+        nb.photos = [];
+        for (const p of b.photos || []) {
+          n++;
+          if (p.type === 'note') {
+            const note = { type: 'note', title: p.title || '', text: p.text || '' };
+            const im = pic(p, 'data', 'src', `${slug(b.name)}-story-${n}`);
+            if (im) { note.image = im; if (p.caption) note.imageCaption = p.caption; if (p.fit) note.fit = p.fit; }
+            nb.photos.push(note); continue;
+          }
+          const src = pic(p, 'data', 'src', `${slug(b.name)}-${p.caption ? slug(p.caption) : 'photo-' + n}`);
+          if (!src) { skipped++; continue; }
+          const ph = { src, caption: p.caption || '', date: p.date || '', size: p.size || 'medium' };
+          if (p.fit === 'contain') ph.fit = 'contain';
+          if (p.newPage) ph.newPage = true;
+          nb.photos.push(ph);
+        }
+        return nb;
+      });
+
+      const header = `/* ==========================================================================
+   YOUR ALBUM CONTENT  (made from ${backupName} on ${new Date().toISOString().slice(0, 10)})
+
+   Photos are in the images folder next to flip.html. Edit this file by hand, or use
+   Edit album in the page (then Backup > Download backup, and convert again).
+
+   photo      : { src, caption, date, size: 'small'|'medium'|'large', fit: 'contain', newPage: true }
+   story page : { type: 'note', title, text, image, imageCaption }
+   settings   : photoIndex 'alpha'|'branch'|'none', showWhole true|false, coverFont, innerCrest
+   ========================================================================== */
+
+`;
+      const js = header + 'window.ALBUM = ' + JSON.stringify(out, null, 2) + ';\n';
+      files.unshift({ name: 'album-data.js', bytes: new TextEncoder().encode(js) });
+
+      const zip = makeZip(files);
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(zip); a.download = 'album-from-backup.zip';
+      document.body.appendChild(a); a.click(); a.remove();
+
+      log(`Done. album-from-backup.zip contains album-data.js and ${extracted} image file${extracted === 1 ? '' : 's'}.`, 'ok');
+      if (skipped) log(`${skipped} sample placeholder photo${skipped === 1 ? ' was' : 's were'} left out (tick the box above to keep them).`);
+      log('\nNext: unzip it, copy album-data.js into your js folder (keep a copy of the old one),\ncopy the images folder next to flip.html, then in the album press\nEdit album > Backup > Start over.');
+    } catch (e) { log('Something went wrong: ' + e.message, 'bad'); console.error(e); }
+  });
+})();
+</script>
+</body>
+</html>
